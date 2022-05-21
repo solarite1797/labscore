@@ -1,0 +1,6 @@
+node_modules
+package-lock.json
+
+# Local Development Environment Setup
+.env
+local.js

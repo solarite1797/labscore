@@ -1,0 +1,17 @@
+{
+  "name": "v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "detritus-client": "^0.17.0-beta.12",
+    "detritus-pagination": "^1.4.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.17.1",
+    "superagent": "^7.1.1"
+  }
+}
