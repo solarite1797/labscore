@@ -1,11 +1,6 @@
 const { Constants } = require('detritus-client');
 const { paginator } = require('../../../../labscore/client');
 
-const reactions = {
-    previousPage: "⬅️",
-    nextPage: "➡️"
-};
-
 const createEmbedMessage = (title, description) => ({
     embeds: [{ title, description }]
 });
@@ -25,13 +20,11 @@ module.exports = {
       createEmbedMessage("Page2", "eee"),
       createEmbedMessage("Page 3", "h")
     ]
-    const paging = await paginator.createReactionPaginator({
+    const paging = await paginator.createPaginator({
             // message is the message the user has sent
             message,
             // pages is an array of pages (will be passed as parameter in Message#edit)
-            pages,
-            // reactions is an object that includes `previousPage` and `nextPage` emojis (defined above)
-            reactions
+            pages
         });
   },
 };

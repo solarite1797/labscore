@@ -22,11 +22,6 @@ function createSearchResultPage(context, result){
   return res;
 }
 
-const reactions = {
-    previousPage: "⬅️",
-    nextPage: "➡️"
-};
-
 module.exports = {
   name: 'google',
   label: 'query',
@@ -51,10 +46,9 @@ module.exports = {
       
       pages = formatPaginationEmbeds(pages)
       const message = context.message
-      const paging = await paginator.createReactionPaginator({
+      const paging = await paginator.createPaginator({
         message,
-        pages,
-        reactions
+        pages
       });
     }catch(e){
       console.log(e)

@@ -23,11 +23,6 @@ function createWolframPage(context, pod){
   return res;
 }
 
-const reactions = {
-    previousPage: "⬅️",
-    nextPage: "➡️"
-};
-
 module.exports = {
   name: 'wolframalpha',
   label: 'query',
@@ -52,10 +47,9 @@ module.exports = {
       
       pages = formatPaginationEmbeds(pages)
       const message = context.message
-      const paging = await paginator.createReactionPaginator({
+      const paging = await paginator.createPaginator({
         message,
-        pages,
-        reactions
+        pages
       });
     }catch(e){
       console.log(e)

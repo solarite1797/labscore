@@ -11,9 +11,7 @@ module.exports = class BasePaginator extends EventEmitter {
     this.index = 0;
     this.targetUser = data.targetUser || this.message.author.id;
 
-    // Reference to reply function
-    // Uses context.editOrReply if an instance of Context was passed
-    // Defaults to message.reply
+    // TODO: use editOrReply, kill old paginator if it exists
     this.editOrReply = (data.message.editOrReply || data.message.reply).bind(data.message);
   }
 

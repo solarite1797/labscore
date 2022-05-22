@@ -3,35 +3,35 @@ const Paginator = require("./Paginator");
 const assert = require("assert");
 
 module.exports = class PaginatorCluster {
-    constructor(clusterClient, data = {}) {
-        assert.ok(
-            clusterClient instanceof ClusterClient,
-            "clusterClient must be an instance of ClusterClient"
-        );
+  constructor(clusterClient, data = {}) {
+    assert.ok(
+      clusterClient instanceof ClusterClient,
+      "clusterClient must be an instance of ClusterClient"
+    );
 
-        const paginators = new WeakMap();
+    const paginators = new WeakMap();
 
-        for (const [, client] of clusterClient.shards) {
-            paginators.set(client, new Paginator(client, data));
-        }
-
-        this.data = data;
-        this.paginators = paginators;
+    for (const [, client] of clusterClient.shards) {
+      paginators.set(client, new Paginator(client, data));
     }
 
-    findOrSetPaginator(client) {
-        const cachedPaginator = this.paginators.get(client);
-        if (cachedPaginator) return cachedPaginator;
+    this.data = data;
+    this.paginators = paginators;
+  }
 
-        const paginator = new Paginator(client, this.data);
-        this.paginators.set(client, paginator);
+  findOrSetPaginator(client) {
+    const cachedPaginator = this.paginators.get(client);
+    if (cachedPaginator) return cachedPaginator;
 
-        return paginator;
-    }
+    const paginator = new Paginator(client, this.data);
+    this.paginators.set(client, paginator);
 
-    createReactionPaginator(data) {
-        const targetPaginator = this.findOrSetPaginator(data.message.client);
+    return paginator;
+  }
 
-        return targetPaginator.createReactionPaginator(data);
-    }
+  createPaginator(data) {
+    const targetPaginator = this.findOrSetPaginator(data.message.client);
+
+    return targetPaginator.createPaginator(data);
+  }
 }

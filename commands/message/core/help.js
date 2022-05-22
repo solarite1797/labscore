@@ -22,11 +22,6 @@ const categories = {
   "dev": `${icon("analytics")} Development`
 }
 
-const reactions = {
-    previousPage: "⬅️",
-    nextPage: "➡️"
-};
-
 module.exports = {
   name: 'help',
   label: 'command',
@@ -58,10 +53,9 @@ module.exports = {
       
       pages = formatPaginationEmbeds(pages)
       const message = context.message
-      const paging = await paginator.createReactionPaginator({
+      const paging = await paginator.createPaginator({
         message,
-        pages,
-        reactions
+        pages
       });
     }
   },

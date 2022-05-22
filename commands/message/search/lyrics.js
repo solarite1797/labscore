@@ -5,11 +5,6 @@ const { STATICS } = require('../../../labscore/utils/statics')
 const { lyrics } = require('../../../labscore/api');
 const { paginator } = require('../../../labscore/client');
 
-const reactions = {
-    previousPage: "⬅️",
-    nextPage: "➡️"
-};
-
 function createLyricsPage(context, search, fields){
   let em= createEmbed("default", context, {
     description: `**${search.body.song.title}**\n*Released ${search.body.song.release}*\n\n`,
@@ -70,10 +65,9 @@ module.exports = {
         const message = context.message
 
         pages = formatPaginationEmbeds(pages)
-        const paging = await paginator.createReactionPaginator({
+        const paging = await paginator.createPaginator({
           message,
-          pages,
-          reactions
+          pages
         });
         return;
       }

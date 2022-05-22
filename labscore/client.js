@@ -21,7 +21,7 @@ const cluster = new ClusterClient("", {
 
 // Create this clusters paginator
 const paginator =  new Paginator(cluster, {
-  maxTime: 120000,
+  maxTime: 300000,
   pageLoop: true,
   pageNumber: true
 });
