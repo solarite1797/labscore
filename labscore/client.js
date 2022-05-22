@@ -1,6 +1,6 @@
 const { Constants, ClusterClient, CommandClient } = require('detritus-client');
-const { createPaginator } = require('./paginator')
-  const Paginator = require('detritus-pagination').PaginatorCluster
+//const { createPaginator } = require('./paginator')
+const Paginator = require('./paginator').PaginatorCluster
 
 // Create client
 const cluster = new ClusterClient("", {
