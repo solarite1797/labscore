@@ -70,6 +70,12 @@ module.exports.bingImages = async function(context, query){
   })
 }
 
+module.exports.wolframAlpha = async function(context, query){
+  return await request(Api.SEARCH_WOLFRAM_ALPHA, "GET", {}, {
+    q: query
+  })
+}
+
 module.exports.yacht = async function(context, text){
   return await request(Api.PHOTOFUNIA_YACHT, "GET", {}, {
     text: text

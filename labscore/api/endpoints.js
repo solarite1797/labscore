@@ -14,6 +14,7 @@ const Api = Object.freeze({
   SEARCH_GOOGLE_IMAGES: '/search/google-images',
   SEARCH_BING: '/search/bing',
   SEARCH_BING_IMAGES: '/search/bing-images',
+  SEARCH_WOLFRAM_ALPHA: '/search/wolfram-alpha',
 
   PHOTOFUNIA_YACHT: '/photofunia/yacht'
 })
