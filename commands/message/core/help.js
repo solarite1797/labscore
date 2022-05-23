@@ -1,7 +1,10 @@
-const { codeblock, highlight, icon } = require('../../../labscore/utils/markdown')
+const { codeblock, highlight, icon, link } = require('../../../labscore/utils/markdown')
 const { createEmbed, formatPaginationEmbeds } = require('../../../labscore/utils/embed')
 
+const { DISCORD_INVITE } = require('../../../labscore/constants')
+
 const { paginator } = require('../../../labscore/client');
+const { editOrReply } = require('../../../labscore/utils/message');
 
 function createHelpPage(context, title, contents){
   return {
@@ -15,12 +18,43 @@ function createHelpPage(context, title, contents){
   }
 }
 
+function createCommandPage(context, prefix, command){
+  let page = createEmbed("default", context, {
+    description: `**${prefix}${command.name}**\n${command.metadata.description}`,
+    fields: []
+  })
+  if(command.aliases.length >= 1) page.fields.push({
+    name: `${icon("activity")} Aliases`,
+    value: command.aliases.join(', '),
+    inline: true
+  })
+  if(command.metadata.usage) page.fields.push({
+    name: `${icon("util")} Usage`,
+    value: codeblock("ansi", [prefix + command.metadata.usage]),
+    inline: true
+  })
+  if(command.metadata.examples){
+    let ex = []
+    for(const e of command.metadata.examples) ex.push(prefix + e)
+    page.fields.push({
+      name: `${icon("info")} Examples`,
+      value: codeblock("ansi", ex),
+      inline: false
+    })
+  }
+  return {
+    embeds: [page]
+  };
+}
+
 // These categories will be displayed to users, add them in the correct order
 const categories = {
   "core": `${icon("house")} Core Commands`,
-  "search": `${icon("search")} Search Commands`,
-  "dev": `${icon("analytics")} Development`
+  "info": `${icon("info")} Information Commands`,
+  "mod": `${icon("moderation")} Moderation Commands`,
+  "search": `${icon("search")} Search Commands`
 }
+
 
 module.exports = {
   name: 'help',
@@ -33,12 +67,50 @@ module.exports = {
   },
   run: async (context, args) => {
     context.triggerTyping();
-    if(args.label){
+    if(args.command){
       // Detailed command view
+      let results = []
+      
+      for(const c of context.commandClient.commands){
+        if(c.name.includes(args.command) || c.aliases.filter((f)=>{return f.includes(args.command)}).length >= 1) results.push(c)
+      }
+
+      let pages = []
+      let prefix = context.commandClient.prefixes.custom.first()
+      try{
+        
+      if(results.length == 0) return editOrReply(context, {embeds: [createEmbed("warning", context, "No commands found for the provided query.")]})
+
+      if(results.length > 1) {
+        // Command overview
+        pages.push({embeds:[
+          createEmbed("default", context, {
+            description: `Check pages for detailed command descriptions.\n` + codeblock("ansi", [(prefix + results.map((m)=>{return m.name}).splice(0, 10).join('\n' + prefix))]) + `\n${icon("question")} Need help with something else? Contact us via our ${link(DISCORD_INVITE, "Support Server")}.`
+          })
+        ]})
+
+        // Generate command detail pages
+        for(const c of results){
+          pages.push(createCommandPage(context, prefix, c))
+        }
+
+        pages = formatPaginationEmbeds(pages)
+        const message = context.message
+        const paging = await paginator.createPaginator({
+          message,
+          pages
+        });
+        return;
+      } else {
+        return editOrReply(context, createCommandPage(context, prefix, results[0]))
+      }
+      }catch(e){
+        console.log(e)
+      }
     } else {
       // Full command list
-      let commands = {
-      }
+      let commands = {}
+
       let prefix = context.commandClient.prefixes.custom.first()
       for(const c of context.commandClient.commands){
         if(!categories[c.metadata.category]) continue;

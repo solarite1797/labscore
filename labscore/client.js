@@ -41,11 +41,11 @@ const paginator =  new Paginator(cluster, {
   await commandClient.addMultipleIn('../commands/message/');
   await commandClient.run()
   
-  commandClient.on('commandDelete', async ({reply}) => {
-    if (reply){
-      reply.delete();
-    }
-  });
+  //commandClient.on('commandDelete', async ({reply}) => {
+  //  if (reply){
+  //    reply.delete();
+  //  }
+  //});
 
 })();
 

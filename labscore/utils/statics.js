@@ -21,6 +21,10 @@ const Statics = Object.freeze({
     wolframalpha: {
       file: "brands/wolframalpha.png",
       revision: 0
+    },
+    inferkit: {
+      file: "brands/inferkit.png",
+      revision: 0
     }
   }
 })
@@ -34,5 +38,6 @@ module.exports.STATICS = Object.freeze({
   genius: staticAsset(Statics.brands.genius),
   bing: staticAsset(Statics.brands.bing),
   google: staticAsset(Statics.brands.google),
-  wolframalpha: staticAsset(Statics.brands.wolframalpha)
+  wolframalpha: staticAsset(Statics.brands.wolframalpha),
+  inferkit: staticAsset(Statics.brands.inferkit)
 })

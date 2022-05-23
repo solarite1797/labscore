@@ -16,7 +16,9 @@ const Api = Object.freeze({
   SEARCH_BING_IMAGES: '/search/bing-images',
   SEARCH_WOLFRAM_ALPHA: '/search/wolfram-alpha',
 
-  PHOTOFUNIA_YACHT: '/photofunia/yacht'
+  PHOTOFUNIA_YACHT: '/photofunia/yacht',
+  
+  INFERKIT: '/inferkit',
 })
 
 const Static = Object.freeze({

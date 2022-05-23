@@ -82,6 +82,12 @@ module.exports.yacht = async function(context, text){
   })
 }
 
+module.exports.inferkit = async function(context, input){
+  return await request(Api.INFERKIT, "GET", {}, {
+    input: input
+  })
+}
+
 module.exports.emojiTwitter = async function(codepoint){
   return Static.HOST + Static.TWITTER(codepoint)
 }

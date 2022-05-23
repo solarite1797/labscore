@@ -1,4 +1,4 @@
-const COLORS = Object.freeze({
+module.exports.COLORS = Object.freeze({
   "error": 15548997,
   "success": 6411359,
   "warning": 16426522,
@@ -6,7 +6,7 @@ const COLORS = Object.freeze({
   "brand": 6085465
 })
 
-const ICONS = Object.freeze({
+module.exports.ICONS = Object.freeze({
   "error": "<:ico_error:925832574239121429>",
   "warning": "<:ico_warning:925832574931189830>",
   "success": "<:ico_check:925813919929491516>",
@@ -52,7 +52,7 @@ const ICONS = Object.freeze({
   "question": "<:ico_question:949420315677691934>"
 })
 
-const WEB_ASSETS = Object.freeze({
+module.exports.WEB_ASSETS = Object.freeze({
   "brands": {
     "genius": "357a0d4aaf1cedfa41dfb38bf3acb961",
     "labscore": "042e4a437e14580ee2fda8be217991d6"
@@ -60,8 +60,4 @@ const WEB_ASSETS = Object.freeze({
   "weather": "aab92e69374e4c7b8c6741fe02e574b9"
 })
 
-module.exports = {
-  COLORS,
-  ICONS,
-  WEB_ASSETS
-}
+module.exports.DISCORD_INVITE = `https://discord.gg/8c4p6xcjru`
