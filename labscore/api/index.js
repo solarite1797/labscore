@@ -40,6 +40,12 @@ async function request(path, type, headers, args, host) {
   throw new Error("unsupported, must either use GET or POST");
 }
 
+module.exports.googleVisionOcr = async function(context, url){
+  return await request(Api.GOOGLE_VISION_OCR, "GET", {}, {
+    url: url
+  })
+}
+
 module.exports.lyrics = async function(context, query){
   return await request(Api.SEARCH_LYRICS, "GET", {}, {
     q: query
@@ -79,6 +85,16 @@ module.exports.wolframAlpha = async function(context, query){
 module.exports.yacht = async function(context, text){
   return await request(Api.PHOTOFUNIA_YACHT, "GET", {}, {
     text: text
+  })
+}
+
+module.exports.retroWave = async function(context, background = 5, textStyle= 4, text1 = " ", text2 = " ", text3 = " "){
+  return await request(Api.PHOTOFUNIA_RETRO_WAVE, "GET", {}, {
+    text1: text1,
+    text2: text2,
+    text3: text3,
+    background: background,
+    text_style: textStyle
   })
 }
 

@@ -14,7 +14,6 @@ module.exports = {
     try{
       
     let image = await getRecentImage(context, 50)
-    console.log(image)
     if(!image) return editOrReply(context, { embeds: [createEmbed("warning", context, "No images found.")] })
     return editOrReply(context, { embeds: [createEmbed("default", context, {
       image: {

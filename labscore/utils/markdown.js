@@ -17,3 +17,7 @@ module.exports.link = function(url, masked){
   if(masked) return `[${masked}](${url})`
   return url
 }
+
+module.exports.timestamp = function(time, flag = "t"){
+  return `<${flag}:${Math.floor(time/1000)}>`
+}

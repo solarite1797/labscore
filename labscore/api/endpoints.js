@@ -8,6 +8,8 @@ const Hosts = Object.freeze({
 const Api = Object.freeze({
   HOST: Hosts.prod,
   
+  GOOGLE_VISION_OCR: '/google/vision/ocr',
+
   SEARCH_LYRICS: '/search/lyrics',
 
   SEARCH_GOOGLE: '/search/google',
@@ -17,8 +19,9 @@ const Api = Object.freeze({
   SEARCH_WOLFRAM_ALPHA: '/search/wolfram-alpha',
 
   PHOTOFUNIA_YACHT: '/photofunia/yacht',
+  PHOTOFUNIA_RETRO_WAVE: '/photofunia/retro-wave',
   
-  INFERKIT: '/inferkit',
+  INFERKIT: '/utils/inferkit',
 })
 
 const Static = Object.freeze({

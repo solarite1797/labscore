@@ -10,7 +10,7 @@ module.exports = {
   name: "dev",
   metadata: {
     description: 'Evaluate code.',
-    examples: ['eval console.log(\'ping\'); -async false'],
+    examples: ['dev console.log(\'ping\'); -async false'],
     category: 'dev',
     usage: 'eval <code> [-async <true|false>] [-noreply <true|false>] [-jsonspacing <integer>]'
   },

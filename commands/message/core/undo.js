@@ -42,7 +42,6 @@ module.exports = {
         "content": `${icon("success_simple")} Deleted ${highlight(found)} command replies.`
       })
 
-      console.log(resp)
       setTimeout(async () => {
         await context.channel.deleteMessage(resp.id)
       }, 5000)

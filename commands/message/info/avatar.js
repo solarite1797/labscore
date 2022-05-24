@@ -12,7 +12,8 @@ module.exports = {
     category: 'info',
     usage: 'avatar [<id|user>]'
   },
-  run: async (context, args) => { 
+  run: async (context, args) => {
+    context.triggerTyping();
     let u;
     if(!args.user) { u = context.user } else { u = await getUser(context, args.user) }
     if(!u) return editOrReply(context, { embeds: [createEmbed("warning", context, "No users found.")] })
