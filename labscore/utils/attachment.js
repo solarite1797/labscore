@@ -47,7 +47,38 @@ async function getRecentMedia(context, limit) {
   return attachments;
 }
 
-// simple helpers
+
+async function getRecentVideo(context, limit) {
+  if (!context.message.channel) {
+    return undefined;
+  }
+
+  // Handle Replies
+  if (context.message.messageReference) {
+    messages = [[context.message.messageReference.messageId, await context.message.channel.fetchMessage(context.message.messageReference.messageId)]] // somewhat hacky but it works lol
+  } else {
+    messages = await context.message.channel.fetchMessages({
+      limit: limit,
+      before: context.message.id
+    })
+  }
+
+  if (!messages) {
+    return undefined;
+  }
+
+  let attachments = [];
+  for (const m of messages) {
+    let message = m[1]
+    if ( // Then the embed image
+      message.embeds.length > 0 &&
+      message.embeds.toArray()[0].video
+    ) {
+      attachments.push(message.embeds.toArray()[0].video)
+    }
+  }
+  return attachments;
+}
 
 async function getRecentImage(context, limit) {
   let attachments = await getRecentMedia(context, limit)
@@ -64,5 +95,6 @@ async function getRecentImage(context, limit) {
 }
 
 module.exports = {
-  getRecentImage
+  getRecentImage,
+  getRecentVideo
 }

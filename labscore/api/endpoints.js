@@ -12,6 +12,7 @@ const Api = Object.freeze({
 
   SEARCH_LYRICS: '/search/lyrics',
 
+  SEARCH_AUDIO: '/search/audio',
   SEARCH_GOOGLE: '/search/google',
   SEARCH_GOOGLE_IMAGES: '/search/google-images',
   SEARCH_BING: '/search/bing',

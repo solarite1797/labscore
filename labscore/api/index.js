@@ -47,6 +47,12 @@ module.exports.googleVisionOcr = async function(context, url){
   })
 }
 
+module.exports.searchAudio = async function(context, url){
+  return await request(Api.SEARCH_AUDIO, "GET", {}, {
+    url: url
+  })
+}
+
 module.exports.lyrics = async function(context, query){
   return await request(Api.SEARCH_LYRICS, "GET", {}, {
     q: query
