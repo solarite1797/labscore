@@ -45,9 +45,8 @@ module.exports = {
       }
       
       pages = formatPaginationEmbeds(pages)
-      const message = context.message
       const paging = await paginator.createPaginator({
-        message,
+        context,
         pages
       });
     }catch(e){

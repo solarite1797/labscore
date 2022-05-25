@@ -150,9 +150,20 @@ module.exports = class Paginator {
     if (this.pageNumber && Array.isArray(data.pages)) {
       for (let i = 0; i < data.pages.length; ++i) {
         const element = data.pages[i];
-
       }
     }
+
+    // Check if a paginator exists, if it does kill the old one
+    let listener;
+    for (const l of this.activeListeners) {
+      if (!(l instanceof InteractionPaginator)) continue;
+      if (!l.commandMessage) continue;
+
+      if (l.isCommandMessage(data.context.message.id)) {
+        listener = l
+      }
+    }
+    if(listener) await listener.stop()
 
     const instance = new InteractionPaginator(this, data);
     this.activeListeners.push(instance);

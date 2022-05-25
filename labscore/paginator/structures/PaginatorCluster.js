@@ -30,7 +30,7 @@ module.exports = class PaginatorCluster {
   }
 
   createPaginator(data) {
-    const targetPaginator = this.findOrSetPaginator(data.message.client);
+    const targetPaginator = this.findOrSetPaginator(data.context.client);
 
     return targetPaginator.createPaginator(data);
   }

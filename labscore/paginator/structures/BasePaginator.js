@@ -5,14 +5,14 @@ module.exports = class BasePaginator extends EventEmitter {
   constructor(client, data) {
     super();
     this.client = client;
-    this.message = BasePaginator.asMessage(data.message);
+    this.message = BasePaginator.asMessage(data.context);
     this.commandMessage = data.commandMessage || null;
     this.pages = data.pages;
     this.index = 0;
     this.targetUser = data.targetUser || this.message.author.id;
 
     // TODO: use editOrReply, kill old paginator if it exists
-    this.editOrReply = (data.message.editOrReply || data.message.reply).bind(data.message);
+    this.editOrReply = data.context.editOrReply.bind(data.context);
   }
 
   static asMessage(ctx) {
@@ -53,6 +53,8 @@ module.exports = class BasePaginator extends EventEmitter {
     // Create Components
     let msg = this.pages[this.index];
     msg.components = await this.client.components(this)
+    if(!msg.message_reference) msg.reference = true
+    if(!msg.allowedMentions) msg.allowedMentions = {parse: [], repliedUser: false}
     return this.commandMessage = await this.editOrReply(msg);
   }
 

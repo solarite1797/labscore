@@ -62,11 +62,10 @@ module.exports = {
         while(fields.length) {
           pages.push({embeds:[createLyricsPage(context, search, fields.splice(0,3))]})
         }
-        const message = context.message
-
+        
         pages = formatPaginationEmbeds(pages)
         const paging = await paginator.createPaginator({
-          message,
+          context,
           pages
         });
         return;

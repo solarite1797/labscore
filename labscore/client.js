@@ -1,5 +1,4 @@
 const { Constants, ClusterClient, CommandClient } = require('detritus-client');
-//const { createPaginator } = require('./paginator')
 const Paginator = require('./paginator').PaginatorCluster
 
 // Create client
@@ -40,12 +39,6 @@ const paginator =  new Paginator(cluster, {
   });
   await commandClient.addMultipleIn('../commands/message/');
   await commandClient.run()
-  
-  //commandClient.on('commandDelete', async ({reply}) => {
-  //  if (reply){
-  //    reply.delete();
-  //  }
-  //});
 
 })();
 
