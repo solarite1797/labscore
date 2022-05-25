@@ -8,7 +8,7 @@ async function getRecentMedia(context, limit) {
   if (!context.message.channel) {
     return undefined;
   } else if (context.message.attachments.length > 0) {
-    return context.message.attachments.first();
+    return [context.message.attachments.first()]
   }
 
   let messages = [];
