@@ -5,6 +5,7 @@ const { Api, Static, Hosts } = require('./endpoints')
 async function request(path, type, headers, args, host) {
   let timing = Date.now();
   url = Api.HOST + path
+  if(process.env.USE_LOCAL_API) url = Hosts.local + path
   if(host) url = host + path
 
   // apply default headers
@@ -82,6 +83,12 @@ module.exports.wolframAlpha = async function(context, query){
   })
 }
 
+module.exports.youtube = async function(context, query){
+  return await request(Api.SEARCH_YOUTUBE, "GET", {}, {
+    q: query
+  })
+}
+
 module.exports.yacht = async function(context, text){
   return await request(Api.PHOTOFUNIA_YACHT, "GET", {}, {
     text: text
@@ -95,6 +102,24 @@ module.exports.retroWave = async function(context, background = 5, textStyle= 4,
     text3: text3,
     background: background,
     text_style: textStyle
+  })
+}
+
+module.exports.deepdream = async function(context, url){
+  return await request(Api.IMAGE_DEEPDREAM, "GET", {}, {
+    url: url
+  })
+}
+
+module.exports.waifu2x = async function(context, url){
+  return await request(Api.IMAGE_WAIFU2X, "GET", {}, {
+    url: url
+  })
+}
+
+module.exports.superresolution = async function(context, url){
+  return await request(Api.IMAGE_SUPERRESOLUTION, "GET", {}, {
+    url: url
   })
 }
 

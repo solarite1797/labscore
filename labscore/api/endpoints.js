@@ -17,10 +17,15 @@ const Api = Object.freeze({
   SEARCH_BING: '/search/bing',
   SEARCH_BING_IMAGES: '/search/bing-images',
   SEARCH_WOLFRAM_ALPHA: '/search/wolfram-alpha',
+  SEARCH_YOUTUBE: '/search/youtube',
 
   PHOTOFUNIA_YACHT: '/photofunia/yacht',
   PHOTOFUNIA_RETRO_WAVE: '/photofunia/retro-wave',
   
+  IMAGE_DEEPDREAM: '/image/deepdream',
+  IMAGE_WAIFU2X: '/image/waifu2x',
+  IMAGE_SUPERRESOLUTION: '/image/superresolution',
+
   INFERKIT: '/utils/inferkit',
 })
 

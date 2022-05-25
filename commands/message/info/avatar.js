@@ -14,12 +14,12 @@ module.exports = {
   },
   run: async (context, args) => {
     context.triggerTyping();
-    let u;
-    if(!args.user) { u = context.user } else { u = await getUser(context, args.user) }
-    if(!u) return editOrReply(context, { embeds: [createEmbed("warning", context, "No users found.")] })
+    let u = {};
+    if(!args.user) { u.user = context.user } else { u = await getUser(context, args.user) }
+    if(!u.user) return editOrReply(context, { embeds: [createEmbed("warning", context, "No users found.")] })
     return editOrReply(context, { embeds: [createEmbed("default", context, {
       image: {
-        url: u.avatarUrl + '?size=4096'
+        url: u.user.avatarUrl + '?size=4096'
       }
     })] })
   },
