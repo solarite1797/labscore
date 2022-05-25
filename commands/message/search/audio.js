@@ -31,16 +31,13 @@ module.exports = {
         } catch(e){
           return editOrReply(context, {embeds:[createEmbed("error", context, "Unable to fetch message.")]})
         }
-        console.log(msg)
         let urls = msg.content.match(urlr)
-        console.log(urls)
         if(urls){
           try{
             let songlink = await superagent.get(`https://api.song.link/v1-alpha.1/links?url=${encodeURIComponent(urls[0])}`)
             let song = songlink.body.entitiesByUniqueId[songlink.body.entityUniqueId]
     
             let btns = renderMusicButtons(songlink.body.linksByPlatform)
-            console.log(JSON.stringify(btns, null, 2))
             return editOrReply(context, {embeds:[
               createEmbed("default", context, {
                 author: {
@@ -51,9 +48,7 @@ module.exports = {
                 footer: {}
               })
             ], components: btns})
-          }catch(e){
-            console.log(e)
-          } //ignore it and run the audio detection flow
+          }catch(e){} //ignore it and run the audio detection flow
         }
       }
 
@@ -62,7 +57,6 @@ module.exports = {
       if(!audios.length) return editOrReply(context, {embeds:[createEmbed("warning", context, `Could not find supported video.`)]})
       let audioSearch = await searchAudio(context, audios[0].url)
       search = audioSearch.response
-      console.log(audioSearch.response.body)
       if(audioSearch.response.body.status == 0){
         // API lowkey sucks, fetch more metadata via songlink
         let url = audioSearch.response.body.media[Object.keys(audioSearch.response.body.media)[0]]
@@ -73,7 +67,6 @@ module.exports = {
         let song = songlink.body.entitiesByUniqueId[songlink.body.entityUniqueId]
 
         let btns = renderMusicButtons(songlink.body.linksByPlatform)
-        console.log(JSON.stringify(btns, null, 2))
         return editOrReply(context, {embeds:[
           createEmbed("default", context, {
             author: {
@@ -87,10 +80,10 @@ module.exports = {
       }
 
     }catch(e){
-      console.log(e)
       if(e.response?.body?.status){
         return editOrReply(context, {embeds:[createEmbed("error", context, e.response.body.message)]})
       }
+      console.log(e)
       return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to perform audio search.`)]})
     }
   },
