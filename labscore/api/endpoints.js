@@ -7,27 +7,39 @@ const Hosts = Object.freeze({
 
 const Api = Object.freeze({
   HOST: Hosts.prod,
-  
-  GOOGLE_VISION_OCR: '/google/vision/ocr',
 
-  SEARCH_LYRICS: '/search/lyrics',
+  GOOGLE_PERSPECTIVE: '/google/perspective/analyze',
+  GOOGLE_TRANSLATE: '/google/translate/text',
+  GOOGLE_VISION_COLORS: '/google/vision/colors',
+  GOOGLE_VISION_FACES: '/google/vision/faces',
+  GOOGLE_VISION_LABELS: '/google/vision/labels',
+  GOOGLE_VISION_OCR: '/google/vision/ocr',
+  GOOGLE_VISION_SAFETY_LABELS: '/google/vision/safety',
+  GOOGLE_VISION_WEBDETECTION: '/google/vision/webdetection',
+
+  IMAGE_DEEPDREAM: '/image/deepdream',
+  IMAGE_SUPERRESOLUTION: '/image/superresolution',
+  IMAGE_WAIFU2X: '/image/waifu2x',
+
+  PHOTOFUNIA_RETRO_WAVE: '/photofunia/retro-wave',
+  PHOTOFUNIA_YACHT: '/photofunia/yacht',
 
   SEARCH_AUDIO: '/search/audio',
-  SEARCH_GOOGLE: '/search/google',
-  SEARCH_GOOGLE_IMAGES: '/search/google-images',
   SEARCH_BING: '/search/bing',
   SEARCH_BING_IMAGES: '/search/bing-images',
+  SEARCH_GOOGLE: '/search/google',
+  SEARCH_GOOGLE_IMAGES: '/search/google-images',
+  SEARCH_LYRICS: '/search/lyrics',
   SEARCH_WOLFRAM_ALPHA: '/search/wolfram-alpha',
   SEARCH_YOUTUBE: '/search/youtube',
 
-  PHOTOFUNIA_YACHT: '/photofunia/yacht',
-  PHOTOFUNIA_RETRO_WAVE: '/photofunia/retro-wave',
-  
-  IMAGE_DEEPDREAM: '/image/deepdream',
-  IMAGE_WAIFU2X: '/image/waifu2x',
-  IMAGE_SUPERRESOLUTION: '/image/superresolution',
+  TTS_IMTRANSLATOR: '/tts/imtranslator',
+  TTS_POLLY: '/tts/polly',
+  TTS_TIKTOK: '/tts/tiktok',
+  TTS_VOICEFORGE: '/tts/voiceforge',
 
-  INFERKIT: '/utils/inferkit',
+  UTILS_INFERKIT: '/utils/inferkit',
+  UTILS_SCREENSHOT: '/utils/screenshot',
 })
 
 const Static = Object.freeze({

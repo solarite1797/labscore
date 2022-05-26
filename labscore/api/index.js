@@ -41,8 +41,52 @@ async function request(path, type, headers, args, host) {
   throw new Error("unsupported, must either use GET or POST");
 }
 
+module.exports.googlePerspective = async function(context, text){
+  return await request(Api.GOOGLE_PERSPECTIVE, "GET", {}, {
+    text: text
+  })
+}
+
+module.exports.googleTranslate = async function(context, text, to, from){
+  return await request(Api.GOOGLE_TRANSLATE, "GET", {}, {
+    text: text,
+    to: to,
+    from: from
+  })
+}
+
+module.exports.googleVisionColors = async function(context, url){
+  return await request(Api.GOOGLE_VISION_COLORS, "GET", {}, {
+    url: url
+  })
+}
+
+module.exports.googleVisionFaces = async function(context, url){
+  return await request(Api.GOOGLE_VISION_FACES, "GET", {}, {
+    url: url
+  })
+}
+
+module.exports.googleVisionLabels = async function(context, url){
+  return await request(Api.GOOGLE_VISION_LABELS, "GET", {}, {
+    url: url
+  })
+}
+
 module.exports.googleVisionOcr = async function(context, url){
   return await request(Api.GOOGLE_VISION_OCR, "GET", {}, {
+    url: url
+  })
+}
+
+module.exports.googleVisionSafetyLabels = async function(context, url){
+  return await request(Api.GOOGLE_VISION_SAFETY_LABELS, "GET", {}, {
+    url: url
+  })
+}
+
+module.exports.googleVisionWebDetection = async function(context, url){
+  return await request(Api.GOOGLE_VISION_WEBDETECTION, "GET", {}, {
     url: url
   })
 }
@@ -129,9 +173,43 @@ module.exports.superresolution = async function(context, url){
   })
 }
 
+module.exports.imtranslator = async function(context, text, voice){
+  return await request(Api.TTS_IMTRANSLATOR, "GET", {}, {
+    text: text,
+    voice: voice
+  })
+}
+
+module.exports.polly = async function(context, text, voice){
+  return await request(Api.TTS_POLLY, "GET", {}, {
+    text: text,
+    voice: voice
+  })
+}
+
+module.exports.tiktok = async function(context, text, voice){
+  return await request(Api.TTS_TIKTOK, "GET", {}, {
+    text: text,
+    voice: voice
+  })
+}
+
+module.exports.voiceforge = async function(context, text, voice){
+  return await request(Api.TTS_VOICEFORGE, "GET", {}, {
+    text: text,
+    voice: voice
+  })
+}
+
 module.exports.inferkit = async function(context, input){
-  return await request(Api.INFERKIT, "GET", {}, {
+  return await request(Api.UTILS_INFERKIT, "GET", {}, {
     input: input
+  })
+}
+
+module.exports.screenshot = async function(context, url){
+  return await request(Api.UTILS_SCREENSHOT, "GET", {}, {
+    url: url
   })
 }
 
