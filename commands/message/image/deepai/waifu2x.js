@@ -6,7 +6,7 @@ const { waifu2x } = require('../../../../labscore/api')
 
 module.exports = {
   name: 'waifu2x',
-  aliases: ['2x'],
+  aliases: ['w2x'],
   metadata: {
     description: 'waifu2x',
     examples: ['waifu2x'],
