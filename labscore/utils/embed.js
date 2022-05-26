@@ -1,5 +1,7 @@
 const { COLORS } = require('../constants')
+const { link } = require('./markdown')
 
+// TODO: make embed icons use the general STATICS system
 const embedTypes = Object.freeze({
   "default": (context) => {
     return {
@@ -26,6 +28,16 @@ const embedTypes = Object.freeze({
         name: `Error`
       },
       color: COLORS.error
+    }
+  },
+  "nsfw": (context) => {
+    return {
+      author: {
+        iconUrl: `https://derpystuff.gitlab.io/webstorage4/v2/assets/icons/ico_nsfw_small.png`,
+        name: `This command is only available in Age Restricted channels.`,
+        url: `https://support.discord.com/hc/en-us/articles/115000084051-Age-Restricted-Channels-and-Content`
+      },
+      color: COLORS.nsfw
     }
   }
 })

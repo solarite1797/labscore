@@ -30,6 +30,7 @@ const Api = Object.freeze({
   SEARCH_GOOGLE: '/search/google',
   SEARCH_GOOGLE_IMAGES: '/search/google-images',
   SEARCH_LYRICS: '/search/lyrics',
+  SEARCH_RULE34: '/search/booru',
   SEARCH_WOLFRAM_ALPHA: '/search/wolfram-alpha',
   SEARCH_YOUTUBE: '/search/youtube',
 

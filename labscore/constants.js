@@ -3,7 +3,8 @@ module.exports.COLORS = Object.freeze({
   "success": 6411359,
   "warning": 16426522,
   "embed": 3092790,
-  "brand": 6085465
+  "brand": 6085465,
+  "nsfw": 15549056
 })
 
 module.exports.ICONS = Object.freeze({

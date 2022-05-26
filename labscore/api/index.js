@@ -115,6 +115,13 @@ module.exports.googleImages = async function(context, query){
   })
 }
 
+module.exports.rule34 = async function(context, query, site){
+  return await request(Api.SEARCH_RULE34, "GET", {}, {
+    q: query,
+    site: site
+  })
+}
+
 module.exports.bing = async function(context, query){
   return await request(Api.SEARCH_BING, "GET", {}, {
     q: query
