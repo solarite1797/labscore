@@ -76,7 +76,7 @@ async function getRecentVideo(context, limit) {
     ) {
       attachments.push(message.embeds.toArray()[0].video)
     } else if (message.attachments.first() &&
-    message.attachments.first().contentType.includes("video")){
+    message.attachments.first().contentType?.includes("video")){
       attachments.push(message.attachments.first())
     }
   }
