@@ -19,6 +19,7 @@ const Api = Object.freeze({
 
   IMAGE_DEEPDREAM: '/image/deepdream',
   IMAGE_SUPERRESOLUTION: '/image/superresolution',
+  IMAGE_TEXT2IMAGE: '/image/text2image',
   IMAGE_WAIFU2X: '/image/waifu2x',
 
   PHOTOFUNIA_RETRO_WAVE: '/photofunia/retro-wave',

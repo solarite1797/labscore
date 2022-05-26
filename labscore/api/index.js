@@ -180,6 +180,12 @@ module.exports.superresolution = async function(context, url){
   })
 }
 
+module.exports.text2image = async function(context, text){
+  return await request(Api.IMAGE_TEXT2IMAGE, "GET", {}, {
+    text: text
+  })
+}
+
 module.exports.imtranslator = async function(context, text, voice){
   return await request(Api.TTS_IMTRANSLATOR, "GET", {}, {
     text: text,
