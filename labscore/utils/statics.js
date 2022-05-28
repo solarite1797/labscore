@@ -1,5 +1,7 @@
 const { Hosts } = require('../api/endpoints')
 
+// Add static brand icons here
+// Update the revision id to break discord cache
 const Statics = Object.freeze({
   brands: {
     photofunia: {
@@ -29,6 +31,10 @@ const Statics = Object.freeze({
     youtube: {
       file: "brands/youtube.png",
       revision: 1
+    },
+    urbandictionary: {
+      file: "brands/urbandictionary.png",
+      revision: 2
     }
   }
 })
@@ -44,5 +50,6 @@ module.exports.STATICS = Object.freeze({
   google: staticAsset(Statics.brands.google),
   wolframalpha: staticAsset(Statics.brands.wolframalpha),
   inferkit: staticAsset(Statics.brands.inferkit),
-  youtube: staticAsset(Statics.brands.youtube)
+  youtube: staticAsset(Statics.brands.youtube),
+  urbandictionary: staticAsset(Statics.brands.urbandictionary)
 })

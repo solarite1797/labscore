@@ -9,7 +9,11 @@ const { urbandictionary } = require('../../../labscore/api');
 function createUrbanPage(context, result){
   let e = createEmbed("default", context, {
     description: `**${link(result.link, result.title)}**`,
-    fields: []
+    fields: [],
+    footer: {
+      iconUrl: STATICS.urbandictionary,
+      text: `UrbanDictionary • ${context.application.name}`
+    }
   })
   if(result.description) e.fields.push({
     name: "Description",
@@ -18,7 +22,7 @@ function createUrbanPage(context, result){
   })
   e.fields.push({
     name: "Stats",
-    value: `${icon("upvote")}${highlight(result.score.likes)}  ${icon("downvote")}${highlight(result.score.dislikes)}\n**Author:** ${link(`https://www.urbandictionary.com/author.php?author=${result.author}`, result.author)}`,
+    value: `${icon("upvote")}${highlight(result.score.likes)}  ${icon("downvote")}${highlight(result.score.dislikes)}\n**Author:** ${link(`https://www.urbandictionary.com/author.php?author=${encodeURIComponent(result.author)}`, result.author)}`,
     inline: true
   })
   if(result.example) e.fields.push({
@@ -26,7 +30,6 @@ function createUrbanPage(context, result){
     value: result.example.substr(0, 1023),
     inline: false
   })
-  console.log(JSON.stringify(e))
   let res = {"embeds": [e]}
   return res;
 }
@@ -60,7 +63,6 @@ module.exports = {
       });
     }catch(e){
       console.log(e)
-      console.log(JSON.stringify(e.errors, null, 2))
       return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to perform google search.`)]})
     }
   },
