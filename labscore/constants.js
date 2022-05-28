@@ -50,7 +50,9 @@ module.exports.ICONS = Object.freeze({
   "timer": "<:ico_timer:915271575274680350>",
   "util": "<:ico_util:903259395381690379>",
   "locale": "<:ico_locale:925891616986791936>",
-  "question": "<:ico_question:949420315677691934>"
+  "question": "<:ico_question:949420315677691934>",
+  "upvote": "<:ico_upvote:980238682353205259>",
+  "downvote": "<:ico_downvote:980238681971494963>"
 })
 
 module.exports.WEB_ASSETS = Object.freeze({
@@ -209,5 +211,52 @@ module.exports.TIKTOK_VOICES = [
   {
     "name": "Korean - Female",
     "value": "kr_003"
+  }
+]
+
+module.exports.IMTRANSLATOR_VOICES = [
+  {
+    "name": "English (Male)",
+    "value": "en"
+  },
+  {
+    "name": "English (Female)",
+    "value": "enf"
+  },
+  {
+    "name": "Chinese (Female)",
+    "value": "zh"
+  },
+  {
+    "name": "Spanish (Carlos)",
+    "value": "es"
+  },
+  {
+    "name": "Russian (Female)",
+    "value": "ru"
+  },
+  {
+    "name": "French (Female)",
+    "value": "fr"
+  },
+  {
+    "name": "German (Male)",
+    "value": "de"
+  },
+  {
+    "name": "Italian (Male)",
+    "value": "it"
+  },
+  {
+    "name": "Portugese (Female)",
+    "value": "pt"
+  },
+  {
+    "name": "Japanese (Female)",
+    "value": "ja"
+  },
+  {
+    "name": "Korean (Female)",
+    "value": "ko"
   }
 ]

@@ -134,6 +134,12 @@ module.exports.bingImages = async function(context, query){
   })
 }
 
+module.exports.urbandictionary = async function(context, query){
+  return await request(Api.SEARCH_URBANDICTIONARY, "GET", {}, {
+    q: query
+  })
+}
+
 module.exports.wolframAlpha = async function(context, query){
   return await request(Api.SEARCH_WOLFRAM_ALPHA, "GET", {}, {
     q: query
