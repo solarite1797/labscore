@@ -34,6 +34,7 @@ module.exports = {
       let search = await lyrics(context, args.query)
       search = search.response
 
+      if(search.body.status == 2) return editOrReply(context, {embeds:[createEmbed("error", context, search.body.message)]})
       // Split lyrics into field-sizes chunks
       let chunks = search.body.lyrics.split(/\[(.*?)\]/) // should give us every chunk
       let fields = [];
