@@ -116,3 +116,98 @@ module.exports.GUILD_FEATURES = Object.freeze({
 })
 
 module.exports.DISCORD_INVITE = `https://discord.gg/8c4p6xcjru`
+
+module.exports.TIKTOK_VOICES = [
+  {
+    "name": "English AU - Female",
+    "value": "en_au_001"
+  },
+  {
+    "name": "English AU - Male",
+    "value": "en_au_002"
+  },
+  {
+    "name": "English UK - Male",
+    "value": "en_uk_001"
+  },
+  {
+    "name": "English US - Female",
+    "value": "en_us_001"
+  },
+  {
+    "name": "English US - Male",
+    "value": "en_us_006"
+  },
+  {
+    "name": "Ghost Face (Disney)",
+    "value": "en_us_ghostface"
+  },
+  {
+    "name": "Chewbacca (Disney)",
+    "value": "en_us_chewbacca"
+  },
+  {
+    "name": "C3PO (Disney)",
+    "value": "en_us_c3po"
+  },
+  {
+    "name": "Stitch (Disney)",
+    "value": "en_us_stitch"
+  },
+  {
+    "name": "Stormtrooper (Disney)",
+    "value": "en_us_stormtrooper"
+  },
+  {
+    "name": "Rocket (Disney)",
+    "value": "en_us_rocket"
+  },
+  {
+    "name": "French - Male",
+    "value": "fr_001"
+  },
+  {
+    "name": "German - Female",
+    "value": "de_001"
+  },
+  {
+    "name": "German - Male",
+    "value": "de_002"
+  },
+  {
+    "name": "Spanish - Male",
+    "value": "es_002"
+  },
+  {
+    "name": "Spanish MX - Male",
+    "value": "es_mx_002"
+  },
+  {
+    "name": "Portuguese BR - Female",
+    "value": "br_001"
+  },
+  {
+    "name": "Portuguese BR - Male",
+    "value": "br_005"
+  },
+  {
+    "name": "Indonesian - Female",
+    "value": "id_001"
+  },
+  {
+    "name": "Japanese - Female",
+    "value": "jp_001"
+  },
+  {
+    "name": "Japanese - Male",
+    "value": "jp_006"
+  },
+  {
+    "name": "Korean - Male",
+    "value": "kr_002"
+  },
+  {
+    "name": "Korean - Female",
+    "value": "kr_003"
+  }
+]

@@ -1,4 +1,4 @@
-const { Constants, ClusterClient, CommandClient } = require('detritus-client');
+const { Constants, ClusterClient, CommandClient, InteractionCommandClient } = require('detritus-client');
 const Paginator = require('./paginator').PaginatorCluster
 
 // Create client
@@ -39,6 +39,10 @@ const paginator =  new Paginator(cluster, {
   });
   await commandClient.addMultipleIn('../commands/message/');
   await commandClient.run()
+
+  const interactionClient = new InteractionCommandClient()
+  await interactionClient.addMultipleIn('../commands/interaction/');
+  await interactionClient.run();
 
 })();
 
