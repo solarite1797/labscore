@@ -32,7 +32,7 @@ const SITES = {
 }
 
 module.exports = {
-  name: 'rule32',
+  name: 'rule34',
   label: 'query',
   aliases: ['r34'],
   metadata: {
