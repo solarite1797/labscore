@@ -1,9 +1,11 @@
 const { Constants } = require('detritus-client');
+const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = Constants;
+
 const { tiktok } = require('../../../labscore/api');
 const { TIKTOK_VOICES } = require('../../../labscore/constants');
+
 const { createEmbed } = require('../../../labscore/utils/embed');
 const { icon } = require('../../../labscore/utils/markdown');
-const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = Constants;
 
 module.exports = {
   description: 'tiktok audio',
