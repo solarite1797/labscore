@@ -11,6 +11,7 @@ async function request(path, type, headers, args, host) {
   // apply default headers
   if(!headers["Authorization"]) headers["Authorization"] = process.env.api_prod
   if(!headers["user-agent"]) headers["user-agent"] = "labscore/2.0"
+  if(!headers["x-labscore-client"]) headers["x-labscore-client"] = "labscore/2.0"
 
   if (type === "GET") {
     if(!args){
