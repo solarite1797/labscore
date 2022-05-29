@@ -1,5 +1,5 @@
 const Hosts = Object.freeze({
-  prod: "https://vercel-router-test.vercel.app",
+  prod: "https://labscore-v2.vercel.app",
   local: "http://localhost:3000",
   emoji: "https://derpystuff.gitlab.io/webstorage3/container/",
   statics: "https://derpystuff.gitlab.io/webstorage4/v2/"
@@ -33,6 +33,7 @@ const Api = Object.freeze({
   SEARCH_LYRICS: '/search/lyrics',
   SEARCH_RULE34: '/search/booru',
   SEARCH_URBANDICTIONARY: '/search/urbandictionary',
+  SEARCH_WIKIHOW: '/search/wikihow',
   SEARCH_WOLFRAM_ALPHA: '/search/wolfram-alpha',
   SEARCH_YOUTUBE: '/search/youtube',
 

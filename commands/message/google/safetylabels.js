@@ -9,7 +9,7 @@ module.exports = {
   name: 'safetylabels',
   metadata: {
     description: 'Image Safe Search Labels',
-    examples: ['labels'],
+    examples: ['safetylabels'],
     category: 'utils',
     usage: 'safetylabels <attachment>'
   },

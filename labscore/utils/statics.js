@@ -35,6 +35,10 @@ const Statics = Object.freeze({
     urbandictionary: {
       file: "brands/urbandictionary.png",
       revision: 2
+    },
+    wikihow: {
+      file: "brands/wikihow.png",
+      revision: 1
     }
   }
 })
@@ -51,5 +55,6 @@ module.exports.STATICS = Object.freeze({
   wolframalpha: staticAsset(Statics.brands.wolframalpha),
   inferkit: staticAsset(Statics.brands.inferkit),
   youtube: staticAsset(Statics.brands.youtube),
-  urbandictionary: staticAsset(Statics.brands.urbandictionary)
+  urbandictionary: staticAsset(Statics.brands.urbandictionary),
+  wikihow: staticAsset(Statics.brands.wikihow)
 })

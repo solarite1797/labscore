@@ -4,8 +4,8 @@ const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
 module.exports = {
-  name: 'guildicon',
-  aliases: ["servericon","gi","si"],
+  name: 'servericon',
+  aliases: ["guildicon","gi","si"],
   metadata: {
     description: 'server icon',
     examples: ['gi'],

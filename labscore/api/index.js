@@ -140,6 +140,12 @@ module.exports.urbandictionary = async function(context, query){
   })
 }
 
+module.exports.wikihow = async function(context, query){
+  return await request(Api.SEARCH_WIKIHOW, "GET", {}, {
+    q: query
+  })
+}
+
 module.exports.wolframAlpha = async function(context, query){
   return await request(Api.SEARCH_WOLFRAM_ALPHA, "GET", {}, {
     q: query

@@ -9,7 +9,7 @@ module.exports = {
   metadata: {
     description: 'screenshot website',
     examples: ['ss google.com'],
-    category: 'util',
+    category: 'utils',
     usage: 'screenshot <url>'
   },
   run: async (context, args) => {

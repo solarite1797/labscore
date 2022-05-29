@@ -39,14 +39,13 @@ module.exports = {
   label: 'query',
   aliases: ['urban', 'ud'],
   metadata: {
-    description: 'urban dictionary definitions (might be nsfw)',
+    description: 'urban dictionary definitions (might be nsfw).\nproviding no search term returns random results.',
     examples: ['ud Flask'],
     category: 'search',
     usage: 'urbandictionary <query>'
   },
   run: async (context, args) => {
     context.triggerTyping();
-    if(!args.query) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (query).`)]})
     try{
       let search = await urbandictionary(context, args.query)
       search = search.response

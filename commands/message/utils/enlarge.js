@@ -34,7 +34,7 @@ module.exports = {
   metadata: {
     description: 'Enlarge Emoji.',
     examples: ['enlarge 😀'],
-    category: 'util',
+    category: 'utils',
     usage: 'enlarge <emoji>'
   },
   args: [

@@ -51,6 +51,7 @@ function createCommandPage(context, prefix, command){
 const categories = {
   "core": `${icon("house")} Core Commands`,
   "info": `${icon("info")} Information Commands`,
+  "utils": `${icon("utils")} Utility Commands`,
   "image": `${icon("image")} Image Commands`,
   "mod": `${icon("moderation")} Moderation Commands`,
   "search": `${icon("search")} Search Commands`
