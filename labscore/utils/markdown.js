@@ -19,5 +19,5 @@ module.exports.link = function(url, masked){
 }
 
 module.exports.timestamp = function(time, flag = "t"){
-  return `<${flag}:${Math.floor(time/1000)}>`
+  return `<t:${Math.floor(time/1000)}:${flag}>`
 }

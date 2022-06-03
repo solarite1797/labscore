@@ -39,6 +39,15 @@ const embedTypes = Object.freeze({
       },
       color: COLORS.nsfw
     }
+  },
+  "loading": (context) => {
+    return {
+      author: {
+        iconUrl: `https://derpystuff.gitlab.io/webstorage4/v2/assets/icons/ico_loading_small.gif`,
+        name: `Loading`
+      },
+      color: COLORS.embed
+    }
   }
 })
 
@@ -47,7 +56,7 @@ module.exports.createEmbed = function(type, context, content){
   if(!embedTypes[type]) throw "Invalid Embed Type"
   if(!content) embedTypes[type](context)
   let emb = embedTypes[type](context)
-  if(["warning","error"].includes(type)){
+  if(["warning","error","loading"].includes(type)){
     emb.author.name = content
     return emb
   }
