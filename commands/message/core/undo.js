@@ -38,13 +38,6 @@ module.exports = {
         await context.channel.bulkDelete(cmds);
       }
       if(context.canManage) await context.message.delete()
-      let resp = await editOrReply(context, {
-        "content": `${icon("success_simple")} Deleted ${highlight(found)} command replies.`
-      })
-
-      setTimeout(async () => {
-        await context.channel.deleteMessage(resp.id)
-      }, 5000)
     }catch(e){
       console.log(e)
     }
