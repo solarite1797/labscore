@@ -35,6 +35,7 @@ module.exports = {
         if(urls){
           try{
             let songlink = await superagent.get(`https://api.song.link/v1-alpha.1/links?url=${encodeURIComponent(urls[0])}`)
+            console.log(songlink.body)
             let song = songlink.body.entitiesByUniqueId[songlink.body.entityUniqueId]
     
             let btns = renderMusicButtons(songlink.body.linksByPlatform)
@@ -43,7 +44,7 @@ module.exports = {
                 author: {
                   name: `${song.title} by ${song.artistName}`.substr(0,1000),
                   iconUrl: song.thumbnailUrl,
-                  url: url
+                  url: urls[0]
                 },
                 footer: {}
               })
