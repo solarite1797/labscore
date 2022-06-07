@@ -32,7 +32,7 @@ module.exports = {
       let audio = await tiktok(context, args.text, args.voice)
 
       await context.editOrRespond({
-        embeds: [createEmbed("default", context, { description: `${icon("audio")} Audio Generated in ${highlight(audio.timings + "s")}.` })],
+        embeds: [createEmbed("defaultNoFooter", context, { description: `${icon("audio")} Audio Generated in ${highlight(audio.timings + "s")}.` })],
         file: { value: audio.response.body, filename: "tiktok.mp3" }
       })
 

@@ -31,7 +31,7 @@ module.exports = {
       let audio = await imtranslator(context, args.text, args.voice)
       let diff = (Date.now() - s)
       await context.editOrRespond({
-        embeds: [createEmbed("default", context, { description: `${icon("audio")} Audio Generated in ${highlight(audio.timings + "s")}.` })],
+        embeds: [createEmbed("defaultNoFooter", context, { description: `${icon("audio")} Audio Generated in ${highlight(audio.timings + "s")}.` })],
         file: { value: audio.response.body, filename: "tts.wav" }
       })
     }catch(e){

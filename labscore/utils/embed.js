@@ -12,6 +12,11 @@ const embedTypes = Object.freeze({
       }
     }
   },
+  "defaultNoFooter": (context) => {
+    return {
+      color: COLORS.embed
+    }
+  },
   "warning": (context) => {
     return {
       author: {
