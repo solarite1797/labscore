@@ -39,11 +39,15 @@ const Statics = Object.freeze({
     wikihow: {
       file: "brands/wikihow.png",
       revision: 1
+    },
+    tineye: {
+      file: "brands/tineye.png",
+      revision: 1
     }
   }
 })
 
-function staticAsset(static){
+function staticAsset(static) {
   return Hosts.statics + `assets/` + static.file + "?r=" + static.revision
 }
 
@@ -56,5 +60,6 @@ module.exports.STATICS = Object.freeze({
   inferkit: staticAsset(Statics.brands.inferkit),
   youtube: staticAsset(Statics.brands.youtube),
   urbandictionary: staticAsset(Statics.brands.urbandictionary),
-  wikihow: staticAsset(Statics.brands.wikihow)
+  wikihow: staticAsset(Statics.brands.wikihow),
+  tineye: staticAsset(Statics.brands.tineye)
 })
