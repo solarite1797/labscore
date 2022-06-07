@@ -11,7 +11,6 @@ module.exports = class BasePaginator extends EventEmitter {
     this.index = 0;
     this.targetUser = data.targetUser || this.message.author.id;
 
-    // TODO: use editOrReply, kill old paginator if it exists
     this.editOrReply = data.context.editOrReply.bind(data.context);
   }
 
