@@ -55,14 +55,6 @@ module.exports.ICONS = Object.freeze({
   "downvote": "<:ico_downvote:980238681971494963>"
 })
 
-module.exports.WEB_ASSETS = Object.freeze({
-  "brands": {
-    "genius": "357a0d4aaf1cedfa41dfb38bf3acb961",
-    "labscore": "042e4a437e14580ee2fda8be217991d6"
-  },
-  "weather": "aab92e69374e4c7b8c6741fe02e574b9"
-})
-
 module.exports.GUILD_FEATURES = Object.freeze({
   "MEMBER_VERIFICATION_GATE_ENABLED": "<:MEMBERSHIP_GATING:816573784819630100> Membership Screening Enabled",
   "INVITE_SPLASH": "<:BOOST_IMAGE:816574652780249108> Invite Splash Background",
