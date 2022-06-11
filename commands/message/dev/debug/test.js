@@ -1,4 +1,5 @@
 const { createEmbed } = require("../../../../labscore/utils/embed");
+const { link } = require("../../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../../labscore/utils/message");
 const { getUser } = require("../../../../labscore/utils/users");
 
@@ -13,12 +14,9 @@ module.exports = {
   },
   run: async (context, args) => {
     try{
-      
-    let u = await getUser(context, args.input)
-    if(!u) return editOrReply(context, { embeds: [createEmbed("warning", context, "No users found.")] })
-    return editOrReply(context, { embeds: [createEmbed("default", context, {
-      description: u.mention
-    })] })
+    return editOrReply(context, createEmbed("default", context, {
+      description: `${link("https://google.com","Masked Link","Masked Link Tooltip")}`
+    }))
     }catch(e){
       console.log(e)
     }

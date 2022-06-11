@@ -13,8 +13,9 @@ module.exports.codeblock = function(type, content){
   return "```" + type + "\n" + content.join('\n') + "\n```"
 }
 
-module.exports.link = function(url, masked){
-  if(masked) return `[${masked}](${url})`
+module.exports.link = function(url, masked, tooltip = ""){
+  if(tooltip.length) tooltip = ` '${tooltip}'`
+  if(masked) return `[${masked}](${url}${tooltip})`
   return url
 }
 
