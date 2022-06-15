@@ -89,7 +89,7 @@ module.exports = {
       await response.edit({
         embeds: [
           createEmbed("default", context, {
-            description: `${codeblock(`py`, [`lc.art -type ${args.type.toLowerCase()} -seed ${seed} -variance ${variance} -rotate ${rotate}`])}`,
+            description: `${codeblock(`py`, [`${context.commandClient.prefixes.custom.first()}art -type ${args.type.toLowerCase()} -seed ${seed} -variance ${variance} -rotate ${rotate}`])}`,
             image: {
               url: res.image_link
             },
