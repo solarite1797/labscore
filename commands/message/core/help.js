@@ -1,7 +1,7 @@
 const { codeblock, highlight, icon, link } = require('../../../labscore/utils/markdown')
 const { createEmbed, formatPaginationEmbeds } = require('../../../labscore/utils/embed')
 
-const { DISCORD_INVITE } = require('../../../labscore/constants')
+const { DISCORD_INVITES } = require('../../../labscore/constants')
 
 const { paginator } = require('../../../labscore/client');
 const { editOrReply } = require('../../../labscore/utils/message');
@@ -90,7 +90,7 @@ module.exports = {
         // Command overview
         pages.push({embeds:[
           createEmbed("default", context, {
-            description: `Check pages for detailed command descriptions.\n` + codeblock("ansi", [(prefix + results.map((m)=>{return m.name}).splice(0, 10).join('\n' + prefix))]) + `\n${icon("question")} Need help with something else? Contact us via our ${link(DISCORD_INVITE, "Support Server")}.`
+            description: `Check pages for detailed command descriptions.\n` + codeblock("ansi", [(prefix + results.map((m)=>{return m.name}).splice(0, 10).join('\n' + prefix))]) + `\n${icon("question")} Need help with something else? Contact us via our ${link(DISCORD_INVITES.support, "Support Server")}.`
           })
         ]})
 

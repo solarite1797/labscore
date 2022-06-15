@@ -1,3 +1,16 @@
+module.exports.DISCORD_INVITES = Object.freeze({
+  support: "https://discord.gg/8c4p6xcjru",
+  privacy: "https://discord.gg/sQs8FhcTGh"
+})
+
+module.exports.PRIVACY_POLICY_SECTIONS = [
+  'labsCore does not collect any sort of data about its users.',
+  'If the bot encounters unexpected errors we report information about the server, channel, user and command/command arguments (excluding images) to a private log in order to assist with debugging and fixing the problem. You can reference the provided error ID in our support server for further details.',
+  `Images modified via our proprietary api are never stored outside of the channel you executed the command in.`
+]
+
+module.exports.PRIVACY_POLICY_LAST_UPDATE = 1655325547140
+
 module.exports.COLORS = Object.freeze({
   "error": 15548997,
   "success": 6411359,
@@ -108,8 +121,6 @@ module.exports.GUILD_FEATURES = Object.freeze({
   "BOOSTING_TIERS_EXPERIMENT_MEDIUM_GUILD": "<:lc_boosting:699936318398136341> Boosting Tiers Experiment Medium Guild",
   "BOT_DEVELOPER_EARLY_ACCESS": "<:i:903276631173509130> Forum Channels Early Access"
 })
-
-module.exports.DISCORD_INVITE = `https://discord.gg/8c4p6xcjru`
 
 module.exports.TIKTOK_VOICES = [
   {
