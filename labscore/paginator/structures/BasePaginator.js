@@ -126,6 +126,10 @@ module.exports = class BasePaginator extends EventEmitter {
     return this.commandMessage;
   }
 
+  async appendPage(page) {
+    this.pages.push(page)
+  }
+
   stop(timeout = false) {
     this.emit("stop", this, timeout);
     this.removeAllListeners();

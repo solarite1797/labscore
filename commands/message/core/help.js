@@ -28,11 +28,14 @@ function createCommandPage(context, prefix, command){
     value: command.aliases.join(', '),
     inline: true
   })
+
+  // TODO: maybe try building a little parser that highlights things via ansi
   if(command.metadata.usage) page.fields.push({
     name: `${icon("util")} Usage`,
-    value: codeblock("ansi", [prefix + command.metadata.usage]),
+    value: codeblock("py", [prefix + command.metadata.usage]),
     inline: true
   })
+  
   if(command.metadata.examples){
     let ex = []
     for(const e of command.metadata.examples) ex.push(prefix + e)
