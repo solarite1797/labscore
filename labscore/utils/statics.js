@@ -4,32 +4,32 @@ const { Hosts } = require('../api/endpoints')
 // Update the revision id to break discord cache
 const Statics = Object.freeze({
   brands: {
-    photofunia: {
-      file: "brands/photofunia.png",
-      revision: 1
+    bing: {
+      file: "brands/bing.png",
+      revision: 0
     },
     genius: {
       file: "brands/genius.png",
-      revision: 0
-    },
-    bing: {
-      file: "brands/bing.png",
       revision: 0
     },
     google: {
       file: "brands/google.png",
       revision: 0
     },
-    wolframalpha: {
-      file: "brands/wolframalpha.png",
-      revision: 1
-    },
     inferkit: {
       file: "brands/inferkit.png",
       revision: 0
     },
-    youtube: {
-      file: "brands/youtube.png",
+    makesweet: {
+      file: "brands/makesweet.png",
+      revision: 0
+    },
+    photofunia: {
+      file: "brands/photofunia.png",
+      revision: 1
+    },
+    tineye: {
+      file: "brands/tineye.png",
       revision: 1
     },
     urbandictionary: {
@@ -40,8 +40,12 @@ const Statics = Object.freeze({
       file: "brands/wikihow.png",
       revision: 1
     },
-    tineye: {
-      file: "brands/tineye.png",
+    wolframalpha: {
+      file: "brands/wolframalpha.png",
+      revision: 1
+    },
+    youtube: {
+      file: "brands/youtube.png",
       revision: 1
     }
   }
@@ -52,14 +56,15 @@ function staticAsset(static) {
 }
 
 module.exports.STATICS = Object.freeze({
-  photofunia: staticAsset(Statics.brands.photofunia),
-  genius: staticAsset(Statics.brands.genius),
   bing: staticAsset(Statics.brands.bing),
+  genius: staticAsset(Statics.brands.genius),
   google: staticAsset(Statics.brands.google),
-  wolframalpha: staticAsset(Statics.brands.wolframalpha),
   inferkit: staticAsset(Statics.brands.inferkit),
-  youtube: staticAsset(Statics.brands.youtube),
+  makesweet: staticAsset(Statics.brands.makesweet),
+  photofunia: staticAsset(Statics.brands.photofunia),
+  tineye: staticAsset(Statics.brands.tineye),
   urbandictionary: staticAsset(Statics.brands.urbandictionary),
   wikihow: staticAsset(Statics.brands.wikihow),
-  tineye: staticAsset(Statics.brands.tineye)
+  wolframalpha: staticAsset(Statics.brands.wolframalpha),
+  youtube: staticAsset(Statics.brands.youtube)
 })

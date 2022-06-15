@@ -1,11 +1,14 @@
 const { createEmbed } = require("../../../../labscore/utils/embed");
 const { link } = require("../../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../../labscore/utils/message");
-const { getUser } = require("../../../../labscore/utils/users");
+const { flag } = require("../../../../service/makesweet");
+const { getRecentImage } = require("../../../../labscore/utils/attachment");
+
+const superagent = require('superagent')
 
 module.exports = {
   name: 'test',
-  label: 'input',
+  label: 'text',
   metadata: {
     description: 'test',
     examples: ['test'],
@@ -13,12 +16,19 @@ module.exports = {
     usage: 'test'
   },
   run: async (context, args) => {
-    try{
-    return editOrReply(context, createEmbed("default", context, {
-      description: `${link("https://google.com","Masked Link","Masked Link Tooltip")}`
-    }))
-    }catch(e){
+    if(context.user.id !== "223518178100248576") return;
+    let image = await getRecentImage(context, 50)
+    if(!image) return editOrReply(context, { embeds: [createEmbed("warning", context, "No images found.")] })
+    if(!args.text) args.text = ""
+    try {
+      let mkswt = await flag(image)
+      console.log(mkswt.body)
+      return editOrReply(context, { content:"ww", files: [{
+        filename: "makesweet.gif",
+        value: mkswt.body
+      }] })
+    } catch (e) {
       console.log(e)
     }
   },
-};
+}
