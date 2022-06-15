@@ -1,8 +1,8 @@
 async function getUser(context, query){
   let user;
   let member;
-  if(/[0-9]{18}/.test(query)){
-    let uid = query.match(/[0-9]{18}/)
+  if(/[0-9]{17,18}/.test(query)){
+    let uid = query.match(/[0-9]{17,18}/)
     try{
       user = await context.client.rest.fetchUser(uid)
       if(context.guild) member = await getMember(context, user.id)
@@ -18,8 +18,8 @@ async function getUser(context, query){
 
 async function getMember(context, query){
   if(!context.guild) return;
-  if(/[0-9]{18}/.test(query)){
-    let uid = query.match(/[0-9]{18}/)
+  if(/[0-9]{17,18}/.test(query)){
+    let uid = query.match(/[0-9]{17,18}/)
     try{
       member = await context.guild.fetchMember(uid)
       return member;

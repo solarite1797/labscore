@@ -40,7 +40,7 @@ module.exports = {
         },
         fields: [{
           name: `${icon("calendar")} Dates`,
-          value: `**Account Created: **${timestamp(u.createdAt)}`,
+          value: `**Account Created: **${timestamp(u.createdAt, "f")}`,
           inline: false
         }]
       })
@@ -48,7 +48,7 @@ module.exports = {
 
       // Guild Container
       if(m){
-        userCard.fields[0].value = userCard.fields[0].value + `\n**Joined Guild: **${timestamp(m.joinedAt)}`
+        userCard.fields[0].value = userCard.fields[0].value + `\n**Joined Guild: **${timestamp(m.joinedAt, "f")}`
         let guildFields = []
         
         // TODO: make this an icon()

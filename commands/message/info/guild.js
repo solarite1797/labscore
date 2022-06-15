@@ -33,7 +33,7 @@ module.exports = {
       const g = context.guild
       // Guild Card
       let guildCard = createEmbed("default", context, {
-        description: `${icon("house")} **${g.name}** ${highlight(`(${g.id})`)}\n\n${icon("calendar")} **Created at: **${timestamp(g.createdAt)}\n\n<:lc_guild_owner:674652779406426122> **Server Owner: **<@${g.owner.id}>`,
+        description: `${icon("house")} **${g.name}** ${highlight(`(${g.id})`)}\n\n${icon("calendar")} **Created at: **${timestamp(g.createdAt, "f")}\n\n<:lc_guild_owner:674652779406426122> **Server Owner: **<@${g.owner.id}>`,
         thumbnail: {
           url: g.iconUrl + `?size=4096`
         },
