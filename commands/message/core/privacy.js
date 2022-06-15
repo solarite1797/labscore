@@ -4,13 +4,12 @@ const { editOrReply } = require('../../../labscore/utils/message');
 const { PRIVACY_POLICY_LAST_UPDATE, PRIVACY_POLICY_SECTIONS, DISCORD_INVITES, COLORS } = require('../../../labscore/constants');
 
 module.exports = {
-  description: 'ping!',
   name: 'privacy',
   metadata: {
-    description: 'bot latency',
-    examples: ['ping'],
+    description: 'Privacy Policy',
+    examples: ['privacy'],
     category: 'core',
-    usage: 'ping'
+    usage: 'privacy'
   },
   run: async (context) => {
     context.triggerTyping();
