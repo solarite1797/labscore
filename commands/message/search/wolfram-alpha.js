@@ -40,6 +40,8 @@ module.exports = {
       let search = await wolframAlpha(context, args.query)
       search = search.response
      
+      if(search.body.status == 1) return editOrReply(context, {embeds:[createEmbed("warning", context, search.body.message)]})
+
       let pages = []
       for(const res of search.body.data){
         pages.push(createWolframPage(context, res))
