@@ -17,6 +17,14 @@ const embedTypes = Object.freeze({
       color: COLORS.embed
     }
   },
+  "success": (context) => {
+    return {
+      author: {
+        name: `Error`
+      },
+      color: COLORS.success
+    }
+  },
   "warning": (context) => {
     return {
       author: {
@@ -61,7 +69,7 @@ module.exports.createEmbed = function(type, context, content){
   if(!embedTypes[type]) throw "Invalid Embed Type"
   if(!content) embedTypes[type](context)
   let emb = embedTypes[type](context)
-  if(["warning","error","loading"].includes(type)){
+  if(["success","warning","error","loading"].includes(type)){
     emb.author.name = content
     return emb
   }
