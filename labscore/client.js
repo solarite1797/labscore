@@ -25,13 +25,16 @@ const paginator =  new Paginator(cluster, {
   pageNumber: true
 });
 
+let commandPrefix = '.'
+if(process.env.PREFIX_OVERRIDE) commandPrefix = process.env.PREFIX_OVERRIDE;
+
 (async () => {
   // Run cluster
   await cluster.run();
   const commandClient = new CommandClient(cluster, {
     activateOnEdits: true,
     mentionsEnabled: true,
-    prefix: '.',
+    prefix: commandPrefix,
     ratelimits: [
       {duration: 60000, limit: 50, type: 'guild'},
       {duration: 5000, limit: 5, type: 'channel'},
