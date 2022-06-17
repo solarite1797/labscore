@@ -21,7 +21,7 @@ module.exports = {
     ),
   run: async (context, args) => {
     await context.triggerTyping();
-    let response = editOrReply(context, createEmbed("loading", context, "Updating bot..."))
+    let response = await editOrReply(context, createEmbed("loading", context, "Updating bot..."))
     try{
       execSync("git pull")
       return await response.edit({embeds: [createEmbed("success", context, "Update complete.")]})
