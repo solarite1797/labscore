@@ -1,12 +1,8 @@
 const { createEmbed } = require('../../../labscore/utils/embed')
-const { format } = require('../../../labscore/utils/ansi')
 const { editOrReply } = require('../../../labscore/utils/message')
-const { STATICS } = require('../../../labscore/utils/statics')
-
-const { paginator } = require('../../../labscore/client');
 
 const superagent = require('superagent');
-const { icon, highlight, codeblock } = require('../../../labscore/utils/markdown');
+const { codeblock } = require('../../../labscore/utils/markdown');
 
 const SIZES = Object.freeze({
   "wallpaper": { x: 1920, y: 1080},

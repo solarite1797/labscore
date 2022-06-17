@@ -29,7 +29,6 @@ let commandPrefix = '.'
 if(process.env.PREFIX_OVERRIDE) commandPrefix = process.env.PREFIX_OVERRIDE;
 
 (async () => {
-  // Run cluster
   await cluster.run();
   const commandClient = new CommandClient(cluster, {
     activateOnEdits: true,

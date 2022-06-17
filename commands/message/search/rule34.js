@@ -1,7 +1,6 @@
 const { createEmbed, formatPaginationEmbeds } = require('../../../labscore/utils/embed')
-const { link, highlight } = require('../../../labscore/utils/markdown')
+const { highlight } = require('../../../labscore/utils/markdown')
 const { editOrReply } = require('../../../labscore/utils/message')
-const { STATICS } = require('../../../labscore/utils/statics')
 
 const { paginator } = require('../../../labscore/client');
 const { rule34 } = require('../../../labscore/api');

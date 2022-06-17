@@ -1,10 +1,7 @@
 const { createEmbed } = require("../../../../labscore/utils/embed");
-const { link } = require("../../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../../labscore/utils/message");
 const { flag } = require("../../../../service/makesweet");
 const { getRecentImage } = require("../../../../labscore/utils/attachment");
-
-const superagent = require('superagent')
 
 module.exports = {
   name: 'test',

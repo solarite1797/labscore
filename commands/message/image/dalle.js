@@ -1,4 +1,3 @@
-const { getRecentImage } = require("../../../labscore/utils/attachment");
 const { createEmbed } = require("../../../labscore/utils/embed");
 const { editOrReply } = require("../../../labscore/utils/message");
 

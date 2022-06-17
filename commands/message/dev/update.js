@@ -1,11 +1,7 @@
-const { Constants, Utils } = require("detritus-client");
-const Permissions = Constants.Permissions;
-
 const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
 const { execSync } = require("child_process");
-const { highlight } = require("../../../labscore/utils/markdown");
 
 module.exports = {
   name: "update",

@@ -2,9 +2,6 @@ const { GUILD_FEATURES } = require("../../../labscore/constants");
 const { createEmbed } = require("../../../labscore/utils/embed");
 const { icon, highlight, timestamp, codeblock } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
-const { getUser, renderBadges } = require("../../../labscore/utils/users");
-
-const array_chunks = (array, chunk_size) => Array(Math.ceil(array.length / chunk_size)).fill().map((_, index) => index * chunk_size).map(begin => array.slice(begin, begin + chunk_size));
 
 module.exports = {
   name: 'server',

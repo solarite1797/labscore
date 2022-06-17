@@ -3,6 +3,7 @@ const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = Constants;
 
 const { imtranslator } = require('../../../labscore/api');
 const { IMTRANSLATOR_VOICES } = require('../../../labscore/constants');
+
 const { createEmbed } = require('../../../labscore/utils/embed');
 const { icon, highlight } = require('../../../labscore/utils/markdown');
 

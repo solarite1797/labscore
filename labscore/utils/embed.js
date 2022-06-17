@@ -1,5 +1,4 @@
 const { COLORS } = require('../constants')
-const { link } = require('./markdown')
 
 // TODO: make embed icons use the general STATICS system
 const embedTypes = Object.freeze({

@@ -1,8 +1,6 @@
-const { createEmbed, formatPaginationEmbeds } = require('../../../labscore/utils/embed')
-const { link } = require('../../../labscore/utils/markdown')
+const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
-const { paginator } = require('../../../labscore/client');
 const { searchAudio } = require('../../../labscore/api');
 const { getRecentVideo } = require('../../../labscore/utils/attachment');
 const { renderMusicButtons } = require('../../../labscore/utils/buttons');

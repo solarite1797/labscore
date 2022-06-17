@@ -1,6 +1,3 @@
-const { Constants, Utils } = require("detritus-client");
-const Permissions = Constants.Permissions;
-
 // TODO: remake this eventually, copy pasted it from v1 cause lazy
 
 module.exports = {

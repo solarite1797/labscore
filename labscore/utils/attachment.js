@@ -1,5 +1,3 @@
-
-
 const attachmentTypes = Object.freeze({
   image: ["image/png", "image/jpeg", "image/gif"]
 })

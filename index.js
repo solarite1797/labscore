@@ -1,6 +1,5 @@
 const { ClusterManager } = require('detritus-client');
-const express = require('express');
-const app = express();
+
 const time = Date.now();
 
 const token = process.env.token;
@@ -17,6 +16,10 @@ const manager = new ClusterManager(client, token, {
   await manager.run();
   console.log(`v2 | ready. took ${(Date.now() - time) / 1000}.`)
 })();
+
+// TODO: if i decide that this is necessary for something else, move it to a dedicated directory
+const express = require('express');
+const app = express();
 
 app.get("*", function (request, response) {
   response.send(`🧪 v2 @ ${Date.now()}`);
