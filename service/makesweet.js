@@ -22,7 +22,7 @@ async function fetchImage(url) {
 }
 
 async function processMakesweet(effect, args, image) {
-  if(!effects[effect.toLowerCase()]) throw "Invalid Effect"
+  if(!effects.includes(effect.toLowerCase())) throw "Invalid Effect";
   try{
     if(image){
       image = await fetchImage(image)
