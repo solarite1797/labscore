@@ -30,7 +30,7 @@ module.exports = {
       if(r.toString().includes("Already up to date.")) return await response.edit({embeds: [createEmbed("warning", context, "Already up to date.")]})
 
       let id = r.toString().match(/(?:.*?)\.\.([a-z0-9]{7})/)[1]
-      return await response.edit({embeds: [createEmbed("success", context, `Updated to ${id} in ${((Date.now() - timings) / 1000).toFixed(2)}s`)]})
+      return await response.edit({embeds: [createEmbed("success", context, `Updated to ${id} in ${((Date.now() - t) / 1000).toFixed(2)}s`)]})
     }catch(e){
       console.log(e)
       return await response.edit({embeds: [createEmbed("error", context, "Update failed.")]})
