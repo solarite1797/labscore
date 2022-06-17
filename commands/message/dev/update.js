@@ -4,7 +4,8 @@ const Permissions = Constants.Permissions;
 const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
-const { execSync } = require("child_process")
+const { execSync } = require("child_process");
+const { highlight } = require("../../../labscore/utils/markdown");
 
 module.exports = {
   name: "update",
@@ -25,7 +26,8 @@ module.exports = {
     try{
       const r = execSync("git pull")
       if(r.toString().includes("Already up to date.")) return await response.edit({embeds: [createEmbed("warning", context, "Already up to date.")]})
-      return await response.edit({embeds: [createEmbed("success", context, "Update complete.")]})
+      let id = r.toString().match(/(?:.*?)\.\.([a-z0-9]{7})/)[1]
+      return await response.edit({embeds: [createEmbed("brand", context, {description: `Update complete (${highlight(id)})`})]})
     }catch(e){
       console.log(e)
       return await response.edit({embeds: [createEmbed("error", context, "Update failed.")]})
