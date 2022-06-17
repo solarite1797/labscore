@@ -20,7 +20,7 @@ const embedTypes = Object.freeze({
   "success": (context) => {
     return {
       author: {
-        name: `Error`
+        name: `Success`
       },
       color: COLORS.success
     }
