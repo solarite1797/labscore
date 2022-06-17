@@ -26,6 +26,7 @@ module.exports = {
       execSync("git pull")
       return await response.edit({embeds: [createEmbed("success", context, "Update complete.")]})
     }catch(e){
+      console.log(e)
       return await response.edit({embeds: [createEmbed("error", context, "Update failed.")]})
     }
   }
