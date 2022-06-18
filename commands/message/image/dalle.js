@@ -21,11 +21,6 @@ module.exports = {
     context.triggerTyping();
     let response = await editOrReply(context, { embeds: [createEmbed("loading", context, `Synthesizing images...`)] })
 
-    // Display a message if server might be busy.
-    let notice = setTimeout(() => {
-      response.edit({ embeds: [createEmbed("loading", context, "DALL-E Server might be under heavy load, generation takes a bit...")] })
-    }, 15000)
-
     try{
       let t = Date.now();
 
@@ -34,8 +29,6 @@ module.exports = {
           prompt: args.query
         })
       
-      clearTimeout(notice)
-
       let embeds = [];
       let files = [];
 
@@ -49,8 +42,6 @@ module.exports = {
       
       await response.edit({ embeds, files })
     }catch(e){
-      console.log(e)
-      clearTimeout(notice)
       if(e.response.status == 503) return await response.edit({embeds:[createEmbed("error", context, `DALL-E server is busy, try again later.`)]})
       await response.edit({embeds:[createEmbed("error", context, `Image generation failed.`)]})
     }
