@@ -9,7 +9,7 @@ const { UserFlags } = Constants
 module.exports = {
   name: 'user',
   label: 'user',
-  aliases: ['u'],
+  aliases: ['u', 'profile'],
   metadata: {
     description: 'user',
     examples: ['user labsCore'],
