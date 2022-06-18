@@ -2,6 +2,7 @@ const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
 const { execSync } = require("child_process");
+const { icon, highlight } = require('../../../labscore/utils/markdown');
 
 module.exports = {
   name: "update",
@@ -25,8 +26,8 @@ module.exports = {
       const r = execSync("git pull")
       if(r.toString().includes("Already up to date.")) return await response.edit({embeds: [createEmbed("warning", context, "Already up to date.")]})
 
-      let id = r.toString().match(/(?:.*?)\.\.([a-z0-9]{7})/)[1]
-      return await response.edit({embeds: [createEmbed("success", context, `Updated to ${id} in ${((Date.now() - t) / 1000).toFixed(2)}s`)]})
+      let com = r.toString().match(/([a-z0-9]{7})\.\.([a-z0-9]{7})/)
+      return await response.edit({ content: `${icon("check")} Updated ${highlight(com[1] + ' -> ' + com[2])} in ${((Date.now() - t) / 1000).toFixed(2)}s`, embeds: []})
     }catch(e){
       console.log(e)
       return await response.edit({embeds: [createEmbed("error", context, "Update failed.")]})
