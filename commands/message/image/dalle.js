@@ -15,7 +15,7 @@ module.exports = {
   ratelimit: {
     type: 'guild',
     limit: 1,
-    duration: 15000
+    duration: 5000
   },
   run: async (context, args) => {
     context.triggerTyping();
