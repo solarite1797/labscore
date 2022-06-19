@@ -1,4 +1,4 @@
-async function getUser(context, query){
+module.exports.getUser = async function(context, query){
   let user;
   let member;
   if(/[0-9]{17,18}/.test(query)){
@@ -16,7 +16,7 @@ async function getUser(context, query){
   return {user: user, member: member};
 }
 
-async function getMember(context, query){
+module.exports.getMember = async function(context, query){
   if(!context.guild) return;
   if(/[0-9]{17,18}/.test(query)){
     let uid = query.match(/[0-9]{17,18}/)
@@ -50,16 +50,10 @@ const BADGES = Object.freeze({
   [UserFlags.PREMIUM_EARLY_SUPPORTER]: '<:badge_earlysupporter:903277590956101672>'
 })
 
-function renderBadges(user){
+module.exports.renderBadges = function(user){
   let badges = [];
   for(const flag of Object.keys(BADGES)){
     if(user.hasFlag(parseInt(flag))) badges.push(BADGES[flag])
   }
   return badges;
-}
-
-module.exports = {
-  getUser,
-  getMember,
-  renderBadges
 }

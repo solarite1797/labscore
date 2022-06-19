@@ -19,7 +19,7 @@ const cluster = new ClusterClient("", {
 });
 
 // Create this clusters paginator
-const paginator =  new Paginator(cluster, {
+module.exports.paginator = new Paginator(cluster, {
   maxTime: 300000,
   pageLoop: true,
   pageNumber: true
@@ -47,7 +47,3 @@ if(process.env.PREFIX_OVERRIDE) commandPrefix = process.env.PREFIX_OVERRIDE;
   await interactionClient.run();
 
 })();
-
-module.exports = {
-  paginator
-}

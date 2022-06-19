@@ -46,7 +46,7 @@ async function getRecentMedia(context, limit) {
 }
 
 
-async function getRecentVideo(context, limit) {
+module.exports.getRecentVideo = async function(context, limit) {
   if (!context.message.channel) {
     return undefined;
   }
@@ -81,7 +81,7 @@ async function getRecentVideo(context, limit) {
   return attachments;
 }
 
-async function getRecentImage(context, limit) {
+module.exports.getRecentImage= async function(context, limit){
   let attachments = await getRecentMedia(context, limit)
   let at;
   let validImages = attachmentTypes.image
@@ -93,9 +93,4 @@ async function getRecentImage(context, limit) {
     }
   }
   return at;
-}
-
-module.exports = {
-  getRecentImage,
-  getRecentVideo
 }
