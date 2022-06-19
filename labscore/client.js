@@ -25,7 +25,7 @@ const paginator =  new Paginator(cluster, {
   pageNumber: true
 });
 
-let commandPrefix = '.'
+let commandPrefix = 'lcbeta.'
 if(process.env.PREFIX_OVERRIDE) commandPrefix = process.env.PREFIX_OVERRIDE;
 
 (async () => {
