@@ -10,8 +10,11 @@ module.exports = {
     description: 'update bot',
     examples: ['update'],
     category: 'dev',
-    usage: 'update'
+    usage: 'update [-force true]'
   },
+  args: [
+    { default: false, name: "force", type: "bool" }
+  ],
   onBefore: context => context.user.isClientOwner,
   onCancel: context =>
     context.reply(
@@ -22,7 +25,7 @@ module.exports = {
     let response = await editOrReply(context, createEmbed("loading", context, "Updating bot..."))
     try{
       const t = Date.now()
-
+      if(args.force) execSync("git checkout .")
       const r = execSync("git pull")
       if(r.toString().includes("Already up to date.")) return await response.edit({embeds: [createEmbed("warning", context, "Already up to date.")]})
 
