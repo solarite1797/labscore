@@ -25,7 +25,7 @@ module.exports.paginator = new Paginator(cluster, {
   pageNumber: true
 });
 
-let commandPrefix = 'lc..'
+let commandPrefix = '.'
 if(process.env.PREFIX_OVERRIDE) commandPrefix = process.env.PREFIX_OVERRIDE;
 
 (async () => {
