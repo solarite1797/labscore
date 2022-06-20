@@ -19,7 +19,6 @@ function validateNumber(input, low, high){
 module.exports = {
   name: 'art',
   aliases: ['wallpaper'],
-  label: 'text',
   metadata: {
     description: 'crazy ai art',
     examples: ['art -type wallpaper -seed 839648 -variance 8866 -rotate 1'],
