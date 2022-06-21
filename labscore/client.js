@@ -32,7 +32,7 @@ if(process.env.PREFIX_OVERRIDE) commandPrefix = process.env.PREFIX_OVERRIDE;
   await cluster.run();
   const commandClient = new CommandClient(cluster, {
     activateOnEdits: true,
-    mentionsEnabled: true,
+    mentionsEnabled: false,
     prefix: commandPrefix,
     ratelimits: [
       {duration: 60000, limit: 50, type: 'guild'},
