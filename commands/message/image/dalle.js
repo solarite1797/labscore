@@ -6,6 +6,7 @@ const superagent = require('superagent');
 module.exports = {
   name: 'dalle',
   label: 'query',
+  aliases: ['craiyon'],
   metadata: {
     description: 'dalle',
     examples: ['dalle'],
