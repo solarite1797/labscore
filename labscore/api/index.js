@@ -135,6 +135,12 @@ module.exports.bingImages = async function(context, query){
   })
 }
 
+module.exports.dictionary = async function(context, query){
+  return await request(Api.SEARCH_DICTIONARY, "GET", {}, {
+    q: query
+  })
+}
+
 module.exports.tineye = async function(context, url){
   return await request(Api.SEARCH_TINEYE, "GET", {}, {
     url: url
