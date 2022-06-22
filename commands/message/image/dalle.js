@@ -24,7 +24,7 @@ module.exports = {
     try{
       let t = Date.now();
 
-      let img = await superagent.post(`https://bf.dallemini.ai/generate`)
+      let img = await superagent.post(`https://backend.craiyon.com/generate`)
         .send({
           prompt: args.query
         })
