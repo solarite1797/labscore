@@ -85,10 +85,12 @@ module.exports.getRecentVideo = async function(context, limit) {
   return attachments;
 }
 
-function validateAttachment(attachment){
-  if (attachment.contentType && attachmentTypes.image.includes(attachment.contentType)) { // discord attachment
+function validateAttachment(attachment, type){
+  console.log(attachment)
+  let allowedTypes = attachmentTypes[type]
+  if (attachment.contentType && allowedTypes.includes(attachment.contentType)) { // discord attachment
     return true
-  } else if (!attachment.content_type) { // other form of media
+  } else if (!attachment.contentType) { // other form of media
     return true
   } else {
     return false
@@ -102,7 +104,7 @@ module.exports.getRecentImage = async function(context, limit){
 
   let at;
   for (const a of attachments) {
-    if(validateAttachment(a) && at === undefined) at = a.url
+    if(validateAttachment(a, "image") && at === undefined) at = a.url
   }
   return at;
 }

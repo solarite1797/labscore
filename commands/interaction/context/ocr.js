@@ -18,7 +18,7 @@ module.exports = {
       const { message } = args;
 
       let attachment = getMessageAttachment(message)
-      if(attachment && validateAttachment(attachment)){
+      if(attachment && validateAttachment(attachment, "image")){
         attachment = attachment.url
       } else {
         delete attachment;
@@ -27,12 +27,14 @@ module.exports = {
 
       let ocr = await googleVisionOcr(context, attachment)
 
+      if(ocr.response.body.text.length == 0) return context.editOrRespond({ embeds: [createEmbed("warning", context, "No text detected.")], flags: MessageFlags.EPHEMERAL })
+
       await context.editOrRespond({
         embeds: [createEmbed("default", context, {
           thumbnail: {
             url: attachment
           },
-          description: codeblock("ansi", [ocr.response.body.text]),
+          description: codeblock("ansi", ["​" + ocr.response.body.text]),
           footer: {
             iconUrl: STATICS.google,
             text: `Google Cloud Vision • ${context.application.name} • Took ${ocr.timings}s`
