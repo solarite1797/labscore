@@ -19,17 +19,15 @@ module.exports = {
     if (!image) return editOrReply(context, { embeds: [createEmbed("warning", context, "No images found.")] })
 
     let ocr = await googleVisionOcr(context, image)
-    return editOrReply(context, {
-      embeds: [createEmbed("default", context, {
-        thumbnail: {
-          url: image
-        },
-        description: codeblock("ansi", [ocr.response.body.text]),
-        footer: {
-          iconUrl: STATICS.google,
-          text: `Google Cloud Vision • ${context.application.name} • Took ${ocr.timings}s`
-        }
-      })]
-    })
+    return editOrReply(context, createEmbed("default", context, {
+      thumbnail: {
+        url: image
+      },
+      description: codeblock("ansi", [ocr.response.body.text]),
+      footer: {
+        iconUrl: STATICS.google,
+        text: `Google Cloud Vision • ${context.application.name} • Took ${ocr.timings}s`
+      }
+    }))
   },
 };
