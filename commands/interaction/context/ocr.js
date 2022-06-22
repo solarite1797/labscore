@@ -18,10 +18,10 @@ module.exports = {
       const { message } = args;
 
       let attachment = getMessageAttachment(message)
-      if(validateAttachment(attachment)){
+      if(attachment && validateAttachment(attachment)){
         attachment = attachment.url
       } else {
-        attachment = undefined
+        delete attachment;
       }
       if(!attachment) return context.editOrRespond({ embeds: [createEmbed("warning", context, "No images found.")], flags: MessageFlags.EPHEMERAL })
 
