@@ -19,7 +19,6 @@ module.exports = {
     if(!args.text) args.text = ""
     try {
       let mkswt = await flag(image)
-      console.log(mkswt.body)
       return editOrReply(context, { content:"ww", files: [{
         filename: "makesweet.gif",
         value: mkswt.body

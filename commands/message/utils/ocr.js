@@ -18,8 +18,6 @@ module.exports = {
     let image = await getRecentImage(context, 50)
     if (!image) return editOrReply(context, { embeds: [createEmbed("warning", context, "No images found.")] })
 
-    console.log(image)
-
     let ocr = await googleVisionOcr(context, image)
 
     if(ocr.response.body.text.length == 0) return editOrReply(context, { embeds: [createEmbed("warning", context, "No text detected.")] })

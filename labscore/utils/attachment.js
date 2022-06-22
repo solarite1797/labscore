@@ -86,7 +86,6 @@ module.exports.getRecentVideo = async function(context, limit) {
 }
 
 function validateAttachment(attachment, type){
-  console.log(attachment)
   let allowedTypes = attachmentTypes[type]
   if (attachment.contentType && allowedTypes.includes(attachment.contentType)) { // discord attachment
     return true
