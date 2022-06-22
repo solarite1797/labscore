@@ -25,24 +25,64 @@ module.exports.paginator = new Paginator(cluster, {
   pageNumber: true
 });
 
+// Clients
+
 let commandPrefix = '.'
 if(process.env.PREFIX_OVERRIDE) commandPrefix = process.env.PREFIX_OVERRIDE;
 
+const commandClient = new CommandClient(cluster, {
+  activateOnEdits: true,
+  mentionsEnabled: false,
+  prefix: commandPrefix,
+  ratelimits: [
+    {duration: 60000, limit: 50, type: 'guild'},
+    {duration: 5000, limit: 5, type: 'channel'},
+  ]
+});
+
+const interactionClient = new InteractionCommandClient()
+
+const { maintower } = require('./logging');
+const { icon } = require('./utils/markdown');
+const { editOrReply } = require('./utils/message');
+
+commandClient.on('commandRunError', async ({context, error}) => {
+  try{
+    // Log the error via our maintower service
+    let packages = {
+      data: {},
+      origin: {},
+      meta: {
+        shard: context.shardId.toString(),
+        cluster: context.manager.clusterId.toString()
+      }
+    }
+    
+    if(context.user) packages.origin.user = { name: `${context.user.username}#${context.user.discriminator}`, id: context.user.id }
+    if(context.guild) packages.origin.guild = { name: context.guild.name, id: context.guild.id }
+    if(context.channel) packages.origin.channel = { name: context.channel.name, id: context.channel.id }
+
+    packages.data.command = context.message.content
+    packages.data.error = error ? error.stack || error.message : error
+    if(error.raw) packages.data.raw = JSON.stringify(error.raw, null, 2)
+
+    let req = await maintower(packages, "01")
+
+    await editOrReply(context, {
+      content: `${icon("cross")} Something went wrong while attempting to run this command. (Reference: \`${req}\`)`
+    })
+  }catch(e){
+    await editOrReply(context, {
+      content: `${icon("cross")} Something went wrong while attempting to run this command.`
+    })
+  }
+});
+
 (async () => {
   await cluster.run();
-  const commandClient = new CommandClient(cluster, {
-    activateOnEdits: true,
-    mentionsEnabled: false,
-    prefix: commandPrefix,
-    ratelimits: [
-      {duration: 60000, limit: 50, type: 'guild'},
-      {duration: 5000, limit: 5, type: 'channel'},
-    ]
-  });
   await commandClient.addMultipleIn('../commands/message/');
   await commandClient.run()
 
-  const interactionClient = new InteractionCommandClient()
   await interactionClient.addMultipleIn('../commands/interaction/');
   await interactionClient.run();
 
