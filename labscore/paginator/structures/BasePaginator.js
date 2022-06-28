@@ -52,8 +52,11 @@ module.exports = class BasePaginator extends EventEmitter {
     // Create Components
     let msg = this.pages[this.index];
     msg.components = await this.client.components(this)
+
+    // Ensure there are no mentions
     if(!msg.message_reference) msg.reference = true
     if(!msg.allowedMentions) msg.allowedMentions = {parse: [], repliedUser: false}
+
     return this.commandMessage = await this.editOrReply(msg);
   }
 

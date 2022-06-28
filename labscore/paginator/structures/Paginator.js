@@ -158,6 +158,16 @@ module.exports = class Paginator {
     }
     if(listener) await listener.stop()
 
+    // No need for a paginator if we only have one page.
+    if(data.pages.length == 1){
+      let msg = data.pages[0];
+
+      if(!msg.message_reference) msg.reference = true
+      if(!msg.allowedMentions) msg.allowedMentions = {parse: [], repliedUser: false}
+      
+      return await data.context.editOrReply(msg);
+    }
+
     const instance = new InteractionPaginator(this, data);
     this.activeListeners.push(instance);
 

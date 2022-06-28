@@ -77,6 +77,9 @@ module.exports.createEmbed = function(type, context, content){
 
 // Adds formatted page numbers to the embed footer
 module.exports.formatPaginationEmbeds = function(embeds){
+  // No formatting if we only have one page
+  if(embeds.length == 1) return embeds;
+  
   let i = 0;
   let l = embeds.length;
   let formatted = [];
