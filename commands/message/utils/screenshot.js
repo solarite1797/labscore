@@ -14,7 +14,10 @@ module.exports = {
   },
   run: async (context, args) => {
     context.triggerTyping();
-    if(!args.url) return editOrReply(context, { embeds: [createEmbed("warning", context, "No images found.")] })
+    if(!args.url) return editOrReply(context, { embeds: [createEmbed("warning", context, "No url supplied.")] })
+    
+    let response = await editOrReply(context, createEmbed("loading", context, `Creating website screenshot...`))
+
     try{
       let ss = await screenshot(context, args.url)
       if(ss.response.body.status){
@@ -32,20 +35,16 @@ module.exports = {
           return editOrReply(context, { embeds: [createEmbed("error", context, "Unable to create screenshot.")] })
         }
       }
-      return editOrReply(context, { embeds: [createEmbed("default", context, {
-        image: {
-          url: `attachment://screenshot.png`
-        },
-        footer: {
-          iconUrl: `https://cdn.discordapp.com/avatars/${context.application.id}/${context.application.icon}.png?size=256`,
-          text: `${context.application.name} • Took ${ss.timings}s`
-        }
-      })], files: [{
-          filename: "screenshot.png",
-          value: ss.response.body
-        }]})
+      
+      return await response.edit({
+        embeds: [createEmbed("image", context, {
+          url: "screenshot.png",
+          time: ss.timings
+        })],
+        files: [{ filename: "screenshot.png", value: ss.response.body }]
+      })
     } catch(e){
-      console.log(e)
+      return await response.edit({ embeds: [createEmbed("error", context, `Unable to create screenshot.`) ] })
     }
   }
 };

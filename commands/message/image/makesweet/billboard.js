@@ -27,20 +27,20 @@ module.exports = {
       const timings = Date.now();
       let mkswt = await billboardCityscape(image)
       
-      await response.edit({ embeds: [createEmbed("default", context, {
-        image: {
-          url: "attachment://makesweet.gif"
-        },
-        footer: {
-          iconUrl: STATICS.makesweet,
-          text: `MakeSweet • Took ${((Date.now() - timings) / 1000).toFixed(2)}s`
-        }
-      })], files: [{
-        filename: "makesweet.gif",
-        value: mkswt.body
-      }] })
+      return await response.edit({
+        embeds: [createEmbed("image", context, {
+          url: "makesweet.gif",
+          time: ((Date.now() - timings) / 1000).toFixed(2),
+          provider: {
+            icon: STATICS.makesweet,
+            text: "MakeSweet"
+          }
+        })],
+        files: [{ filename: "makesweet.gif", value: mkswt.body }]
+      })
     } catch (e) {
-      await response.edit({ embeds: [createEmbed("error", context, e)] })
+      console.log(e)
+      await response.edit({ embeds: [createEmbed("error", context, "Something went wrong.")] })
     }
   },
 }

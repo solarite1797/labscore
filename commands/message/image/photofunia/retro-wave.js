@@ -29,15 +29,15 @@ module.exports = {
       if(res.response.body.status == 1) return editOrReply(context, {embeds:[createEmbed("warning", context, res.response.body.errors[0])]})
 
       image = res.response.body.data.images[res.response.body.data.best_quality]
-      return editOrReply(context, {embeds:[createEmbed("default", context, {
-        image: {
-          url: image
-        },
-        footer: {
-          iconUrl: STATICS.photofunia,
-          text: `PhotoFunia • ${context.application.name} • Took ${res.timings}s`
+      
+      return editOrReply(context, createEmbed("image", context, {
+        url: image,
+        time: res.timings,
+        provider: {
+          icon: STATICS.photofunia,
+          text: "PhotoFunia"
         }
-      })]})
+      }))
     }catch(e){
       console.log(e)
       if(e.response?.body?.message) return editOrReply(context, {embeds:[createEmbed("error", context, e.response.body.message)]})

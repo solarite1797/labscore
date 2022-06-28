@@ -24,26 +24,15 @@ module.exports = {
           "data": args.text
         })
       
-      await response.edit({
-        embeds: [
-          createEmbed("default", context, {
-            image: {
-              url: `attachment://qrcode.png`
-            },
-            footer: {
-              iconUrl: `https://cdn.discordapp.com/avatars/${context.application.id}/${context.application.icon}.png?size=256`,
-              text: `labsCore • Took ${((Date.now() - t) / 1000).toFixed(2)}s`
-            }
-          })
-        ],
-        files: [{
-          filename: "qrcode.png",
-          value: res.body
-        }]
+      return await response.edit({
+        embeds: [createEmbed("image", context, {
+          url: "qrcode.png",
+          time: ((Date.now() - t) / 1000).toFixed(2)
+        })],
+        files: [{ filename: "qrcode.png", value: res.body }]
       })
     }catch(e){
-      console.log(e)
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to generate qr code.`)]})
+      return await response.edit({ embeds: [createEmbed("error", context, `Unable to generate qr code.`) ] })
     }
   }
 };

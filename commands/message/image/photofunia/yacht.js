@@ -20,16 +20,15 @@ module.exports = {
     try{
       let res = await yacht(context, args.text)
       image = res.response.body.data.images[res.response.body.data.best_quality]
-      return editOrReply(context, {embeds:[createEmbed("default", context, {
-        description: `⛵`,
-        image: {
-          url: image
-        },
-        footer: {
-          iconUrl: STATICS.photofunia,
-          text: `PhotoFunia • ${context.application.name} • Took ${res.timings}s`
+      
+      return editOrReply(context, createEmbed("image", context, {
+        url: image,
+        time: res.timings,
+        provider: {
+          icon: STATICS.photofunia,
+          text: "PhotoFunia"
         }
-      })]})
+      }))
     }catch(e){
       console.log(e)
       return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to generate image.`)]})

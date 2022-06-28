@@ -11,6 +11,15 @@ const embedTypes = Object.freeze({
       }
     }
   },
+  "image": (context) => {
+    return {
+      color: COLORS.embed,
+      footer: {
+        iconUrl: `https://cdn.discordapp.com/avatars/${context.application.id}/${context.application.icon}.png?size=256`,
+        text: context.application.name
+      }
+    }
+  },
   "defaultNoFooter": (context) => {
     return {
       color: COLORS.embed
@@ -68,8 +77,27 @@ module.exports.createEmbed = function(type, context, content){
   if(!embedTypes[type]) throw "Invalid Embed Type"
   if(!content) embedTypes[type](context)
   let emb = embedTypes[type](context)
+
+  // Special handling
   if(["success","warning","error","loading"].includes(type)){
     emb.author.name = content
+    return emb
+  }
+
+  if(["image"].includes(type)){
+    if(content.url.includes('://')){
+      emb.image = { url: content.url }
+    } else {
+      emb.image = { url: `attachment://${content.url}` }
+    }
+
+    if(content.provider){
+      if(content.provider.text) emb.footer.text = `${content.provider.text} • ${context.application.name}`
+      if(content.provider.icon) emb.footer.iconUrl = content.provider.icon
+    }
+
+    if(content.time) emb.footer.text = `${emb.footer.text} • Took ${content.time}s`
+
     return emb
   }
   return Object.assign(emb, content)
@@ -79,7 +107,7 @@ module.exports.createEmbed = function(type, context, content){
 module.exports.formatPaginationEmbeds = function(embeds){
   // No formatting if we only have one page
   if(embeds.length == 1) return embeds;
-  
+
   let i = 0;
   let l = embeds.length;
   let formatted = [];

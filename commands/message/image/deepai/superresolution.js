@@ -21,16 +21,12 @@ module.exports = {
 
       let res = await superresolution(context, image)
 
-      if(res.response.body.status == 1) return editOrReply(context, {embeds:[createEmbed("warning", context, res.response.body.errors[0])]})    
-      return editOrReply(context, {embeds:[createEmbed("default", context, {
-        image: {
-          url: res.response.body.image
-        },
-        footer: {
-          iconUrl: `https://cdn.discordapp.com/avatars/${context.application.id}/${context.application.icon}.png?size=256`,
-          text: `${context.application.name} • Took ${res.timings}s`
-        }
-      })]})
+      if(res.response.body.status == 1) return editOrReply(context, {embeds:[createEmbed("warning", context, res.response.body.errors[0])]})
+      
+      return editOrReply(context, createEmbed("image", context, {
+        url: res.response.body.image,
+        time: res.timings
+      }))
     }catch(e){
       console.log(e)
       return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to modify image.`)]})
