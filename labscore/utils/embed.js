@@ -1,6 +1,6 @@
 const { COLORS } = require('../constants')
+const { STATIC_ICONS } = require('./statics')
 
-// TODO: make embed icons use the general STATICS system
 const embedTypes = Object.freeze({
   "default": (context) => {
     return {
@@ -36,7 +36,7 @@ const embedTypes = Object.freeze({
   "warning": (context) => {
     return {
       author: {
-        iconUrl: `https://derpystuff.gitlab.io/webstorage4/v2/assets/icons/ico_warning_small.png`,
+        iconUrl: STATIC_ICONS.warning,
         name: `Warning`
       },
       color: COLORS.warning
@@ -45,7 +45,7 @@ const embedTypes = Object.freeze({
   "error": (context) => {
     return {
       author: {
-        iconUrl: `https://derpystuff.gitlab.io/webstorage4/v2/assets/icons/ico_error_small.png`,
+        iconUrl: STATIC_ICONS.error,
         name: `Error`
       },
       color: COLORS.error
@@ -54,7 +54,7 @@ const embedTypes = Object.freeze({
   "nsfw": (context) => {
     return {
       author: {
-        iconUrl: `https://derpystuff.gitlab.io/webstorage4/v2/assets/icons/ico_nsfw_small.png`,
+        iconUrl: STATIC_ICONS.adult,
         name: `This command is only available in Age Restricted channels.`,
         url: `https://support.discord.com/hc/en-us/articles/115000084051-Age-Restricted-Channels-and-Content`
       },
@@ -64,7 +64,7 @@ const embedTypes = Object.freeze({
   "loading": (context) => {
     return {
       author: {
-        iconUrl: `https://derpystuff.gitlab.io/webstorage4/v2/assets/icons/ico_loading_small.gif`,
+        iconUrl: STATIC_ICONS.loading,
         name: `Loading`
       },
       color: COLORS.embed
@@ -78,7 +78,6 @@ module.exports.createEmbed = function(type, context, content){
   if(!content) embedTypes[type](context)
   let emb = embedTypes[type](context)
 
-  // Special handling
   if(["success","warning","error","loading"].includes(type)){
     emb.author.name = content
     return emb

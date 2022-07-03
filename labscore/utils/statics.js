@@ -48,6 +48,24 @@ const Statics = Object.freeze({
       file: "brands/youtube.png",
       revision: 1
     }
+  },
+  icons: {
+    adult: {
+      file: "icons/ico_nsfw_small.png",
+      revision: 0
+    },
+    error: {
+      file: "icons/ico_warning_small.png",
+      revision: 0
+    },
+    loading: {
+      file: "icons/ico_loading_small.gif",
+      revision: 0
+    },
+    warning: {
+      file: "icons/ico_warning_small.png",
+      revision: 0
+    }
   }
 })
 
@@ -67,4 +85,11 @@ module.exports.STATICS = Object.freeze({
   wikihow: staticAsset(Statics.brands.wikihow),
   wolframalpha: staticAsset(Statics.brands.wolframalpha),
   youtube: staticAsset(Statics.brands.youtube)
+})
+
+module.exports.STATIC_ICONS = Object.freeze({
+  adult: staticAsset(Statics.icons.adult),
+  error: staticAsset(Statics.icons.error),
+  loading: staticAsset(Statics.icons.loading),
+  warning: staticAsset(Statics.icons.warning)
 })
