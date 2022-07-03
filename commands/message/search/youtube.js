@@ -53,7 +53,7 @@ module.exports = {
       });
     }catch(e){
       console.log(e)
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to perform google search.`)]})
+      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to perform youtube search.`)]})
     }
   },
 };
