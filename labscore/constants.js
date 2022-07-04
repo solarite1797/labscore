@@ -66,10 +66,10 @@ module.exports.ICONS = Object.freeze({
   "question": "<:ico_question:949420315677691934>",
   "upvote": "<:ico_upvote:980238682353205259>",
   "downvote": "<:ico_downvote:980238681971494963>",
-  "reddit_gold": "<:rda_gold:993616956844425266>",
-  "reddit_silver": "<:rda_silver:993616958777983067>",
-  "reddit_wholesome": "<:rda_wholesome:993616961231663165>",
-  "reddit_helpful": "<:rda_helpful:993618441669984437>"
+  "reddit_gold": "<:rdt_gold:993630360527196251>",
+  "reddit_silver": "<:rdt_silver:993630364327231628>",
+  "reddit_wholesome": "<:rdt_wholesome:993630485379031061>",
+  "reddit_helpful": "<:rdt_helpful:993630362372677774>"
 })
 
 module.exports.GUILD_FEATURES = Object.freeze({
