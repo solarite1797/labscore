@@ -22,12 +22,6 @@ function createRedditPage(context, result){
           name: result.subreddit.name,
           url: result.subreddit.link
         },
-        description: `**${link(result.post.link, result.post.title)}**`,
-        fields: [{
-          name: "​",
-          value: `${icon("upvote")}${highlight(result.post.score)} ​ ​ ​ ${icon("person")} ${link(result.author.link, `u/${result.author.name}`)}`,
-          inline: true
-        }],
         footer: {
           iconUrl: STATICS.reddit,
           text: `Reddit • ${context.application.name}`
@@ -38,14 +32,20 @@ function createRedditPage(context, result){
 
   if(result.post.image) res.embeds[0].image = { url: result.post.image };
 
+  let description = [`**${link(result.post.link, result.post.title)}**`]
+
   let awardData = []
   // Awards
   for(const a of Object.keys(result.awards)){
     awardData.push(`${icon(`reddit_${a}`)}${highlight(result.awards[a])}`)
   }
 
-  if(awardData.length >= 1) res.embeds[0].description = res.embeds[0].description + `\n${awardData.join(' ')}`
+  if(awardData.length >= 1) description.push(`${awardData.join(' ')}`)
 
+  description.push(``)
+  description.push(`${icon("upvote")}${highlight(result.post.score)} ​ ​ ​ ${icon("person")} ${link(result.author.link, `u/${result.author.name}`)}`)
+
+  res.embeds[0].description = description.join('\n')
   return res;
 }
 
