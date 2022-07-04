@@ -116,6 +116,13 @@ module.exports.googleImages = async function(context, query){
   })
 }
 
+module.exports.reddit = async function(context, query, nsfw = false){
+  return await request(Api.SEARCH_REDDIT, "GET", {}, {
+    q: query,
+    nsfw: nsfw
+  })
+}
+
 module.exports.rule34 = async function(context, query, site){
   return await request(Api.SEARCH_RULE34, "GET", {}, {
     q: query,

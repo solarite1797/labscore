@@ -28,6 +28,10 @@ const Statics = Object.freeze({
       file: "brands/photofunia.png",
       revision: 1
     },
+    reddit: {
+      file: "brands/reddit.png",
+      revision: 0
+    },
     tineye: {
       file: "brands/tineye.png",
       revision: 1
@@ -55,7 +59,7 @@ const Statics = Object.freeze({
       revision: 0
     },
     error: {
-      file: "icons/ico_warning_small.png",
+      file: "icons/ico_error_small.png",
       revision: 0
     },
     loading: {
@@ -80,6 +84,7 @@ module.exports.STATICS = Object.freeze({
   inferkit: staticAsset(Statics.brands.inferkit),
   makesweet: staticAsset(Statics.brands.makesweet),
   photofunia: staticAsset(Statics.brands.photofunia),
+  reddit: staticAsset(Statics.brands.reddit),
   tineye: staticAsset(Statics.brands.tineye),
   urbandictionary: staticAsset(Statics.brands.urbandictionary),
   wikihow: staticAsset(Statics.brands.wikihow),

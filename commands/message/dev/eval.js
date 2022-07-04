@@ -1,3 +1,5 @@
+const { Utils, Constants } = require("detritus-client");
+
 const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
 
 // TODO: remake this eventually, copy pasted it from v1 cause lazy

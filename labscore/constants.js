@@ -65,7 +65,11 @@ module.exports.ICONS = Object.freeze({
   "locale": "<:ico_locale:925891616986791936>",
   "question": "<:ico_question:949420315677691934>",
   "upvote": "<:ico_upvote:980238682353205259>",
-  "downvote": "<:ico_downvote:980238681971494963>"
+  "downvote": "<:ico_downvote:980238681971494963>",
+  "reddit_gold": "<:rda_gold:993616956844425266>",
+  "reddit_silver": "<:rda_silver:993616958777983067>",
+  "reddit_wholesome": "<:rda_wholesome:993616961231663165>",
+  "reddit_helpful": "<:rda_helpful:993618441669984437>"
 })
 
 module.exports.GUILD_FEATURES = Object.freeze({
