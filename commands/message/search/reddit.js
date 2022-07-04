@@ -23,6 +23,11 @@ function createRedditPage(context, result){
           url: result.subreddit.link
         },
         description: `**${link(result.post.link, result.post.title)}**`,
+        fields: [{
+          name: "​",
+          value: `${icon("upvote")}${highlight(result.post.score)} ​ ​ ​ ${icon("person")} ${link(result.author.link, `u/${result.author.name}`)}`,
+          inline: true
+        }],
         footer: {
           iconUrl: STATICS.reddit,
           text: `Reddit • ${context.application.name}`
@@ -39,12 +44,7 @@ function createRedditPage(context, result){
     awardData.push(`${icon(`reddit_${a}`)}${highlight(result.awards[a])}`)
   }
 
-  if(awardData.length >= 1) res.embeds[0].fields = [
-    {
-      name: 'Awards',
-      value: awardData.join(' ')
-    }
-  ]
+  if(awardData.length >= 1) res.embeds[0].description = res.embeds[0].description + `\n${awardData.join(' ')}`
 
   return res;
 }
