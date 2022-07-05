@@ -26,24 +26,26 @@ module.exports = {
       let ss = await screenshot(context, args.url)
 
       if(ss.response.body.status && ss.response.body.status !== 3){
-        if(ss.response.body.image) return editOrReply(context, createEmbed("default", context, {
-            image: {
-              url: ss.response.body.image
-            }
-          }))
-        return editOrReply(context, { embeds: [createEmbed("error", context, "Unable to create screenshot.")] })
+        if(ss.response.body.image) return await response.edit({
+          embeds: [createEmbed("image", context, {
+            url: ss.response.body.image,
+            time: ((Date.now() - t) / 1000).toFixed(2)
+          })]
+        })
+        return await response.edit({ embeds: [createEmbed("error", context, "Unable to create screenshot.")] })
       }
 
       let job = await superagent.get(ss.response.body.job)
         .set('User-Agent', 'labscore/1.0')
 
       if(job.body.status){
-        if(job.body.image) return editOrReply(context, createEmbed("default", context, {
-            image: {
-              url: job.body.image
-            }
-          }))
-        return editOrReply(context, { embeds: [createEmbed("error", context, "Unable to create screenshot.")] })
+        if(job.body.image) return await response.edit({
+          embeds: [createEmbed("image", context, {
+            url: job.body.image,
+            time: ((Date.now() - t) / 1000).toFixed(2)
+          })]
+        })
+        return await response.edit({ embeds: [createEmbed("error", context, "Unable to create screenshot.")] })
       }
 
       return await response.edit({
