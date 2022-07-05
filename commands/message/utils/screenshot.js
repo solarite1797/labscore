@@ -2,6 +2,8 @@ const { screenshot } = require("../../../labscore/api");
 const { createEmbed } = require("../../../labscore/utils/embed");
 const { editOrReply } = require("../../../labscore/utils/message");
 
+const superagent = require('superagent')
+
 module.exports = {
   label: "url",
   name: "screenshot",
@@ -19,31 +21,40 @@ module.exports = {
     let response = await editOrReply(context, createEmbed("loading", context, `Creating website screenshot...`))
 
     try{
+      const t = Date.now();
+
       let ss = await screenshot(context, args.url)
-      if(ss.response.body.status){
-        if(ss.response.body.image){ // Invalid Domain or Blocked, use server-provided error image.
-          return editOrReply(context, { embeds: [createEmbed("default", context, {
+
+      if(ss.response.body.status && ss.response.body.status !== 3){
+        if(ss.response.body.image) return editOrReply(context, createEmbed("default", context, {
             image: {
               url: ss.response.body.image
-            },
-            footer: {
-              iconUrl: `https://cdn.discordapp.com/avatars/${context.application.id}/${context.application.icon}.png?size=256`,
-              text: `${context.application.name} • Took ${ss.timings}s`
             }
-          })]})
-        } else {
-          return editOrReply(context, { embeds: [createEmbed("error", context, "Unable to create screenshot.")] })
-        }
+          }))
+        return editOrReply(context, { embeds: [createEmbed("error", context, "Unable to create screenshot.")] })
       }
-      
+
+      let job = await superagent.get(ss.response.body.job)
+        .set('User-Agent', 'labscore/1.0')
+
+      if(job.body.status){
+        if(job.body.image) return editOrReply(context, createEmbed("default", context, {
+            image: {
+              url: job.body.image
+            }
+          }))
+        return editOrReply(context, { embeds: [createEmbed("error", context, "Unable to create screenshot.")] })
+      }
+
       return await response.edit({
         embeds: [createEmbed("image", context, {
           url: "screenshot.png",
-          time: ss.timings
+          time: ((Date.now() - t) / 1000).toFixed(2)
         })],
-        files: [{ filename: "screenshot.png", value: ss.response.body }]
+        files: [{ filename: "screenshot.png", value: job.body }]
       })
     } catch(e){
+      console.log(e)
       return await response.edit({ embeds: [createEmbed("error", context, `Unable to create screenshot.`) ] })
     }
   }
