@@ -35,7 +35,7 @@ module.exports = {
     context.triggerTyping();
     if(!args.query) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (query).`)]})
     try{
-      let search = await bing(context, args.query)
+      let search = await bing(context, args.query, context.channel.nsfw)
       search = search.response
      
       let pages = []

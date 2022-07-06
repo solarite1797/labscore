@@ -23,7 +23,7 @@ module.exports = {
     try{
       const t = Date.now();
 
-      let ss = await screenshot(context, args.url)
+      let ss = await screenshot(context, args.url, context.channel.nsfw)
 
       if(ss.response.body.status && ss.response.body.status !== 3){
         if(ss.response.body.image) return await response.edit({

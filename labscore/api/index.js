@@ -104,15 +104,17 @@ module.exports.lyrics = async function(context, query){
   })
 }
 
-module.exports.google = async function(context, query){
+module.exports.google = async function(context, query, nsfw){
   return await request(Api.SEARCH_GOOGLE, "GET", {}, {
-    q: query
+    q: query,
+    nsfw: nsfw
   })
 }
 
-module.exports.googleImages = async function(context, query){
+module.exports.googleImages = async function(context, query, nsfw){
   return await request(Api.SEARCH_GOOGLE_IMAGES, "GET", {}, {
-    q: query
+    q: query,
+    nsfw: nsfw
   })
 }
 
@@ -130,15 +132,17 @@ module.exports.rule34 = async function(context, query, site){
   })
 }
 
-module.exports.bing = async function(context, query){
+module.exports.bing = async function(context, query, nsfw){
   return await request(Api.SEARCH_BING, "GET", {}, {
-    q: query
+    q: query,
+    nsfw: nsfw
   })
 }
 
-module.exports.bingImages = async function(context, query){
+module.exports.bingImages = async function(context, query, nsfw){
   return await request(Api.SEARCH_BING_IMAGES, "GET", {}, {
-    q: query
+    q: query,
+    nsfw: nsfw
   })
 }
 
@@ -252,9 +256,10 @@ module.exports.inferkit = async function(context, input){
   })
 }
 
-module.exports.screenshot = async function(context, url){
+module.exports.screenshot = async function(context, url, nsfw){
   return await request(Api.UTILS_SCREENSHOT, "GET", {}, {
-    url: url
+    url: url,
+    nsfw: nsfw
   })
 }
 

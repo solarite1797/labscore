@@ -36,7 +36,7 @@ module.exports = {
     context.triggerTyping();
     if(!args.query) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (query).`)]})
     try{
-      let search = await google(context, args.query)
+      let search = await google(context, args.query, context.channel.nsfw)
       search = search.response
      
       if(search.body.status == 2) return editOrReply(context, {embeds:[createEmbed("error", context, search.body.message)]})
