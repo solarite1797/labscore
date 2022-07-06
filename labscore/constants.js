@@ -69,7 +69,10 @@ module.exports.ICONS = Object.freeze({
   "reddit_gold": "<:rdt_gold:993630360527196251>",
   "reddit_silver": "<:rdt_silver:993630364327231628>",
   "reddit_wholesome": "<:rdt_wholesome:993630485379031061>",
-  "reddit_helpful": "<:rdt_helpful:993630362372677774>"
+  "reddit_helpful": "<:rdt_helpful:993630362372677774>",
+  "online": "<:ico_online:994362211772399736>",
+  "offline": "<:ico_offline:994362210061123598>",
+  "link": "<:ico_link:994364481792647229>"
 })
 
 module.exports.GUILD_FEATURES = Object.freeze({
@@ -100,9 +103,9 @@ module.exports.GUILD_FEATURES = Object.freeze({
   "SEVEN_DAY_THREAD_ARCHIVE": "<:THREAD_ARCHIVING:878297227729174568> 7 Day Thread Archiving",
   "THREE_DAY_THREAD_ARCHIVE": "<:THREAD_ARCHIVING:878297227729174568> 3 Day Thread Archiving",
   "PRIVATE_THREADS": "<:PRIVATE_THREADS:878297227729174569>  Private Threads",
-  "THREADS_ENABLED_TESTING": "<:lc_thread:749595231376375829> Threads Testing Enabled",
-  "THREADS_ENABLED": "<:lc_thread:749595231376375829> Threads Enabled",
-  "NEW_THREAD_PERMISSIONS": "<:lc_thread:881925657150504970> New Thread Permissions Enabled",
+  "THREADS_ENABLED_TESTING": "<:thread:994365140617154692> Threads Testing Enabled",
+  "THREADS_ENABLED": "<:thread:994365140617154692> Threads Enabled",
+  "NEW_THREAD_PERMISSIONS": "<:thread:994365140617154692> New Thread Permissions Enabled",
   "ROLE_ICONS": "<:ROLE_ICONS:878297142022795275> Role Icons",
   "ROLE_SUBSCRIPTIONS_ENABLED": "<:ROLE_SUBSCRIPTIONS_ENABLED:888440487101485116> Role Subscriptions Enabled",
   "ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE": "<:ROLE_SUBSCRIPTIONS_ENABLED:888440487101485116> Role Subscriptions Available for Purchase",
