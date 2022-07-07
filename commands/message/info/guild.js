@@ -99,7 +99,7 @@ module.exports = {
         guildCard.fields = guildCard.fields.concat(featureCards)
       }
 
-      return editOrReply(context, { embeds: [guildCard] })
+      return editOrReply(context, guildCard)
     }catch(e){
       console.log(e)
     }

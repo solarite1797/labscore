@@ -55,9 +55,9 @@ module.exports = {
         inviteCard.fields = inviteCard.fields.concat(featureCards)
       }
 
-      return editOrReply(context, { embeds: [inviteCard] })
+      return editOrReply(context, inviteCard)
     }catch(e){
-      console.log(e)
+      return editOrReply(context, createEmbed("error", context, "Unable to fetch invite link."))
     }
   },
 };
