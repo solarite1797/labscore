@@ -19,7 +19,6 @@ module.exports = {
     duration: 5000
   },
   run: async (context, args) => {
-    context.triggerTyping();
     let response = await editOrReply(context, { embeds: [createEmbed("loading", context, `Synthesizing images...`)] })
 
     try{

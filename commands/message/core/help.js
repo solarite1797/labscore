@@ -71,7 +71,6 @@ module.exports = {
     usage: 'help [<command>]'
   },
   run: async (context, args) => {
-    context.triggerTyping();
     if(args.command){
       // Detailed command view
       let results = []

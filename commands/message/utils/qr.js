@@ -20,8 +20,6 @@ module.exports = {
 
     // If we have an argument, generate code 
     if(args.text.length){
-      await context.triggerTyping();
-
       let response = await editOrReply(context, createEmbed("loading", context, `Generating qr code...`))
       try{
         const t = Date.now();

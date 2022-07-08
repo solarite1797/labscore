@@ -32,7 +32,6 @@ module.exports = {
     { name: 'rotate', default: 'rand', required: false }
   ],
   run: async (context, args) => {
-    context.triggerTyping();
     let response = await editOrReply(context, createEmbed("loading", context, `Generating image...`))
     try{
       let seed = Math.floor(Math.random() * 999999) + 100000,

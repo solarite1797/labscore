@@ -12,7 +12,6 @@ module.exports = {
     usage: 'privacy'
   },
   run: async (context) => {
-    context.triggerTyping();
     return await editOrReply(context, 
       createEmbed("default", context, {
         description: `${icon("rules")} **labsCore Privacy Policy**\n*Last Updated: ${timestamp(PRIVACY_POLICY_LAST_UPDATE, "f")}*\n\n${PRIVACY_POLICY_SECTIONS.join('\n\n')}\n\nIf you have any further questions, please contact us via our ${link(DISCORD_INVITES.privacy, "Support Server")}`,

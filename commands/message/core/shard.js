@@ -11,8 +11,7 @@ module.exports = {
     category: 'core',
     usage: 'shard'
   },
-  run: async (context) => {
-    context.triggerTyping();      
+  run: async (context) => {  
     return await editOrReply(context, 
       createEmbed("default", context, {
         description: `${codeblock("ansi", [

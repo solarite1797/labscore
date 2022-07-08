@@ -41,7 +41,6 @@ module.exports = {
     {name: 'type', default: 'twitter'}
   ],
   run: async (context, args) => {
-    await context.triggerTyping();
     const { matches } = Utils.regex(
       Constants.DiscordRegexNames.EMOJI,
       args.emoji

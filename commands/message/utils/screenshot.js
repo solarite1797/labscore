@@ -15,7 +15,6 @@ module.exports = {
     usage: 'screenshot <url>'
   },
   run: async (context, args) => {
-    context.triggerTyping();
     if(!args.url) return editOrReply(context, { embeds: [createEmbed("warning", context, "No url supplied.")] })
     
     let response = await editOrReply(context, createEmbed("loading", context, `Creating website screenshot...`))

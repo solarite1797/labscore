@@ -14,8 +14,7 @@ module.exports = {
     category: 'info',
     usage: 'server'
   },
-  run: async (context, args) => { 
-    context.triggerTyping();
+  run: async (context, args) => {
     try{
       const emojis = context.message.guild.emojis
       const animojis = emojis.filter(emoji => emoji.animated).length
@@ -69,7 +68,7 @@ module.exports = {
 
       // Guild Features
       if(g.features.length >= 1){
-        
+
         // Create an empty field so everything properly aligns on desktop
         guildCard.fields.push({
           name: `​`,

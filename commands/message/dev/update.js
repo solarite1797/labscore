@@ -21,7 +21,6 @@ module.exports = {
       `${context.user.mention}, you are lacking the permission \`BOT_OWNER\`.`
     ),
   run: async (context, args) => {
-    await context.triggerTyping();
     let response = await editOrReply(context, createEmbed("loading", context, "Updating bot..."))
     try{
       const t = Date.now()
