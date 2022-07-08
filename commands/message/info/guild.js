@@ -1,5 +1,6 @@
 const { GUILD_FEATURES } = require("../../../labscore/constants");
 const { createEmbed } = require("../../../labscore/utils/embed");
+const { guildFeaturesField } = require("../../../labscore/utils/fields");
 const { icon, highlight, timestamp, codeblock } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 
@@ -67,33 +68,16 @@ module.exports = {
       })
 
       // Guild Features
-
       if(g.features.length >= 1){
+        
         // Create an empty field so everything properly aligns on desktop
         guildCard.fields.push({
           name: `​`,
           value: `​`,
           inline: true
         })
-        guildFeatures = g.features.sort((a, b) => a.normalize().localeCompare(b.normalize()));
 
-        let featureCards = []
-        while(guildFeatures.length){
-          ff = guildFeatures.splice(0, 10)
-          let f = [];
-          for(const feat of ff){
-            if(GUILD_FEATURES[feat]){
-              f.push(GUILD_FEATURES[feat])
-            } else {
-              f.push(`<:UNKNOWN:878298902971965520> ${feat}`)
-            }
-          }
-          featureCards.push({
-            name: `​`,
-            value: f.join('\n'),
-            inline: true
-          })
-        }
+        let featureCards = guildFeaturesField(g)
 
         featureCards[0].name = `${icon("activity")} Guild Features`
         guildCard.fields = guildCard.fields.concat(featureCards)
