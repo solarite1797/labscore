@@ -46,6 +46,8 @@ module.exports = {
     if (!image) return editOrReply(context, createEmbed("warning", context, "No images found."))
   
     try {
+      await context.triggerTyping();
+
       const t = Date.now();
   
       let res = await superagent.get(`https://api.qrserver.com/v1/read-qr-code/`)
