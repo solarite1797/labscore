@@ -13,10 +13,10 @@ module.exports = {
   name: 'audio',
   aliases: ['aud'],
   metadata: {
-    description: 'video audio detection',
+    description: '**audio detection**\nusing the audio command without replying to a message will try to identify the song in the most recent video\n\n**music platform links**\n__replying__ to a message while using this command will return a list of music platforms the provided music (link) is available on',
     examples: ['aud'],
     category: 'search',
-    usage: 'audio <media>'
+    usage: 'audio'
   },
   run: async (context) => {
     context.triggerTyping();

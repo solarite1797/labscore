@@ -38,6 +38,8 @@ module.exports = {
       let search = await bing(context, args.query, context.channel.nsfw)
       search = search.response
      
+      if(search.body.status == 2) return editOrReply(context, {embeds:[createEmbed("error", context, search.body.message)]})
+      
       let pages = []
       for(const res of search.body.results){
         pages.push(createSearchResultPage(context, res))

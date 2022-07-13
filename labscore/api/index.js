@@ -5,7 +5,7 @@ const { Api, Static, Hosts } = require('./endpoints')
 async function request(path, type, headers, args, host) {
   let timing = Date.now();
   url = Api.HOST + path
-  if(process.env.USE_LOCAL_API) url = Hosts.local + path
+  if(process.env.USE_LOCAL_API) url = Hosts.local + ":" + process.env.USE_LOCAL_API + path
   if(host) url = host + path
 
   // apply default headers
