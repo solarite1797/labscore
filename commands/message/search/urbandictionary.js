@@ -50,6 +50,8 @@ module.exports = {
       let search = await urbandictionary(context, args.query)
       search = search.response
      
+      if(search.body.status == 1) return editOrReply(context, createEmbed("warning", context, search.body.message))
+
       let pages = []
       for(const res of search.body.results){
         pages.push(createUrbanPage(context, res))
