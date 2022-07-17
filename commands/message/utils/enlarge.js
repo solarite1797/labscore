@@ -80,10 +80,19 @@ module.exports = {
         if(args.type.toUpperCase() == "TWITTER"){
           targetEmoji = emojiCodepoint[0].replace('-fe0f', '')
         }
-        if(args.type.toUpperCase() == "FLUENT"){
-          targetEmoji = emojiCodepoint[0].replace('-fe0f', '')
+        let emojiUrl;
+        switch(args.type.toUpperCase()){
+          case "FLUENT":
+            emojiUrl = `https://raw.githubusercontent.com/justsomederpystuff/fluent-emoji/main/emoji/${targetEmoji}.png`
+            break;
+          case "APPLE":
+            emojiUrl = `https://raw.githubusercontent.com/iamcal/emoji-data/master/img-apple-160/${targetEmoji}.png`
+            break;
+          default: 
+            emojiUrl = Static.HOST + Static[args.type.toUpperCase()](targetEmoji)
+            break;
         }
-        let emojiUrl = Static.HOST + Static[args.type.toUpperCase()](targetEmoji)
+
         try{
           let e = await superagent.get(emojiUrl)
         }catch(e){

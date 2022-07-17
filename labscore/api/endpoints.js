@@ -53,8 +53,8 @@ const Static = Object.freeze({
   HOST: Hosts.emoji,
 
   TWITTER: (codepoint) => { return `twemoji-JedKxRr7RNYrgV9Sauy8EGAu/${codepoint}.png` },
-  FLUENT: (codepoint) => { return `fluent-6vbne6euaxy2y9f98iub2xtr/${codepoint}.png` },
-  //APPLE: (codepoint) => { return `twemoji-JedKxRr7RNYrgV9Sauy8EGAu/${codepoint}.png` }, // TODO: host these in-house
+  FLUENT: (codepoint) => { return `` },
+  APPLE: (codepoint) => { return `` },
   MICROSOFT: (codepoint) => { return `microsoft-ZzRAzYE6LgxVTrQ5rvL7nLyC/${codepoint}.png` },
   EMOJIONE: (codepoint) => { return `emojione-XghVAypW8jttjFL2tQFb2z7n/${codepoint}.png` },
   GOOGLE: (codepoint) => { return `google-tqzSNjYw8MVMYfSBLTLTFgmw/${codepoint}.png` },
