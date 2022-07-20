@@ -266,3 +266,14 @@ module.exports.screenshot = async function(context, url, nsfw){
 module.exports.emojiTwitter = async function(codepoint){
   return Static.HOST + Static.TWITTER(codepoint)
 }
+
+module.exports.emojiKitchen = async function(emoji){
+  return await superagent.get("https://tenor.googleapis.com/v2/featured").query({
+    key: process.env.GOOGLE_TENOR_KEY,
+    contentfilter: "high",
+    media_filter: "png_transparent",
+    component: "proactive",
+    collection: "emoji_kitchen_v5",
+    q: emoji.join('_')
+  })
+}
