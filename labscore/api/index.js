@@ -250,6 +250,12 @@ module.exports.voiceforge = async function(context, text, voice){
   })
 }
 
+module.exports.emojipedia = async function(context, emoji){
+  return await request(Api.UTILS_EMOJIPEDIA, "GET", {}, {
+    emoji: emoji
+  })
+}
+
 module.exports.inferkit = async function(context, input){
   return await request(Api.UTILS_INFERKIT, "GET", {}, {
     input: input
@@ -261,10 +267,6 @@ module.exports.screenshot = async function(context, url, nsfw){
     url: url,
     nsfw: nsfw
   })
-}
-
-module.exports.emojiTwitter = async function(codepoint){
-  return Static.HOST + Static.TWITTER(codepoint)
 }
 
 module.exports.emojiKitchen = async function(emoji){

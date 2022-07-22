@@ -1,7 +1,6 @@
 const Hosts = Object.freeze({
   prod: "https://labscore-v2.vercel.app",
   local: "http://localhost",
-  emoji: "https://derpystuff.gitlab.io/webstorage3/container/",
   statics: "https://derpystuff.gitlab.io/webstorage4/v2/"
 })
 
@@ -45,24 +44,12 @@ const Api = Object.freeze({
   TTS_TIKTOK: '/tts/tiktok',
   TTS_VOICEFORGE: '/tts/voiceforge',
 
+  UTILS_EMOJIPEDIA: '/utils/emojipedia',
   UTILS_INFERKIT: '/utils/inferkit',
   UTILS_SCREENSHOT: '/utils/screenshot',
 })
 
-const Static = Object.freeze({
-  HOST: Hosts.emoji,
-
-  TWITTER: (codepoint) => { return `twemoji-JedKxRr7RNYrgV9Sauy8EGAu/${codepoint}.png` },
-  FLUENT: (codepoint) => { return `` },
-  APPLE: (codepoint) => { return `` },
-  MICROSOFT: (codepoint) => { return `microsoft-ZzRAzYE6LgxVTrQ5rvL7nLyC/${codepoint}.png` },
-  EMOJIONE: (codepoint) => { return `emojione-XghVAypW8jttjFL2tQFb2z7n/${codepoint}.png` },
-  GOOGLE: (codepoint) => { return `google-tqzSNjYw8MVMYfSBLTLTFgmw/${codepoint}.png` },
-  BLOBS: (codepoint) => { return `blobs-KpDmEXYD3VTC2VT6PSQAc99y/${codepoint}.png` }
-})
-
 module.exports = {
   Api,
-  Static,
   Hosts
 }

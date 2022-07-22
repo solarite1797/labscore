@@ -559,3 +559,30 @@ module.exports.TRANSLATE_LANGUAGES = Object.freeze({
   'yo': 'Yoruba',
   'zu': 'Zulu'
 })
+
+module.exports.SUPPORTED_EMOJI_PLATFORMS = [
+  "apple",
+  "google",
+  "samsung",
+  "joypixels",
+  "microsoft",
+  "facebook",
+  "twitter",
+  "whatsapp",
+  "lg",
+  "mozilla",
+  "htc",
+  "emojidex",
+  "messenger",
+  "openmoji",
+  "skype",
+  "sony",
+  "noto-emoji",
+  "toss-face",
+  "microsoft-teams"
+]
+
+module.exports.EMOJI_PLATFORM_ALIASES = {
+  "fluent": "microsoft-teams",
+  "twemoji": "twitter"
+}
