@@ -1,10 +1,7 @@
 const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
-const { getRecentImage } = require("../../../labscore/utils/attachment");
 const { codeblock, highlight, icon } = require('../../../labscore/utils/markdown');
-
-const superagent = require('superagent');
 
 const { isSupported } = require('../../../labscore/utils/translate');
 const { googleTranslate } = require('../../../labscore/api');
