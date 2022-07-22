@@ -10,7 +10,7 @@ const Statics = Object.freeze({
     },
     emojipedia: {
       file: "brands/emojipedia.png",
-      revision: 1
+      revision: 2
     },
     genius: {
       file: "brands/genius.png",
