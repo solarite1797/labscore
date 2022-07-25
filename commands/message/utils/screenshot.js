@@ -58,8 +58,7 @@ module.exports = {
       console.log(e)
       return await response.edit({
         embeds: [createEmbed("image", context, {
-          url: "https://derpystuff.gitlab.io/webstorage4/v2/assets/screenshot/screenshot_error.png",
-          time: ((Date.now() - t) / 1000).toFixed(2)
+          url: "https://derpystuff.gitlab.io/webstorage4/v2/assets/screenshot/screenshot_error.png"
         })]
       })
     }
