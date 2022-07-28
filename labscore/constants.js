@@ -312,6 +312,34 @@ module.exports.GUILD_FEATURES = Object.freeze({
 
 module.exports.TIKTOK_VOICES = [
   {
+    "name": "English Singing - Tenor",
+    "value": "en_male_m03_lobby"
+  },
+  {
+    "name": "English Singing - Alto",
+    "value": "en_female_f08_salut_damour"
+  },
+  {
+    "name": "English Singing - Warmy Breeze",
+    "value": "en_female_f08_warmy_breeze"
+  },
+  {
+    "name": "English Singing - Sunshine Soon",
+    "value": "en_male_m03_sunshine_soon"
+  },
+  {
+    "name": "English Narration - Normal",
+    "value": "en_male_narration",
+  },
+  {
+    "name": "English Narration - Funny",
+    "value": "en_male_funny",
+  },
+  {
+    "name": "English Narration - Emotional",
+    "value": "en_female_emotional",
+  },
+  {
     "name": "English AU - Female",
     "value": "en_au_001"
   },
@@ -374,34 +402,6 @@ module.exports.TIKTOK_VOICES = [
   {
     "name": "Spanish MX - Male",
     "value": "es_mx_002"
-  },
-  {
-    "name": "Portuguese BR - Female",
-    "value": "br_001"
-  },
-  {
-    "name": "Portuguese BR - Male",
-    "value": "br_005"
-  },
-  {
-    "name": "Indonesian - Female",
-    "value": "id_001"
-  },
-  {
-    "name": "Japanese - Female",
-    "value": "jp_001"
-  },
-  {
-    "name": "Japanese - Male",
-    "value": "jp_006"
-  },
-  {
-    "name": "Korean - Male",
-    "value": "kr_002"
-  },
-  {
-    "name": "Korean - Female",
-    "value": "kr_003"
   }
 ]
 

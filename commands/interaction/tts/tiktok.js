@@ -37,6 +37,7 @@ module.exports = {
       })
 
     } catch (e) {
+      console.log(e)
       await context.editOrRespond({
         embeds: [createEmbed("error", context, "Unable to generate audio file.")]
       })
