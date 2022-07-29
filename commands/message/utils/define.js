@@ -48,6 +48,8 @@ module.exports = {
       let search = await dictionary(context, args.query)
       search = search.response
      
+      if(search.body.status == 1) return editOrReply(context, createEmbed("warning", context, search.body.message))
+
       let pages = []
       for(const res of search.body.results){
         pages.push(createDictionaryPage(context, res))
