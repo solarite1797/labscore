@@ -11,7 +11,7 @@ module.exports = {
     category: 'fun',
     usage: `otter`
   },
-  run: async (context, args) => {
+  run: async (context) => {
     await context.triggerTyping();
     try{
       let res = await superagent.get(`https://otter.bruhmomentlol.repl.co/random`)

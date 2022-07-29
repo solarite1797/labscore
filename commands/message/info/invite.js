@@ -1,6 +1,6 @@
 const { createEmbed } = require("../../../labscore/utils/embed");
 const { guildFeaturesField } = require("../../../labscore/utils/fields");
-const { icon, highlight, timestamp, codeblock } = require("../../../labscore/utils/markdown");
+const { icon, highlight, timestamp } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 
 module.exports = {

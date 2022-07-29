@@ -35,7 +35,7 @@ function createDictionaryPage(context, result){
 module.exports = {
   name: 'define',
   label: 'query',
-  aliases: ['dictionary'],
+  aliases: ['dictionary', 'dict'],
   metadata: {
     description: 'dictionary lookup',
     examples: ['dictionary Flask'],

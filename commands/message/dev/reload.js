@@ -14,7 +14,7 @@ module.exports = {
     context.reply(
       `${context.user.mention}, you are lacking the permission \`BOT_OWNER\`.`
     ),
-  run: async (context, args) => {
+  run: async (context) => {
     await context.triggerTyping();
     const time = Date.now();
     console.log(`v2 | command refresh requested @ ${Date.now()} by ${context.user.username}${context.user.discriminator} (${context.user.id})`)

@@ -1,4 +1,3 @@
-const { GUILD_FEATURES } = require("../../../labscore/constants");
 const { createEmbed } = require("../../../labscore/utils/embed");
 const { guildFeaturesField } = require("../../../labscore/utils/fields");
 const { icon, highlight, timestamp, codeblock } = require("../../../labscore/utils/markdown");
@@ -14,7 +13,7 @@ module.exports = {
     category: 'info',
     usage: 'server'
   },
-  run: async (context, args) => {
+  run: async (context) => {
     try{
       const emojis = context.message.guild.emojis
       const animojis = emojis.filter(emoji => emoji.animated).length

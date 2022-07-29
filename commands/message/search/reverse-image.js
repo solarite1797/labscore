@@ -38,7 +38,7 @@ module.exports = {
     category: 'search',
     usage: 'reverse <image>'
   },
-  run: async (context, args) => {
+  run: async (context) => {
     context.triggerTyping();
     try{
       let image = await getRecentImage(context, 50)

@@ -13,7 +13,7 @@ module.exports = {
     category: 'image',
     usage: 'superresolution <image>'
   },
-  run: async (context, args) => {
+  run: async (context) => {
     context.triggerTyping();
     try{
       let image = await getRecentImage(context, 50)

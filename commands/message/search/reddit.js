@@ -5,13 +5,6 @@ const { STATICS } = require('../../../labscore/utils/statics')
 
 const { paginator } = require('../../../labscore/client');
 const { reddit } = require('../../../labscore/api');
-const { ICONS } = require('../../../labscore/constants');
-
-const awards = [
-  "gold",
-  "silver",
-  "wholesome"
-]
 
 function createRedditPage(context, result){
   let res = {

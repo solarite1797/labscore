@@ -1,34 +1,12 @@
 const { Constants, Utils } = require("detritus-client");
-const superagent = require('superagent');
 const { emojipedia, emojiKitchen } = require("../../../labscore/api");
 
-const { Static } = require("../../../labscore/api/endpoints");
 const { SUPPORTED_EMOJI_PLATFORMS, EMOJI_PLATFORM_ALIASES } = require("../../../labscore/constants");
 const { createEmbed } = require("../../../labscore/utils/embed");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 
 const onlyEmoji = require('emoji-aware').onlyEmoji;
-
-function toCodePoint(unicodeSurrogates) {
-  const r = [];
-  let c = 0;
-  let p = 0;
-  let i = 0;
-
-  while (i < unicodeSurrogates.length) {
-    c = unicodeSurrogates.charCodeAt(i++);
-    if (p) {
-      r.push((0x10000 + ((p - 0xD800) << 10) + (c - 0xDC00)).toString(16));
-      p = 0;
-    } else if (0xD800 <= c && c <= 0xDBFF) {
-      p = c;
-    } else {
-      r.push(c.toString(16));
-    }
-  }
-  return r.join('-');
-}
 
 module.exports = {
   label: "emoji",
