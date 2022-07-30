@@ -72,7 +72,12 @@ module.exports.ICONS = Object.freeze({
   "reddit_helpful": "<:rdt_helpful:993630362372677774>",
   "online": "<:ico_online:994362211772399736>",
   "offline": "<:ico_offline:994362210061123598>",
-  "link": "<:ico_link:994364481792647229>"
+  "link": "<:ico_link:994364481792647229>",
+  "robot": "<:ico_robot:1002944678112530547>",
+  "robouser": "<:ico_robouser:1002944679744131092>",
+  "lock": "<:ico_lock:1002948236971085924>",
+  "badge_slash": "<:badge_slash:1002954716315140167>",
+  "flag": "<:ico_flag:1002957495138009251>"
 })
 
 const GUILD_FEATURE_ICONS = Object.freeze({
