@@ -3,7 +3,7 @@ const { editOrReply } = require('../../../labscore/utils/message')
 
 module.exports = {
   name: 'servericon',
-  aliases: ["guildicon","gi","si"],
+  aliases: ["guildicon","gi","si","groupicon"],
   metadata: {
     description: 'server icon',
     examples: ['gi'],
