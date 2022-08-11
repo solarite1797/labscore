@@ -31,7 +31,9 @@ module.exports = {
                 iconUrl: song.thumbnailUrl,
                 url: urls[0]
               },
-              footer: {}
+              footer: {
+                text: `powered by song.link • ${context.application.name}`
+              }
             })
           ], components: btns, flags: MessageFlags.EPHEMERAL })
         }catch(e){
