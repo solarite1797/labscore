@@ -1,5 +1,5 @@
 const { Constants, ClusterClient, CommandClient, InteractionCommandClient } = require('detritus-client');
-const { ActivityTypes, PresenceStatuses } = require('detritus-client/lib/constants');
+const { ActivityTypes, PresenceStatuses, GatewayIntents } = require('detritus-client/lib/constants');
 
 const Paginator = require('./paginator').PaginatorCluster
 
@@ -9,6 +9,7 @@ const cluster = new ClusterClient("", {
     identifyProperties: {
       $browser: 'Discord Android',
     },
+    intents: [ GatewayIntents.GUILDS, GatewayIntents.GUILD_MEMBERS ],
     presence: {
       activity: {
         name: 'v2',
