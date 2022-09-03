@@ -12,8 +12,7 @@ const cluster = new ClusterClient("", {
     intents: [
       GatewayIntents.GUILDS,
       GatewayIntents.GUILD_MESSAGES,
-      GatewayIntents.GUILD_EMOJIS,
-      GatewayIntents.GUILD_MEMBERS
+      GatewayIntents.GUILD_EMOJIS
     ],
     presence: {
       activity: {
