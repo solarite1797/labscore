@@ -9,7 +9,12 @@ const cluster = new ClusterClient("", {
     identifyProperties: {
       $browser: 'Discord Android',
     },
-    intents: [ GatewayIntents.GUILDS, GatewayIntents.GUILD_MESSAGES ],
+    intents: [
+      GatewayIntents.GUILDS,
+      GatewayIntents.GUILD_MESSAGES,
+      GatewayIntents.GUILD_EMOJIS,
+      GatewayIntents.GUILD_MEMBERS
+    ],
     presence: {
       activity: {
         name: 'v2',
