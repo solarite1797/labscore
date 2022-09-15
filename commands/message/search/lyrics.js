@@ -35,27 +35,35 @@ module.exports = {
       search = search.response
 
       if(search.body.status == 2) return editOrReply(context, {embeds:[createEmbed("error", context, search.body.message)]})
-      // Split lyrics into field-sizes chunks
-      let chunks = search.body.lyrics.split(/\[(.*?)\]/) // should give us every chunk
       let fields = [];
-      let cur = {
-        inline: false
-      };
-      let i = 0;
-      let l = 0;
-      for(const c of chunks){
-        if(c.length == 0) continue;
-        if(i == 0){
-          cur.name = `[${c}]`
-          i += 1
-          continue;
-        }
-        cur.value = c.substr(0,1024) + `​`
-        i = 0
-        fields.push(cur)
-        cur = {
+      if(search.body.lyrics.includes('[')){
+         // Split lyrics into field-sizes chunks if multiple verses are present
+        let chunks = search.body.lyrics.split(/\[(.*?)\]/)
+        let cur = {
           inline: false
+        };
+        let i = 0;
+        let l = 0;
+        for(const c of chunks){
+          if(c.length == 0) continue;
+          if(i == 0){
+            cur.name = `[${c}]`
+            i += 1
+            continue;
+          }
+          cur.value = c.substr(0,1024) + `​`
+          i = 0
+          fields.push(cur)
+          cur = {
+            inline: false
+          }
         }
+      } else { // If we have no chunking to do, just use the entire thing
+        fields.push({
+          name: "Lyrics",
+          value: search.body.lyrics.substr(0,900),
+          inline: false
+        });
       }
       
       if(fields.length > 3){
