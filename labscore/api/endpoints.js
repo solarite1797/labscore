@@ -16,10 +16,10 @@ const Api = Object.freeze({
   GOOGLE_VISION_SAFETY_LABELS: '/google/vision/safety',
   GOOGLE_VISION_WEBDETECTION: '/google/vision/webdetection',
 
-  IMAGE_DEEPDREAM: '/image/deepdream',
-  IMAGE_SUPERRESOLUTION: '/image/superresolution',
-  IMAGE_TEXT2IMAGE: '/image/text2image',
-  IMAGE_WAIFU2X: '/image/waifu2x',
+  IMAGE_DEEPDREAM: '/image/deepai/deepdream',
+  IMAGE_SUPERRESOLUTION: '/image/deepai/superresolution',
+  IMAGE_TEXT2IMAGE: '/image/deepai/text2image',
+  IMAGE_WAIFU2X: '/image/deepai/waifu2x',
 
   PHOTOFUNIA_RETRO_WAVE: '/photofunia/retro-wave',
   PHOTOFUNIA_YACHT: '/photofunia/yacht',
