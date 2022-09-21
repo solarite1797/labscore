@@ -29,8 +29,13 @@ module.exports = {
     let image = await getRecentImage(context, 50)
     if (!image) return editOrReply(context, { embeds: [createEmbed("warning", context, "No images found.")] })
 
-    let ocr = await googleVisionOcr(context, image)
-
+    let ocr;
+    try{
+      ocr = await googleVisionOcr(context, image)
+    }catch(e){
+      return editOrReply(context, { embeds: [createEmbed("error", context, "Unable to retrieve Google Vision API response.")] })
+    }
+    
     if(ocr.response.body.status == 1) return editOrReply(context, { embeds: [createEmbed("warning", context, ocr.response.body.message)] })
 
     try{
