@@ -21,6 +21,14 @@ module.exports = {
   run: async (context, args) => {
     let response = await editOrReply(context, { embeds: [createEmbed("loading", context, `Synthesizing images...`)] })
 
+    let noticeTimer = setTimeout(()=>{
+      let emb = createEmbed("loading", context, `Synthesizing images...`)
+      emb.footer = {
+        text: "This might take several minutes to complete."
+      };
+      response.edit({ embeds: [ emb ] });
+    }, 30000)
+
     try{
       let t = Date.now();
 
@@ -28,6 +36,8 @@ module.exports = {
         .send({
           prompt: args.query
         })
+
+      clearTimeout(noticeTimer)
       
       let embeds = [];
       let files = [];
