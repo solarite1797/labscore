@@ -4,6 +4,13 @@ const { editOrReply } = require("../../../labscore/utils/message");
 
 const superagent = require('superagent')
 
+async function processJob(jobUrl){
+  let job = await superagent.get(jobUrl)
+    .set('User-Agent', 'labscore/1.0')
+
+  return job.body;
+} 
+
 module.exports = {
   label: "url",
   name: "screenshot",
@@ -34,13 +41,13 @@ module.exports = {
         return await response.edit({ embeds: [createEmbed("error", context, "Unable to create screenshot.")] })
       }
 
-      let job = await superagent.get(ss.response.body.job)
-        .set('User-Agent', 'labscore/1.0')
+      let job = await processJob(ss.response.body.job)
 
-      if(job.body.status){
-        if(job.body.image) return await response.edit({
+      if(job.status){
+        if(!job.image) job = await processJob(ss.response.body.job)
+        if(job.image) return await response.edit({
           embeds: [createEmbed("image", context, {
-            url: job.body.image,
+            url: job.image,
             time: ((Date.now() - t) / 1000).toFixed(2)
           })]
         })
@@ -52,7 +59,7 @@ module.exports = {
           url: "screenshot.png",
           time: ((Date.now() - t) / 1000).toFixed(2)
         })],
-        files: [{ filename: "screenshot.png", value: job.body }]
+        files: [{ filename: "screenshot.png", value: job }]
       })
     } catch(e){
       console.log(e)
