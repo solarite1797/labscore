@@ -125,10 +125,10 @@ module.exports.reddit = async function(context, query, nsfw = false){
   })
 }
 
-module.exports.rule34 = async function(context, query, site){
+module.exports.rule34 = async function(context, query, service){
   return await request(Api.SEARCH_RULE34, "GET", {}, {
     q: query,
-    site: site
+    service: service
   })
 }
 
