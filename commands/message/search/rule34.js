@@ -57,6 +57,8 @@ module.exports = {
       let search = await rule34(context, args.query, args.site.toLowerCase())
       search = search.response
      
+      if(search.body.data.length == 0) return editOrReply(context, {embeds:[createEmbed("warning", context, `No results found on ${SITES[args.site.toLowerCase()]}.`)]})
+
       let pages = []
       for(const res of search.body.data){
         pages.push(createRule34Page(context, res))
