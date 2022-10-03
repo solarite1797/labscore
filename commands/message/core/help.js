@@ -6,27 +6,44 @@ const { DISCORD_INVITES } = require('../../../labscore/constants')
 const { paginator } = require('../../../labscore/client');
 const { editOrReply } = require('../../../labscore/utils/message');
 
-function createHelpPage(context, title, contents){
+function createHelpPage(context, title, contents, descriptions){
   return {
     "embeds": [
       createEmbed("default", context, {
-        description: `${title}\n` +
-          codeblock("ansi", contents) +
-          `\n${icon("question")} Use ${highlight(`${context.commandClient.prefixes.custom.first()}help <command>`)} to view more information about a command.`
+        description: `${title}\n\n` +
+        renderCommandList(contents, descriptions) +
+          `\n\n${icon("question")} Use ${highlight(`${context.commandClient.prefixes.custom.first()}help <command>`)} to view more information about a command.`
       })
     ]
   }
 }
 
+function renderCommandList(commands, descriptions, limit){
+  let len = Math.max(...(commands.map(el => el.length))) + 3;
+  let render = []
+  let i = 0;
+  for(const c of commands){
+    let pad = len - c.length;
+
+    let desc = descriptions[i]
+    if(desc.includes('\n')) desc = desc.split('\n')[0]
+    if(desc.length >= 41) desc = desc.substr(0, 40) + '...'
+
+    render.push(` ​ ​ ​\` ${c}${' '.repeat(pad)}\` ​ ​ ​ ​ ​${desc}`)
+    i++
+  }
+  
+  if(limit && render.length > limit) render.splice(limit, 999)
+
+  return render.join('\n')
+}
+
 function createCommandPage(context, prefix, command){
+  alias = ''
+  if(command.aliases.length >= 1) alias = '​ ​ ` ' + command.aliases.join('  `  ` ') + '  `\n'
   let page = createEmbed("default", context, {
-    description: `**${prefix}${command.name}**\n${command.metadata.description}`,
+    description: `${icon("command")}  \` ${command.name}   \`\n${alias}\n${command.metadata.description}`,
     fields: []
-  })
-  if(command.aliases.length >= 1) page.fields.push({
-    name: `${icon("activity")} Aliases`,
-    value: command.aliases.join(', '),
-    inline: true
   })
 
   // TODO: maybe try building a little parser that highlights things via ansi
@@ -41,7 +58,7 @@ function createCommandPage(context, prefix, command){
     for(const e of command.metadata.examples) ex.push(prefix + e)
     page.fields.push({
       name: `${icon("info")} Examples`,
-      value: codeblock("ansi", ex),
+      value: '```' + ex.join('``````') + '```',
       inline: false
     })
   }
@@ -54,12 +71,11 @@ function createCommandPage(context, prefix, command){
 const categories = {
   "core": `${icon("house")} Core Commands`,
   "info": `${icon("info")} Information Commands`,
+  "search": `${icon("search")} Search Commands`,
   "utils": `${icon("utils")} Utility Commands`,
   "image": `${icon("image")} Image Commands`,
-  "mod": `${icon("moderation")} Moderation Commands`,
-  "search": `${icon("search")} Search Commands`
+  "mod": `${icon("moderation")} Moderation Commands`
 }
-
 
 module.exports = {
   name: 'help',
@@ -87,9 +103,12 @@ module.exports = {
 
       if(results.length > 1) {
         // Command overview
+
+        let cmds = results.map((m)=>{return m.name})
+        let dscs = results.map((m)=>{return m.metadata.description})
         pages.push({embeds:[
           createEmbed("default", context, {
-            description: `Check pages for detailed command descriptions.\n` + codeblock("ansi", [(prefix + results.map((m)=>{return m.name}).splice(0, 10).join('\n' + prefix))]) + `\n${icon("question")} Need help with something else? Contact us via our ${link(DISCORD_INVITES.support, "Support Server")}.`
+            description: `Check pages for detailed command descriptions.\n\n` + renderCommandList(cmds, dscs, 15) + `\n\n${icon("question")} Need help with something else? Contact us via our ${link(DISCORD_INVITES.support, "Support Server")}.`
           })
         ]})
 
@@ -113,17 +132,20 @@ module.exports = {
     } else {
       // Full command list
       let commands = {}
+      let descriptions = {}
 
       let prefix = context.commandClient.prefixes.custom.first()
       for(const c of context.commandClient.commands){
         if(!categories[c.metadata.category]) continue;
         if(!commands[c.metadata.category]) commands[c.metadata.category] = []
-        commands[c.metadata.category].push(`${prefix}${c.name}`)
+        if(!descriptions[c.metadata.category]) descriptions[c.metadata.category] = []
+        commands[c.metadata.category].push(`${c.name}`);
+        descriptions[c.metadata.category].push(`${c.metadata.description}`);
       }
 
       let pages = []
       for(const cat of Object.keys(categories)){
-        pages.push(createHelpPage(context, categories[cat], commands[cat]))
+        pages.push(createHelpPage(context, categories[cat], commands[cat], descriptions[cat]))
       }
       
       pages = formatPaginationEmbeds(pages)
