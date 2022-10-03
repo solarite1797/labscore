@@ -12,7 +12,7 @@ function createHelpPage(context, title, contents, descriptions){
       createEmbed("default", context, {
         description: `${title}\n\n` +
         renderCommandList(contents, descriptions) +
-          `\n\n${icon("question")} Use ${highlight(`${context.commandClient.prefixes.custom.first()}help <command>`)} to view more information about a command.`
+          `\n\n${icon("question")} Use **${highlight(`${context.commandClient.prefixes.custom.first()}help <command>`)}** to view more information about a command.`
       })
     ]
   }
@@ -29,10 +29,10 @@ function renderCommandList(commands, descriptions, limit){
     if(desc.includes('\n')) desc = desc.split('\n')[0]
     if(desc.length >= 41) desc = desc.substr(0, 40) + '...'
 
-    render.push(` ​ ​ ​\` ${c}${' '.repeat(pad)}\` ​ ​ ​ ​ ​${desc}`)
+    render.push(` ​ ​ **​\` ${c}${' '.repeat(pad)}\`** ​ ​ ​ ​ ​${desc}`)
     i++
   }
-  
+
   if(limit && render.length > limit) render.splice(limit, 999)
 
   return render.join('\n')
@@ -42,7 +42,7 @@ function createCommandPage(context, prefix, command){
   alias = ''
   if(command.aliases.length >= 1) alias = '​ ​ ` ' + command.aliases.join('  `  ` ') + '  `\n'
   let page = createEmbed("default", context, {
-    description: `${icon("command")}  \` ${command.name}   \`\n${alias}\n${command.metadata.description}`,
+    description: `${icon("command")}  **\` ${command.name}   \`**\n${alias}\n${command.metadata.description}`,
     fields: []
   })
 

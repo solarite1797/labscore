@@ -25,5 +25,5 @@ module.exports.timestamp = function(time, flag = "t"){
 
 module.exports.iconPill = function(icon, content){
   if(!ICONS[icon]) icon = "question"
-  return ICONS[icon] + '  ' + "` " + content + " `"
+  return ICONS[icon] + "  **` " + content + " `**"
 }
