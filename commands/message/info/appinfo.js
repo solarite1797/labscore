@@ -28,7 +28,7 @@ const applicationFlagNames = {
   GATEWAY_MESSAGE_CONTENT: "Message Content Intent",
   GATEWAY_MESSAGE_CONTENT_LIMITED: "Message Content Intent (Not approved)",
   EMBEDDED_FIRST_PARTY: "Embedded First Party",
-  APPLICATION_COMMAND_BADGE: `${icon("badge_slash")} Has Slash Commands`
+  APPLICATION_COMMAND_BADGE: `Has Slash Commands ${icon("badge_slash")}`
 }
 
 module.exports = {
