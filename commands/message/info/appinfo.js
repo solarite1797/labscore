@@ -20,9 +20,9 @@ const applicationFlags = {
 const applicationFlagNames = {
   EMBEDDED_RELEASED: "Embedded Released",
   GATEWAY_PRESENCE: "Presence Intent",
-  GATEWAY_PRESENCE_LIMITED: "Presence Intent (not approved)",
+  GATEWAY_PRESENCE_LIMITED: "Presence Intent (Not approved)",
   GATEWAY_GUILD_MEMBERS: "Guild Members Intent",
-  GATEWAY_GUILD_MEMBERS_LIMITED: "Guild Members Intent (not approved)",
+  GATEWAY_GUILD_MEMBERS_LIMITED: "Guild Members Intent (Not approved)",
   VERIFICATION_PENDING_GUILD_LIMIT: "Pending Guild Limit",
   EMBEDDED: "Embedded",
   GATEWAY_MESSAGE_CONTENT: "Message Content Intent",
