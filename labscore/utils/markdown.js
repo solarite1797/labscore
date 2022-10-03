@@ -22,3 +22,8 @@ module.exports.link = function(url, masked, tooltip = ""){
 module.exports.timestamp = function(time, flag = "t"){
   return `<t:${Math.floor(time/1000)}:${flag}>`
 }
+
+module.exports.iconPill = function(icon, content){
+  if(!ICONS[icon]) icon = "question"
+  return ICONS[icon] + '  ' + "` " + content + " `"
+}

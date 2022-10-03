@@ -1,5 +1,5 @@
 const { createEmbed, formatPaginationEmbeds } = require('../../../labscore/utils/embed')
-const { link, icon, highlight } = require('../../../labscore/utils/markdown')
+const { link, icon, highlight, iconPill } = require('../../../labscore/utils/markdown')
 const { editOrReply } = require('../../../labscore/utils/message')
 const { STATICS } = require('../../../labscore/utils/statics')
 
@@ -22,7 +22,7 @@ function createUrbanPage(context, result){
   })
   e.fields.push({
     name: "Stats",
-    value: `${icon("upvote")}${highlight(result.score.likes)}  ${icon("downvote")}${highlight(result.score.dislikes)}\n**Author:** ${link(`https://www.urbandictionary.com/author.php?author=${encodeURIComponent(result.author)}`, result.author)}`,
+    value: `${iconPill("upvote", result.score.likes)}  ​  ${iconPill("downvote", result.score.dislikes)}\n**Author:** ${link(`https://www.urbandictionary.com/author.php?author=${encodeURIComponent(result.author)}`, result.author)}`,
     inline: true
   })
   if(result.example) e.fields.push({

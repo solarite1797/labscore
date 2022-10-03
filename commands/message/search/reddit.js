@@ -1,5 +1,5 @@
 const { createEmbed, formatPaginationEmbeds } = require('../../../labscore/utils/embed')
-const { link, icon, highlight } = require('../../../labscore/utils/markdown')
+const { link, icon, highlight, iconPill } = require('../../../labscore/utils/markdown')
 const { editOrReply } = require('../../../labscore/utils/message')
 const { STATICS } = require('../../../labscore/utils/statics')
 
@@ -36,7 +36,7 @@ function createRedditPage(context, result){
   if(awardData.length >= 1) description.push(`${awardData.join(' ')}`)
 
   description.push(``)
-  description.push(`${icon("upvote")}${highlight(result.post.score)} ​ ​ ​ ${icon("person")} ${link(result.author.link, `u/${result.author.name}`)}`)
+  description.push(`${iconPill("upvote", result.post.score)}  ​  ${icon("person")} ${link(result.author.link, `u/${result.author.name}`)}`)
 
   res.embeds[0].description = description.join('\n')
   return res;
