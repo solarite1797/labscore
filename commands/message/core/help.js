@@ -12,7 +12,7 @@ function createHelpPage(context, title, contents, descriptions){
       createEmbed("default", context, {
         description: `${title}\n\n` +
         renderCommandList(contents, descriptions) +
-          `\n\n${icon("question")} Use **${highlight(`${context.commandClient.prefixes.custom.first()}help <command>`)}** to view more information about a command.`
+          `\n\n${icon("question")} Use ${highlight(` ${context.commandClient.prefixes.custom.first()}help <command> `)} to view more information about a command.`
       })
     ]
   }
