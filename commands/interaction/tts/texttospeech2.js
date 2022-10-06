@@ -32,7 +32,7 @@ module.exports = {
 
       await context.editOrRespond({
         embeds: [createEmbed("defaultNoFooter", context, { description: `${icon("audio")} Audio Generated in ${highlight(audio.timings + "s")}.` })],
-        file: { value: audio.response.body, filename: "tts.wav" }
+        file: { value: audio.response.body, filename: "tts.mp3" }
       })
     }catch(e){
       console.log(e)
