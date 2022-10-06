@@ -40,6 +40,7 @@ const Api = Object.freeze({
   SEARCH_YOUTUBE: '/search/youtube',
 
   TTS_IMTRANSLATOR: '/tts/imtranslator',
+  TTS_PLAYHT: '/tts/playht',
   TTS_POLLY: '/tts/polly',
   TTS_TIKTOK: '/tts/tiktok',
   TTS_VOICEFORGE: '/tts/voiceforge',

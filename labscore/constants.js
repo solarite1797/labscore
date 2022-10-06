@@ -410,6 +410,13 @@ module.exports.TIKTOK_VOICES = [
   }
 ]
 
+module.exports.PLAYHT_VOICES = [
+  {
+    "name": "Conrad (German)",
+    "value": "de-DE-ConradNeural"
+  }
+]
+
 module.exports.IMTRANSLATOR_VOICES = [
   {
     "name": "English (Male)",

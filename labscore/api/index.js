@@ -229,6 +229,13 @@ module.exports.imtranslator = async function(context, text, voice){
   })
 }
 
+module.exports.playht = async function(context, text, voice){
+  return await request(Api.TTS_PLAYHT, "GET", {}, {
+    text: text,
+    voice: voice
+  })
+}
+
 module.exports.polly = async function(context, text, voice){
   return await request(Api.TTS_POLLY, "GET", {}, {
     text: text,
