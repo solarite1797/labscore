@@ -35,6 +35,7 @@ const Api = Object.freeze({
   SEARCH_RULE34: '/search/booru',
   SEARCH_TINEYE: '/search/tineye',
   SEARCH_URBANDICTIONARY: '/search/urbandictionary',
+  SEARCH_WEATHER: '/search/weather',
   SEARCH_WIKIHOW: '/search/wikihow',
   SEARCH_WOLFRAM_ALPHA: '/search/wolfram-alpha',
   SEARCH_YOUTUBE: '/search/youtube',

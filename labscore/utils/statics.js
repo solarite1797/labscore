@@ -28,6 +28,10 @@ const Statics = Object.freeze({
       file: "brands/makesweet.png",
       revision: 0
     },
+    openweathermap: {
+      file: "brands/openweathermap.png",
+      revision: 0
+    },
     photofunia: {
       file: "brands/photofunia.png",
       revision: 1
@@ -88,6 +92,7 @@ module.exports.STATICS = Object.freeze({
   emojipedia: staticAsset(Statics.brands.emojipedia),
   inferkit: staticAsset(Statics.brands.inferkit),
   makesweet: staticAsset(Statics.brands.makesweet),
+  openweathermap: staticAsset(Statics.brands.openweathermap),
   photofunia: staticAsset(Statics.brands.photofunia),
   reddit: staticAsset(Statics.brands.reddit),
   tineye: staticAsset(Statics.brands.tineye),

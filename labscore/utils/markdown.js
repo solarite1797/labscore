@@ -23,7 +23,11 @@ module.exports.timestamp = function(time, flag = "t"){
   return `<t:${Math.floor(time/1000)}:${flag}>`
 }
 
+module.exports.pill = function(content){
+  return "  **` " + content + "  `**"
+}
+
 module.exports.iconPill = function(icon, content){
   if(!ICONS[icon]) icon = "question"
-  return ICONS[icon] + "  **` " + content + " `**"
+  return ICONS[icon] + "  **` " + content + "  `**"
 }
