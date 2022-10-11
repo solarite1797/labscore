@@ -13,7 +13,6 @@ module.exports = {
   },
   run: async (context, args) => {
     try{
-      context.triggerTyping();
       if(typeof(args.amount) == "string") args.amount = parseInt(args.amount)
       if(!args.amount) args.amount = 1
       if(args.amount >= 6 || args.amount <= 0) return await editOrReply(context, {embeds:[createEmbed("warning", context, "Invalid Argument (amount)")]})
