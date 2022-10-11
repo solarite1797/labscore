@@ -9,6 +9,7 @@ function createRule34Page(context, result){
   let res = {
     "embeds": [
       createEmbed("default", context, {
+        description: '',
         image: {
           url: result.fileUrl
         },
