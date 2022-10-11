@@ -1,5 +1,5 @@
 const { createEmbed, formatPaginationEmbeds } = require('../../../labscore/utils/embed')
-const { highlight } = require('../../../labscore/utils/markdown')
+const { pill } = require('../../../labscore/utils/markdown')
 const { editOrReply } = require('../../../labscore/utils/message')
 
 const { paginator } = require('../../../labscore/client');
@@ -9,14 +9,24 @@ function createRule34Page(context, result){
   let res = {
     "embeds": [
       createEmbed("default", context, {
-        description: `Rating: ${highlight(result.rating)}`,
         image: {
           url: result.fileUrl
+        },
+        footer: {
+          text: `Rating: ${result.rating}`
         }
       })
     ]
   }
-  if(result.thumbnail) res.embeds[0].thumbnail = { url: result.thumbnail };
+  
+  // Render a few tags
+  if(result.tags) {
+    let tags = result.tags.splice(0, 5)
+    let tagDisplay = ''
+    for(const t of tags) tagDisplay += pill(t)
+    res.embeds[0].description += `\n${tagDisplay}`
+  }
+
   return res;
 }
 
