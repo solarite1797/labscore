@@ -37,6 +37,12 @@ module.exports = {
         inviteCard.fields = inviteCard.fields.concat(featureCards)
       }
 
+      if(g.splash){
+        inviteCard.image = {
+          url: `https://cdn.discordapp.com/splashes/519734247519420438/${g.splash}.png?size=4096`
+        }
+      }
+
       return editOrReply(context, inviteCard)
     }catch(e){
       console.log(e)
