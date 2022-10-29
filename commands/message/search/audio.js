@@ -59,22 +59,30 @@ module.exports = {
         // API lowkey sucks, fetch more metadata via songlink
         let url = audioSearch.response.body.media[Object.keys(audioSearch.response.body.media)[0]]
         if(audioSearch.response.body.media.deezer) url = audioSearch.response.body.media.deezer
+        if(audioSearch.response.body.media.napster) url = audioSearch.response.body.media.napster
+        if(audioSearch.response.body.media.apple_music) url = audioSearch.response.body.media.apple_music
         if(audioSearch.response.body.media.spotify) url = audioSearch.response.body.media.spotify
-        let songlink = await superagent.get(`https://api.song.link/v1-alpha.1/links?url=${encodeURIComponent(url)}`)
-        //get song meta
-        let song = songlink.body.entitiesByUniqueId[songlink.body.entityUniqueId]
-
-        let btns = renderMusicButtons(songlink.body.linksByPlatform)
-        return editOrReply(context, {embeds:[
-          createEmbed("default", context, {
-            author: {
-              name: `${song.title} by ${song.artistName}`.substr(0,1000),
-              iconUrl: song.thumbnailUrl,
-              url: url
-            },
-            footer: {}
-          })
-        ], components: btns})
+        try{
+          let songlink = await superagent.get(`https://api.song.link/v1-alpha.1/links?url=${encodeURIComponent(url)}`)
+          //get song meta
+          let song = songlink.body.entitiesByUniqueId[songlink.body.entityUniqueId]
+  
+          let btns = renderMusicButtons(songlink.body.linksByPlatform)
+          return editOrReply(context, {embeds:[
+            createEmbed("default", context, {
+              author: {
+                name: `${song.title} by ${song.artistName}`.substr(0,1000),
+                iconUrl: song.thumbnailUrl,
+                url: url
+              },
+              footer: {}
+            })
+          ], components: btns})
+        }catch(e){
+          return editOrReply(context, {embeds: [
+            createEmbed("error", context, "Links for this song are unavailable..")
+          ]})
+        }
       }
 
     }catch(e){
