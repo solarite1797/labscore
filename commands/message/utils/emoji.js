@@ -97,14 +97,12 @@ module.exports = {
         }
         return await editOrReply(context, embed)
       }
-      
-      emojiUrl = emojipediaResult.data.vendor_images[args.type].replace('/thumbs/150/', '/source/')
 
       return editOrReply(context, {embeds:[
         createEmbed("default", context, {
           description: `${emojipediaResult.data.emoji} • **${emojipediaResult.data.name}**`,
           image: {
-            url: emojiUrl
+            url: emojipediaResult.data.vendor_images[args.type]
           },
           footer: {
             iconUrl: STATICS.emojipedia,
