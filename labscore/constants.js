@@ -586,12 +586,17 @@ module.exports.SUPPORTED_EMOJI_PLATFORMS = [
   "htc",
   "emojidex",
   "messenger",
+  "softbank",
+  "au-kddi",
+  "docomo",
   "openmoji",
   "skype",
   "sony",
   "noto-emoji",
   "toss-face",
-  "microsoft-teams"
+  "microsoft-teams",
+  "animated-noto-color-emoji",
+  "emojipedia"
 ]
 
 module.exports.EMOJI_PLATFORM_ALIASES = {
