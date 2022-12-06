@@ -8,7 +8,7 @@ module.exports = {
   name: 'retro',
   label: 'text',
   metadata: {
-    description: 'cyberspace',
+    description: 'Generates an image with a retro style.',
     examples: ['retro cyberspace|chaos|crazy'],
     category: 'image',
     usage: 'retro <line1|line2|line3> [-background <1-5>] [-style <1-4>]'

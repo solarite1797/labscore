@@ -7,7 +7,7 @@ const { STATICS } = require("../../../labscore/utils/statics");
 module.exports = {
   name: 'safetylabels',
   metadata: {
-    description: 'Image Safe Search Labels',
+    description: 'Applies detection labels for potentially sensitive content of an image.',
     examples: ['safetylabels'],
     category: 'utils',
     usage: 'safetylabels <attachment>'

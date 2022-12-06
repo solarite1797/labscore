@@ -26,7 +26,7 @@ module.exports = {
   label: 'query',
   aliases: ['b', 'search2'],
   metadata: {
-    description: 'bing search',
+    description: 'Returns search results from Microsoft Bing.',
     examples: ['bing Flask'],
     category: 'search',
     usage: 'bing <query>'

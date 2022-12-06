@@ -10,10 +10,10 @@ module.exports = {
   name: 'heartlocket',
   label: 'text',
   metadata: {
-    description: 'makesweet heart locket',
-    examples: ['heartlocket'],
+    description: 'Generates an animated gif with the MakeSweet heart locket template. Accepts text as an optional input.',
+    examples: ['heartlocket Big Nutty'],
     category: 'image',
-    usage: 'heartlocket'
+    usage: 'heartlocket [<text>]'
   },
   run: async (context, args) => {
 

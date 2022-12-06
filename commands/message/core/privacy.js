@@ -6,7 +6,7 @@ const { PRIVACY_POLICY_LAST_UPDATE, PRIVACY_POLICY_SECTIONS, DISCORD_INVITES, CO
 module.exports = {
   name: 'privacy',
   metadata: {
-    description: 'Privacy Policy',
+    description: 'Shows the bots privacy policy.',
     examples: ['privacy'],
     category: 'core',
     usage: 'privacy'

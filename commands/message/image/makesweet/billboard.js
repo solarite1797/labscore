@@ -10,7 +10,7 @@ module.exports = {
   name: 'billboard',
   label: 'text',
   metadata: {
-    description: 'makesweet billboard',
+    description: 'Generates an animated gif with the MakeSweet billboard template.',
     examples: ['billboard'],
     category: 'image',
     usage: 'billboard'

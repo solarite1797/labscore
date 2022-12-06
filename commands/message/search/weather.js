@@ -9,7 +9,7 @@ module.exports = {
   name: 'weather',
   label: 'query',
   metadata: {
-    description: 'Weather information.',
+    description: 'Displays information about the weather.',
     examples: ['weather Berlin'],
     category: 'search',
     usage: 'weather <location>'

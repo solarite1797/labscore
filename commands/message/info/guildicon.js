@@ -5,7 +5,7 @@ module.exports = {
   name: 'servericon',
   aliases: ["guildicon","gi","si","groupicon"],
   metadata: {
-    description: 'server icon',
+    description: 'Displays the server icon.',
     examples: ['gi'],
     category: 'info',
     usage: 'guildicon'

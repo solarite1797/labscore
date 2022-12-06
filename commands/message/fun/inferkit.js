@@ -11,7 +11,7 @@ module.exports = {
   aliases: ['complete'],
   label: 'text',
   metadata: {
-    description: 'make ai continue your text',
+    description: 'Uses InferKit to generate text from a small input snippet.',
     examples: ['complete The Fitness Gram Pacer'],
     category: 'fun',
     usage: 'inferkit <prompt>'

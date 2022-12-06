@@ -8,7 +8,7 @@ module.exports = {
   label: 'user',
   aliases: ['guild', 'guildinfo'],
   metadata: {
-    description: 'server',
+    description: 'Displays information about the server.',
     examples: ['guild'],
     category: 'info',
     usage: 'server'

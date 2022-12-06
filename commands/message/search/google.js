@@ -27,7 +27,7 @@ module.exports = {
   label: 'query',
   aliases: ['g', 'search'],
   metadata: {
-    description: 'google search',
+    description: 'Returns search results from Google.',
     examples: ['google Flask'],
     category: 'search',
     usage: 'google <query>'

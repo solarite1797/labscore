@@ -16,7 +16,7 @@ module.exports = {
   name: "screenshot",
   aliases: ['ss'],
   metadata: {
-    description: 'screenshot website',
+    description: 'Takes screenshots of a website.',
     examples: ['ss google.com'],
     category: 'utils',
     usage: 'screenshot <url>'

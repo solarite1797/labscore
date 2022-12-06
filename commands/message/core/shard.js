@@ -6,7 +6,7 @@ const { format } = require('../../../labscore/utils/ansi');
 module.exports = {
   name: 'shard',
   metadata: {
-    description: 'shard details',
+    description: 'Details about the bots connection to this server.',
     examples: ['shard'],
     category: 'core',
     usage: 'shard'

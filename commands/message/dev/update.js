@@ -7,7 +7,7 @@ const { icon, highlight } = require('../../../labscore/utils/markdown');
 module.exports = {
   name: "update",
   metadata: {
-    description: 'update bot',
+    description: 'Fetches latest bot version.',
     examples: ['update'],
     category: 'dev',
     usage: 'update [-force true]'

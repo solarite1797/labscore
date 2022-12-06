@@ -7,7 +7,7 @@ module.exports = {
   description: 'ping!',
   name: 'ping',
   metadata: {
-    description: 'bot latency',
+    description: 'Displays information about the bots connection to discord..',
     examples: ['ping'],
     category: 'core',
     usage: 'ping'

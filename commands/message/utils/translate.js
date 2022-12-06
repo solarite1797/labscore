@@ -12,7 +12,7 @@ module.exports = {
   label: 'text',
   aliases: ['tr'],
   metadata: {
-    description: 'translate text',
+    description: 'Translates text. Supports automatic source language detection.',
     examples: ['tr groß nussig -from de -to en'],
     category: 'utils',
     usage: `tr <text> [-to <target language>] [-from <origin language>]`

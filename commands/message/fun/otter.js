@@ -6,7 +6,7 @@ const superagent = require('superagent');
 module.exports = {
   name: 'otter',
   metadata: {
-    description: 'random otter!!',
+    description: 'Displays a random image containing otters.',
     examples: ['otter'],
     category: 'fun',
     usage: `otter`

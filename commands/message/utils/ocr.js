@@ -8,7 +8,7 @@ const { STATICS } = require("../../../labscore/utils/statics");
 module.exports = {
   name: 'ocr',
   metadata: {
-    description: 'Optical Character Recognition',
+    description: 'Uses Optical Character Recognition to detect text in images.',
     examples: ['ocr'],
     category: 'utils',
     usage: 'ocr <attachment>'

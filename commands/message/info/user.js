@@ -11,7 +11,7 @@ module.exports = {
   label: 'user',
   aliases: ['u', 'profile'],
   metadata: {
-    description: 'user',
+    description: 'Displays information about a discord user. Accepts IDs, Mentions and Usernames.',
     examples: ['user labsCore'],
     category: 'info',
     usage: 'user [<id|user>]'

@@ -20,7 +20,7 @@ module.exports = {
   name: 'art',
   aliases: ['wallpaper'],
   metadata: {
-    description: 'crazy ai art',
+    description: 'Creates colorful generative art created by JetBrains LIMB.',
     examples: ['art -type wallpaper -seed 839648 -variance 8866 -rotate 1', 'wallpaper -type phone'],
     category: 'fun',
     usage: `art [-type <${Object.keys(SIZES).join('|')}>] [-seed <10000-999999>] [-variance <1000-9999>] [-rotate <0-360>]`

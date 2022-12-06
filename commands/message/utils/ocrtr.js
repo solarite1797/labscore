@@ -10,7 +10,7 @@ module.exports = {
   name: 'ocrtr',
   label: 'to',
   metadata: {
-    description: 'Optical Character Recognition + Translate',
+    description: 'Uses Optical Character Recognition to translate text in an image.',
     examples: ['ocrtr en'],
     category: 'utils',
     usage: 'ocrtr <language> [-from <origin language>]'

@@ -46,7 +46,7 @@ module.exports = {
   label: 'query',
   aliases: ['r34'],
   metadata: {
-    description: 'rule34 search',
+    description: 'Returns image search results from various rule34-focused sites.\n\nSupported Sites: `' + Object.keys(SITES).join(', ') + '`',
     examples: ['r34 sex -site rule34'],
     category: 'search',
     usage: 'rule34 <query> [-site <service>]'

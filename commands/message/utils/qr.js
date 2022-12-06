@@ -11,7 +11,7 @@ module.exports = {
   label: 'text',
   aliases: ['scan'],
   metadata: {
-    description: 'qr code generator/scanner\n\nif no arguments are provided it\'ll try to scan the most recent qr code',
+    description: 'Generates a QR code. If no input is provided acts as a QR code scanner.',
     examples: ['qr big nutty'],
     category: 'utils',
     usage: `qr <contents>`

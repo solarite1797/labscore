@@ -8,7 +8,7 @@ module.exports = {
   label: 'query',
   aliases: ['craiyon'],
   metadata: {
-    description: 'dalle',
+    description: 'Uses Craiyon to generate four images from a text prompt.',
     examples: ['dalle'],
     category: 'image',
     usage: 'dalle <text>'

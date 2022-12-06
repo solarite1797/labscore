@@ -6,7 +6,7 @@ module.exports = {
   default: 1,
   label: 'amount',
   metadata: {
-    description: 'undo your last bot command(s)',
+    description: 'Remove recent command responses from chat.',
     examples: ['undo 5'],
     category: 'core',
     usage: 'undo [<amount (1-5)>]'

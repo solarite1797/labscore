@@ -37,7 +37,7 @@ module.exports = {
   label: 'query',
   aliases: ['dictionary', 'dict'],
   metadata: {
-    description: 'dictionary lookup',
+    description: 'Returns dictionary definitions for words.',
     examples: ['dictionary Flask'],
     category: 'search',
     usage: 'define <query>'

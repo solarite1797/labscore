@@ -8,7 +8,7 @@ const { createEmbed } = require('../../../labscore/utils/embed');
 const { icon, highlight } = require('../../../labscore/utils/markdown');
 
 module.exports = {
-  description: 'more text to speech',
+  description: 'Text to Speech with different voices',
   name: 'tts2',
   options: [
     {

@@ -33,7 +33,7 @@ module.exports = {
   name: 'reverse-image',
   aliases: ['reverse', 'tineye','reverseimage'],
   metadata: {
-    description: 'reverse image search',
+    description: 'Performs a reverse-image-search.',
     examples: ['reverseimage'],
     category: 'search',
     usage: 'reverse <image>'

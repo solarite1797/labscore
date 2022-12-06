@@ -10,7 +10,7 @@ module.exports = {
   name: 'circuitboard',
   label: 'text',
   metadata: {
-    description: 'makesweet circuit board',
+    description: 'Generates an animated gif with the MakeSweet circuit board template.',
     examples: ['circuitboard'],
     category: 'image',
     usage: 'circuitboard'

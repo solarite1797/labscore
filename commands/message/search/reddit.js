@@ -47,7 +47,7 @@ module.exports = {
   label: 'query',
   aliases: ['r'],
   metadata: {
-    description: 'reddit search',
+    description: 'Returns search results from reddit. Allows global and subreddit-specific search.',
     examples: ['reddit r/otters'],
     category: 'search',
     usage: 'reddit [r/<subreddit>] <query> [-type image]'

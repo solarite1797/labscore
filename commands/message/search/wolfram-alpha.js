@@ -27,8 +27,8 @@ module.exports = {
   label: 'query',
   aliases: ['wa', 'wolfram-alpha'],
   metadata: {
-    description: 'wolfram alpha search',
-    examples: ['wa Gray'],
+    description: 'Computes a query using Wolfram|Alpha.',
+    examples: ['wa 1+1'],
     category: 'search',
     usage: 'wolframalpha <query>'
   },

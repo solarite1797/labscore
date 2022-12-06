@@ -8,7 +8,7 @@ module.exports = {
   name: 'waifu2x',
   aliases: ['w2x'],
   metadata: {
-    description: 'waifu2x',
+    description: 'Processes an image with Waifu2x.',
     examples: ['waifu2x'],
     category: 'image',
     usage: 'waifu2x <image>'

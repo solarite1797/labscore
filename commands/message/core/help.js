@@ -85,7 +85,7 @@ module.exports = {
   name: 'help',
   label: 'command',
   metadata: {
-    description: 'Command List',
+    description: 'List all commands, get more information about individual commands.',
     examples: ['help ping'],
     category: 'core',
     usage: 'help [<command>]'

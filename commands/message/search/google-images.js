@@ -30,7 +30,7 @@ module.exports = {
   label: 'query',
   aliases: ['i', 'img'],
   metadata: {
-    description: 'google image search',
+    description: 'Returns image search results from Google.',
     examples: ['image Large Magenta Sphere'],
     category: 'search',
     usage: 'image <query>'

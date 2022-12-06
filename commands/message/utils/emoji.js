@@ -13,7 +13,7 @@ module.exports = {
   name: "emoji",
   aliases: ['e', 'emote', 'enlarge', 'em', 'emojimix'],
   metadata: {
-    description: 'Enlarge Emoji.',
+    description: 'Displays information about emoji. Supports regular emoji and discord emoji.\n\nUsing two emoji will mix the two emoji together.',
     examples: ['enlarge 😀', 'emojimix 🐱 🍞'],
     category: 'utils',
     usage: 'emoji <emoji> [<emoji to mix>]'

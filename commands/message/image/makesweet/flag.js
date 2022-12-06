@@ -10,7 +10,7 @@ module.exports = {
   name: 'flag',
   label: 'text',
   metadata: {
-    description: 'makesweet flag',
+    description: 'Generates an animated gif with the MakeSweet flag template.',
     examples: ['flag'],
     category: 'image',
     usage: 'flag'

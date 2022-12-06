@@ -8,7 +8,7 @@ const { createEmbed } = require('../../../labscore/utils/embed');
 const { icon, highlight } = require('../../../labscore/utils/markdown');
 
 module.exports = {
-  description: 'tiktok audio',
+  description: 'TikTok text to speech voices',
   name: 'tiktok',
   options: [
     {

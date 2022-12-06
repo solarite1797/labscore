@@ -30,7 +30,7 @@ module.exports = {
   label: 'query',
   aliases: ['bi', 'img2'],
   metadata: {
-    description: 'bing image search',
+    description: 'Returns image search results from Microsoft Bing.',
     examples: ['bing Large Magenta Sphere'],
     category: 'search',
     usage: 'bing <query>'

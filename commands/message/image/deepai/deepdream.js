@@ -8,7 +8,7 @@ module.exports = {
   name: 'deepdream',
   aliases: ['dd'],
   metadata: {
-    description: 'deepdream',
+    description: 'Processes an image with DeepAI DeepDream.',
     examples: ['deepdream'],
     category: 'image',
     usage: 'deepdream <image>'

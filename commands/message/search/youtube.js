@@ -29,7 +29,7 @@ module.exports = {
   label: 'query',
   aliases: ['yt'],
   metadata: {
-    description: 'youtube search',
+    description: 'Returns search results from YouTube.',
     examples: ['youtube Google'],
     category: 'search',
     usage: 'youtube <query>'

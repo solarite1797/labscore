@@ -15,7 +15,7 @@ function format(seconds){
 module.exports = {
   name: "uptime",
   metadata: {
-    description: 'bot uptime',
+    description: 'Displays the bots uptime.',
     examples: ['uptime'],
     category: 'dev',
     usage: 'uptime'

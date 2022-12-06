@@ -7,7 +7,7 @@ module.exports = {
   label: 'user',
   aliases: ['a'],
   metadata: {
-    description: 'avatar',
+    description: 'Displays someones discord avatar. Accepts IDs, Mentions, or Usernames.',
     examples: ['avatar labsCore'],
     category: 'info',
     usage: 'avatar [<id|user>]'

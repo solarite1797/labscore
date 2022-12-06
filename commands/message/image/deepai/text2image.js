@@ -9,7 +9,7 @@ module.exports = {
   label: 'text',
   aliases: ['t2i'],
   metadata: {
-    description: 'text2image',
+    description: 'Generates an image with DeepAI Text2Image using a text prompt.',
     examples: ['text2image Mushroom'],
     category: 'image',
     usage: 'text2image <image>'

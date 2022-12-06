@@ -7,7 +7,7 @@ const { STATICS } = require("../../../labscore/utils/statics");
 module.exports = {
   name: 'labels',
   metadata: {
-    description: 'Image Labelling',
+    description: 'Applies labels to an image based on its visual contents.',
     examples: ['labels'],
     category: 'utils',
     usage: 'labels <attachment>'
