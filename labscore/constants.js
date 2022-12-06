@@ -5,19 +5,19 @@ module.exports.DISCORD_INVITES = Object.freeze({
 
 module.exports.PRIVACY_POLICY_SECTIONS = [
   'labsCore does not collect any sort of data about its users.',
-  'If the bot encounters unexpected errors we report information about the server, channel, user and command/command arguments (excluding images) to a private log in order to assist with debugging and fixing the problem. You can reference the provided error ID in our support server for further details.',
+  'If the bot encounters unexpected errors we report information about the server, channel, user and command/command arguments (excluding images) to a private log in order to assist with debugging and resolving the issue. You can reference the provided error ID in our support server for further details. Contents of these automated reports will never be shared with third parties and are only accessible to the bots developers.',
   `Images modified via our proprietary api are never stored outside of the channel you executed the command in.`
 ]
 
 module.exports.PRIVACY_POLICY_LAST_UPDATE = 1655325547140
 
 module.exports.COLORS = Object.freeze({
-  "error": 15548997,
-  "success": 6411359,
-  "warning": 16426522,
-  "embed": 3092790,
-  "brand": 6085465,
-  "nsfw": 15549056
+  error: 15548997,
+  success: 6411359,
+  warning: 16426522,
+  embed: 3092790,
+  brand: 6085465,
+  nsfw: 15549056
 })
 
 module.exports.ICONS = Object.freeze({
@@ -115,353 +115,152 @@ const GUILD_FEATURE_ICONS = Object.freeze({
   PROFILE: "<:profile:995080477734088855>",
   MESSAGE: "<:message:995080756021952594>",
   BOT_DEVELOPER: "<:botdev:995081351457935391>",
-  PEOPLE_RED: "<:peoplered:995081367098499103>"
+  PEOPLE_RED: "<:peoplered:995081367098499103>",
+  SLASH_COMMAND: "<:slash:1049583205621174282>",
+  HIGHLIGHT: "<:highlight:1049584669110325290>",
+  TIMEOUT: "<:timeout:1049585531278856202>",
+  SOUNDBOARD: "<:soundboard:1049591390989983784>"
 })
 
 module.exports.GUILD_FEATURES = Object.freeze({
-  "ANIMATED_BANNER": {
-    "icon": GUILD_FEATURE_ICONS.ANIMATED
-  },
-  "ANIMATED_ICON": {
-    "icon": GUILD_FEATURE_ICONS.ANIMATED
-  },
-  "AUTO_MODERATION": {
-    "icon": GUILD_FEATURE_ICONS.MOD
-  },
-  "BANNER": {
-    "icon": GUILD_FEATURE_ICONS.IMAGE,
-    "name": "Server Banner"
-  },
-  "BOOSTING_TIERS_EXPERIMENT_MEDIUM_GUILD": {
-    "icon": GUILD_FEATURE_ICONS.BOOST
-  },
-  "BOOSTING_TIERS_EXPERIMENT_SMALL_GUILD": {
-    "icon": GUILD_FEATURE_ICONS.BOOST
-  },
-  "BOT_DEVELOPER_EARLY_ACCESS": {
-    "icon": GUILD_FEATURE_ICONS.BOT_DEVELOPER,
-    "name": "Bot Developer Testing"
-  },
-  "CHANNEL_BANNER": {
-    "icon": GUILD_FEATURE_ICONS.IMAGE,
-    "name": "Channel Banners"
-  },
-  "COMMERCE": {
-    "icon": GUILD_FEATURE_ICONS.TAG,
-    "name": "Store Channels"
-  },
-  "COMMUNITY": {
-    "icon": GUILD_FEATURE_ICONS.GLOBE
-  },
-  "CREATOR_MONETIZABLE": {
-    "icon": GUILD_FEATURE_ICONS.WALLET
-  },
-  "CREATOR_MONETIZABLE_DISABLED": {
-    "icon": GUILD_FEATURE_ICONS.WALLET
-  },
-  "DISCOVERABLE": {
-    "icon": GUILD_FEATURE_ICONS.DISCOVERY_ENABLED,
-    "name": "Discovery"
-  },
-  "DISCOVERABLE_DISABLED": {
-    "icon": GUILD_FEATURE_ICONS.DISCOVERY_DISABLED,
-    "name": "Discovery Disabled"
-  },
-  "ENABLED_DISCOVERABLE_BEFORE": {
-    "icon": GUILD_FEATURE_ICONS.DISCOVERY,
-    "name": "Has been in Discovery"
-  },
-  "EXPOSED_TO_ACTIVITIES_WTP_EXPERIMENT": {
-    "icon": GUILD_FEATURE_ICONS.ACTIVITY
-  },
-  "EXPOSED_TO_BOOSTING_TIERS_EXPERIMENT": {
-    "icon": GUILD_FEATURE_ICONS.BOOST
-  },
-  "FEATURABLE": {
-    "icon": GUILD_FEATURE_ICONS.STAR
-  },
-  "FORCE_RELAY": {
-    "icon": "🏃💨",
-    "name": "Relay Force Enabled"
-  },
-  "GUILD_HOME_TEST": {
-    "icon": GUILD_FEATURE_ICONS.HOME
-  },
-  "HAD_EARLY_ACTIVITIES_ACCESS": {
-    "icon": GUILD_FEATURE_ICONS.ACTIVITY
-  },
-  "HAS_DIRECTORY_ENTRY": {
-    "icon": GUILD_FEATURE_ICONS.DIRECTORY
-  },
-  "HUB": {
-    "icon": GUILD_FEATURE_ICONS.EDUCATION,
-    "name": "School Hub"
-  },
-  "INTERNAL_EMPLOYEE_ONLY": {
-    "icon": GUILD_FEATURE_ICONS.STAFF,
-    "name": "Internal Employee Server"
-  },
-  "INVITE_SPLASH": {
-    "icon": GUILD_FEATURE_ICONS.IMAGE
-  },
-  "LINKED_TO_HUB": {
-    "icon": GUILD_FEATURE_ICONS.DIRECTORY
-  },
-  "MEMBER_PROFILES": {
-    "icon": GUILD_FEATURE_ICONS.PROFILE
-  },
-  "MEMBER_VERIFICATION_GATE_ENABLED": {
-    "icon": GUILD_FEATURE_ICONS.WAVE,
-    "name": "Membership Screening"
-  },
-  "MONETIZATION_ENABLED": {
-    "icon": GUILD_FEATURE_ICONS.WALLET
-  },
-  "MORE_EMOJI": {
-    "icon": GUILD_FEATURE_ICONS.EMOJI
-  },
-  "MORE_STICKERS": {
-    "icon": GUILD_FEATURE_ICONS.STICKER
-  },
-  "NEWS": {
-    "icon": GUILD_FEATURE_ICONS.MEGAPHONE,
-    "name": "Announcement Channels"
-  },
-  "NEW_THREAD_PERMISSIONS": {
-    "icon": GUILD_FEATURE_ICONS.THREAD
-  },
-  "PARTNERED": {
-    "icon": GUILD_FEATURE_ICONS.PARTNER
-  },
-  "PREMIUM_TIER_3_OVERRIDE": {
-    "icon": GUILD_FEATURE_ICONS.STAFF
-  },
-  "PREVIEW_ENABLED": {
-    "icon": GUILD_FEATURE_ICONS.EYE
-  },
-  "PRIVATE_THREADS": {
-    "icon": GUILD_FEATURE_ICONS.PRIVATE_THREAD
-  },
-  "RELAY_ENABLED": {
-    "icon": "🏃"
-  },
-  "ROLE_ICONS": {
-    "icon": GUILD_FEATURE_ICONS.ROLE_ICONS
-  },
-  "ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE": {
-    "icon": GUILD_FEATURE_ICONS.ROLE_SUBSCRIPTIONS
-  },
-  "ROLE_SUBSCRIPTIONS_ENABLED": {
-    "icon": GUILD_FEATURE_ICONS.ROLE_SUBSCRIPTIONS,
-    "name": "Role Subscriptions"
-  },
-  "SEVEN_DAY_THREAD_ARCHIVE": {
-    "icon": GUILD_FEATURE_ICONS.CLOCK,
-    "name": "7 Day Thread Archiving"
-  },
-  "TEXT_IN_VOICE_ENABLED": {
-    "icon": GUILD_FEATURE_ICONS.MESSAGE,
-    "name": "Text in Voice"
-  },
-  "THREADS_ENABLED": {
-    "icon": GUILD_FEATURE_ICONS.THREAD
-  },
-  "THREADS_ENABLED_TESTING": {
-    "icon": GUILD_FEATURE_ICONS.THREAD,
-    "name": "Thread Testing Enabled"
-  },
-  "THREAD_DEFAULT_AUTO_ARCHIVE_DURATION": {
-    "icon": GUILD_FEATURE_ICONS.CLOCK
-  },
-  "THREE_DAY_THREAD_ARCHIVE": {
-    "icon": GUILD_FEATURE_ICONS.CLOCK,
-    "name": "3 Day Thread Archiving"
-  },
-  "TICKETED_EVENTS_ENABLED": {
-    "icon": GUILD_FEATURE_ICONS.TICKET
-  },
-  "VANITY_URL": {
-    "icon": GUILD_FEATURE_ICONS.STAR,
-    "name": "Vanity URL"
-  },
-  "VERIFIED": {
-    "icon": GUILD_FEATURE_ICONS.VERIFIED
-  },
-  "VIP_REGIONS": {
-    "icon": GUILD_FEATURE_ICONS.AUDIO,
-    "name": "VIP Regions"
-  },
-  "WELCOME_SCREEN_ENABLED": {
-    "icon": GUILD_FEATURE_ICONS.WAVE
-  },
-  "LURKABLE": {
-    "icon": GUILD_FEATURE_ICONS.EYE,
-    "name": "Lurking Enabled"
-  },
-  "MEMBER_LIST_DISABLED": {
-    "icon": GUILD_FEATURE_ICONS.PEOPLE_RED
-  },
-  "PUBLIC_DISABLED": {
-    "icon": GUILD_FEATURE_ICONS.GLOBE
-  },
-  "PUBLIC": {
-    "icon": GUILD_FEATURE_ICONS.GLOBE
-  },
-  "ROLE_SUBSCRIPTIONS_ENABLED_FOR_PURCHASE": {
-    "icon": GUILD_FEATURE_ICONS.ROLE_SUBSCRIPTIONS
-  },
-  "TICKETING_ENABLED": {
-    "icon": GUILD_FEATURE_ICONS.TICKET
-  }
+  "ACTIVITIES_ALPHA": { icon: GUILD_FEATURE_ICONS.ACTIVITY },
+  "ACTIVITIES_EMPLOYEE": { icon: GUILD_FEATURE_ICONS.ACTIVITY },
+  "ACTIVITIES_INTERNAL_DEV": { icon: GUILD_FEATURE_ICONS.ACTIVITY },
+  "ANIMATED_BANNER": { icon: GUILD_FEATURE_ICONS.ANIMATED },
+  "ANIMATED_ICON": { icon: GUILD_FEATURE_ICONS.ANIMATED },
+  "APPLICATION_COMMAND_PERMISSIONS_V2": { icon: GUILD_FEATURE_ICONS.SLASH_COMMAND },
+  "AUTO_MODERATION": { icon: GUILD_FEATURE_ICONS.MOD },
+  "AUTOMOD_TRIGGER_KEYWORD_FILTER": { icon: GUILD_FEATURE_ICONS.MOD, name: "Automod Keywords Filter" },
+  "AUTOMOD_TRIGGER_ML_SPAM_FILTER": { icon: GUILD_FEATURE_ICONS.MOD, name: "Automod ML Spam Filter" },
+  "AUTOMOD_TRIGGER_SPAM_LINK_FILTER": { icon: GUILD_FEATURE_ICONS.MOD, name: "Automod Spam Link Filter" },
+  "BANNER": { icon: GUILD_FEATURE_ICONS.IMAGE, name: "Server Banner" },
+  "BFG": { icon: GUILD_FEATURE_ICONS.GLOBE, name: "Very Large Server" },
+  "BOOSTING_TIERS_EXPERIMENT_MEDIUM_GUILD": { icon: GUILD_FEATURE_ICONS.BOOST },
+  "BOOSTING_TIERS_EXPERIMENT_SMALL_GUILD": { icon: GUILD_FEATURE_ICONS.BOOST },
+  "BOT_DEVELOPER_EARLY_ACCESS": { icon: GUILD_FEATURE_ICONS.BOT_DEVELOPER, name: "Bot Developer Testing" },
+  "CHANNEL_BANNER": { icon: GUILD_FEATURE_ICONS.IMAGE, name: "Channel Banners" },
+  "CHANNEL_HIGHLIGHTS": { icon: GUILD_FEATURE_ICONS.HIGHLIGHT },
+  "COMMERCE": { icon: GUILD_FEATURE_ICONS.TAG, name: "Store Channels" },
+  "COMMUNITY": { icon: GUILD_FEATURE_ICONS.GLOBE },
+  "COMMUNITY_EXP_LARGE_GATED": { icon: GUILD_FEATURE_ICONS.GLOBE, name: "Community Experiment - Large Gated" },
+  "COMMUNITY_EXP_LARGE_UNGATED": { icon: GUILD_FEATURE_ICONS.GLOBE, name: "Community Experiment - Large Ungated" },
+  "CREATOR_MONETIZABLE": { icon: GUILD_FEATURE_ICONS.WALLET },
+  "CREATOR_MONETIZABLE_DISABLED": { icon: GUILD_FEATURE_ICONS.WALLET },
+  "CREATOR_MONETIZABLE_PROVISIONAL": { icon: GUILD_FEATURE_ICONS.WALLET },
+  "CREATOR_MONETIZABLE_WHITEGLOVE": { icon: GUILD_FEATURE_ICONS.WALLET },
+  "CREATOR_MONETIZATION_APPLICATION_ALLOWLIST": { icon: GUILD_FEATURE_ICONS.WALLET },
+  "CREATOR_STORE_PAGE": { icon: GUILD_FEATURE_ICONS.WALLET },
+  "DEVELOPER_SUPPORT_SERVER": { icon: GUILD_FEATURE_ICONS.BOT_DEVELOPER },
+  "DISCOVERABLE": { icon: GUILD_FEATURE_ICONS.DISCOVERY_ENABLED, name: "Discovery" },
+  "DISCOVERABLE_DISABLED": { icon: GUILD_FEATURE_ICONS.DISCOVERY_DISABLED, name: "Discovery Disabled" },
+  "ENABLED_DISCOVERABLE_BEFORE": { icon: GUILD_FEATURE_ICONS.DISCOVERY, name: "Has been in Discovery" },
+  "EXPOSED_TO_ACTIVITIES_WTP_EXPERIMENT": { icon: GUILD_FEATURE_ICONS.ACTIVITY },
+  "EXPOSED_TO_BOOSTING_TIERS_EXPERIMENT": { icon: GUILD_FEATURE_ICONS.BOOST },
+  "FEATURABLE": { icon: GUILD_FEATURE_ICONS.STAR },
+  "FORCE_RELAY": { icon: "🏃💨", name: "Relay Force Enabled" },
+  "GUILD_AUTOMOD_DEFAULT_LIST": { icon: GUILD_FEATURE_ICONS.MOD },
+  "GUILD_COMMUNICATION_DISABLED_GUILDS": { icon: GUILD_FEATURE_ICONS.TIMEOUT, name: "Timeouts" },
+  "GUILD_HOME_TEST": { icon: GUILD_FEATURE_ICONS.HOME },
+  "GUILD_HOME_OVERRIDE": { icon: GUILD_FEATURE_ICONS.HOME },
+  "GUILD_MEMBER_VERIFICATION_EXPERIMENT": { icon: GUILD_FEATURE_ICONS.EYE },
+  "GUILD_ONBOARDING": { icon: GUILD_FEATURE_ICONS.DISCOVERY },
+  "GUILD_ONBOARDING_ADMIN_ONLY": { icon: GUILD_FEATURE_ICONS.DISCOVERY, name: "Guild Onboarding Admin Override" },
+  "GUILD_ONBOARDING_EVER_ENABLED": { icon: GUILD_FEATURE_ICONS.DISCOVERY },
+  "GUILD_ROLE_SUBSCRIPTION_TRIALS": { icon: GUILD_FEATURE_ICONS.ROLE_SUBSCRIPTIONS, name: "Role Subscription Trials" },
+  "GUILD_ROLE_SUBSCRIPTION_PURCHASE_FEEDBACK_LOOP": { icon: GUILD_FEATURE_ICONS.ROLE_SUBSCRIPTIONS, name: "Role Subscription Feedback Loop" },
+  "GUILD_ROLE_SUBSCRIPTIONS": { icon: GUILD_FEATURE_ICONS.ROLE_SUBSCRIPTIONS, name: "Role Subscriptions" },
+  "HAD_EARLY_ACTIVITIES_ACCESS": { icon: GUILD_FEATURE_ICONS.ACTIVITY },
+  "HAS_DIRECTORY_ENTRY": { icon: GUILD_FEATURE_ICONS.DIRECTORY },
+  "HUB": { icon: GUILD_FEATURE_ICONS.EDUCATION, name: "School Hub" },
+  "INCREASED_THREAD_LIMIT": { icon: GUILD_FEATURE_ICONS.THREAD },
+  "INTERNAL_EMPLOYEE_ONLY": { icon: GUILD_FEATURE_ICONS.STAFF, name: "Internal Employee Server" },
+  "INVITE_SPLASH": { icon: GUILD_FEATURE_ICONS.IMAGE },
+  "INVITES_DISABLED": { icon: GUILD_FEATURE_ICONS.DISCOVERY_DISABLED },
+  "LINKED_TO_HUB": { icon: GUILD_FEATURE_ICONS.DIRECTORY },
+  "MEMBER_PROFILES": { icon: GUILD_FEATURE_ICONS.PROFILE },
+  "MEMBER_VERIFICATION_GATE_ENABLED": { icon: GUILD_FEATURE_ICONS.WAVE, name: "Membership Screening" },
+  "MEMBER_VERIFICATION_MANUAL_APPROVAL": { icon: GUILD_FEATURE_ICONS.WAVE, name: "Membership Screening Manual Approval" },
+  "MOBILE_WEB_ROLE_SUBSCRIPTION_PURCHASE_PAGE": { icon: GUILD_FEATURE_ICONS.ROLE_SUBSCRIPTIONS, name: "Mobile Role Subscriptions Purchase Page" },
+  "MONETIZATION_ENABLED": { icon: GUILD_FEATURE_ICONS.WALLET },
+  "MORE_EMOJI": { icon: GUILD_FEATURE_ICONS.EMOJI },
+  "MORE_STICKERS": { icon: GUILD_FEATURE_ICONS.STICKER },
+  "NEWS": { icon: GUILD_FEATURE_ICONS.MEGAPHONE, name: "Announcement Channels" },
+  "NEW_THREAD_PERMISSIONS": { icon: GUILD_FEATURE_ICONS.THREAD },
+  "PARTNERED": { icon: GUILD_FEATURE_ICONS.PARTNER },
+  "PREMIUM_TIER_3_OVERRIDE": { icon: GUILD_FEATURE_ICONS.STAFF },
+  "PREVIEW_ENABLED": { icon: GUILD_FEATURE_ICONS.EYE },
+  "PRIVATE_THREADS": { icon: GUILD_FEATURE_ICONS.PRIVATE_THREAD },
+  "RAID_ALERTS_ENABLED": { icon: GUILD_FEATURE_ICONS.MOD },
+  "RESTRICT_SPAM_RISK_GUILDS": { icon: GUILD_FEATURE_ICONS.EYE_HIDDEN },
+  "RELAY_ENABLED": { icon: "🏃" },
+  "ROLE_ICONS": { icon: GUILD_FEATURE_ICONS.ROLE_ICONS },
+  "ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE": { icon: GUILD_FEATURE_ICONS.ROLE_SUBSCRIPTIONS },
+  "ROLE_SUBSCRIPTIONS_ENABLED": { icon: GUILD_FEATURE_ICONS.ROLE_SUBSCRIPTIONS, name: "Role Subscriptions" },
+  "SEVEN_DAY_THREAD_ARCHIVE": { icon: GUILD_FEATURE_ICONS.CLOCK, name: "7 Day Thread Archiving" },
+  "SOUNDBOARD": { icon: GUILD_FEATURE_ICONS.SOUNDBOARD },
+  "TEXT_IN_STAGE_ENABLED": { icon: GUILD_FEATURE_ICONS.MESSAGE, name: "Text in Stages" },
+  "TEXT_IN_VOICE_ENABLED": { icon: GUILD_FEATURE_ICONS.MESSAGE, name: "Text in Voice" },
+  "THREAD_DEFAULT_AUTO_ARCHIVE_DURATION": { icon: GUILD_FEATURE_ICONS.CLOCK },
+  "THREADS_ENABLED": { icon: GUILD_FEATURE_ICONS.THREAD },
+  "THREADS_ENABLED_TESTING": { icon: GUILD_FEATURE_ICONS.THREAD, name: "Thread Testing Enabled" },
+  "THREADS_ONLY_CHANNEL": { icon: GUILD_FEATURE_ICONS.THREAD },
+  "THREE_DAY_THREAD_ARCHIVE": { icon: GUILD_FEATURE_ICONS.CLOCK, name: "3 Day Thread Archiving" },
+  "TICKETED_EVENTS_ENABLED": { icon: GUILD_FEATURE_ICONS.TICKET },
+  "VANITY_URL": { icon: GUILD_FEATURE_ICONS.STAR, name: "Vanity URL" },
+  "VERIFIED": { icon: GUILD_FEATURE_ICONS.VERIFIED },
+  "VIP_REGIONS": { icon: GUILD_FEATURE_ICONS.AUDIO, name: "VIP Regions" },
+  "VOICE_CHANNEL_EFFECTS": { icon: GUILD_FEATURE_ICONS.STAR },
+  "WELCOME_SCREEN_ENABLED": { icon: GUILD_FEATURE_ICONS.WAVE },
+  "LURKABLE": { icon: GUILD_FEATURE_ICONS.EYE, name: "Lurking Enabled" },
+  "MEMBER_LIST_DISABLED": { icon: GUILD_FEATURE_ICONS.PEOPLE_RED },
+  "PUBLIC_DISABLED": { icon: GUILD_FEATURE_ICONS.GLOBE },
+  "PUBLIC": { icon: GUILD_FEATURE_ICONS.GLOBE },
+  "ROLE_SUBSCRIPTIONS_ENABLED_FOR_PURCHASE": { icon: GUILD_FEATURE_ICONS.ROLE_SUBSCRIPTIONS },
+  "TICKETING_ENABLED": { icon: GUILD_FEATURE_ICONS.TICKET }
 })
 
 module.exports.TIKTOK_VOICES = [
-  {
-    "name": "English Singing - Tenor",
-    "value": "en_male_m03_lobby"
-  },
-  {
-    "name": "English Singing - Alto",
-    "value": "en_female_f08_salut_damour"
-  },
-  {
-    "name": "English Singing - Warmy Breeze",
-    "value": "en_female_f08_warmy_breeze"
-  },
-  {
-    "name": "English Singing - Sunshine Soon",
-    "value": "en_male_m03_sunshine_soon"
-  },
-  {
-    "name": "English Narration - Normal",
-    "value": "en_male_narration",
-  },
-  {
-    "name": "English Narration - Funny",
-    "value": "en_male_funny",
-  },
-  {
-    "name": "English Narration - Emotional",
-    "value": "en_female_emotional",
-  },
-  {
-    "name": "English AU - Female",
-    "value": "en_au_001"
-  },
-  {
-    "name": "English AU - Male",
-    "value": "en_au_002"
-  },
-  {
-    "name": "English UK - Male",
-    "value": "en_uk_001"
-  },
-  {
-    "name": "English US - Female",
-    "value": "en_us_001"
-  },
-  {
-    "name": "English US - Male",
-    "value": "en_us_006"
-  },
-  {
-    "name": "Ghost Face (Disney)",
-    "value": "en_us_ghostface"
-  },
-  {
-    "name": "Chewbacca (Disney)",
-    "value": "en_us_chewbacca"
-  },
-  {
-    "name": "C3PO (Disney)",
-    "value": "en_us_c3po"
-  },
-  {
-    "name": "Stitch (Disney)",
-    "value": "en_us_stitch"
-  },
-  {
-    "name": "Stormtrooper (Disney)",
-    "value": "en_us_stormtrooper"
-  },
-  {
-    "name": "Rocket (Disney)",
-    "value": "en_us_rocket"
-  },
-  {
-    "name": "French - Male",
-    "value": "fr_001"
-  },
-  {
-    "name": "German - Female",
-    "value": "de_001"
-  },
-  {
-    "name": "German - Male",
-    "value": "de_002"
-  },
-  {
-    "name": "Spanish - Male",
-    "value": "es_002"
-  },
-  {
-    "name": "Spanish MX - Male",
-    "value": "es_mx_002"
-  }
+  { name: "English Singing - Tenor", value: "en_male_m03_lobby" },
+  { name: "English Singing - Alto", value: "en_female_f08_salut_damour" },
+  { name: "English Singing - Warmy Breeze", value: "en_female_f08_warmy_breeze" },
+  { name: "English Singing - Sunshine Soon", value: "en_male_m03_sunshine_soon" },
+  { name: "English Narration - Normal", value: "en_male_narration" },
+  { name: "English Narration - Funny", value: "en_male_funny" },
+  { name: "English Narration - Emotional", value: "en_female_emotional" },
+  { name: "English AU - Female", value: "en_au_001" },
+  { name: "English AU - Male", value: "en_au_002" },
+  { name: "English UK - Male", value: "en_uk_001" },
+  { name: "English US - Female", value: "en_us_001" },
+  { name: "English US - Male", value: "en_us_006" },
+  { name: "Ghost Face (Disney)", value: "en_us_ghostface" },
+  { name: "Chewbacca (Disney)", value: "en_us_chewbacca" },
+  { name: "C3PO (Disney)", value: "en_us_c3po" },
+  { name: "Stitch (Disney)", value: "en_us_stitch" },
+  { name: "Stormtrooper (Disney)", value: "en_us_stormtrooper" },
+  { name: "Rocket (Disney)", value: "en_us_rocket" },
+  { name: "French - Male", value: "fr_001" },
+  { name: "German - Female", value: "de_001" },
+  { name: "German - Male", value: "de_002" },
+  { name: "Spanish - Male", value: "es_002" },
+  { name: "Spanish MX - Male", value: "es_mx_002" }
 ]
 
 module.exports.PLAYHT_VOICES = [
-  {
-    "name": "Conrad (German)",
-    "value": "de-DE-ConradNeural"
-  }
+  { name: "Conrad (German)", value: "de-DE-ConradNeural" }
 ]
 
 module.exports.IMTRANSLATOR_VOICES = [
-  {
-    "name": "English (Male)",
-    "value": "en"
-  },
-  {
-    "name": "English (Female)",
-    "value": "enf"
-  },
-  {
-    "name": "Chinese (Female)",
-    "value": "zh"
-  },
-  {
-    "name": "Spanish (Carlos)",
-    "value": "es"
-  },
-  {
-    "name": "Russian (Female)",
-    "value": "ru"
-  },
-  {
-    "name": "French (Female)",
-    "value": "fr"
-  },
-  {
-    "name": "German (Male)",
-    "value": "de"
-  },
-  {
-    "name": "Italian (Male)",
-    "value": "it"
-  },
-  {
-    "name": "Portugese (Female)",
-    "value": "pt"
-  },
-  {
-    "name": "Japanese (Female)",
-    "value": "ja"
-  },
-  {
-    "name": "Korean (Female)",
-    "value": "ko"
-  }
+  { name: "English (Male)", value: "en" },
+  { name: "English (Female)", value: "enf" },
+  { name: "Chinese (Female)", value: "zh" },
+  { name: "Spanish (Carlos)", value: "es" },
+  { name: "Russian (Female)", value: "ru" },
+  { name: "French (Female)", value: "fr" },
+  { name: "German (Male)", value: "de" },
+  { name: "Italian (Male)", value: "it" },
+  { name: "Portugese (Female)", value: "pt" },
+  { name: "Japanese (Female)", value: "ja" },
+  { name: "Korean (Female)", value: "ko" }
 ]
 
 module.exports.TRANSLATE_LANGUAGES = Object.freeze({
@@ -572,7 +371,7 @@ module.exports.TRANSLATE_LANGUAGES = Object.freeze({
   'zu': 'Zulu'
 })
 
-module.exports.SUPPORTED_EMOJI_PLATFORMS = [
+module.exports.EMOJIPEDIA_PLATFORM_TYPES = [
   "apple",
   "google",
   "samsung",
@@ -599,7 +398,8 @@ module.exports.SUPPORTED_EMOJI_PLATFORMS = [
   "emojipedia"
 ]
 
-module.exports.EMOJI_PLATFORM_ALIASES = {
+module.exports.EMOJIPEDIA_PLATFORM_TYPE_ALIASES = {
   "fluent": "microsoft-teams",
-  "twemoji": "twitter"
+  "twemoji": "twitter",
+  "playstation": "sony"
 }

@@ -8,6 +8,10 @@ if(process.env.MAINTOWER_OVERRIDE) maintowerClient = process.env.MAINTOWER_OVERR
 module.exports.maintower = async function (packages, type){
   try{
     let res = await superagent.post(MAINTOWER_BASE_URL + 'invoke')
+      .set({
+        "Authorization": process.env.api_prod,
+        "x-labscore-client": "labscore/2.0"
+      })
       .query({
         client: maintowerClient,
         type: type

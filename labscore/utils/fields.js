@@ -13,7 +13,7 @@ module.exports.guildFeaturesField = function(g){
       fN.push(n);
       fD[n] = GUILD_FEATURES[feat].icon;
     } else {
-      fN.push(`<:UNKNOWN:878298902971965520> ${feat}`)
+      fN.push(feat);
     }
   }
     
@@ -22,7 +22,9 @@ module.exports.guildFeaturesField = function(g){
     sfN = fN.splice(0, 10)
     let ft = []
     for(const f of sfN){
-      ft.push(`${fD[f]} ${f}`)
+      let ic = fD[f]
+      if(!fD[f]) ic = `<:UNKNOWN:878298902971965520>`
+      ft.push(`${ic} ${f}`)
     }
     featureCards.push({
       name: `​`,

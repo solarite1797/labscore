@@ -1,5 +1,5 @@
 const superagent = require('superagent')
-const { Api, Static, Hosts } = require('./endpoints')
+const { Api, Hosts } = require('./endpoints')
 
 
 async function request(path, type, headers, args, host) {

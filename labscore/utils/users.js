@@ -39,7 +39,7 @@ const { UserFlags } = Constants
 const BADGES = Object.freeze({
   [UserFlags.STAFF]: '<:badge_staff:903276633161609246>',
   [UserFlags.PARTNER]: '<:badge_partner:903276631559389196',
-  [UserFlags.DISCORD_CERTIFIED_MODERATOR]: '<:badge_mod:903276631198695467>',
+  [UserFlags.DISCORD_CERTIFIED_MODERATOR]: '<:badge_mod_new:1049594117849632778>',
   [UserFlags.HYPESQUAD]: '<:badge_hypesquad:903276631408394351>',
   [UserFlags.HYPESQUAD_ONLINE_HOUSE_1]: '<:badge_hypesquad_bravery:903276631790059540>',
   [UserFlags.HYPESQUAD_ONLINE_HOUSE_2]: '<:badge_hypesquad_brilliance:903276631261597706>',

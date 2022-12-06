@@ -1,7 +1,7 @@
 const { Constants, Utils } = require("detritus-client");
 const { emojipedia, emojiKitchen } = require("../../../labscore/api");
 
-const { SUPPORTED_EMOJI_PLATFORMS, EMOJI_PLATFORM_ALIASES } = require("../../../labscore/constants");
+const { EMOJIPEDIA_PLATFORM_TYPES, EMOJIPEDIA_PLATFORM_TYPE_ALIASES } = require("../../../labscore/constants");
 const { createEmbed } = require("../../../labscore/utils/embed");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
@@ -82,9 +82,9 @@ module.exports = {
       // Regular Emoji Handling
       if(emoji.length == 0) return await editOrReply(context, createEmbed("warning", context, "You need to specify an emoji to enlarge."))
 
-      if(!SUPPORTED_EMOJI_PLATFORMS.includes(args.type.toLowerCase())){
-        if(!EMOJI_PLATFORM_ALIASES[args.type.toLowerCase()]) return await editOrReply(context, createEmbed("warning", context, "Invalid platform type (" + args.type.toLowerCase() + ")"))
-        args.type = EMOJI_PLATFORM_ALIASES[args.type.toLowerCase()]
+      if(!EMOJIPEDIA_PLATFORM_TYPES.includes(args.type.toLowerCase())){
+        if(!EMOJIPEDIA_PLATFORM_TYPE_ALIASES[args.type.toLowerCase()]) return await editOrReply(context, createEmbed("warning", context, "Invalid platform type (" + args.type.toLowerCase() + ")"))
+        args.type = EMOJIPEDIA_PLATFORM_TYPE_ALIASES[args.type.toLowerCase()]
       }
 
       let emojipediaResult = await emojipedia(context, emoji[0])
