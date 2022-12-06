@@ -54,7 +54,7 @@ function createCommandPage(context, prefix, command){
     for(const a of command.argParser.args){
       let argument = `-${a._name} <${a._type.replace('bool','true/false')}>`
       argument = pill(argument)
-      if(a.help) argument += `  ${a.help}`
+      if(a.help) argument += ` ​ ${a.help}`
       argument += `\n ​ ​  ​ ​ ${smallPill(`default: ${a.default}`)} ​ ​ `
       if(!a.required) argument += smallPill('optional')
       args.push(argument)
