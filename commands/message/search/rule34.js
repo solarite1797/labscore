@@ -46,13 +46,15 @@ module.exports = {
   label: 'query',
   aliases: ['r34'],
   metadata: {
-    description: 'Returns image search results from various rule34-focused sites.\n\nSupported Sites: `' + Object.keys(SITES).join(', ') + '`',
+    description: 'Returns image search results from various rule34-focused sites.',
+    description_short: 'Rule34 Search',
+    explicit: true,
     examples: ['r34 sex -site rule34'],
     category: 'search',
     usage: 'rule34 <query> [-site <service>]'
   },
   args: [
-    {name: 'site', default: 'rule34'}
+    {name: 'site', default: 'rule34', type: 'string', help: `Site to search on \` ${Object.keys(SITES).join(', ')} \``}
   ],
   run: async (context, args) => {
     context.triggerTyping();

@@ -10,6 +10,7 @@ module.exports = {
   aliases: ['t2i'],
   metadata: {
     description: 'Generates an image with DeepAI Text2Image using a text prompt.',
+    description_short: 'Image from text prompt',
     examples: ['text2image Mushroom'],
     category: 'image',
     usage: 'text2image <image>'

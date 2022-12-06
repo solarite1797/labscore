@@ -14,6 +14,7 @@ module.exports = {
   aliases: ['aud'],
   metadata: {
     description: '**Audio Detection**\nUsing the audio command without replying to a message will try to identify the song in the most recent video in chat.\n\n**Music Platform Links**\n__Replying__ to a message while using this command will return a list of music platforms the provided music (link) is available on.',
+    description_short: 'Audio detection',
     examples: ['aud'],
     category: 'search',
     usage: 'audio'

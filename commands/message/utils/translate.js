@@ -13,13 +13,14 @@ module.exports = {
   aliases: ['tr'],
   metadata: {
     description: 'Translates text. Supports automatic source language detection.',
+    description_short: 'Translates text',
     examples: ['tr groß nussig -from de -to en'],
     category: 'utils',
     usage: `tr <text> [-to <target language>] [-from <origin language>]`
   },
   args: [
-    {name: 'to', default: 'en'},
-    {name: 'from', default: 'auto'}
+    {name: 'to', default: 'en', type: 'language', help: "Target Language"},
+    {name: 'from', default: 'auto', type: 'language', help: "Source Language"}
   ],
   run: async (context, args) => {
     await context.triggerTyping();

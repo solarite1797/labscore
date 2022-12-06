@@ -11,6 +11,7 @@ module.exports = {
   label: 'text',
   metadata: {
     description: 'Generates an animated gif with the MakeSweet billboard template.',
+    description_short: 'Animated billboard generation',
     examples: ['billboard'],
     category: 'image',
     usage: 'billboard'

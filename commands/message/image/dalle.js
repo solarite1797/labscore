@@ -9,6 +9,7 @@ module.exports = {
   aliases: ['craiyon'],
   metadata: {
     description: 'Uses Craiyon to generate four images from a text prompt.',
+    description_short: 'Craiyon AI image generation',
     examples: ['dalle'],
     category: 'image',
     usage: 'dalle <text>'

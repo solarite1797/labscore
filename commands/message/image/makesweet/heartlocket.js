@@ -11,6 +11,7 @@ module.exports = {
   label: 'text',
   metadata: {
     description: 'Generates an animated gif with the MakeSweet heart locket template. Accepts text as an optional input.',
+    description_short: 'Animated heart locket generation',
     examples: ['heartlocket Big Nutty'],
     category: 'image',
     usage: 'heartlocket [<text>]'

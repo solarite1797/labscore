@@ -9,6 +9,7 @@ module.exports = {
   aliases: ['sr'],
   metadata: {
     description: 'Upscales an image with SuperResolution.',
+    description_short: 'SuperResolution upscaling',
     examples: ['superresolution'],
     category: 'image',
     usage: 'superresolution <image>'

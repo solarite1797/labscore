@@ -11,12 +11,13 @@ module.exports = {
   label: 'to',
   metadata: {
     description: 'Uses Optical Character Recognition to translate text in an image.',
+    description_short: 'Image Text Translation',
     examples: ['ocrtr en'],
     category: 'utils',
     usage: 'ocrtr <language> [-from <origin language>]'
   },
   args: [
-    {name: 'from', default: 'auto'}
+    {name: 'from', default: 'auto', type: 'string', help: "Language to translate from"}
   ],
   run: async (context, args) => {
     context.triggerTyping();

@@ -20,16 +20,17 @@ module.exports = {
   name: 'art',
   aliases: ['wallpaper'],
   metadata: {
-    description: 'Creates colorful generative art created by JetBrains LIMB.',
+    description: 'Creates colorful generative art using JetBrains LIMB.',
+    description_short: 'AI wallpaper generation',
     examples: ['art -type wallpaper -seed 839648 -variance 8866 -rotate 1', 'wallpaper -type phone'],
     category: 'fun',
     usage: `art [-type <${Object.keys(SIZES).join('|')}>] [-seed <10000-999999>] [-variance <1000-9999>] [-rotate <0-360>]`
   },
   args: [
-    { name: 'type', default: 'wallpaper', required: false },
-    { name: 'seed', default: 'rand', required: false },
-    { name: 'variance', default: 'rand', required: false },
-    { name: 'rotate', default: 'rand', required: false }
+    { name: 'type', default: 'wallpaper', required: false, help: `Image Type \` ${Object.keys(SIZES).join(', ')} \`` },
+    { name: 'seed', default: 'rand', required: false, help: "Image Seed (10000-999999)" },
+    { name: 'variance', default: 'rand', required: false, help: "Variance (1000-9999)" },
+    { name: 'rotate', default: 'rand', required: false, help: "Rotation amount (0-360)" }
   ],
   run: async (context, args) => {
     let response = await editOrReply(context, createEmbed("loading", context, `Generating image...`))

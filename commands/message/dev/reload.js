@@ -5,6 +5,7 @@ module.exports = {
   aliases: ["rl"],
   metadata: {
     description: 'Reloads commands on all shards.',
+    description_short: 'Bot reload',
     examples: ['reload'],
     category: 'dev',
     usage: 'reload'

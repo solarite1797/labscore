@@ -1,4 +1,4 @@
-const { codeblock, highlight, icon, link, pill } = require('../../../labscore/utils/markdown')
+const { codeblock, highlight, icon, link, pill, smallPill } = require('../../../labscore/utils/markdown')
 const { createEmbed, formatPaginationEmbeds } = require('../../../labscore/utils/embed')
 
 const { DISCORD_INVITES } = require('../../../labscore/constants')
@@ -45,8 +45,24 @@ function createCommandPage(context, prefix, command){
     alias += "\n"
   }
 
+  let explicit = '';
+  if(command.metadata.explicit) explicit = `\n${icon('nsfw')} This command contains explicit content and can only be used in Age-Restricted channels. ${link("https://support.discord.com/hc/en-us/articles/115000084051-Age-Restricted-Channels-and-Content", "Learn More")}\n`
+
+  // Render argument pills if present
+  let args = [];
+  if(command.argParser.args){
+    for(const a of command.argParser.args){
+      let argument = `-${a._name} <${a._type.replace('bool','true/false')}>`
+      argument = pill(argument)
+      if(a.help) argument += `  ${a.help}`
+      argument += `\n ​ ​  ​ ​ ${smallPill(`default: ${a.default}`)} ​ ​ `
+      if(!a.required) argument += smallPill('optional')
+      args.push(argument)
+    }
+  }
+
   let page = createEmbed("default", context, {
-    description: `${icon("command")}  ${pill(command.name)}\n${alias}\n${command.metadata.description}`,
+    description: `${icon("command")}  ${pill(command.name)}\n${alias}${explicit}\n${command.metadata.description}\n\n${args.join('\n\n')}`,
     fields: []
   })
 
@@ -86,6 +102,7 @@ module.exports = {
   label: 'command',
   metadata: {
     description: 'List all commands, get more information about individual commands.',
+    description_short: 'Display dommand list',
     examples: ['help ping'],
     category: 'core',
     usage: 'help [<command>]'
@@ -96,7 +113,10 @@ module.exports = {
       let results = []
       
       for(const c of context.commandClient.commands){
-        if(c.name.includes(args.command) || c.aliases.filter((f)=>{return f.includes(args.command)}).length >= 1) results.push(c)
+        if(c.name.includes(args.command) || c.aliases.filter((f)=>{return f.includes(args.command)}).length >= 1){
+          if(c.metadata.explicit && !context.channel.nsfw) continue;
+          results.push(c)
+        }
       }
 
       let pages = []
@@ -109,7 +129,7 @@ module.exports = {
         // Command overview
 
         let cmds = results.map((m)=>{return m.name})
-        let dscs = results.map((m)=>{return m.metadata.description})
+        let dscs = results.map((m)=>{return m.metadata.description_short})
         pages.push({embeds:[
           createEmbed("default", context, {
             description: `Check pages for detailed command descriptions.\n\n` + renderCommandList(cmds, dscs, 15) + `\n\n${icon("question")} Need help with something else? Contact us via our ${link(DISCORD_INVITES.support, "Support Server")}.`
@@ -141,10 +161,11 @@ module.exports = {
       let prefix = context.commandClient.prefixes.custom.first()
       for(const c of context.commandClient.commands){
         if(!categories[c.metadata.category]) continue;
+        if(c.metadata.explicit && !context.channel.nsfw) continue;
         if(!commands[c.metadata.category]) commands[c.metadata.category] = []
         if(!descriptions[c.metadata.category]) descriptions[c.metadata.category] = []
         commands[c.metadata.category].push(`${c.name}`);
-        descriptions[c.metadata.category].push(`${c.metadata.description}`);
+        descriptions[c.metadata.category].push(`${c.metadata.description_short}`);
       }
 
       let pages = []

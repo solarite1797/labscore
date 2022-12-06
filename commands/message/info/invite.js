@@ -9,6 +9,7 @@ module.exports = {
   aliases: ['inviteinfo'],
   metadata: {
     description: 'Displays information about a discord invite code.',
+    description_short: 'Invite link information',
     examples: ['invite discord-townhall'],
     category: 'info',
     usage: 'invite <invite code>'

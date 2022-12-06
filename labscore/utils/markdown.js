@@ -27,6 +27,10 @@ module.exports.pill = function(content){
   return "  **` " + content + "  `**"
 }
 
+module.exports.smallPill = function(content){
+  return "  ` " + content + " `"
+}
+
 module.exports.iconPill = function(icon, content){
   if(!ICONS[icon]) icon = "question"
   return ICONS[icon] + "  **` " + content + "  `**"

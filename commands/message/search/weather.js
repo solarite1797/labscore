@@ -10,6 +10,7 @@ module.exports = {
   label: 'query',
   metadata: {
     description: 'Displays information about the weather.',
+    description_short: 'Weather information',
     examples: ['weather Berlin'],
     category: 'search',
     usage: 'weather <location>'

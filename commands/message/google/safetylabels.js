@@ -8,6 +8,7 @@ module.exports = {
   name: 'safetylabels',
   metadata: {
     description: 'Applies detection labels for potentially sensitive content of an image.',
+    description_short: 'Sentivite content detection labels',
     examples: ['safetylabels'],
     category: 'utils',
     usage: 'safetylabels <attachment>'

@@ -9,14 +9,15 @@ module.exports = {
   name: "dev",
   metadata: {
     description: 'Evaluate code.',
+    description_short: 'Bot eval',
     examples: ['dev console.log(\'ping\'); -async false'],
     category: 'dev',
     usage: 'eval <code> [-async <true|false>] [-noreply <true|false>] [-jsonspacing <integer>]'
   },
   args: [
-    { default: false, name: "noreply", type: "bool" },
-    { default: 2, name: "jsonspacing", type: "number" },
-    { default: true, name: "async", type: "bool" }
+    { default: false, name: "noreply", type: "bool", help: "Reply with evaluated output" },
+    { default: 2, name: "jsonspacing", type: "number", help: "Spacing for formatted json" },
+    { default: true, name: "async", type: "bool", help: "Async evaluation" }
   ],
   onBefore: context => context.user.isClientOwner,
   onCancel: context =>

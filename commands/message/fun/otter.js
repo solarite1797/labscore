@@ -7,6 +7,7 @@ module.exports = {
   name: 'otter',
   metadata: {
     description: 'Displays a random image containing otters.',
+    description_short: 'Otter images',
     examples: ['otter'],
     category: 'fun',
     usage: `otter`

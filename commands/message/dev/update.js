@@ -8,12 +8,13 @@ module.exports = {
   name: "update",
   metadata: {
     description: 'Fetches latest bot version.',
+    description_short: 'Bot update',
     examples: ['update'],
     category: 'dev',
     usage: 'update [-force true]'
   },
   args: [
-    { default: false, name: "force", type: "bool" }
+    { default: false, name: "force", type: "bool", help: "Force update" }
   ],
   onBefore: context => context.user.isClientOwner,
   onCancel: context =>

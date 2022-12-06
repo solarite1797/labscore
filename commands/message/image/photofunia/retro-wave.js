@@ -9,13 +9,14 @@ module.exports = {
   label: 'text',
   metadata: {
     description: 'Generates an image with a retro style.',
+    description_short: 'Retro-styled text',
     examples: ['retro cyberspace|chaos|crazy'],
     category: 'image',
     usage: 'retro <line1|line2|line3> [-background <1-5>] [-style <1-4>]'
   },
   args: [
-    {default: 5, name: 'background', type: 'integer'},
-    {default: 4, name: 'style', type: 'integer'},
+    {default: 5, name: 'background', type: 'integer', help: "Background Style ` 1, 2, 3, 4, 5 `"},
+    {default: 4, name: 'style', type: 'integer', help: "Text Style ` 1, 2, 3, 4 `"},
   ],
   run: async (context, args) => {
     context.triggerTyping();

@@ -8,9 +8,10 @@ module.exports = {
   aliases: ['a'],
   metadata: {
     description: 'Displays someones discord avatar. Accepts IDs, Mentions, or Usernames.',
+    description_short: 'User avatar',
     examples: ['avatar labsCore'],
     category: 'info',
-    usage: 'avatar [<id|user>]'
+    usage: 'avatar [<user>]'
   },
   run: async (context, args) => {
     context.triggerTyping();

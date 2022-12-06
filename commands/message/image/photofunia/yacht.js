@@ -9,6 +9,7 @@ module.exports = {
   label: 'text',
   metadata: {
     description: 'Generates an image with custom text on a yacht.',
+    description_short: 'Custom text on a yacht',
     examples: ['yacht Im on a boat.'],
     category: 'image',
     usage: 'yacht <text>'

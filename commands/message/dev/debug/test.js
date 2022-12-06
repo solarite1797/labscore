@@ -8,10 +8,16 @@ module.exports = {
   label: 'text',
   metadata: {
     description: 'test',
+    description_short: 'Bot test',
     examples: ['test'],
     category: 'dev',
     usage: 'test'
   },
+  args: [
+    { default: false, name: "noreply", type: "bool", help: "Should this command return the output?" },
+    { default: 2, name: "jsonspacing", type: "number", help: "JSON spacing sizes" },
+    { default: true, name: "async", type: "bool", help: "Compute async?" }
+  ],
   run: async (context, args) => {
     if(context.user.id !== "223518178100248576") return;
     let image = await getRecentImage(context, 50)

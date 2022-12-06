@@ -12,9 +12,10 @@ module.exports = {
   aliases: ['u', 'profile'],
   metadata: {
     description: 'Displays information about a discord user. Accepts IDs, Mentions and Usernames.',
+    description_short: 'User information',
     examples: ['user labsCore'],
     category: 'info',
-    usage: 'user [<id|user>]'
+    usage: 'user [<user>]'
   },
   run: async (context, args) => { 
     context.triggerTyping();

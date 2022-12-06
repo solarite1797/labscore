@@ -12,6 +12,7 @@ module.exports = {
   label: 'text',
   metadata: {
     description: 'Uses InferKit to generate text from a small input snippet.',
+    description_short: 'AI text generation',
     examples: ['complete The Fitness Gram Pacer'],
     category: 'fun',
     usage: 'inferkit <prompt>'

@@ -11,6 +11,7 @@ module.exports = {
   label: 'text',
   metadata: {
     description: 'Generates an animated gif with the MakeSweet circuit board template.',
+    description_short: 'Animated circuit board generation',
     examples: ['circuitboard'],
     category: 'image',
     usage: 'circuitboard'

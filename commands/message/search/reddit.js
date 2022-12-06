@@ -48,12 +48,13 @@ module.exports = {
   aliases: ['r'],
   metadata: {
     description: 'Returns search results from reddit. Allows global and subreddit-specific search.',
+    description_short: 'Reddit Search',
     examples: ['reddit r/otters'],
     category: 'search',
     usage: 'reddit [r/<subreddit>] <query> [-type image]'
   },
   args: [
-    { default: "all", name: "type", type: "image" }
+    { default: "all", name: "type", type: "image", help: "Types of post the search query should return" }
   ],
   run: async (context, args) => {
     context.triggerTyping();

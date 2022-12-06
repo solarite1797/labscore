@@ -16,6 +16,7 @@ module.exports = {
   name: "uptime",
   metadata: {
     description: 'Displays the bots uptime.',
+    description_short: 'Bot uptime',
     examples: ['uptime'],
     category: 'dev',
     usage: 'uptime'

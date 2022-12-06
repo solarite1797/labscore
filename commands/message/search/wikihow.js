@@ -27,6 +27,7 @@ module.exports = {
   aliases: ['wh', 'how'],
   metadata: {
     description: 'Returns search results from WikiHow.',
+    description_short: 'WikiHow Search',
     examples: ['wh download'],
     category: 'search',
     usage: 'wikihow <query>'

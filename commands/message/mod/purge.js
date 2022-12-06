@@ -1,7 +1,7 @@
 const { Constants } = require("detritus-client");
 const Permissions = Constants.Permissions;
 
-const { icon } = require("../../../labscore/utils/markdown");
+const { icon, pill } = require("../../../labscore/utils/markdown");
 
 // TODO: copy pasted from v1, rework this eventually
 
@@ -9,14 +9,15 @@ module.exports = {
   label: "filter",
   name: "purge",
   metadata: {
-    description: 'Removes recent messages in chat. Allows you to optionally filter by message content to remove spam.\n\n`-amount` allows you to specify how many messages should be searched (default: 20)\n`-case` specifies if the provided query should be case sensitive or not (default: true)',
+    description: `Removes recent messages in chat. Allows you to optionally filter by message content to remove spam.`,
+    description_short: 'Mass-delete recent messages',
     examples: ['purge Spam -amount 25'],
     category: 'mod',
     usage: 'purge [<content>] [-amount <1-50>] [-case <true|false>]'
   },
   args: [
-    {default: 20, name: 'amount', type: 'integer'},
-    {default: true, name: 'case', type: 'bool'},
+    {default: 20, name: 'amount', type: 'integer', help: "Amount of messages to be checked (1-20)"},
+    {default: true, name: 'case', type: 'bool', help: "If provided, should the search query be case sensitive"},
   ],
   permissionsClient: [Permissions.MANAGE_MESSAGES],
   permissions: [Permissions.MANAGE_MESSAGES],
