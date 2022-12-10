@@ -33,7 +33,7 @@ module.exports = {
     try{
       let t = Date.now();
 
-      let img = await superagent.get(`${process.env.STABLE_DIFFUSION_SERVER}/generate`)
+      let img = await superagent.get(`${process.env.AI_SERVER}/generate`)
         .query({
           prompt: args.query
         })
