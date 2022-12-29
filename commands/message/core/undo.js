@@ -20,7 +20,7 @@ module.exports = {
       let cmds = [];
       let found = 0;
       for(const c of context.commandClient.replies.toArray().reverse()){
-        if(found > args.amount) break;
+        if(found >= args.amount) break;
         if (c.context.channelId !== context.channelId || c.context.userId !== context.userId) continue;
         if (c.context.message.canDelete) cmds.push(c.context.message.id)
         if (c.reply.canDelete && !c.reply.deleted) {
@@ -28,13 +28,13 @@ module.exports = {
           found++;
         }
       }
+      
       if (cmds.length == 1 || !context.canManage) {
-        for (let id of cmds) {
-          await context.channel.deleteMessage(id);
-        }
+        for (let id of cmds) await context.channel.deleteMessage(id);
       } else {
         await context.channel.bulkDelete(cmds);
       }
+
       if(context.canManage) await context.message.delete()
     }catch(e){
       console.log(e)
