@@ -55,6 +55,11 @@ const { maintower } = require('./logging');
 const { icon } = require('./utils/markdown');
 const { editOrReply } = require('./utils/message');
 
+// Delete command responses if the user chooses to delete their trigger or edits the command away
+commandClient.on('commandDelete', async ({context, reply}) => {
+  if(context.message?.deleted && !reply.deleted || !context.message.content.startsWith(commandPrefix)) reply.delete();
+})
+
 commandClient.on('commandRunError', async ({context, error}) => {
   try{
     // Log the error via our maintower service
