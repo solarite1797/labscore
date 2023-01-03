@@ -70,6 +70,7 @@ module.exports = {
       let search = await rule34(context, args.query, args.site.toLowerCase())
       search = search.response
      
+      if(search.body.status == 2) return editOrReply(context, {embeds:[createEmbed("error", context, search.body.message )]})
       if(search.body.data.length == 0) return editOrReply(context, {embeds:[createEmbed("warning", context, `No results found on ${SITES[args.site.toLowerCase()]}.`)]})
 
       let pages = []
