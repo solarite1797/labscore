@@ -9,6 +9,7 @@ const { isSupported } = require("../../../labscore/utils/translate");
 module.exports = {
   name: 'ocrtr',
   label: 'to',
+  aliases: ["octr"],
   metadata: {
     description: 'Uses Optical Character Recognition to translate text in an image.',
     description_short: 'Image Text Translation',
