@@ -5,22 +5,22 @@ const { STATICS } = require('../../../labscore/utils/statics')
 const { getRecentImage } = require("../../../labscore/utils/attachment");
 
 const { paginator } = require('../../../labscore/client');
-const { tineye } = require('../../../labscore/api');
+const { reverseImageSearch } = require('../../../labscore/api');
 
-function createTineyeResultPage(context, result){
+function createReverseImageSearchResultPage(context, result, source){
   let res = {
     "embeds": [
       createEmbed("default", context, {
-        description: `**${link(result.url, result.name)}**\nLast indexed: ${result.date}`,
+        description: `**${link(result.url, result.name)}**`,
         image: {
           url: result.image
         },
         thumbnail: {
-          url: result.cached
+          url: source
         },
         footer: {
-          iconUrl: STATICS.tineye,
-          text: `TinEye • ${context.application.name}`
+          iconUrl: STATICS.google,
+          text: `Google Cloud Vision • ${context.application.name}`
         }
       })
     ]
@@ -31,7 +31,7 @@ function createTineyeResultPage(context, result){
 
 module.exports = {
   name: 'reverse-image',
-  aliases: ['reverse', 'tineye','reverseimage'],
+  aliases: ['reverse','reverseimage'],
   metadata: {
     description: 'Performs a reverse-image-search.',
     description_short: 'Reverse Image Search',
@@ -45,14 +45,14 @@ module.exports = {
       let image = await getRecentImage(context, 50)
       if(!image) return editOrReply(context, { embeds: [createEmbed("warning", context, "No images found.")] })
 
-      let search = await tineye(context, image)
+      let search = await reverseImageSearch(context, image)
       search = search.response
      
       if(search.body.status == 2) return editOrReply(context, {embeds:[createEmbed("error", context, search.body.message)]})
 
       let pages = []
       for(const res of search.body.results){
-        pages.push(createTineyeResultPage(context, res))
+        pages.push(createReverseImageSearchResultPage(context, res, image))
       }
       
       pages = formatPaginationEmbeds(pages)
