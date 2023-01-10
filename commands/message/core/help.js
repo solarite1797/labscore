@@ -102,7 +102,7 @@ module.exports = {
   label: 'command',
   metadata: {
     description: 'List all commands, get more information about individual commands.',
-    description_short: 'Display dommand list',
+    description_short: 'Display command list',
     examples: ['help ping'],
     category: 'core',
     usage: 'help [<command>]'
