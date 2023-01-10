@@ -15,21 +15,22 @@ module.exports = {
     usage: 'stats'
   },
   run: async (context) => {
+    context.triggerTyping();
     try{
       let stats = await getCommandStatistics();
 
       let pages = [];
-      num = 0;
+      let ranking = 1;
       
       for (var i = 0; i < Object.keys(stats).length; i += 20) {
         list = []
         if(pages.length == 0){list.push(`   | Total - ${Object.values(stats).reduce((a, b) => a + b, 0)}`)}
        
         Object.keys(stats).forEach(function(elem){
-          dispnum = `${num}`
-          if(`${num}`.length == 1){dispnum = ` ${num}`}
+          dispnum = `${ranking}`
+          if(`${ranking}`.length == 1){dispnum = ` ${ranking}`}
           list.push(`${dispnum} | ${elem} - ${stats[elem]}`)
-          num++
+          ranking++
         })
 
         pages.push({embeds:[
