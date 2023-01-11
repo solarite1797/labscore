@@ -36,6 +36,10 @@ const Statics = Object.freeze({
       file: "brands/photofunia.png",
       revision: 1
     },
+    quora: {
+      file: "brands/quora.png",
+      revision: 1
+    },
     reddit: {
       file: "brands/reddit.png",
       revision: 0
@@ -94,6 +98,7 @@ module.exports.STATICS = Object.freeze({
   makesweet: staticAsset(Statics.brands.makesweet),
   openweathermap: staticAsset(Statics.brands.openweathermap),
   photofunia: staticAsset(Statics.brands.photofunia),
+  quora: staticAsset(Statics.brands.quora),
   reddit: staticAsset(Statics.brands.reddit),
   tineye: staticAsset(Statics.brands.tineye),
   urbandictionary: staticAsset(Statics.brands.urbandictionary),

@@ -118,6 +118,12 @@ module.exports.googleImages = async function(context, query, nsfw){
   })
 }
 
+module.exports.quora = async function(context, query){
+  return await request(Api.SEARCH_QUORA, "GET", {}, {
+    q: query
+  })
+}
+
 module.exports.reddit = async function(context, query, nsfw = false){
   return await request(Api.SEARCH_REDDIT, "GET", {}, {
     q: query,
