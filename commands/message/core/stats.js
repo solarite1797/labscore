@@ -61,7 +61,6 @@ module.exports = {
         ]
 
         return editOrReply(context, createEmbed("default", context, {
-          //description: codeblock("autohotkey", [`Guilds: ${formatted.guilds}`, `Shard: ${context.shardId + 1}/${context.manager.cluster.shardCount}`, `Memory Usage: ${Math.round(formatted.usage / 1024 / 1024)}MB`])
           description: display.join('\n')
         }))
 
