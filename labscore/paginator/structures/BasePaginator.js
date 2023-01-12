@@ -133,13 +133,13 @@ module.exports = class BasePaginator extends EventEmitter {
     this.pages.push(page)
   }
 
-  async stop(timeout = false) {
+  stop(timeout = false) {
     this.emit("stop", this, timeout);
     this.removeAllListeners();
     const targetIndex = this.client.activeListeners.findIndex(v => v.message.id === this.message.id);
     this.client.activeListeners.splice(targetIndex, 1);
     // Disable components
-    await this.update({components:[]});
+    this.update({components:[]});
     return this;
   }
 
