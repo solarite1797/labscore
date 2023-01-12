@@ -58,9 +58,9 @@ async function quoraPaginator(context, pages, refMappings, currentRef){
       listener.stopWithoutUpdate()
 
       const components = new Components({
-        timeout: 10000,
+        timeout: 100000,
         run: async (sctx) => {
-          if (sctx.userId !== context.userId || !context.values) {
+          if (sctx.userId !== context.userId) {
             return await sctx.respond(InteractionCallbackTypes.DEFERRED_UPDATE_MESSAGE);
           }
           await sctx.editOrRespond({
@@ -110,7 +110,7 @@ async function quoraPaginator(context, pages, refMappings, currentRef){
         options: selectOptions
       })
 
-      await ctx.editOrRespond({components})
+      await ctx.editOrRespond({content: `<@${context.userId}> Select a question.`, components})
     }
   })
 }
