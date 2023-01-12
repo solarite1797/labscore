@@ -4,7 +4,9 @@ const { editOrReply } = require('../../../labscore/utils/message')
 const { STATICS } = require('../../../labscore/utils/statics')
 
 const { paginator } = require('../../../labscore/client');
-const { quora } = require('../../../labscore/api');
+const { quora, quoraResult } = require('../../../labscore/api');
+const { InteractionCallbackTypes } = require('detritus-client/lib/constants');
+const { Components } = require('detritus-client/lib/utils');
 
 function createQuoraAnswerPage(context, question, answer){
   let tags = question.tags.map((t) => {
@@ -39,6 +41,80 @@ function createQuoraAnswerPage(context, question, answer){
   return res;
 }
 
+async function quoraPaginator(context, pages, refMappings, currentRef){
+  const paging = await paginator.createPaginator({
+    context,
+    pages,
+    buttons: [
+      "previous",
+      "next",
+      "search"
+    ]
+  });
+
+  paging.on("interaction", async ({ context: ctx, listener }) => {
+    if(ctx.customId == "search"){
+      // Kill the original paginator and replace it with a select
+      listener.stopWithoutUpdate()
+
+      const components = new Components({
+        timeout: 10000,
+        run: async (sctx) => {
+          if (sctx.userId !== context.userId || !context.values) {
+            return await sctx.respond(InteractionCallbackTypes.DEFERRED_UPDATE_MESSAGE);
+          }
+          await sctx.editOrRespond({
+            embeds: [
+              createEmbed("loading", context, "Loading quora result...")
+            ],
+            components: []
+          })
+          // Get the page reference and fetch the results
+          let ref = refMappings.filter((r) => r.ref == sctx.data.values[0])
+          ref = ref[0]
+          try{
+            let search = await quoraResult(context, ref.link)
+            search = search.response.body
+           
+            if(search.status == 2) return editOrReply(context, {embeds:[createEmbed("error", context, search.message)]})
+            
+            let nextPages = []
+            // Create the initial page
+      
+            for(const answer of search.answers){
+              nextPages.push(createQuoraAnswerPage(context, search.question, answer))
+            }
+            
+            nextPages = formatPaginationEmbeds(nextPages)
+      
+            await quoraPaginator(context, nextPages, refMappings, sctx.data.values[0])
+            
+          }catch(e){
+            console.log(e)
+            return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to perform quora search.`)]})
+          }
+        },
+      });
+
+      let selectOptions = refMappings.map((r) => {
+        return {
+          label: r.title,
+          value: r.ref,
+          default: (r.ref == currentRef)
+        }
+      })
+
+      components.addSelectMenu({
+        placeholder: "Select a question.",
+        customId: "quora-select",
+        options: selectOptions
+      })
+
+      await ctx.editOrRespond({components})
+    }
+  })
+}
+
 module.exports = {
   name: 'quora',
   label: 'query',
@@ -67,10 +143,11 @@ module.exports = {
       }
       
       pages = formatPaginationEmbeds(pages)
-      const paging = await paginator.createPaginator({
-        context,
-        pages
-      });
+
+      const refMappings = search.results
+
+      await quoraPaginator(context, pages, refMappings, refMappings[0].ref)
+      
     }catch(e){
       console.log(e)
       return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to perform quora search.`)]})

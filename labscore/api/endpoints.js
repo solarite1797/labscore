@@ -32,6 +32,7 @@ const Api = Object.freeze({
   SEARCH_GOOGLE_IMAGES: '/search/google-images',
   SEARCH_LYRICS: '/search/lyrics',
   SEARCH_QUORA: '/search/quora',
+  SEARCH_QUORA_RESULT: '/search/quora-result',
   SEARCH_REDDIT: '/search/reddit',
   SEARCH_REVERSE_IMAGE: '/search/reverse-image',
   SEARCH_RULE34: '/search/booru',

@@ -124,6 +124,12 @@ module.exports.quora = async function(context, query){
   })
 }
 
+module.exports.quoraResult = async function(context, reference){
+  return await request(Api.SEARCH_QUORA_RESULT, "GET", {}, {
+    ref: reference
+  })
+}
+
 module.exports.reddit = async function(context, query, nsfw = false){
   return await request(Api.SEARCH_REDDIT, "GET", {}, {
     q: query,
