@@ -24,6 +24,12 @@ module.exports = {
   ],
   run: async (context, args) => {
     await context.triggerTyping()
+
+    if (context.message.messageReference) {
+      let msg = await context.message.channel.fetchMessage(context.message.messageReference.messageId)
+      args.emoji = msg.content
+    }
+    
     const { matches } = Utils.regex(
       Constants.DiscordRegexNames.EMOJI,
       args.emoji
