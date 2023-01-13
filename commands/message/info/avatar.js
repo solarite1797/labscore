@@ -1,6 +1,8 @@
-const { createEmbed } = require("../../../labscore/utils/embed");
+const { createEmbed, page } = require("../../../labscore/utils/embed");
 const { editOrReply } = require("../../../labscore/utils/message");
-const { getUser } = require("../../../labscore/utils/users");
+const { getMember } = require("../../../labscore/utils/users");
+
+const { paginator } = require('../../../labscore/client');
 
 module.exports = {
   name: 'avatar',
@@ -15,13 +17,40 @@ module.exports = {
   },
   run: async (context, args) => {
     context.triggerTyping();
-    let u = {};
-    if(!args.user) { u.user = context.user } else { u = await getUser(context, args.user) }
-    if(!u.user) return editOrReply(context, { embeds: [createEmbed("warning", context, "No users found.")] })
-    return editOrReply(context, { embeds: [createEmbed("default", context, {
-      image: {
-        url: u.user.avatarUrl + '?size=4096'
-      }
-    })] })
+    if(!args.user) args.user = context.userId;
+    let u = await getMember(context, args.user)
+    if(!u) return editOrReply(context, { embeds: [createEmbed("warning", context, "No users found.")] })
+
+    if(u.avatar !== null) {
+      let pages = []
+      pages.push(page(createEmbed("default", context, {
+        image: {
+          url: u.avatarUrl + '?size=4096'
+        }
+      })))
+
+      pages.push(page(createEmbed("default", context, {
+        image: {
+          url: u.user.avatarUrl + '?size=4096'
+        }
+      })))
+
+      const paging = await paginator.createPaginator({
+        context,
+        pages,
+        buttons: [{
+          customId: "next",
+          emoji: "🖼️",
+          label: "Switch Avatar",
+          style: 1
+        }]
+      });
+    } else {
+      return editOrReply(context, createEmbed("default", context, {
+        image: {
+          url: u.user.avatarUrl + '?size=4096'
+        }
+      }))
+    }
   },
 };

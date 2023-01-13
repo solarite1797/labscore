@@ -130,3 +130,10 @@ module.exports.formatPaginationEmbeds = function(embeds){
   }
   return formatted;
 }
+
+// Creates a page for our paginator. simple helper so we dont have to do {embeds:[]} every time
+module.exports.page = function(embed){
+  return {
+    embeds: [embed]
+  }
+}
