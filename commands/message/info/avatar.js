@@ -40,8 +40,8 @@ module.exports = {
         pages,
         buttons: [{
           customId: "next",
-          emoji: "🖼️",
-          label: "Switch Avatar",
+          emoji: "<:images:1063477061156605982>",
+          label: "Toggle Server/Profile",
           style: 1
         }]
       });
