@@ -287,6 +287,12 @@ module.exports.inferkit = async function(context, input){
   })
 }
 
+module.exports.perspective = async function(context, content = []){
+  return await request(Api.UTILS_PERSPECTIVE, "GET", {}, {
+    input: content.join('\n\n')
+  })
+}
+
 module.exports.screenshot = async function(context, url, nsfw){
   return await request(Api.UTILS_SCREENSHOT, "GET", {}, {
     url: url,
