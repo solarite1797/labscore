@@ -4,7 +4,7 @@ const { format } = require("../../../labscore/utils/ansi");
 const { createEmbed } = require("../../../labscore/utils/embed");
 const Permissions = Constants.Permissions;
 
-const { icon, pill, codeblock, iconPill, highlight } = require("../../../labscore/utils/markdown");
+const { icon, codeblock, iconPill } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 const { getMember } = require("../../../labscore/utils/users");
@@ -19,7 +19,6 @@ function getPerspectiveColor(score){
 function formatPerspectiveScores(data){
   let entries = [];
   let srt = [];
-  let len = Math.max(...(Object.keys(data.scores).map(el => el.length))) + 3;
 
   for(const scr of Object.keys(data.scores)){
     let score = data.scores[scr];
@@ -58,10 +57,17 @@ module.exports = {
 
     // let u = await getMember(context, args.input)
     //  if(!u){ // Assume its a prompt
+      let msg = '';
+      if (context.message.messageReference) {
+        msg = await context.message.channel.fetchMessage(context.message.messageReference.messageId)
+        args.input = msg.content
+        msg = `${icon("robouser")} <@${msg.author.id}> (${msg.author.id})\n${codeblock("ansi", [ msg.content ])}\n`
+      }
+
       let perspectiveApi = await perspective(context, [ args.input ])
 
       return await editOrReply(context, { embeds: [createEmbed("default", context, {
-        description: `${iconPill("rules", "Scores")} ${codeblock("ansi", formatPerspectiveScores(perspectiveApi.response.body))}`,
+        description: `${msg}${iconPill("rules", "Scores")} ${codeblock("ansi", formatPerspectiveScores(perspectiveApi.response.body))}`,
         footer: {
           iconUrl: STATICS.perspectiveapi,
           text: `Perspective • ${context.application.name}`
