@@ -12,8 +12,8 @@ const { getMember } = require("../../../labscore/utils/users");
 
 function getPerspectiveColor(score){
   if(score >= 0.9) return "m"
-  if(score >= 0.8) return "r"
-  if(score >= 0.3) return "y"
+  if(score >= 0.76) return "r"
+  if(score >= 0.5) return "y"
   return "g"
 }
 
