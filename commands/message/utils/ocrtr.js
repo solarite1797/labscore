@@ -24,6 +24,7 @@ module.exports = {
     context.triggerTyping();
 
     if(!args.to) args.to = "en"
+    if(args.to.startsWith("-to")) args.to = args.to.replace("-to ", "")
 
     if(!isSupported(args.to)) return editOrReply(context, createEmbed("warning", context, "Invalid language (to)."))
     if(!isSupported(args.from)) return editOrReply(context, createEmbed("warning", context, "Invalid language (from)."))
