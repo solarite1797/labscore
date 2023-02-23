@@ -52,6 +52,7 @@ module.exports = {
       ] })
     }catch(e){
       console.log(e)
+      clearTimeout(noticeTimer)
       await response.edit({embeds:[createEmbed("error", context, `Image generation failed.`)]})
     }
   },
