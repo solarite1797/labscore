@@ -30,7 +30,7 @@ module.exports = {
       }))
     }catch(e){
       console.log(e)
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to modify image.`)]})
+      return editOrReply(context, {embeds:[createEmbed("error", context, `Deepdream timed out.`)]})
     }
   },
 };

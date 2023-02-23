@@ -30,7 +30,7 @@ module.exports = {
       }))
     }catch(e){
       console.log(e)
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to generate image.`)]})
+      return editOrReply(context, {embeds:[createEmbed("error", context, `Text2image timed out.`)]})
     }
   },
 };

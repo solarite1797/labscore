@@ -222,6 +222,13 @@ module.exports.deepdream = async function(context, url){
   })
 }
 
+module.exports.imageedit = async function(context, url, prompt){
+  return await request(Api.IMAGE_IMAGEEDITOR, "GET", {}, {
+    url: url,
+    prompt: prompt
+  })
+}
+
 module.exports.waifu2x = async function(context, url){
   return await request(Api.IMAGE_WAIFU2X, "GET", {}, {
     url: url

@@ -17,6 +17,7 @@ const Api = Object.freeze({
   GOOGLE_VISION_WEBDETECTION: '/google/vision/webdetection',
 
   IMAGE_DEEPDREAM: '/image/deepai/deepdream',
+  IMAGE_IMAGEEDITOR: '/image/deepai/imageedit',
   IMAGE_SUPERRESOLUTION: '/image/deepai/superresolution',
   IMAGE_TEXT2IMAGE: '/image/deepai/text2image',
   IMAGE_WAIFU2X: '/image/deepai/waifu2x',
