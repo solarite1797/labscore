@@ -1,9 +1,8 @@
 const { createEmbed } = require('../../../labscore/utils/embed')
 const { format } = require('../../../labscore/utils/ansi')
 const { editOrReply } = require('../../../labscore/utils/message')
-const { STATICS } = require('../../../labscore/utils/statics')
 
-const { inferkit, textGenerator } = require('../../../labscore/api')
+const superagent = require('superagent')
 const { codeblock } = require('../../../labscore/utils/markdown')
 
 module.exports = {
@@ -20,9 +19,12 @@ module.exports = {
     context.triggerTyping();
     if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
     try{
-      let res = await textGenerator(context, args.text)
+      let res = await superagent.get(`${process.env.AI_SERVER}/ask`)
+      .query({
+        prompt: args.text
+      })
       return editOrReply(context, {embeds:[createEmbed("default", context, {
-        description: codeblock("ansi", [format(args.text, "cyan") + res.response.body.text])
+        description: codeblock("ansi", [format(args.text, "cyan") + res.body.text])
       })]})
     }catch(e){
       console.log(e)
