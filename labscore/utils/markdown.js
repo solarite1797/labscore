@@ -10,7 +10,7 @@ module.exports.highlight = function(content){
 }
 
 module.exports.codeblock = function(type, content){
-  return "```" + type + "\n" + content.join('\n') + "\n```"
+  return "```" + type + "\n" + content.join('\n').replace(/`/g, '`​') + "\n```"
 }
 
 module.exports.link = function(url, masked, tooltip = ""){
