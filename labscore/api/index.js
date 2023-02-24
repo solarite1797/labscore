@@ -307,6 +307,12 @@ module.exports.screenshot = async function(context, url, nsfw){
   })
 }
 
+module.exports.textGenerator = async function(context, input){
+  return await request(Api.UTILS_TEXTGENERATOR, "GET", {}, {
+    input: input
+  })
+}
+
 module.exports.emojiKitchen = async function(emoji){
   return await superagent.get("https://tenor.googleapis.com/v2/featured").query({
     key: process.env.GOOGLE_TENOR_KEY,

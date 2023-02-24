@@ -53,6 +53,7 @@ const Api = Object.freeze({
   UTILS_INFERKIT: '/utils/inferkit',
   UTILS_PERSPECTIVE: '/utils/perspective',
   UTILS_SCREENSHOT: '/utils/screenshot',
+  UTILS_TEXTGENERATOR: '/utils/text-generator',
 })
 
 module.exports = {
