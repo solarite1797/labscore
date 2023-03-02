@@ -11,15 +11,19 @@ function createSearchResultPage(context, result){
   switch(result.type){
     case 1: // Search Result Entry
       res = page(createEmbed("default", context, {
-          description: `**${link(result.url, result.title)}**\n${result.content}`,
+          author: {
+            iconUrl: `https://www.google.com/s2/favicons?domain=${encodeURIComponent(result.url)}&sz=256`,
+            name: result.title,
+            url: result.url
+          },
+          description: result.content,
           footer: {
             iconUrl: STATICS.google,
             text: `Google • ${context.application.name}`
           }
         }))
-        
+
       if(result.thumbnail) res.embeds[0].thumbnail = { url: result.thumbnail };
-      return res;
       break;
     case 2: // Knowledge Graph Entry
       let header = result.card.title;
@@ -39,13 +43,12 @@ function createSearchResultPage(context, result){
         if(cnt.endsWith(" ")) cnt = cnt.substr(0,cnt.length - 1)
         res.embeds[0].description += "\n" + cnt + citation(1, result.card.url, "Source")
       }
-      return res;
       break;
     default:
       res = page(createEmbed("error", context, "Unknown GoogleResult Type: " + result.type))
-      return res;
       break;
   }
+  return res;
 }
 
 module.exports = {
