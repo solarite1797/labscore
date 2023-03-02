@@ -32,7 +32,7 @@ function createWolframPage(context, pod, query, sources){
   if(pod.value && pod.refs) {
     for(const r of pod.refs){
       let src = getWolframSource(r, sources)
-      res.embeds[0].description += citation(r, src.url, src.title)
+      if(src.url) res.embeds[0].description += citation(r, src.url, src.title)
     }
   }
   if(pod.image) res.embeds[0].image = { url: pod.image };
