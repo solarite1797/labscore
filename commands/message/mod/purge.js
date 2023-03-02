@@ -1,7 +1,7 @@
 const { Constants } = require("detritus-client");
 const Permissions = Constants.Permissions;
 
-const { icon, pill } = require("../../../labscore/utils/markdown");
+const { icon } = require("../../../labscore/utils/markdown");
 
 // TODO: copy pasted from v1, rework this eventually
 

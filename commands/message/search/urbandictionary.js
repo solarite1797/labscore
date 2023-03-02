@@ -1,5 +1,5 @@
 const { createEmbed, formatPaginationEmbeds } = require('../../../labscore/utils/embed')
-const { link, icon, highlight, iconPill } = require('../../../labscore/utils/markdown')
+const { link, iconPill } = require('../../../labscore/utils/markdown')
 const { editOrReply } = require('../../../labscore/utils/message')
 const { STATICS } = require('../../../labscore/utils/statics')
 

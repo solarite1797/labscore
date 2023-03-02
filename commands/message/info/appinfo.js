@@ -1,7 +1,8 @@
 const { createEmbed } = require("../../../labscore/utils/embed");
 const { editOrReply } = require("../../../labscore/utils/message");
+const { icon, highlight, link } = require('../../../labscore/utils/markdown');
+
 const superagent = require('superagent');
-const { icon, highlight, link } = require('../../../labscore/utils/markdown')
 
 const applicationFlags = {
   EMBEDDED_RELEASED: 1,

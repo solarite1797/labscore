@@ -1,5 +1,5 @@
 const { createEmbed, formatPaginationEmbeds, page } = require('../../../labscore/utils/embed')
-const { link, pill, citation } = require('../../../labscore/utils/markdown')
+const { link, citation } = require('../../../labscore/utils/markdown')
 const { editOrReply } = require('../../../labscore/utils/message')
 const { STATICS } = require('../../../labscore/utils/statics')
 
