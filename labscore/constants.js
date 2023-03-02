@@ -15,7 +15,7 @@ module.exports.COLORS = Object.freeze({
   error: 15548997,
   success: 6411359,
   warning: 16426522,
-  embed: 3092790,
+  embed: 2829617,
   brand: 6085465,
   nsfw: 15549056
 })
