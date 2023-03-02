@@ -17,6 +17,7 @@ function createSearchResultPage(context, result){
             text: `Google • ${context.application.name}`
           }
         }))
+        
       if(result.thumbnail) res.embeds[0].thumbnail = { url: result.thumbnail };
       return res;
       break;
@@ -24,14 +25,20 @@ function createSearchResultPage(context, result){
       let header = result.card.title;
       if(result.card.url) header = link(result.card.url, result.card.title)
       res = page(createEmbed("default", context, {
-          description: `**${header}**\n*${result.card.description}*\n\n`,
+          description: `**${header}**\n`,
           footer: {
             iconUrl: STATICS.google,
             text: `Google Knowledge Graph • ${context.application.name}`
           }
         }))
+
       if(result.card.image) res.embeds[0].thumbnail = { url: result.card.image };
-      if(result.card.content) res.embeds[0].description += result.card.content.replace(/\n/g, '') + citation(1, result.card.url, "Source")
+      if(result.card.description) res.embeds[0].description += `*${result.card.description}*\n`
+      if(result.card.content){
+        let cnt = result.card.content.replace(/\n/g, '')
+        if(cnt.endsWith(" ")) cnt = cnt.substr(0,cnt.length - 1)
+        res.embeds[0].description += "\n" + cnt + citation(1, result.card.url, "Source")
+      }
       return res;
       break;
     default:
