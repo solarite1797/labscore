@@ -7,7 +7,11 @@ const { paginator } = require('../../../labscore/client');
 
 function createLyricsPage(context, search, fields){
   let em= createEmbed("default", context, {
-    description: `**${search.body.song.title}**\n*Released ${search.body.song.release}*\n\n`,
+    author: {
+      iconUrl: search.body.artist.image,
+      name: search.body.song.title,
+      url: search.body.song.url
+    },
     fields: fields,
     footer: {
       iconUrl: STATICS.genius,
@@ -44,7 +48,6 @@ module.exports = {
           inline: false
         };
         let i = 0;
-        let l = 0;
         for(const c of chunks){
           if(c.length == 0) continue;
           if(i == 0){
@@ -52,17 +55,19 @@ module.exports = {
             i += 1
             continue;
           }
-          cur.value = c.substr(0,1024) + `​`
+          cur.value = c.substr(0,1024)
+          if(cur.value.endsWith('\n\n')) cur.value = cur.value.substr(0,cur.value.length-1)
+          cur.value += `​`
           i = 0
           fields.push(cur)
           cur = {
             inline: false
           }
         }
-      } else { // If we have no chunking to do, just use the entire thing
+      } else {
         fields.push({
-          name: "Lyrics",
-          value: search.body.lyrics.substr(0,900),
+          name: "[Lyrics]",
+          value: search.body.lyrics.substr(0,1024),
           inline: false
         });
       }
