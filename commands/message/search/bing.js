@@ -1,5 +1,5 @@
 const { createEmbed, formatPaginationEmbeds, page } = require('../../../labscore/utils/embed')
-const { link, citation } = require('../../../labscore/utils/markdown')
+const { citation, link } = require('../../../labscore/utils/markdown')
 const { editOrReply } = require('../../../labscore/utils/message')
 const { STATICS } = require('../../../labscore/utils/statics')
 
@@ -11,18 +11,39 @@ function createSearchResultPage(context, result){
   switch(result.type){
     case 1:
       res = page(createEmbed("default", context, {
-        description: `**${link(result.url, result.title)}**\n${result.snippet}`,
+        author: {
+          iconUrl: `https://www.google.com/s2/favicons?domain=${encodeURIComponent(result.url)}&sz=256`,
+          name: result.title,
+          url: result.url
+        },
+        fields: [],
+        description: `${result.snippet}`,
         footer: {
           iconUrl: STATICS.bing,
           text: `Microsoft Bing • ${context.application.name}`
         }
       }))
+      if(result.image) res.embeds[0].thumbnail = { url: result.image }
+      if(result.fields) {
+        let fl = result.fields;
+        while(fl.length >= 1){
+          fields = fl.splice(0, 4)
+          fields = fields.map((f)=>link(f.url, f.title))
+          res.embeds[0].fields.push({
+            name: "​",
+            value: fields.join('\n'),
+            inline: true
+          })
+        }
+      }
       break;
     case 2:
-      let header = result.card.title
-      if(result.card.url) header = link(result.card.url, result.card.title)
       res = page(createEmbed("default", context, {
-        description: `**${header}**\n\n${result.card.description}`,
+        author: {
+          name: result.card.title,
+          url: result.card.url
+        },
+        description: `${result.card.description}`,
         fields: [],
         footer: {
           iconUrl: STATICS.bing,
