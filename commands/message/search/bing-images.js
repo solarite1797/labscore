@@ -10,7 +10,11 @@ function createImageResultPage(context, result){
   let res = {
     "embeds": [
       createEmbed("default", context, {
-        description: `**${link(result.url, result.title)}**`,
+        author: {
+          iconUrl: `https://www.google.com/s2/favicons?domain=${encodeURIComponent(result.url)}&sz=256`,
+          name: result.title,
+          url: result.url
+        },
         image: {
           url: result.image
         },
