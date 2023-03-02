@@ -52,7 +52,6 @@ function createSearchResultPage(context, result){
       break;
   }
    
-  if(result.image) res.embeds[0].thumbnail = { url: result.image }
   return res;
 }
 
