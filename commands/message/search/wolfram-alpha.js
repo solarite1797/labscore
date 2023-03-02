@@ -4,12 +4,23 @@ const { STATICS } = require('../../../labscore/utils/statics')
 
 const { paginator } = require('../../../labscore/client');
 const { wolframAlpha } = require('../../../labscore/api');
+const { citation } = require('../../../labscore/utils/markdown');
 
-function createWolframPage(context, pod){
+function getWolframSource(ref, sources){
+  for(const s of Object.values(sources)){
+    if(s.ref == ref) return s
+  }
+}
+
+function createWolframPage(context, pod, query, sources){
   let res = {
     "embeds": [
       createEmbed("default", context, {
-        description: `**${pod.title}**`,
+        author: {
+          name: pod.title,
+          url: `https://www.wolframalpha.com/input?i=${encodeURIComponent(query)}`
+        },
+        description: undefined,
         footer: {
           iconUrl: STATICS.wolframalpha,
           text: `Wolfram|Alpha • ${context.application.name}`
@@ -17,7 +28,13 @@ function createWolframPage(context, pod){
       })
     ]
   }
-  if(pod.value) res.embeds[0].description = res.embeds[0].description + `\n${pod.value}` 
+  if(pod.value) res.embeds[0].description = pod.value
+  if(pod.value && pod.refs) {
+    for(const r of pod.refs){
+      let src = getWolframSource(r, sources)
+      res.embeds[0].description += citation(r, src.url, src.title)
+    }
+  }
   if(pod.image) res.embeds[0].image = { url: pod.image };
   return res;
 }
@@ -44,7 +61,7 @@ module.exports = {
 
       let pages = []
       for(const res of search.body.data){
-        pages.push(createWolframPage(context, res))
+        pages.push(createWolframPage(context, res, args.query, search.body.sources))
       }
       
       pages = formatPaginationEmbeds(pages)

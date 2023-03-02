@@ -35,13 +35,10 @@ module.exports = {
   label: "input",
   name: "perspective",
   metadata: {
-    // description: `Uses PerspectiveAPI to grade the toxicity of a prompt or user.`,
-    // description_short: 'Toxicity scores for prompts or users.',
     description: `Uses Perspective to judge the toxicity of a prompt.`,
     description_short: `Toxicity scores for prompts.`,
     examples: ['perspective I hate otters.'],
     category: 'mod',
-    // usage: 'perspective <user> OR perspective <prompt>'
     usage: 'perspective <prompt>'
   },
   ratelimit: {
@@ -54,10 +51,6 @@ module.exports = {
     await context.triggerTyping();
     
    try{
-    // The per-user scanning is coming soon ;)
-
-    // let u = await getMember(context, args.input)
-    //  if(!u){ // Assume its a prompt
       let msg = '';
       if (context.message.messageReference) {
         msg = await context.message.channel.fetchMessage(context.message.messageReference.messageId)
@@ -74,36 +67,6 @@ module.exports = {
           text: `Perspective • ${context.application.name}`
         }
       })] })
-    // }
-
-    // let response = await editOrReply(context, { embeds: [createEmbed("loading", context, `Collecting messages...`)] })
-
-    // const messages = await context.message.channel.fetchMessages({limit: args.amount});
-    // 
-    // await response.edit({ embeds: [createEmbed("loading", context, `Analyzing messages...`)] })
-    // 
-    // let messageContent = [];
-
-    // for(const m of messages){
-    //   // User limit
-    //   if(m[1].author.id == u.id && m[1].content.length >= 1) messageContent.push(m[1].content)
-    // }
-
-    // console.log(messageContent)
- 
-    // if(messageContent.length == 0){
-    //   return await response.edit({ embeds: [createEmbed("warning", context, `No content found that could be analyzed.`)] })
-    // }
- 
-    // let perspectiveApi = await perspective(context, messageContent)
- 
-    // return await editOrReply(context, { embeds: [createEmbed("default", context, {
-    //   description: `Analyzed ${iconPill("analytics", `${messageContent.length} Messages`)} by <@${u.id}>.\n\n${formatPerspectiveScores(perspectiveApi.response.body).join('\n')}`,
-    //   footer: {
-    //     iconUrl: STATICS.perspectiveapi,
-    //     text: `Perspective • ${context.application.name}`
-    //   }
-    // })] })
    }catch(e){
     await editOrReply(context, { embeds: [createEmbed("error", context, `Something went wrong.`)] })
     console.log(e)
