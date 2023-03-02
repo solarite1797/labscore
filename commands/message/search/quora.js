@@ -17,7 +17,7 @@ function createQuoraAnswerPage(context, question, answer){
       createEmbed("default", context, {
         title: question.title,
         url: answer.url,
-        description: `${tags.splice(0, 4).join('  ')}\n\n${answer.content.substr(0,2000)}`,
+        description: `${tags.splice(0, 3).join('  ')}\n\n${answer.content.substr(0,2000)}`,
         footer: {
           iconUrl: STATICS.quora,
           text: `Quora • ${context.application.name}`
