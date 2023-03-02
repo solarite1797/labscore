@@ -35,3 +35,14 @@ module.exports.iconPill = function(icon, content){
   if(!ICONS[icon]) icon = "question"
   return ICONS[icon] + "  **` " + content + "  `**"
 }
+
+const SUPERSCRIPT_NUMBERS = ["⁰","¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹"]
+module.exports.citation = function(number = 1, url, tooltip = ""){
+  let formatted = "";
+  for(const n of number.toString().split('')) formatted += SUPERSCRIPT_NUMBERS[parseInt(n)]
+  if(url){
+    if(tooltip.length) tooltip = ` '${tooltip}'`
+    return `[⁽${formatted}⁾](${url}${tooltip})`
+  }
+  return `⁽${formatted}⁾`
+}
