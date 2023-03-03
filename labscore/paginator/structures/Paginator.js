@@ -159,11 +159,6 @@ module.exports = class Paginator {
     }
     if(listener) await listener.stop()
 
-    // No need for a paginator if we only have one page.
-    if(data.pages.length == 1){
-      data.buttons = data.buttons.filter((i)=>!["next","previous"].includes(i))
-    }
-
     const instance = new InteractionPaginator(this, data);
     this.activeListeners.push(instance);
 
@@ -173,6 +168,12 @@ module.exports = class Paginator {
 
     // Edit below to change default button set
     this.buttons = typeof data.buttons !== "object" ? ["previous", "next"] : data.buttons;
+
+    // No need for a paginator if we only have one page.
+    if(data.pages.length == 1){
+      if(this.buttons) this.buttons = this.buttons.filter((i)=>!["next","previous"].includes(i))
+    }
+    
 
     if (instance.commandMessage === null && data.pages) {
       await instance.init();
