@@ -6,7 +6,7 @@ const { lyrics } = require('../../../labscore/api');
 const { paginator } = require('../../../labscore/client');
 
 function createLyricsPage(context, search, fields){
-  let em= createEmbed("default", context, {
+  let em = createEmbed("default", context, {
     author: {
       iconUrl: search.body.artist.image,
       name: search.body.song.title,
@@ -65,11 +65,9 @@ module.exports = {
           }
         }
       } else {
-        fields.push({
-          name: "[Lyrics]",
-          value: search.body.lyrics.substr(0,1024),
-          inline: false
-        });
+        let message = createLyricsPage(context, search, [])
+        message.description = search.body.lyrics.substr(0, 2048)
+        return editOrReply(context, message)
       }
       
       if(fields.length > 3){
