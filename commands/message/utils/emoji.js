@@ -123,9 +123,13 @@ module.exports = {
         return await editOrReply(context, embed)
       }
 
+      // Use the high-res emojipedia icon, if available
+      let ico = `https://abs.twimg.com/emoji/v2/72x72/${toCodePoint(emoji[0])}.png`
+      if(res.data.vendor_images["twitter"]) ico = res.data.vendor_images["twitter"]
+
       return editOrReply(context, createEmbed("default", context, {
         author: {
-          iconUrl: `https://abs.twimg.com/emoji/v2/72x72/${toCodePoint(emoji[0])}.png`,
+          iconUrl: ico,
           name: res.data.name,
           url: res.data.permalink
         },
