@@ -161,12 +161,7 @@ module.exports = class Paginator {
 
     // No need for a paginator if we only have one page.
     if(data.pages.length == 1){
-      let msg = data.pages[0];
-
-      if(!msg.message_reference) msg.reference = true
-      if(!msg.allowedMentions) msg.allowedMentions = {parse: [], repliedUser: false}
-      
-      return await data.context.editOrReply(msg);
+      data.buttons = data.buttons.filter((i)=>!["next","previous"].includes(i))
     }
 
     const instance = new InteractionPaginator(this, data);
