@@ -395,6 +395,7 @@ module.exports.EMOJIPEDIA_PLATFORM_TYPES = [
   "toss-face",
   "microsoft-teams",
   "animated-noto-color-emoji",
+  "twitter-emoji-stickers",
   "emojipedia"
 ]
 

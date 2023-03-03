@@ -3,10 +3,31 @@ const { emojipedia, emojiKitchen } = require("../../../labscore/api");
 
 const { EMOJIPEDIA_PLATFORM_TYPES, EMOJIPEDIA_PLATFORM_TYPE_ALIASES } = require("../../../labscore/constants");
 const { createEmbed } = require("../../../labscore/utils/embed");
+const { citation } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 
 const onlyEmoji = require('emoji-aware').onlyEmoji;
+
+function toCodePoint(unicodeSurrogates, sep) {
+  var
+    r = [],
+    c = 0,
+    p = 0,
+    i = 0;
+  while (i < unicodeSurrogates.length) {
+    c = unicodeSurrogates.charCodeAt(i++);
+    if (p) {
+      r.push((0x10000 + ((p - 0xD800) << 10) + (c - 0xDC00)).toString(16));
+      p = 0;
+    } else if (0xD800 <= c && c <= 0xDBFF) {
+      p = c;
+    } else {
+      r.push(c.toString(16));
+    }
+  }
+  return r.join(sep || '-');
+}
 
 module.exports = {
   label: "emoji",
@@ -89,35 +110,33 @@ module.exports = {
       // Regular Emoji Handling
       if(emoji.length == 0) return await editOrReply(context, createEmbed("warning", context, "You need to specify an emoji to enlarge."))
 
-      if(!EMOJIPEDIA_PLATFORM_TYPES.includes(args.type.toLowerCase())){
-        if(!EMOJIPEDIA_PLATFORM_TYPE_ALIASES[args.type.toLowerCase()]) return await editOrReply(context, createEmbed("warning", context, "Invalid platform type (" + args.type.toLowerCase() + ")"))
-        args.type = EMOJIPEDIA_PLATFORM_TYPE_ALIASES[args.type.toLowerCase()]
-      }
+      if(!EMOJIPEDIA_PLATFORM_TYPES.includes(args.type.toLowerCase()) && EMOJIPEDIA_PLATFORM_TYPE_ALIASES[args.type.toLowerCase()]) args.type = EMOJIPEDIA_PLATFORM_TYPE_ALIASES[args.type.toLowerCase()]
 
-      let emojipediaResult = await emojipedia(context, emoji[0])
-      emojipediaResult = emojipediaResult.response.body
+      let res = await emojipedia(context, emoji[0])
+      res = res.response.body
 
-      if(!emojipediaResult.data.vendor_images[args.type]){
-        let embed = createEmbed("error", context, "No emoji image available for platform " + args.type.toLowerCase() + ".")
+      if(!res.data.vendor_images[args.type]){
+        let embed = createEmbed("error", context, "No emoji image available for platform '" + args.type.toLowerCase() + "'.")
         embed.footer = {
-          text: "Available platforms: " + Object.keys(emojipediaResult.data.vendor_images).join(', ')
+          text: "Available platforms: " + Object.keys(res.data.vendor_images).join(', ').substr(0, 2000)
         }
         return await editOrReply(context, embed)
       }
 
-      return editOrReply(context, {embeds:[
-        createEmbed("default", context, {
-          description: `${emojipediaResult.data.emoji} • **${emojipediaResult.data.name}**`,
-          image: {
-            url: emojipediaResult.data.vendor_images[args.type]
-          },
-          footer: {
-            iconUrl: STATICS.emojipedia,
-            text: `Emojipedia • ${context.application.name}`
-          }
-        })
-      ]})
-      
+      return editOrReply(context, createEmbed("default", context, {
+        author: {
+          iconUrl: `https://abs.twimg.com/emoji/v2/72x72/${toCodePoint(emoji[0])}.png`,
+          name: res.data.name,
+          url: res.data.permalink
+        },
+        image: {
+          url: res.data.vendor_images[args.type]
+        },
+        footer: {
+          iconUrl: STATICS.emojipedia,
+          text: `Emojipedia • ${context.application.name}`
+        }
+      }))
     }
   }
 };
