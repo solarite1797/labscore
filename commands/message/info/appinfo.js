@@ -110,7 +110,7 @@ module.exports = {
 
       content.push(`Max Participants: **${application.max_participants}**`)
       if(application.embedded_activity_config !== null){
-        if(application.embedded_activity_config.supported_platforms) content.push(`Supported Platforms: ${application.embedded_activity_config.supported_platforms.map(t => highlight(t)).join(', ')}`)
+        if(application.embedded_activity_config?.supported_platforms) content.push(`Supported Platforms: ${application.embedded_activity_config.supported_platforms.map(t => highlight(t)).join(', ')}`)
       }
       
       embed.fields.push({
