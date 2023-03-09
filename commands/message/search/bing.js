@@ -1,31 +1,31 @@
 const { createEmbed, formatPaginationEmbeds, page } = require('../../../labscore/utils/embed')
-const { citation, link } = require('../../../labscore/utils/markdown')
+const { citation, link, codeblock } = require('../../../labscore/utils/markdown')
 const { editOrReply } = require('../../../labscore/utils/message')
 const { STATICS } = require('../../../labscore/utils/statics')
 
 const { paginator } = require('../../../labscore/client');
 const { bing } = require('../../../labscore/api');
 
-function createSearchResultPage(context, result){
+function createSearchResultPage(context, entry){
   let res;
-  switch(result.type){
-    case 1:
+  switch(entry.type){
+    case 1: // WebPage
       res = page(createEmbed("default", context, {
         author: {
-          iconUrl: `https://www.google.com/s2/favicons?domain=${encodeURIComponent(result.url)}&sz=256`,
-          name: result.title,
-          url: result.url
+          iconUrl: `https://www.google.com/s2/favicons?domain=${encodeURIComponent(entry.result.url)}&sz=256`,
+          name: entry.result.title,
+          url: entry.result.url
         },
         fields: [],
-        description: `${result.snippet}`,
+        description: `${entry.result.snippet}`,
         footer: {
           iconUrl: STATICS.bing,
           text: `Microsoft Bing • ${context.application.name}`
         }
       }))
-      if(result.image) res.embeds[0].thumbnail = { url: result.image }
-      if(result.fields) {
-        let fl = result.fields;
+      if(entry.result.image) res.embeds[0].thumbnail = { url: entry.result.image }
+      if(entry.result.deepLinks) {
+        let fl = entry.result.deepLinks;
         while(fl.length >= 1){
           fields = fl.splice(0, 4)
           fields = fields.map((f)=>link(f.url, f.title))
@@ -37,24 +37,24 @@ function createSearchResultPage(context, result){
         }
       }
       break;
-    case 2:
+    case 2: // Entity
       res = page(createEmbed("default", context, {
         author: {
-          name: result.card.title,
-          url: result.card.url
+          name: entry.result.title,
+          url: entry.result.url
         },
-        description: `${result.card.description}`,
+        description: `${entry.result.description}`,
         fields: [],
         footer: {
           iconUrl: STATICS.bing,
-          text: `Microsoft Bing Knowledge Graph • ${context.application.name}`
+          text: `Microsoft Bing • ${context.application.name}`
         }
       }))
-      if(result.card.sources.description) res.embeds[0].description += citation(1, result.card.sources.description.url, `Source: ${result.card.sources.description.title}`)
-      if(result.card.image) res.embeds[0].thumbnail = { url: result.card.image }
-      if(result.card.fields){
+      if(entry.result.sources.description) res.embeds[0].description += citation(1, entry.result.sources.description.url, `Source: ${entry.result.sources.description.title}`)
+      if(entry.result.image) res.embeds[0].thumbnail = { url: entry.result.image }
+      if(entry.result.fields){
         // only up to 6 fields
-        for(const f of result.card.fields.splice(0, 6)){
+        for(const f of entry.result.fields.splice(0, 6)){
           if(f.url){
             res.embeds[0].fields.push({
               name: f.title,
@@ -70,6 +70,22 @@ function createSearchResultPage(context, result){
           })
         }
       }
+      break;
+    case 6: // Computation
+      res = page(createEmbed("default", context, {
+        author: {
+          iconUrl: `https://www.google.com/s2/favicons?domain=${encodeURIComponent("bing.com")}&sz=256`,
+          name: entry.result.expression
+        },
+        description: `${codeblock("python", [entry.result.value])}`,
+        fields: [],
+        footer: {
+          iconUrl: STATICS.bing,
+          text: `Microsoft Bing • ${context.application.name}`
+        }
+      }))
+      break;
+    default:
       break;
   }
    
@@ -98,7 +114,8 @@ module.exports = {
       
       let pages = []
       for(const res of search.body.results){
-        pages.push(createSearchResultPage(context, res))
+        let sp = createSearchResultPage(context, res)
+        if(sp) pages.push(sp)
       }
       
       pages = formatPaginationEmbeds(pages)
