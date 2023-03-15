@@ -115,7 +115,7 @@ module.exports = {
       
       embed.fields.push({
         name: `${icon("rocket")} Embedded Activity`,
-        value: content.join('\n'),
+        value: content.join('\n').substr(0,1024),
         inline: true
       })
     }
@@ -128,16 +128,17 @@ module.exports = {
 
       embed.fields.push({
         name: `${icon("flag")} Flags`,
-        value: fl.join('\n'),
+        value: fl.join('\n').substr(0,1024),
         inline: true
       })
     }
 
     if(assets.length){
       let asset = assets.map(a => link(`https://cdn.discordapp.com/app-assets/${application.id}/${a.id}.png?size=4096`, a.name))
+      if(asset.length >= 6) asset[5] = link(`https://canary.discord.com/api/oauth2/applications/${application.id}/assets`, `View ${asset.length - 6} remaining assets`)
       embed.fields.push({
         name: `${icon("image")} Assets`,
-        value: '• ' + asset.join('\n• '),
+        value: '• ' + asset.splice(0, 6).join('\n• ').substr(0, 1020),
         inline: true
       })
     }
