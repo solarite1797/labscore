@@ -136,8 +136,8 @@ module.exports = {
       if(search.status == 2) return editOrReply(context, {embeds:[createEmbed("error", context, search.message)]})
       
       let pages = []
-      // Create the initial page
 
+      // Create the initial page
       for(const answer of search.answers){
         pages.push(createQuoraAnswerPage(context, search.question, answer))
       }

@@ -1,5 +1,5 @@
 const { createEmbed, formatPaginationEmbeds } = require('../../../labscore/utils/embed')
-const { link } = require('../../../labscore/utils/markdown')
+const { link, pill, iconPill } = require('../../../labscore/utils/markdown')
 const { editOrReply } = require('../../../labscore/utils/message')
 
 const { paginator } = require('../../../labscore/client');
@@ -19,8 +19,8 @@ function createDictionaryPage(context, result){
 
   for(const d of result.definitions){
     let v = d.definition
-    if(d.example) v = v + `\n\n**Example**\n${d.example}`
-    if(d.synonyms.length >= 1) v = v + `\n\n**Synonyms**\n*${d.synonyms.join(', ')}*`
+    if(d.example) v = v + `\n\n${iconPill("pencil", "Example")}\n> ${d.example}`
+    if(d.synonyms.length >= 1) v = v + `\n\n${iconPill("message", "Synonyms")}\n> *${d.synonyms.join(', ')}*`
     e.fields.push({
       name: d.type,
       value: v,

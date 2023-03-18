@@ -8,7 +8,11 @@ const { wikihow } = require('../../../labscore/api');
 
 function createWikiHowPage(context, result){
   let e = createEmbed("default", context, {
-    description: `**${link(result.link, result.title)}**\n\n${result.snippet}`,
+    author: {
+      name: result.title,
+      url: result.link
+    },
+    description: result.snippet,
     footer: {
       iconUrl: STATICS.wikihow,
       text: `WikiHow • ${context.application.name}`
