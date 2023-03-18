@@ -77,7 +77,11 @@ module.exports.ICONS = Object.freeze({
   "robouser": "<:ico_robouser:1002944679744131092>",
   "lock": "<:ico_lock:1002948236971085924>",
   "badge_slash": "<:badge_slash:1002954716315140167>",
-  "flag": "<:ico_flag:1002957495138009251>"
+  "flag": "<:ico_flag:1002957495138009251>",
+  "like": "<:ico_like:1086443586700181514>",
+  "message": "<:ico_message:1086443588784758844>",
+  "eye": "<:ico_eye:1086443585337036860>",
+  "videos": "<:ico_videos:1086449271609503764>"
 })
 
 const GUILD_FEATURE_ICONS = Object.freeze({
