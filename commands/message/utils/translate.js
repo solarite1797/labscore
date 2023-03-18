@@ -46,7 +46,7 @@ module.exports = {
         description: `${icon("locale")} ​ ${fromFlag} ${pill(TRANSLATE_LANGUAGES[translate.response.body.language.from || args.from])} ​ ​ ​​${icon("arrow_right")} ​ ​ ​ ​${toFlag} ${pill(TRANSLATE_LANGUAGES[translate.response.body.language.to])}\n${codeblock("ansi", [translate.response.body.translation])}`,
         footer: {
           iconUrl: STATICS.google,
-          text: `Google Translator • ${context.application.name} • Took ${translate.timings}s`
+          text: `Google Translator • ${context.application.name}`
         }
       }))
     }catch(e){
