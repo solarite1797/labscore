@@ -1,10 +1,11 @@
 const { googleVisionOcr, googleTranslate } = require("../../../labscore/api");
+const { TRANSLATE_LANGUAGES, TRANSLATE_LANGUAGE_MAPPINGS } = require("../../../labscore/constants");
 const { getRecentImage } = require("../../../labscore/utils/attachment");
 const { createEmbed } = require("../../../labscore/utils/embed");
-const { codeblock, icon, highlight } = require("../../../labscore/utils/markdown");
+const { codeblock, icon, highlight, pill } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
-const { isSupported } = require("../../../labscore/utils/translate");
+const { isSupported, getCodeFromAny } = require("../../../labscore/utils/translate");
 
 module.exports = {
   name: 'ocrtr',
@@ -29,6 +30,9 @@ module.exports = {
     if(!isSupported(args.to)) return editOrReply(context, createEmbed("warning", context, "Invalid language (to)."))
     if(!isSupported(args.from)) return editOrReply(context, createEmbed("warning", context, "Invalid language (from)."))
 
+    args.to = getCodeFromAny(args.to)
+    args.from = getCodeFromAny(args.from)
+
     let image = await getRecentImage(context, 50)
     if (!image) return editOrReply(context, { embeds: [createEmbed("warning", context, "No images found.")] })
 
@@ -43,14 +47,18 @@ module.exports = {
 
     try{
       let translate = await googleTranslate(context, ocr.response.body.text, args.to, args.from)
+      
+      let fromFlag = TRANSLATE_LANGUAGE_MAPPINGS[translate.response.body.language.from || args.from] || ''
+      let toFlag = TRANSLATE_LANGUAGE_MAPPINGS[translate.response.body.language.to] || ''
+
       return editOrReply(context, createEmbed("default", context, {
-        description: `${icon("locale")} ${highlight(`${translate.response.body.language.from} -> ${translate.response.body.language.to}`)}\n${codeblock("ansi", [translate.response.body.translation])}`,
+        description: `${icon("locale")} ​ ${fromFlag} ${pill(TRANSLATE_LANGUAGES[translate.response.body.language.from || args.from])} ​ ​ ​​${icon("arrow_right")} ​ ​ ​ ​${toFlag} ${pill(TRANSLATE_LANGUAGES[translate.response.body.language.to])}\n${codeblock("ansi", [translate.response.body.translation])}`,
         thumbnail: {
           url: image
         },
         footer: {
           iconUrl: STATICS.google,
-          text: `Google Cloud Vision • ${context.application.name} • Took ${parseFloat(ocr.timings) + parseFloat(translate.timings)}s`
+          text: `Google Cloud Vision • ${context.application.name}`
         }
       }))
     }catch(e){
