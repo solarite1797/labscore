@@ -1,6 +1,8 @@
 const { googleVisionSafetyLabels } = require("../../../labscore/api");
+const { GOOGLE_CLOUD_SAFETY_LABELS, GOOGLE_CLOUD_SAFETY_LABELS_NAMES } = require("../../../labscore/constants");
 const { getRecentImage } = require("../../../labscore/utils/attachment");
 const { createEmbed } = require("../../../labscore/utils/embed");
+const { icon, pill, iconPill } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 
@@ -22,21 +24,21 @@ module.exports = {
 
     let labels = []
     for(const l of Object.keys(label.response.body.labels)){
-      labels.push({
-        name: l.charAt(0).toUpperCase() + l.slice(1),
-        value: label.response.body.labels[l],
-        inline: true
-      })
+      let rating = GOOGLE_CLOUD_SAFETY_LABELS[label.response.body.labels[l]]
+      labels.push([
+        pill(GOOGLE_CLOUD_SAFETY_LABELS_NAMES[l]),
+        iconPill(rating.icon, rating.name)
+      ].join(' ​ ​'))
     }
     return editOrReply(context, {
       embeds: [createEmbed("default", context, {
-        fields: labels,
+        description: labels.join('\n'),
         thumbnail: {
           url: image
         },
         footer: {
           iconUrl: STATICS.google,
-          text: `Google Cloud Vision • ${context.application.name} • Took ${label.timings}s`
+          text: `Google Cloud Vision • ${context.application.name}`
         }
       })]
     })

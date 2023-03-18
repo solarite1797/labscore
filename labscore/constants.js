@@ -81,7 +81,17 @@ module.exports.ICONS = Object.freeze({
   "like": "<:ico_like:1086443586700181514>",
   "message": "<:ico_message:1086443588784758844>",
   "eye": "<:ico_eye:1086443585337036860>",
-  "videos": "<:ico_videos:1086449271609503764>"
+  "videos": "<:ico_videos:1086449271609503764>",
+  "question_large": "<:ico_question:1086624956235919391>",
+  "exclaim_0": "<:ico_w0:1086624957586489364>",
+  "exclaim_1": "<:ico_w1:1086624959142580275>",
+  "exclaim_2": "<:ico_w2:1086624961025810485>",
+  "exclaim_3": "<:ico_w3:1086624963047460874>",
+  "exclaim_4": "<:ico_w4:1086624964284788787>",
+  "arrow_up": "<:ico_arrowup:980237911171674193>",
+  "arrow_down": "<:ico_arrowdown:980237911008092160>",
+  "arrow_left": "<:ico_arrowleft:1086628775644647464>",
+  "arrow_right": "<:ico_arrowright:1086628777880191016>",
 })
 
 const GUILD_FEATURE_ICONS = Object.freeze({
@@ -267,6 +277,94 @@ module.exports.IMTRANSLATOR_VOICES = [
   { name: "Korean (Female)", value: "ko" }
 ]
 
+module.exports.TRANSLATE_LANGUAGE_MAPPINGS = Object.freeze({
+  'af': '🇿🇦',
+  'sq': '🇦🇱',
+  'am': '🇪🇹',
+  'hy': '🇦🇲',
+  'az': '🇦🇿',
+  'eu': 'Basque',
+  'be': '🇧🇾',
+  'bn': '🇧🇩',
+  'bs': '🇧🇦',
+  'bg': '🇧🇬',
+  'ceb': '🇵🇭',
+  'ny': '🇲🇼',
+  'zh-cn': '🇨🇳',
+  'zh-tw': '🇨🇳',
+  'hr': '🇭🇷',
+  'cs': '🇨🇿',
+  'da': '🇩🇰',
+  'nl': '🇳🇱',
+  'en': '🇺🇸',
+  'et': '🇪🇪',
+  'tl': '🇵🇭',
+  'fi': '🇫🇮',
+  'fr': '🇫🇷',
+  'ka': '🇬🇪',
+  'de': '🇩🇪',
+  'el': '🇬🇷',
+  'ht': '🇭🇹',
+  'ha': '🇳🇬',
+  'iw': '🇮🇱',
+  'hi': '🇮🇳',
+  'hu': '🇭🇺',
+  'is': '🇮🇸',
+  'ig': '🇳🇬',
+  'id': '🇮🇩',
+  'ga': '🇮🇪',
+  'it': '🇮🇹',
+  'ja': '🇯🇵',
+  'jw': '🇮🇩',
+  'kk': '🇰🇿',
+  'km': '🇰🇭',
+  'ko': '🇰🇷',
+  'ky': '🇰🇬',
+  'lo': '🇱🇦',
+  'lv': '🇱🇻',
+  'lt': '🇱🇹',
+  'lb': '🇱🇺',
+  'mk': '🇲🇰',
+  'mg': '🇲🇬',
+  'ms': '🇲🇾',
+  'mt': '🇲🇹',
+  'mi': '🇳🇿',
+  'mr': '🇮🇳',
+  'mn': '🇲🇳',
+  'my': '🇲🇲',
+  'ne': '🇳🇵',
+  'no': '🇳🇴',
+  'ps': '🇦🇫',
+  'fa': '🇮🇷',
+  'pl': '🇵🇱',
+  'pt': '🇵🇹',
+  'ro': '🇷🇴',
+  'ru': '🇷🇺',
+  'sm': '🇼🇸',
+  'gd': '🏴󠁧󠁢󠁳󠁣󠁴󠁿',
+  'sr': '🇷🇸',
+  'st': '🇱🇸',
+  'sn': '🇿🇼',
+  'si': '🇱🇰',
+  'sk': '🇸🇰',
+  'sl': '🇸🇮',
+  'so': '🇸🇴',
+  'es': '🇪🇸',
+  'su': '🇸🇩',
+  'sw': '🇰🇪',
+  'sv': '🇸🇪',
+  'tg': '🇹🇯',
+  'te': '🇮🇳',
+  'th': '🇹🇭',
+  'tr': '🇹🇷',
+  'uk': '🇺🇦',
+  'ur': '🇵🇰',
+  'uz': '🇺🇿',
+  'vi': '🇻🇳',
+  'cy': '🏴󠁧󠁢󠁷󠁬󠁳󠁿',
+  'xh': '🇿🇦',
+})
+
 module.exports.TRANSLATE_LANGUAGES = Object.freeze({
   'auto': 'Automatic',
   'af': 'Afrikaans',
@@ -408,3 +506,38 @@ module.exports.EMOJIPEDIA_PLATFORM_TYPE_ALIASES = {
   "twemoji": "twitter",
   "playstation": "sony"
 }
+
+module.exports.GOOGLE_CLOUD_SAFETY_LABELS_NAMES = Object.freeze({
+  "adult":    "Explicit Content ",
+  "spoof":    "Modified Image   ",
+  "medical":  "Medical Image    ",
+  "violence": "Contains Violence",
+  "racy":     "Lewd Content     "
+})
+
+module.exports.GOOGLE_CLOUD_SAFETY_LABELS = Object.freeze({
+  "UNKNOWN": {
+    icon: "question_large",
+    name: "Unknown      "
+  },
+  "VERY_UNLIKELY": {
+    icon: "exclaim_0",
+    name: "Very Unlikely"
+  },
+  "UNLIKELY": {
+    icon: "exclaim_1",
+    name: "Unlikely     "
+  },
+  "POSSIBLE": {
+    icon: "exclaim_2",
+    name: "Possible     "
+  },
+  "LIKELY": {
+    icon: "exclaim_3",
+    name: "Likely       "
+  },
+  "VERY_LIKELY": {
+    icon: "exclaim_4",
+    name: "Very Likely  "
+  }
+})

@@ -1,11 +1,12 @@
 const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
-const { codeblock, highlight, icon } = require('../../../labscore/utils/markdown');
+const { codeblock, highlight, icon, pill } = require('../../../labscore/utils/markdown');
 
 const { isSupported } = require('../../../labscore/utils/translate');
 const { googleTranslate } = require('../../../labscore/api');
 const { STATICS } = require('../../../labscore/utils/statics');
+const { TRANSLATE_LANGUAGES, TRANSLATE_LANGUAGE_MAPPINGS } = require('../../../labscore/constants');
 
 module.exports = {
   name: 'translate',
@@ -38,8 +39,11 @@ module.exports = {
 
     try{
       let translate = await googleTranslate(context, content, args.to, args.from)
+
+      let fromFlag = TRANSLATE_LANGUAGE_MAPPINGS[translate.response.body.language.from || args.from] || ''
+      let toFlag = TRANSLATE_LANGUAGE_MAPPINGS[translate.response.body.language.to] || ''
       return editOrReply(context, createEmbed("default", context, {
-        description: `${icon("locale")} ${highlight(`${translate.response.body.language.from} -> ${translate.response.body.language.to}`)}\n${codeblock("ansi", [translate.response.body.translation])}`,
+        description: `${icon("locale")} ​ ${fromFlag} ${pill(TRANSLATE_LANGUAGES[translate.response.body.language.from || args.from])} ​ ​ ​​${icon("arrow_right")} ​ ​ ​ ​${toFlag} ${pill(TRANSLATE_LANGUAGES[translate.response.body.language.to])}\n${codeblock("ansi", [translate.response.body.translation])}`,
         footer: {
           iconUrl: STATICS.google,
           text: `Google Translator • ${context.application.name} • Took ${translate.timings}s`

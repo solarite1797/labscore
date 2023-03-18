@@ -1,6 +1,7 @@
 const { googleVisionLabels } = require("../../../labscore/api");
 const { getRecentImage } = require("../../../labscore/utils/attachment");
 const { createEmbed } = require("../../../labscore/utils/embed");
+const { pill } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 
@@ -22,21 +23,17 @@ module.exports = {
 
     let labels = []
     for(const l of label.response.body.labels){
-      labels.push({
-        name: l.name,
-        value: `${l.score.toString().substr(2,2)}.${l.score.toString().substr(3,1)}%`,
-        inline: true
-      })
+      labels.push(pill(`${l.score.toString().substr(2,2)}.${l.score.toString().substr(3,1)}%`) + ' ​ ​' + pill(l.name))
     }
     return editOrReply(context, {
       embeds: [createEmbed("default", context, {
-        fields: labels,
+        description: labels.join('\n'),
         thumbnail: {
           url: image
         },
         footer: {
           iconUrl: STATICS.google,
-          text: `Google Cloud Vision • ${context.application.name} • Took ${label.timings}s`
+          text: `Google Cloud Vision • ${context.application.name}`
         }
       })]
     })
