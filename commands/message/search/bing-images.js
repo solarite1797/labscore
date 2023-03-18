@@ -31,7 +31,7 @@ function createImageResultPage(context, result){
 module.exports = {
   name: 'bingimage',
   label: 'query',
-  aliases: ['bi', 'img2'],
+  aliases: ['bi', 'bimg', 'img2'],
   metadata: {
     description: 'Returns image search results from Microsoft Bing.',
     description_short: 'Bing Image Search',
