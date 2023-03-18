@@ -39,8 +39,6 @@ module.exports = {
 
       if(g.owner) guildCard.description += `\n\n<:lc_guild_owner:674652779406426122> **Server Owner: **<@${g.owner.id}>`
 
-      // TODO: make a proper utility function to pad these codeblocks properly
-
       // Channel Container
       guildCard.fields.push({
         name: `${icon("channel")} Channels`,

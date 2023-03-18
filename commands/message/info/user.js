@@ -52,10 +52,9 @@ module.exports = {
         userCard.fields[0].value = userCard.fields[0].value + `\n**Joined Guild: **${timestamp(m.joinedAt, "f")}`
         let guildFields = []
         
-        // TODO: make this an icon()
         if(m.isOwner) guildFields.push(`**Server Owner** <:lc_guild_owner:674652779406426122>`)
         if(m.roles.length >= 1) guildFields.push(`**Roles: ** ${m.roles.length}/${context.guild.roles.length}`)
-        if(m.premiumSince) guildFields.push(`**Boosting since: ** ${m.premiumSince.toLocaleString('en-US')}`) // TODO: make this a timestamp
+        if(m.premiumSince) guildFields.push(`**Boosting since: ** ${timestamp(m.premiumSince, 'f')}`)
         userCard.fields.push({
           name: `${icon("house")} Server`,
           value: guildFields.join('\n'),
