@@ -2,7 +2,7 @@ const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
 const { getRecentImage } = require("../../../labscore/utils/attachment");
-const { codeblock } = require('../../../labscore/utils/markdown');
+const { codeblock, icon } = require('../../../labscore/utils/markdown');
 
 const superagent = require('superagent');
 
@@ -58,8 +58,17 @@ module.exports = {
   
       if (!res.body[0].symbol[0].data) return editOrReply(context, createEmbed("warning", context, "No QR codes found."))
   
+      let resultData = res.body[0].symbol[0].data.split('\nQR-Code:');
+      let results = [];
+      for(const r of resultData){
+        results.push(codeblock("ansi", [r]))
+      }
+      
+      let s = "";
+      if(resultData.length >= 2) s = "s"
+
       return await editOrReply(context, createEmbed("default", context, {
-        description: codeblock("ansi", [res.body[0].symbol[0].data]),
+        description: `${icon("qr")} Found **${resultData.length}** QR Code${s}:${results.join(' ')}`,
         thumbnail: {
           url: image
         },
