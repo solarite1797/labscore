@@ -1,9 +1,9 @@
 const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
-const { codeblock, highlight, icon, pill } = require('../../../labscore/utils/markdown');
+const { codeblock, icon, pill } = require('../../../labscore/utils/markdown');
 
-const { isSupported } = require('../../../labscore/utils/translate');
+const { isSupported, getCodeFromAny } = require('../../../labscore/utils/translate');
 const { googleTranslate } = require('../../../labscore/api');
 const { STATICS } = require('../../../labscore/utils/statics');
 const { TRANSLATE_LANGUAGES, TRANSLATE_LANGUAGE_MAPPINGS } = require('../../../labscore/constants');
@@ -36,6 +36,9 @@ module.exports = {
     
     if(!isSupported(args.to)) return editOrReply(context, createEmbed("warning", context, "Invalid language (to)."))
     if(!isSupported(args.from)) return editOrReply(context, createEmbed("warning", context, "Invalid language (from)."))
+
+    args.to = getCodeFromAny(args.to)
+    args.from = getCodeFromAny(args.from)
 
     try{
       let translate = await googleTranslate(context, content, args.to, args.from)
