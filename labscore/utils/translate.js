@@ -16,7 +16,7 @@ function getCode(desiredLang) {
     }
 
     return TRANSLATE_LANGUAGES[key].toLowerCase() === desiredLang;
-});
+  });
 
   keys.push(Object.keys(TRANSLATE_LANGUAGE_MAPPINGS).filter(function (key) {
     if (typeof TRANSLATE_LANGUAGE_MAPPINGS[key] !== 'string') {

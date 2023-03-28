@@ -39,6 +39,9 @@ module.exports = {
 
     args.to = getCodeFromAny(args.to)
     args.from = getCodeFromAny(args.from)
+    
+    if(!args.to) return editOrReply(context, createEmbed("warning", context, "Invalid language (to)."))
+    if(!args.from) return editOrReply(context, createEmbed("warning", context, "Invalid language (from)."))
 
     try{
       let translate = await googleTranslate(context, content, args.to, args.from)
