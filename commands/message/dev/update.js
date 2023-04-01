@@ -17,10 +17,7 @@ module.exports = {
     { default: false, name: "force", type: "bool", help: "Force update" }
   ],
   onBefore: context => context.user.isClientOwner,
-  onCancel: context =>
-    context.reply(
-      `${context.user.mention}, you are lacking the permission \`BOT_OWNER\`.`
-    ),
+  onCancel: ()=>{},
   run: async (context, args) => {
     let response = await editOrReply(context, createEmbed("loading", context, "Updating bot..."))
     try{

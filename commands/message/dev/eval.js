@@ -20,10 +20,7 @@ module.exports = {
     { default: true, name: "async", type: "bool", help: "Async evaluation" }
   ],
   onBefore: context => context.user.isClientOwner,
-  onCancel: context =>
-    context.reply(
-      `${context.user.mention}, you are lacking the permission \`BOT_OWNER\`.`
-    ),
+  onCancel: ()=>{},
   run: async (context, args) => {
     await context.triggerTyping();
     const { matches } = Utils.regex(

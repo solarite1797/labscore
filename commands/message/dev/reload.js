@@ -11,10 +11,7 @@ module.exports = {
     usage: 'reload'
   },
   onBefore: context => context.user.isClientOwner,
-  onCancel: context =>
-    context.reply(
-      `${context.user.mention}, you are lacking the permission \`BOT_OWNER\`.`
-    ),
+  onCancel: ()=>{},
   run: async (context) => {
     await context.triggerTyping();
     const time = Date.now();
