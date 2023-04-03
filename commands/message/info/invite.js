@@ -1,7 +1,9 @@
+const { DISCORD_INVITES } = require("../../../labscore/constants");
 const { createEmbed } = require("../../../labscore/utils/embed");
 const { guildFeaturesField } = require("../../../labscore/utils/fields");
-const { icon, highlight, timestamp } = require("../../../labscore/utils/markdown");
+const { icon, highlight, timestamp, link } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
+const { STATICS } = require("../../../labscore/utils/statics");
 
 module.exports = {
   name: 'invite',
@@ -16,9 +18,12 @@ module.exports = {
   },
   run: async (context, args) => { 
     context.triggerTyping();
-    if(!args.invite) return editOrReply(context, createEmbed("default", context, {
-      description: icon("link") + " You can invite the bot with [this](https://discord.com/api/oauth2/authorize?client_id=682654466453012553&permissions=412317247552&scope=bot%20applications.commands) link."
-    }))
+    if(!args.invite) return editOrReply(context, { content: `https://canary.discord.com/application-directory/${context.client.user.id}`, embed:createEmbed("default", context, {
+      description: `${icon("link")}  You can invite the bot with ${link(context.application.oauth2UrlFormat({ scope: 'bot applications.commands', permissions: 412317247552 }), 'this')}\n\n${icon('robouser')} Join our ${link(DISCORD_INVITES.support, "support server")} if you need help with anything!`,
+      image: {
+        url: STATICS.embedSpacerInvite
+      }
+    })})
     try{
       const inviteCode = args.invite.match(/(?:(?:https|http):\/\/)?(?:(?:discord.gg|(?:discord|discordapp)\.com\/invite)\/)?([A-z0-z-]{2,32})/)
       const invite = await context.client.rest.fetchInvite(inviteCode[1], {withCounts: true})

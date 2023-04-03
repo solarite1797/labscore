@@ -109,7 +109,11 @@ module.exports.STATICS = Object.freeze({
   urbandictionary: staticAsset(Statics.brands.urbandictionary),
   wikihow: staticAsset(Statics.brands.wikihow),
   wolframalpha: staticAsset(Statics.brands.wolframalpha),
-  youtube: staticAsset(Statics.brands.youtube)
+  youtube: staticAsset(Statics.brands.youtube),
+  embedSpacerInvite: staticAsset({
+    file: "misc/embed-spacer-botinvite.png",
+    revision: 0
+  })
 })
 
 module.exports.STATIC_ICONS = Object.freeze({
