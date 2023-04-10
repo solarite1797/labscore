@@ -5,7 +5,7 @@ const superagent = require('superagent');
 const { codeblock } = require('../../../labscore/utils/markdown');
 
 const SIZES = Object.freeze({
-  "wallpaper": { x: 1920, y: 1080},
+  "wallpaper": { x: 1120, y: 630},
   "phone": { x: 1170, y: 2353},
   "avatar": { x: 512, y: 512}
 })
