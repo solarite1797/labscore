@@ -25,7 +25,6 @@ const Api = Object.freeze({
   PHOTOFUNIA_RETRO_WAVE: '/photofunia/retro-wave',
   PHOTOFUNIA_YACHT: '/photofunia/yacht',
 
-  SEARCH_AUDIO: '/search/audio',
   SEARCH_BING: '/search/bing',
   SEARCH_BING_IMAGES: '/search/bing-images',
   SEARCH_DICTIONARY: '/search/dictionary',
