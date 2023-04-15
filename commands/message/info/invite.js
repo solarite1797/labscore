@@ -19,7 +19,7 @@ module.exports = {
   run: async (context, args) => { 
     context.triggerTyping();
     if(!args.invite) return editOrReply(context, { content: `https://canary.discord.com/application-directory/${context.client.user.id}`, embed:createEmbed("default", context, {
-      description: `${icon("link")}  You can invite the bot with ${link(context.application.oauth2UrlFormat({ scope: 'bot applications.commands', permissions: 412317247552 }), 'this')}\n\n${icon('robouser')} Join our ${link(DISCORD_INVITES.support, "support server")} if you need help with anything!`,
+      description: `​\n${icon("link")}  You can invite the bot with ${link(context.application.oauth2UrlFormat({ scope: 'bot applications.commands', permissions: 412317247552 }), 'this link')}.\n\n${icon('robouser')} Join our ${link(DISCORD_INVITES.support, "support server")} if you need help with anything!`,
       image: {
         url: STATICS.embedSpacerInvite
       }
