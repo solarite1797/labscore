@@ -10,7 +10,7 @@ module.exports = {
   aliases: ['a'],
   metadata: {
     description: 'Displays someones discord avatar. Accepts IDs, Mentions, or Usernames.',
-    description_short: 'User avatar',
+    description_short: 'Get discord user avatars',
     examples: ['avatar labsCore'],
     category: 'info',
     usage: 'avatar [<user>]'

@@ -121,7 +121,7 @@ module.exports = {
   aliases: ['q'],
   metadata: {
     description: 'Searches for questions on Quora.',
-    description_short: 'Quora Search',
+    description_short: 'Search on Quora',
     examples: ['quora How does Quora work?'],
     category: 'search',
     usage: 'quora <query>'

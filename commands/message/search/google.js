@@ -57,7 +57,7 @@ module.exports = {
   aliases: ['g', 'search'],
   metadata: {
     description: 'Returns search results from Google.',
-    description_short: 'Google Search',
+    description_short: 'Search on Google',
     examples: ['google Flask'],
     category: 'search',
     usage: 'google <query>'

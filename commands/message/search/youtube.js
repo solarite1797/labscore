@@ -95,7 +95,7 @@ module.exports = {
   aliases: ['yt'],
   metadata: {
     description: 'Returns search results from YouTube.',
-    description_short: 'YouTube Search',
+    description_short: 'Search YouTube videos, channels and playlists',
     examples: ['youtube Google'],
     category: 'search',
     usage: 'youtube <query>'

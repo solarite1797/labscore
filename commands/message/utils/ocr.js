@@ -9,7 +9,7 @@ module.exports = {
   name: 'ocr',
   metadata: {
     description: 'Uses Optical Character Recognition to detect text in images.',
-    description_short: 'Image Text Recognition',
+    description_short: 'Image text recognition.',
     examples: ['ocr'],
     category: 'utils',
     usage: 'ocr <attachment>'

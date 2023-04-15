@@ -14,7 +14,7 @@ module.exports = {
   aliases: ['tr'],
   metadata: {
     description: 'Translates text. Supports automatic source language detection.',
-    description_short: 'Translates text',
+    description_short: 'Translate text.',
     examples: ['tr groß nussig -from de -to en'],
     category: 'utils',
     usage: `tr <text> [-to <target language>] [-from <origin language>]`

@@ -2,7 +2,7 @@ const { googleVisionOcr, googleTranslate } = require("../../../labscore/api");
 const { TRANSLATE_LANGUAGES, TRANSLATE_LANGUAGE_MAPPINGS } = require("../../../labscore/constants");
 const { getRecentImage } = require("../../../labscore/utils/attachment");
 const { createEmbed } = require("../../../labscore/utils/embed");
-const { codeblock, icon, highlight, pill } = require("../../../labscore/utils/markdown");
+const { codeblock, icon, pill } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 const { isSupported, getCodeFromAny } = require("../../../labscore/utils/translate");
@@ -13,7 +13,7 @@ module.exports = {
   aliases: ["octr"],
   metadata: {
     description: 'Uses Optical Character Recognition to translate text in an image.',
-    description_short: 'Image Text Translation',
+    description_short: 'Image text recognition + translation.',
     examples: ['ocrtr en'],
     category: 'utils',
     usage: 'ocrtr <language> [-from <origin language>]'

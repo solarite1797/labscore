@@ -12,7 +12,7 @@ module.exports = {
   aliases: ['scan'],
   metadata: {
     description: 'Generates a QR code. If no input is provided acts as a QR code scanner.',
-    description_short: 'QR Code Scanner/Creator',
+    description_short: 'QR Code scanner/generator.',
     examples: ['qr big nutty'],
     category: 'utils',
     usage: `qr <contents>`

@@ -47,7 +47,7 @@ module.exports = {
   aliases: ['r34'],
   metadata: {
     description: 'Returns image search results from various rule34-focused sites.',
-    description_short: 'Rule34 Search',
+    description_short: 'Search on rule34 sites',
     explicit: true,
     examples: ['r34 sex -site rule34'],
     category: 'search',

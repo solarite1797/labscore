@@ -46,7 +46,7 @@ module.exports = {
   aliases: ['wa', 'wolfram-alpha'],
   metadata: {
     description: 'Computes a query using Wolfram|Alpha.',
-    description_short: 'Compute Wolfram|Alpha queries',
+    description_short: 'Compute via Wolfram|Alpha',
     examples: ['wa 1+1'],
     category: 'search',
     usage: 'wolframalpha <query>'

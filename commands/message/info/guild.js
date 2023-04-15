@@ -9,7 +9,7 @@ module.exports = {
   aliases: ['guild', 'guildinfo'],
   metadata: {
     description: 'Displays information about the server.',
-    description_short: 'Server information',
+    description_short: 'Information about the server',
     examples: ['guild'],
     category: 'info',
     usage: 'server'

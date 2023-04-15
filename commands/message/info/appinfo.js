@@ -38,7 +38,7 @@ module.exports = {
   aliases: ['ai'],
   metadata: {
     description: 'Displays information about a discord application.',
-    description_short: 'Discord application information',
+    description_short: 'Information about discord applications',
     examples: ['ai 682654466453012553'],
     category: 'info',
     usage: 'appinfo <application id>'

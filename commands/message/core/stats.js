@@ -20,7 +20,7 @@ module.exports = {
   aliases: ['usage', 'uptime'],
   metadata: {
     description: 'Shows statistics about the bot.',
-    description_short: 'Shows bot stats.',
+    description_short: 'Bot statistics',
     examples: ['stats'],
     category: 'core',
     usage: 'stats'

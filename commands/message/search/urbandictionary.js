@@ -40,7 +40,7 @@ module.exports = {
   aliases: ['urban', 'ud'],
   metadata: {
     description: 'Returns search results from UrbanDictionary. Might include profanity.\nProviding no search query will return random results.',
-    description_short: 'UrbanDictionary Search',
+    description_short: 'Search on UrbanDictionary',
     examples: ['ud Flask'],
     category: 'search',
     usage: 'urbandictionary <query>'

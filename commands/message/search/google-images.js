@@ -34,7 +34,7 @@ module.exports = {
   aliases: ['i', 'img'],
   metadata: {
     description: 'Returns image search results from Google.',
-    description_short: 'Google Image Search',
+    description_short: 'Search on Google Images',
     examples: ['image Large Magenta Sphere'],
     category: 'search',
     usage: 'image <query>'
