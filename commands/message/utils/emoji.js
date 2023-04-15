@@ -3,7 +3,7 @@ const { emojipedia, emojiKitchen } = require("../../../labscore/api");
 
 const { EMOJIPEDIA_PLATFORM_TYPES, EMOJIPEDIA_PLATFORM_TYPE_ALIASES } = require("../../../labscore/constants");
 const { createEmbed } = require("../../../labscore/utils/embed");
-const { citation } = require("../../../labscore/utils/markdown");
+const { icon } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 
@@ -45,12 +45,26 @@ module.exports = {
   ],
   run: async (context, args) => {
     await context.triggerTyping()
-
+    let msg = context.message;
     if (context.message.messageReference) {
-      let msg = await context.message.channel.fetchMessage(context.message.messageReference.messageId)
+      msg = await context.message.channel.fetchMessage(context.message.messageReference.messageId)
       args.emoji = msg.content
     }
     
+    if(msg.stickerItems.length){
+      let s = msg.stickerItems.first()
+      if(s.type == 3) return editOrReply(context, createEmbed("default", context, {
+          description: `${icon("sticker")} **${s.name}**\n\nhttps://media.discordapp.net/stickers/${s.id}.json`,
+        }))
+      return editOrReply(context, createEmbed("default", context, {
+        description: `${icon("sticker")} **${s.name}**`,
+        image: {
+          url: `https://media.discordapp.net/stickers/${s.id}.png`
+        }
+      })
+    )
+    }
+
     const { matches } = Utils.regex(
       Constants.DiscordRegexNames.EMOJI,
       args.emoji
@@ -61,7 +75,7 @@ module.exports = {
       if(matches[0].animated) form = '.gif'
 
       return editOrReply(context, createEmbed("default", context, {
-          description: `**${matches[0].name}**`,
+          description: `${icon("emoji")} **${matches[0].name}**`,
           image: {
             url: `https://cdn.discordapp.com/emojis/${matches[0].id}${form}`
           }
@@ -77,34 +91,19 @@ module.exports = {
 
       // Emoji Mixing
       if(emoji.length >= 2){
-        try{
-          let em = await emojiKitchen(emoji)
-          if(!em.body.results[0]){
-            for(const em of emoji){
-              try{
-                await emojiKitchen([em])
-              }catch(e){
-                return editOrReply(context, createEmbed("error", context, `Invalid Emoji (${em})`))
-              }
+        let em = await emojiKitchen(emoji)
+        if(!em.body.results[0]){
+          for(const em of emoji){
+            try{
+              await emojiKitchen([em])
+            }catch(e){
+              return editOrReply(context, createEmbed("error", context, `Invalid Emoji (${em})`))
             }
-
-            return editOrReply(context, createEmbed("error", context, "Combination not supported."))
           }
-          return editOrReply(context, createEmbed("image", context, { url: em.body.results[0].url }))
-          
-        }catch(e){
-          console.log(e)
-          return context.editOrReply({
-            embed: {
-              author: {
-                iconUrl: context.message.author.avatarUrl,
-                name: `${context.message.author.username}#${context.message.author.discriminator}`
-              },
-              color: Colors.error,
-              description: `${Icons.error} You need two emoji to mix.`,
-            }
-          })
+
+          return editOrReply(context, createEmbed("error", context, "Combination not supported."))
         }
+        return editOrReply(context, createEmbed("image", context, { url: em.body.results[0].url }))
       }
 
       // Regular Emoji Handling

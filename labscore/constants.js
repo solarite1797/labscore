@@ -38,7 +38,6 @@ module.exports.ICONS = Object.freeze({
   "connection": "<:ico_connection:903282945551388702>",
   "cross": "<:ico_cross:925813919577153639>",
   "downloading": "<:ico_downloading:903301897027452998>",
-  "emoji": "<:ico_emoji:903265030823374928>",
   "fun": "<:ico_fun:903260112657981510>",
   "house": "<:ico_house:903263528591429702>",
   "image": "<:ico_image:903259583475240961>",
@@ -92,6 +91,8 @@ module.exports.ICONS = Object.freeze({
   "arrow_down": "<:ico_arrowdown:980237911008092160>",
   "arrow_left": "<:ico_arrowleft:1086628775644647464>",
   "arrow_right": "<:ico_arrowright:1086628777880191016>",
+  "sticker": "<:ico_sticker:1096937131793985546> ",
+  "emoji": "<:ico_emoji:1096936794731315251>"
 })
 
 const GUILD_FEATURE_ICONS = Object.freeze({

@@ -7,7 +7,6 @@ const Permissions = Constants.Permissions;
 const { icon, codeblock, iconPill } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
-const { getMember } = require("../../../labscore/utils/users");
 
 
 function getPerspectiveColor(score){
