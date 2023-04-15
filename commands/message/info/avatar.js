@@ -1,6 +1,6 @@
 const { createEmbed, page } = require("../../../labscore/utils/embed");
 const { editOrReply } = require("../../../labscore/utils/message");
-const { getMember } = require("../../../labscore/utils/users");
+const { getMember, getUser } = require("../../../labscore/utils/users");
 
 const { paginator } = require('../../../labscore/client');
 
@@ -18,14 +18,14 @@ module.exports = {
   run: async (context, args) => {
     context.triggerTyping();
     if(!args.user) args.user = context.userId;
-    let u = await getMember(context, args.user)
+    let u = await getUser(context, args.user)
     if(!u) return editOrReply(context, { embeds: [createEmbed("warning", context, "No users found.")] })
 
-    if(u.avatar !== null) {
+    if(u.member && u.member.avatar !== null) {
       let pages = []
       pages.push(page(createEmbed("default", context, {
         image: {
-          url: u.avatarUrl + '?size=4096'
+          url: u.member.avatarUrl + '?size=4096'
         }
       })))
 

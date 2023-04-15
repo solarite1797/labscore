@@ -1,5 +1,5 @@
 const MUSIC_PLATFORMS = {
-  "amazon": "914614653479428177",
+  "amazonStore": "914614653479428177",
   "amazonMusic": "914624582302982194",
   "deezer": "914614652644761650",
   "appleMusic": "914615427009744927",
