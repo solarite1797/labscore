@@ -48,6 +48,12 @@ module.exports.googlePerspective = async function(context, text){
   })
 }
 
+module.exports.googleSpeechRecognition = async function(context, url){
+  return await request(Api.GOOGLE_SPEECH_RECOGNIZE, "GET", {}, {
+    url
+  })
+}
+
 module.exports.googleTranslate = async function(context, text, to, from){
   return await request(Api.GOOGLE_TRANSLATE, "GET", {}, {
     text: text,
