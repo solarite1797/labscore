@@ -51,9 +51,10 @@ module.exports = {
       args.emoji = msg.content
     }
     
+    // Stickers
     if(msg.stickerItems.length){
       let s = msg.stickerItems.first()
-      if(s.type == 3) return editOrReply(context, createEmbed("default", context, {
+      if(s.formatType == 3) return editOrReply(context, createEmbed("default", context, {
           description: `${icon("sticker")} **${s.name}**\n\nhttps://media.discordapp.net/stickers/${s.id}.json`,
         }))
       return editOrReply(context, createEmbed("default", context, {
