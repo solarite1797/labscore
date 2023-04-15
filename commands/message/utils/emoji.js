@@ -55,7 +55,7 @@ module.exports = {
     if(msg.stickerItems.length){
       let s = msg.stickerItems.first()
       if(s.formatType == 3) return editOrReply(context, createEmbed("default", context, {
-          description: `${icon("sticker")} **${s.name}**\n\nhttps://media.discordapp.net/stickers/${s.id}.json`,
+          description: `${icon("sticker")} **${s.name}**\nhttps://cdn.discordapp.com/stickers/${s.id}.json`,
         }))
       return editOrReply(context, createEmbed("default", context, {
         description: `${icon("sticker")} **${s.name}**`,
