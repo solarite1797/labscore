@@ -48,7 +48,7 @@ module.exports = {
 
       if(g.splash){
         inviteCard.image = {
-          url: `https://cdn.discordapp.com/splashes/519734247519420438/${g.splash}.png?size=4096`
+          url: `https://cdn.discordapp.com/splashes/${g.id}/${g.splash}.png?size=4096`
         }
       }
 

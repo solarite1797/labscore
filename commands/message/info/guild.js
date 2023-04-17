@@ -66,6 +66,16 @@ module.exports = {
         inline: true
       })
 
+      if(g.banner){
+        guildCard.image = {
+          url: `https://cdn.discordapp.com/banners/${g.id}/${g.banner}.png?size=4096`
+        }
+      } else if(g.splash){
+        guildCard.image = {
+          url: `https://cdn.discordapp.com/splashes/${g.id}/${g.banner}.png?size=4096`
+        }
+      }
+
       // Guild Features
       if(g.features.length >= 1){
 
