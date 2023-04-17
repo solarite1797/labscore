@@ -24,7 +24,7 @@ module.exports.guildFeaturesField = function(g){
     for(const f of sfN){
       let ic = fD[f]
       if(!fD[f]) ic = `<:UNKNOWN:878298902971965520>`
-      ft.push(`${ic} ${f}`)
+      ft.push(`${ic} ${f.split('_').map((i)=>i.substring(0, 1).toUpperCase() + i.substring(1,i.length).toLowerCase()).join(' ')}`)
     }
     featureCards.push({
       name: `​`,
