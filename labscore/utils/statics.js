@@ -62,28 +62,28 @@ const Statics = Object.freeze({
     },
     wolframalpha: {
       file: "brands/wolframalpha.png",
-      revision: 1
+      revision: 2
     },
     youtube: {
       file: "brands/youtube.png",
-      revision: 1
+      revision: 2
     }
   },
   icons: {
     adult: {
-      file: "icons/ico_nsfw_small.png",
+      file: "icons/core/ico_notice_nsfw.png",
       revision: 0
     },
     error: {
-      file: "icons/ico_error_small.png",
+      file: "icons/core/ico_notice_error.png",
       revision: 0
     },
     loading: {
-      file: "icons/ico_loading_small.gif",
+      file: "icons/core/ico_notice_loading.gif",
       revision: 0
     },
     warning: {
-      file: "icons/ico_warning_small.png",
+      file: "icons/core/ico_notice_warning.png",
       revision: 0
     }
   }
