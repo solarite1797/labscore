@@ -278,6 +278,26 @@ module.exports.IMTRANSLATOR_VOICES = [
   { name: "Korean (Female)", value: "ko" }
 ]
 
+module.exports.MICROSOFT_VOICES = [
+  { name: "Microsoft Sam", value: "Sam" },
+  { name: "BonziBUDDY", value: "Bonzi" },
+  { name: "Mary", value: "Mary" },
+  { name: "Mike", value: "Mike" },
+  { name: "Robot", value: "RoboSoft Four" },
+  { name: "Whisper (Female)", value: "Female Whisper" },
+  { name: "Whisper (Male)", value: "Male Whisper" }
+]
+
+module.exports.MICROSOFT_VOICE_CONFIG = {
+  "Sam": { pitch: 100, speed: 150 },
+  "Bonzi": { pitch: 140, speed: 157 },
+  "Mary": { pitch: 169, speed: 170 },
+  "Mike": { pitch: 113, speed: 170 },
+  "RoboSoft Four": { pitch: 169, speed: 170 },
+  "Female Whisper": { pitch: 169, speed: 170 },
+  "Male Whisper": { pitch: 113, speed: 170 }
+}
+
 module.exports.TRANSLATE_LANGUAGE_MAPPINGS = Object.freeze({
   "af": "🇿🇦",
   "sq": "🇦🇱",

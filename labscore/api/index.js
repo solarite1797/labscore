@@ -268,6 +268,15 @@ module.exports.polly = async function(context, text, voice){
   })
 }
 
+module.exports.sapi4 = async function(context, text, voice, pitch = 50, speed = 150){
+  return await request(Api.TTS_SAPI4, "GET", {}, {
+    text,
+    voice,
+    pitch,
+    speed
+  })
+}
+
 module.exports.tiktok = async function(context, text, voice){
   return await request(Api.TTS_TIKTOK, "GET", {}, {
     text: text,

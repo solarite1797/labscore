@@ -46,6 +46,7 @@ const Api = Object.freeze({
   TTS_IMTRANSLATOR: '/tts/imtranslator',
   TTS_PLAYHT: '/tts/playht',
   TTS_POLLY: '/tts/polly',
+  TTS_SAPI4: '/tts/sapi4',
   TTS_TIKTOK: '/tts/tiktok',
   TTS_VOICEFORGE: '/tts/voiceforge',
 
