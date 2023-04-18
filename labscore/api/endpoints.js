@@ -48,7 +48,7 @@ const Api = Object.freeze({
   TTS_PLAYHT: '/tts/playht',
   TTS_POLLY: '/tts/polly',
   TTS_SAPI4: '/tts/sapi4',
-  TTS_TIKTOK: '/tts/tiktok'
+  TTS_TIKTOK: '/tts/tiktok',
 
   UTILS_EMOJIPEDIA: '/utils/emojipedia',
   UTILS_INFERKIT: '/utils/inferkit',
