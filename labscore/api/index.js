@@ -254,6 +254,12 @@ module.exports.imtranslator = async function(context, text, voice){
   })
 }
 
+module.exports.moonbase = async function(context, text){
+  return await request(Api.TTS_MOONBASE, "GET", {}, {
+    text
+  })
+}
+
 module.exports.playht = async function(context, text, voice){
   return await request(Api.TTS_PLAYHT, "GET", {}, {
     text: text,
@@ -279,13 +285,6 @@ module.exports.sapi4 = async function(context, text, voice, pitch = 50, speed = 
 
 module.exports.tiktok = async function(context, text, voice){
   return await request(Api.TTS_TIKTOK, "GET", {}, {
-    text: text,
-    voice: voice
-  })
-}
-
-module.exports.voiceforge = async function(context, text, voice){
-  return await request(Api.TTS_VOICEFORGE, "GET", {}, {
     text: text,
     voice: voice
   })

@@ -1,20 +1,21 @@
 const { Constants } = require('detritus-client');
 const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = Constants;
 
-const { sapi4 } = require('../../../labscore/api');
-const { MICROSOFT_VOICES, MICROSOFT_VOICE_CONFIG } = require('../../../labscore/constants');
+const { tiktok } = require('../../../../labscore/api');
+const { TIKTOK_VOICES } = require('../../../../labscore/constants');
 
-const { createEmbed } = require('../../../labscore/utils/embed');
-const { icon, highlight } = require('../../../labscore/utils/markdown');
+const { createEmbed } = require('../../../../labscore/utils/embed');
+const { icon, highlight } = require('../../../../labscore/utils/markdown');
 
 module.exports = {
-  description: 'Microsoft Sam Text to Speech',
-  name: 'mstts',
+  description: 'TikTok text to speech voices',
+  name: 'tiktok',
+  type: ApplicationCommandOptionTypes.SUB_COMMAND,
   options: [
     {
       name: 'voice',
       description: 'TTS Voice to use',
-      choices: MICROSOFT_VOICES,
+      choices: TIKTOK_VOICES,
       required: true,
     },
     {
@@ -26,14 +27,18 @@ module.exports = {
     }
   ],
   run: async (context, args) => {
-    try{
-      await context.respond({data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE})
-      let audio = await sapi4(context, args.text, args.voice, MICROSOFT_VOICE_CONFIG[args.voice].pitch, MICROSOFT_VOICE_CONFIG[args.voice].speed)
+    try {
+      await context.respond({ data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE })
+
+      let audio = await tiktok(context, args.text, args.voice)
+
       await context.editOrRespond({
         embeds: [createEmbed("defaultNoFooter", context, { description: `${icon("audio")} Audio Generated in ${highlight(audio.timings + "s")}.` })],
-        file: { value: audio.response.body, filename: "tts.wav" }
+        file: { value: audio.response.body, filename: "tiktok.mp3" }
       })
-    }catch(e){
+
+    } catch (e) {
+      console.log(e)
       await context.editOrRespond({
         embeds: [createEmbed("error", context, "Unable to generate audio file.")]
       })

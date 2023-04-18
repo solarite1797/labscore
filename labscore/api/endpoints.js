@@ -44,11 +44,11 @@ const Api = Object.freeze({
   SEARCH_YOUTUBE: '/search/youtube',
 
   TTS_IMTRANSLATOR: '/tts/imtranslator',
+  TTS_MOONBASE: '/tts/moonbase',
   TTS_PLAYHT: '/tts/playht',
   TTS_POLLY: '/tts/polly',
   TTS_SAPI4: '/tts/sapi4',
-  TTS_TIKTOK: '/tts/tiktok',
-  TTS_VOICEFORGE: '/tts/voiceforge',
+  TTS_TIKTOK: '/tts/tiktok'
 
   UTILS_EMOJIPEDIA: '/utils/emojipedia',
   UTILS_INFERKIT: '/utils/inferkit',

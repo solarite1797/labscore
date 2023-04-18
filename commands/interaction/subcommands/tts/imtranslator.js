@@ -1,15 +1,16 @@
 const { Constants } = require('detritus-client');
 const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = Constants;
 
-const { imtranslator } = require('../../../labscore/api');
-const { IMTRANSLATOR_VOICES } = require('../../../labscore/constants');
+const { imtranslator } = require('../../../../labscore/api');
+const { IMTRANSLATOR_VOICES } = require('../../../../labscore/constants');
 
-const { createEmbed } = require('../../../labscore/utils/embed');
-const { icon, highlight } = require('../../../labscore/utils/markdown');
+const { createEmbed } = require('../../../../labscore/utils/embed');
+const { icon, highlight } = require('../../../../labscore/utils/markdown');
 
 module.exports = {
-  description: 'Text to Speech',
-  name: 'texttospeech',
+  description: 'Text to Speech with imtranslator voices',
+  name: 'imtranslator',
+  type: ApplicationCommandOptionTypes.SUB_COMMAND,
   options: [
     {
       name: 'voice',

@@ -1,15 +1,16 @@
 const { Constants } = require('detritus-client');
 const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = Constants;
 
-const { playht } = require('../../../labscore/api');
-const { PLAYHT_VOICES } = require('../../../labscore/constants');
+const { playht } = require('../../../../labscore/api');
+const { PLAYHT_VOICES } = require('../../../../labscore/constants');
 
-const { createEmbed } = require('../../../labscore/utils/embed');
-const { icon, highlight } = require('../../../labscore/utils/markdown');
+const { createEmbed } = require('../../../../labscore/utils/embed');
+const { icon, highlight } = require('../../../../labscore/utils/markdown');
 
 module.exports = {
-  description: 'Text to Speech with different voices',
-  name: 'tts2',
+  description: 'Text to Speech with playht voices',
+  name: 'playht',
+  type: ApplicationCommandOptionTypes.SUB_COMMAND,
   options: [
     {
       name: 'voice',
