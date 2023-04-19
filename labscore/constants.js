@@ -298,6 +298,42 @@ module.exports.MICROSOFT_VOICE_CONFIG = {
   "Male Whisper": { pitch: 113, speed: 170 }
 }
 
+module.exports.AI_GPT_MODEL_CONFIG = {
+  "anthropic:claude-instant-v1": { name: "Anthropic claude-instant-v1", icon: "anthropic" },
+  "anthropic:claude-v1": { name: "Anthropic claude-v1", icon: "anthropic" },
+  "replicate:alpaca-7b": { name: "Replicate alpaca-7b", icon: "replicate" },
+  "huggingface:bigscience/bloomz": { name: "HuggingFace bigscience/bloomz", icon: "huggingface" },
+  "huggingface:google/flan-t5-xxl": { name: "HuggingFace google/flan-t5-xxl", icon: "huggingface" },
+  "huggingface:google/flan-ul2": { name: "HuggingFace google/flan-ul2", icon: "huggingface" },
+  "cohere:command-medium-nightly": { name: "Cohere command-medium-nightly", icon: "cohere" },
+  "cohere:command-xlarge-nightly": { name: "Cohere command-medium-nightly", icon: "cohere" },
+  "openai:gpt-3.5-turbo": { name: "OpenAI gpt-3.5-turbo", icon: "openai" },
+  "openai:text-ada-001": { name: "OpenAI text-ada-001", icon: "openai" },
+  "openai:text-babbage-001": { name: "OpenAI text-babbage-001", icon: "openai" },
+  "openai:text-curie-001": { name: "OpenAI text-curie-001", icon: "openai" },
+  "openai:text-davinci-002": { name: "OpenAI text-davinci-002", icon: "openai" },
+  "openai:text-davinci-003": { name: "OpenAI text-davinci-003", icon: "openai" }
+}
+
+module.exports.AI_GPT_MODELS = [
+  /*
+  { name: "Anthropic claude-instant-v1", value: "anthropic:claude-instant-v1" },
+  { name: "HuggingFace bigscience/bloomz", value: "huggingface:bigscience/bloomz" },
+  { name: "HuggingFace google/flan-t5-xxl", value: "huggingface:google/flan-t5-xxl" },
+  { name: "HuggingFace google/flan-ul2", value: "huggingface:google/flan-ul2" },
+  { name: "Cohere command-medium-nightly", value: "cohere:command-medium-nightly" },
+  { name: "Cohere command-medium-nightly", value: "cohere:command-xlarge-nightly" },
+  */
+  { name: "OpenAI gpt-3.5-turbo (ChatGPT)", value: "openai:gpt-3.5-turbo" },
+  { name: "Anthropic claude-v1", value: "anthropic:claude-v1" },
+  { name: "Replicate alpaca-7b", value: "replicate:alpaca-7b" },
+  { name: "OpenAI text-ada-001", value: "openai:text-ada-001" },
+  { name: "OpenAI text-babbage-001", value: "openai:text-babbage-001" },
+  { name: "OpenAI text-curie-001", value: "openai:text-curie-001" },
+  { name: "OpenAI text-davinci-002", value: "openai:text-davinci-002" },
+  { name: "OpenAI text-davinci-003", value: "openai:text-davinci-003" }
+]
+
 module.exports.TRANSLATE_LANGUAGE_MAPPINGS = Object.freeze({
   "af": "🇿🇦",
   "sq": "🇦🇱",

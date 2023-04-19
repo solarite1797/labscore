@@ -69,6 +69,15 @@ const embedTypes = Object.freeze({
       },
       color: COLORS.embed
     }
+  },
+  "loading_ai": (context) => {
+    return {
+      author: {
+        iconUrl: STATIC_ICONS.loading_ai,
+        name: `Generating...`
+      },
+      color: COLORS.brand
+    }
   }
 })
 

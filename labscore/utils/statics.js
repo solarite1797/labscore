@@ -82,6 +82,10 @@ const Statics = Object.freeze({
       file: "icons/core/ico_notice_loading.gif",
       revision: 0
     },
+    loading_ai: {
+      file: "icons/ai/ico_ai_generating.gif",
+      revision: 0
+    },
     warning: {
       file: "icons/core/ico_notice_warning.png",
       revision: 0
@@ -120,5 +124,6 @@ module.exports.STATIC_ICONS = Object.freeze({
   adult: staticAsset(Statics.icons.adult),
   error: staticAsset(Statics.icons.error),
   loading: staticAsset(Statics.icons.loading),
+  loading_ai: staticAsset(Statics.icons.loading_ai),
   warning: staticAsset(Statics.icons.warning)
 })
