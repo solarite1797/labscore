@@ -316,17 +316,15 @@ module.exports.AI_GPT_MODEL_CONFIG = {
 }
 
 module.exports.AI_GPT_MODELS = [
-  /*
+  { name: "OpenAI gpt-3.5-turbo (ChatGPT)", value: "openai:gpt-3.5-turbo" },
   { name: "Anthropic claude-instant-v1", value: "anthropic:claude-instant-v1" },
+  { name: "Anthropic claude-v1", value: "anthropic:claude-v1" },
+  { name: "Replicate alpaca-7b", value: "replicate:alpaca-7b" },
   { name: "HuggingFace bigscience/bloomz", value: "huggingface:bigscience/bloomz" },
   { name: "HuggingFace google/flan-t5-xxl", value: "huggingface:google/flan-t5-xxl" },
   { name: "HuggingFace google/flan-ul2", value: "huggingface:google/flan-ul2" },
   { name: "Cohere command-medium-nightly", value: "cohere:command-medium-nightly" },
   { name: "Cohere command-medium-nightly", value: "cohere:command-xlarge-nightly" },
-  */
-  { name: "OpenAI gpt-3.5-turbo (ChatGPT)", value: "openai:gpt-3.5-turbo" },
-  { name: "Anthropic claude-v1", value: "anthropic:claude-v1" },
-  { name: "Replicate alpaca-7b", value: "replicate:alpaca-7b" },
   { name: "OpenAI text-ada-001", value: "openai:text-ada-001" },
   { name: "OpenAI text-babbage-001", value: "openai:text-babbage-001" },
   { name: "OpenAI text-curie-001", value: "openai:text-curie-001" },
