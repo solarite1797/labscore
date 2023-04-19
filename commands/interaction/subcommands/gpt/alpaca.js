@@ -26,9 +26,7 @@ module.exports = {
     try{
       let s = Date.now()
       await context.respond({data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE})
-      await context.editOrRespond({
-        embeds: [createEmbed("loading_ai", context)]
-      })
+
       let res = await superagent.get(`${process.env.AI_SERVER}/gpt`)
         .query({
           model: MODEL,
