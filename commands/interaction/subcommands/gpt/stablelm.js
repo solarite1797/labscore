@@ -9,8 +9,8 @@ const { codeblock } = require('../../../../labscore/utils/markdown');
 const { format } = require('../../../../labscore/utils/ansi');
 
 module.exports = {
-  description: 'Alpaca-7b (Replicate alpaca-7b)',
-  name: 'alpaca',
+  description: 'StableLM (Stability AI stablelm-tuned-alpha-7b)',
+  name: 'stablelm',
   type: ApplicationCommandOptionTypes.SUB_COMMAND,
   options: [
     {
@@ -22,7 +22,7 @@ module.exports = {
     }
   ],
   run: async (context, args) => {
-    const MODEL = "replicate:replicate/alpaca-7b"
+    const MODEL = "replicate:stability-ai/stablelm-tuned-alpha-7b"
     try{
       let s = Date.now()
       await context.respond({data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE})
@@ -39,7 +39,7 @@ module.exports = {
             iconUrl: `https://derpystuff.gitlab.io/webstorage4/v2/assets/icons/ai/ico_ai_${AI_GPT_MODEL_CONFIG[MODEL].icon}.png`,
             text: `${AI_GPT_MODEL_CONFIG[MODEL].name} • ${context.application.name}`,
           },
-          description: codeblock("ansi", [format(args.prompt, "cyan") + res.body.response.substr(0, 1024).replace(/\\n/g,'\n')])
+          description: codeblock("ansi", [res.body.response.substr(0, 1024).replace(/\\n/g,'\n')])
         })]
       })
     }catch(e){
