@@ -5,8 +5,8 @@ module.exports = {
     require('../subcommands/gpt/chatgpt'),
     require('../subcommands/gpt/stablelm'),
     require('../subcommands/gpt/davinci3'),
-    require('../subcommands/gpt/claude'),
-    require('../subcommands/gpt/claude-instant'),
+    //require('../subcommands/gpt/claude'),
+    //require('../subcommands/gpt/claude-instant'),
     require('../subcommands/gpt/alpaca')
   ]
 };
