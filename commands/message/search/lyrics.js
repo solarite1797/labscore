@@ -55,7 +55,7 @@ module.exports = {
             i += 1
             continue;
           }
-          cur.value = c.substr(0,1024)
+          cur.value = c.substr(0,2048)
           if(cur.value.endsWith('\n\n')) cur.value = cur.value.substr(0,cur.value.length-1)
           cur.value += `​`
           i = 0
@@ -73,7 +73,15 @@ module.exports = {
       if(fields.length > 3){
         let pages = []
         while(fields.length) {
-          pages.push({embeds:[createLyricsPage(context, search, fields.splice(0,3))]})
+          let pageFields = fields.splice(0,3)
+          
+          // Display less fields if they take up too much vertical space
+          while(pageFields.map((f)=>f.value).join('\n').split('\n').length >= 36 && pageFields[1]){
+            fields.unshift(pageFields[pageFields.length - 1])
+            pageFields = pageFields.splice(0, pageFields.length - 1)
+          }
+          
+          pages.push({embeds:[createLyricsPage(context, search, pageFields)]})
         }
         
         pages = formatPaginationEmbeds(pages)
