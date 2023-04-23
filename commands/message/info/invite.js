@@ -32,11 +32,14 @@ module.exports = {
       // Guild Card
       let inviteCard = createEmbed("default", context, {
         description: `${icon("link")} **https://discord.gg/${inviteCode[1]}**\n\n​${icon("house")} **${g.name}** ${highlight(`(${g.id})`)}\n${icon("calendar")} **Created at: **${timestamp(g.createdAt, "f")}\n\n${icon("people")}${highlight(invite.approximateMemberCount.toLocaleString())}​ ​ ​ ​ ​ ​ ${icon("online")}${highlight(invite.approximatePresenceCount.toLocaleString())}​ ​ ​ ${icon("offline")}${highlight((invite.approximateMemberCount - invite.approximatePresenceCount).toLocaleString())}`,
-        thumbnail: {
-          url: g.iconUrl + `?size=4096`
-        },
         fields: []
       })
+
+      if(g.iconUrl){
+        inviteCard.thumbnail = {
+          url: g.iconUrl + `?size=4096`
+        }
+      }
 
       // Guild Features
       if(g.features.length >= 1){

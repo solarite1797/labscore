@@ -13,7 +13,8 @@ module.exports = {
   },
   run: async (context) => {
     context.triggerTyping();
-    editOrReply(context, {
+    if(!context.guild.iconUrl) return editOrReply(context, createEmbed("warning", context, "Server doesn't have an icon."))
+    return editOrReply(context, {
       embeds: [createEmbed("default", context, {
         image: {
           url: context.guild.iconUrl + "?size=4096"

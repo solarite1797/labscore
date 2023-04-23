@@ -31,11 +31,14 @@ module.exports = {
       // Guild Card
       let guildCard = createEmbed("default", context, {
         description: `${icon("house")} **${g.name}** ${highlight(`(${g.id})`)}\n\n${icon("calendar")} **Created at: **${timestamp(g.createdAt, "f")}`,
-        thumbnail: {
-          url: g.iconUrl + `?size=4096`
-        },
         fields: []
       })
+
+      if(g.iconUrl){
+        inviteCard.thumbnail = {
+          url: g.iconUrl + `?size=4096`
+        }
+      }
 
       if(g.owner) guildCard.description += `\n\n<:lc_guild_owner:674652779406426122> **Server Owner: **<@${g.owner.id}>`
 
