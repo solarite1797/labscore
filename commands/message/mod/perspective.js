@@ -9,24 +9,24 @@ const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 
 
-function getPerspectiveColor(score){
-  if(score >= 0.9) return "m"
-  if(score >= 0.76) return "r"
-  if(score >= 0.5) return "y"
+function getPerspectiveColor(score) {
+  if (score >= 0.9) return "m"
+  if (score >= 0.76) return "r"
+  if (score >= 0.5) return "y"
   return "g"
 }
 
-function formatPerspectiveScores(data){
+function formatPerspectiveScores(data) {
   let entries = [];
   let srt = [];
 
-  for(const scr of Object.keys(data.scores)){
+  for (const scr of Object.keys(data.scores)) {
     let score = data.scores[scr];
-    perc = `${score.toString().substr(2,2)}.${score.toString().substr(3,1)}`
-    if(perc.startsWith('0')) perc = ` ${perc.substr(1, perc.length)}`
-    srt.push(`${data.scores[scr]}|${format(perc + '%', getPerspectiveColor(score))}   ${scr.substr(0,1).toUpperCase()}${scr.substr(1,scr.length).toLowerCase().replace(/_/g, ' ')}`)
+    perc = `${score.toString().substr(2, 2)}.${score.toString().substr(3, 1)}`
+    if (perc.startsWith('0')) perc = ` ${perc.substr(1, perc.length)}`
+    srt.push(`${data.scores[scr]}|${format(perc + '%', getPerspectiveColor(score))}   ${scr.substr(0, 1).toUpperCase()}${scr.substr(1, scr.length).toLowerCase().replace(/_/g, ' ')}`)
   }
-  for(const i of srt.sort().reverse()) entries.push(i.split('|')[1])
+  for (const i of srt.sort().reverse()) entries.push(i.split('|')[1])
   return entries
 }
 
@@ -45,30 +45,31 @@ module.exports = {
     limit: 1,
     duration: 5000
   },
-  permissionsClient: [Permissions.MANAGE_MESSAGES],
   run: async (context, args) => {
     await context.triggerTyping();
-    
-   try{
+
+    try {
       let msg = '';
       if (context.message.messageReference) {
         msg = await context.message.channel.fetchMessage(context.message.messageReference.messageId)
         args.input = msg.content
-        msg = `${icon("robouser")} <@${msg.author.id}> (${msg.author.id})\n${codeblock("ansi", [ msg.content ])}\n`
+        msg = `${icon("robouser")} <@${msg.author.id}> (${msg.author.id})\n${codeblock("ansi", [msg.content])}\n`
       }
 
-      let perspectiveApi = await perspective(context, [ args.input ])
+      let perspectiveApi = await perspective(context, [args.input])
 
-      return await editOrReply(context, { embeds: [createEmbed("default", context, {
-        description: `${msg}${iconPill("rules", "Scores")} ${codeblock("ansi", formatPerspectiveScores(perspectiveApi.response.body))}`,
-        footer: {
-          iconUrl: STATICS.perspectiveapi,
-          text: `Perspective • ${context.application.name}`
-        }
-      })] })
-   }catch(e){
-    await editOrReply(context, { embeds: [createEmbed("error", context, `Something went wrong.`)] })
-    console.log(e)
-   }
+      return await editOrReply(context, {
+        embeds: [createEmbed("default", context, {
+          description: `${msg}${iconPill("rules", "Scores")} ${codeblock("ansi", formatPerspectiveScores(perspectiveApi.response.body))}`,
+          footer: {
+            iconUrl: STATICS.perspectiveapi,
+            text: `Perspective • ${context.application.name}`
+          }
+        })]
+      })
+    } catch (e) {
+      await editOrReply(context, { embeds: [createEmbed("error", context, `Something went wrong.`)] })
+      console.log(e)
+    }
   }
 };
