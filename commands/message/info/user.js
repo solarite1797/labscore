@@ -34,8 +34,11 @@ module.exports = {
       if(u.bot) botTag = ""
       if(u.hasFlag(UserFlags.VERIFIED_BOT)) botTag = ""
 
+      let usernameDisplay = u.name
+      if(u.discriminator && u.discriminator !== "0") usernameDisplay += `#${u.discriminator}`
+
       let userCard = createEmbed("default", context, {
-        description: `${icon("person")} **${u.name}#${u.discriminator}**${botTag} ${highlight(`(${u.id})`)}`,
+        description: `${icon("person")} **${usernameDisplay}**${botTag} ${highlight(`(${u.id})`)}`,
         thumbnail: {
           url: u.avatarUrl + `?size=4096`
         },

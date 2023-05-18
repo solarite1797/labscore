@@ -1,6 +1,7 @@
 async function getUser(context, query){
   let user;
   let member;
+  if(query == "@me") query = context.user.id;
   if(/[0-9]{17,19}/.test(query)){
     let uid = query.match(/[0-9]{17,19}/)
     try{
@@ -18,6 +19,7 @@ async function getUser(context, query){
 
 async function getMember(context, query){
   if(!context.guild) return;
+  if(query == "@me") query = context.author.id;
   if(/[0-9]{17,19}/.test(query)){
     let uid = query.match(/[0-9]{17,19}/)
     try{
