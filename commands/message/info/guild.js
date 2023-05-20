@@ -35,7 +35,7 @@ module.exports = {
       })
 
       if(g.iconUrl){
-        inviteCard.thumbnail = {
+        guildCard.thumbnail = {
           url: g.iconUrl + `?size=4096`
         }
       }
