@@ -1,7 +1,9 @@
-const { createEmbed } = require("../../../labscore/utils/embed");
+const { createEmbed, page, formatPaginationEmbeds } = require("../../../labscore/utils/embed");
 const { guildFeaturesField } = require("../../../labscore/utils/fields");
 const { icon, highlight, timestamp, codeblock } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
+
+const { paginator } = require('../../../labscore/client');
 
 module.exports = {
   name: 'server',
@@ -81,18 +83,27 @@ module.exports = {
 
       // Guild Features
       if(g.features.length >= 1){
-
-        // Create an empty field so everything properly aligns on desktop
-        guildCard.fields.push({
-          name: `​`,
-          value: `​`,
-          inline: true
-        })
-
         let featureCards = guildFeaturesField(g)
+                
+        let pages = [];
+        let i = 0;
+        let ic = Math.ceil(featureCards.length / 2);
+        
+        if(ic == 1) featureCards[0].name = `${icon("activity")} Guild Features`
+        while(featureCards.length >= 1){
+          i++;
+          const sub = featureCards.splice(0, 2)
+          sub[0].name = `${icon("activity")} Guild Features (${i}/${ic})`
 
-        featureCards[0].name = `${icon("activity")} Guild Features`
-        guildCard.fields = guildCard.fields.concat(featureCards)
+          pages.push(page(JSON.parse(JSON.stringify(Object.assign({ ...guildCard }, { fields: sub })))))
+        }
+
+        pages = formatPaginationEmbeds(pages)
+        const paging = await paginator.createPaginator({
+          context,
+          pages
+        });
+        return;
       }
 
       return editOrReply(context, guildCard)

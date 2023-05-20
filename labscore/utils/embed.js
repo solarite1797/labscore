@@ -118,12 +118,11 @@ module.exports.formatPaginationEmbeds = function(embeds){
       ne.embed.footer.text = e.embed.footer.text + ` • Page ${i}/${l}`
       formatted.push(ne)
     } else if (e.embeds){
-      let fse = []
-      for(const se of e.embeds){
+      ne.embeds = e.embeds.map((se)=>{
         se.footer.text = se.footer.text + ` • Page ${i}/${l}`
-        fse.push(se)
-      }
-      ne.embeds = fse
+        return se;
+      })
+
       formatted.push(ne)
     } else {
       formatted.push(e)

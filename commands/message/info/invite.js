@@ -1,9 +1,11 @@
 const { DISCORD_INVITES } = require("../../../labscore/constants");
-const { createEmbed } = require("../../../labscore/utils/embed");
+const { createEmbed, formatPaginationEmbeds, page } = require("../../../labscore/utils/embed");
 const { guildFeaturesField } = require("../../../labscore/utils/fields");
 const { icon, highlight, timestamp, link } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
+
+const { paginator } = require('../../../labscore/client');
 
 module.exports = {
   name: 'invite',
@@ -41,18 +43,35 @@ module.exports = {
         }
       }
 
-      // Guild Features
-      if(g.features.length >= 1){
-        let featureCards = guildFeaturesField(g)
-
-        featureCards[0].name = `${icon("activity")} Guild Features`
-        inviteCard.fields = inviteCard.fields.concat(featureCards)
-      }
-
       if(g.splash){
         inviteCard.image = {
           url: `https://cdn.discordapp.com/splashes/${g.id}/${g.splash}.png?size=4096`
         }
+      }
+
+      // Guild Features
+      if(g.features.length >= 1){
+        let featureCards = guildFeaturesField(g)
+                
+        let pages = [];
+        let i = 0;
+        let ic = Math.ceil(featureCards.length / 2);
+        
+        if(ic == 1) featureCards[0].name = `${icon("activity")} Guild Features`
+        while(featureCards.length >= 1){
+          i++;
+          const sub = featureCards.splice(0, 2)
+          sub[0].name = `${icon("activity")} Guild Features (${i}/${ic})`
+
+          pages.push(page(JSON.parse(JSON.stringify(Object.assign({ ...inviteCard }, { fields: sub })))))
+        }
+
+        pages = formatPaginationEmbeds(pages)
+        const paging = await paginator.createPaginator({
+          context,
+          pages
+        });
+        return;
       }
 
       return editOrReply(context, inviteCard)
