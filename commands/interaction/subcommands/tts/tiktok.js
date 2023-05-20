@@ -23,7 +23,7 @@ module.exports = {
       description: 'Text',
       type: ApplicationCommandOptionTypes.STRING,
       required: true,
-      maxLength: 256
+      maxLength: 100
     }
   ],
   run: async (context, args) => {
