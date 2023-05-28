@@ -83,6 +83,8 @@ module.exports.createEmbed = function(type, context, content){
     return emb
   }
 
+  if(content.footer && !content.footer.iconUrl) content.footer.iconUrl = `https://cdn.discordapp.com/avatars/${context.application.id}/${context.application.icon}.png?size=256`
+  
   if(["image"].includes(type)){
     if(content.url.includes('://')){
       emb.image = { url: content.url }
@@ -99,6 +101,7 @@ module.exports.createEmbed = function(type, context, content){
 
     return emb
   }
+
   return Object.assign(emb, content)
 }
 
