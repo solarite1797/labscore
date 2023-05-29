@@ -119,7 +119,7 @@ const BADGES = Object.freeze({
 
 function renderBadges(user){
   let badges = [];
-  for(const flag of Object.keys(BADGES)) if(user.hasFlag(parseInt(flag))) badges.push(link(BADGE_TYPES[BADGES[flag]].link, BADGE_TYPES[BADGES[flag]].icon))
+  for(const flag of Object.keys(BADGES)) if(user.hasFlag(parseInt(flag))) badges.push(BADGE_TYPES[BADGES[flag]].icon)
   return badges;
 }
 
