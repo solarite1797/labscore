@@ -48,15 +48,14 @@ const BADGES = Object.freeze({
   [UserFlags.HYPESQUAD_ONLINE_HOUSE_3]: '<:badge_hypesquad_balance:903276631211249674>',
   [UserFlags.BUG_HUNTER_LEVEL_1]: '<:badge_bughunter:903276631173509131>',
   [UserFlags.BUG_HUNTER_LEVEL_2]: '<:badge_bughunter_2:903276883523797033>',
+  [1<<22]: '<:active_developer:1112811846009892915>',
   [UserFlags.VERIFIED_DEVELOPER]: '<:badge_botdev:903276631173509130>',
-  [UserFlags.PREMIUM_EARLY_SUPPORTER]: '<:badge_earlysupporter:903277590956101672>'
+  [UserFlags.PREMIUM_EARLY_SUPPORTER]: '<:badge_earlysupporter:903277590956101672>',
 })
 
 function renderBadges(user){
   let badges = [];
-  for(const flag of Object.keys(BADGES)){
-    if(user.hasFlag(parseInt(flag))) badges.push(BADGES[flag])
-  }
+  for(const flag of Object.keys(BADGES)) if(user.hasFlag(parseInt(flag))) badges.push(BADGES[flag])
   return badges;
 }
 
