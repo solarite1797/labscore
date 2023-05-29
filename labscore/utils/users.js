@@ -36,7 +36,6 @@ async function getMember(context, query){
 }
 
 const { Constants } = require('detritus-client');
-const { link } = require('./markdown');
 const { UserFlags } = Constants
 
 const BADGE_TYPES = Object.freeze({
