@@ -4,6 +4,10 @@ const { Hosts } = require('../api/endpoints')
 // Update the revision id to break discord cache
 const Statics = Object.freeze({
   brands: {
+    applemaps: {
+      file: "brands/applemaps.png",
+      revision: 1
+    },
     bing: {
       file: "brands/bing.png",
       revision: 0
@@ -22,6 +26,10 @@ const Statics = Object.freeze({
     },
     inferkit: {
       file: "brands/inferkit.png",
+      revision: 0
+    },
+    inspirobot: {
+      file: "brands/inspirobot.png",
       revision: 0
     },
     makesweet: {
@@ -94,11 +102,13 @@ function staticAsset(static) {
 }
 
 module.exports.STATICS = Object.freeze({
+  applemaps: staticAsset(Statics.brands.applemaps),
   bing: staticAsset(Statics.brands.bing),
   genius: staticAsset(Statics.brands.genius),
   google: staticAsset(Statics.brands.google),
   emojipedia: staticAsset(Statics.brands.emojipedia),
   inferkit: staticAsset(Statics.brands.inferkit),
+  inspirobot: staticAsset(Statics.brands.inspirobot),
   makesweet: staticAsset(Statics.brands.makesweet),
   openweathermap: staticAsset(Statics.brands.openweathermap),
   perspectiveapi: staticAsset(Statics.brands.perspectiveapi),
