@@ -16,7 +16,7 @@ const cluster = new ClusterClient("", {
     ],
     presence: {
       activity: {
-        name: 'v2',
+        name: 'lc..help',
         type: ActivityTypes.WATCHING,
       },
       status: PresenceStatuses.ONLINE,
