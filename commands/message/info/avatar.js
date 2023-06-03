@@ -7,7 +7,7 @@ const { paginator } = require('../../../labscore/client');
 module.exports = {
   name: 'avatar',
   label: 'user',
-  aliases: ['a'],
+  aliases: ['a','pfp'],
   metadata: {
     description: 'Displays someones discord avatar. Accepts IDs, Mentions, or Usernames.',
     description_short: 'Get discord user avatars',
