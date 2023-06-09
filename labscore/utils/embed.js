@@ -83,7 +83,7 @@ module.exports.createEmbed = function(type, context, content){
     return emb
   }
 
-  if(content.footer && !content.footer.iconUrl) content.footer.iconUrl = `https://cdn.discordapp.com/avatars/${context.application.id}/${context.application.icon}.png?size=256`
+  if(content && content.footer && !content.footer.iconUrl) content.footer.iconUrl = `https://cdn.discordapp.com/avatars/${context.application.id}/${context.application.icon}.png?size=256`
   
   if(["image"].includes(type)){
     if(content.url.includes('://')){
@@ -97,7 +97,7 @@ module.exports.createEmbed = function(type, context, content){
       if(content.provider.icon) emb.footer.iconUrl = content.provider.icon
     }
 
-    if(content.time) emb.footer.text = `${emb.footer.text} • Took ${content.time}s`
+    if(content.time && emb.footer) emb.footer.text = `${emb.footer.text} • Took ${content.time}s`
 
     return emb
   }
