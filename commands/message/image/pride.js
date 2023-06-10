@@ -11,7 +11,7 @@ module.exports = {
     description: 'Adds a pride-themed overlay to someones avatar.',
     description_short: 'Pride overlay',
     examples: ['gay labsCore'],
-    category: 'info',
+    category: 'image',
     usage: 'pride [<user>]'
   },
   run: async (context, args) => {
