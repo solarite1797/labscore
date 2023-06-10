@@ -92,19 +92,23 @@ module.exports = {
 
       // Emoji Mixing
       if(emoji.length >= 2){
-        let em = await emojiKitchen(emoji)
-        if(!em.body.results[0]){
-          for(const em of emoji){
-            try{
-              await emojiKitchen([em])
-            }catch(e){
-              return editOrReply(context, createEmbed("warning", context, `Unsupported Emoji (${em})`))
+        try{
+          let em = await emojiKitchen(emoji)
+          if(!em.body.results[0]){
+            for(const em of emoji){
+              try{
+                await emojiKitchen([em])
+              }catch(e){
+                return editOrReply(context, createEmbed("warning", context, `Unsupported Emoji (${em})`))
+              }
             }
+  
+            return editOrReply(context, createEmbed("error", context, "Combination not supported."))
           }
-
-          return editOrReply(context, createEmbed("error", context, "Combination not supported."))
+          return editOrReply(context, createEmbed("image", context, { url: em.body.results[0].url }))
+        }catch(e){
+          return editOrReply(context, createEmbed("error", context, "Unable to mix emoji."))
         }
-        return editOrReply(context, createEmbed("image", context, { url: em.body.results[0].url }))
       }
 
       // Regular Emoji Handling
