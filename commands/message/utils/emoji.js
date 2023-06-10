@@ -98,7 +98,7 @@ module.exports = {
             try{
               await emojiKitchen([em])
             }catch(e){
-              return editOrReply(context, createEmbed("error", context, `Invalid Emoji (${em})`))
+              return editOrReply(context, createEmbed("warning", context, `Unsupported Emoji (${em})`))
             }
           }
 
