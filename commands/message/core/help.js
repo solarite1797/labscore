@@ -113,7 +113,7 @@ module.exports = {
       let results = []
       
       for(const c of context.commandClient.commands){
-        if(c.name.includes(args.command) || c.aliases.filter((f)=>{return f.includes(args.command)}).length >= 1){
+        if(c.name.includes(args.command.toLowerCase()) || c.aliases.filter((f)=>{return f.includes(args.command.toLowerCase())}).length >= 1){
           if(c.metadata.explicit && !context.channel.nsfw) continue;
           results.push(c)
         }
