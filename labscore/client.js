@@ -16,7 +16,7 @@ const cluster = new ClusterClient("", {
     ],
     presence: {
       activity: {
-        name: 'lc..help',
+        name: 'lc.help',
         type: ActivityTypes.WATCHING,
       },
       status: PresenceStatuses.ONLINE,
@@ -33,7 +33,7 @@ module.exports.paginator = new Paginator(cluster, {
 
 // Clients
 
-let commandPrefixes = ['lc.','lc..'] // Migration from beta -> main, remove lc.. eventually
+let commandPrefixes = ['lc..','lc.'] // Migration from beta -> main, remove lc.. eventually
 if(process.env.PREFIX_OVERRIDE) commandPrefixes = process.env.PREFIX_OVERRIDE.split('|');
 
 const commandClient = new CommandClient(cluster, {
