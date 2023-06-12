@@ -74,7 +74,7 @@ module.exports = {
     } else {
       embed.description = codeblock("js", ['​' + data.Result.split('\n').splice(0,10).join('\n').substr(0,1000)])
       embed.color = COLORS.success
-      if(data.Result == '​') codeblock('js', ["No Output"])
+      if(data.Result.length == 0) embed.description = codeblock('js', ["No Output"])
     }
 
     return editOrReply(context, createEmbed("default", context, embed))
