@@ -33,13 +33,13 @@ module.exports.paginator = new Paginator(cluster, {
 
 // Clients
 
-let commandPrefix = '.'
-if(process.env.PREFIX_OVERRIDE) commandPrefix = process.env.PREFIX_OVERRIDE;
+let commandPrefixes = ['.','..'] // Migration from beta -> main, remove .. eventually
+if(process.env.PREFIX_OVERRIDE) commandPrefixes = process.env.PREFIX_OVERRIDE.split('|');
 
 const commandClient = new CommandClient(cluster, {
   activateOnEdits: true,
   mentionsEnabled: false,
-  prefix: commandPrefix,
+  prefixes: commandPrefixes,
   useClusterClient: true,
   ratelimits: [
     {duration: 60000, limit: 50, type: 'guild'},
