@@ -14,7 +14,7 @@ module.exports = {
   label: 'code',
   name: 'eval',
   metadata: {
-    description: `Evaluate code snippets.\nSupported languages: ${highlight(Object.keys(REXTESTER_LANGUAGES).join(', '))}`,
+    description: `Evaluate code snippets. Supports codeblocks.\n\nSupported languages: ${highlight(Object.keys(REXTESTER_LANGUAGES).join(', '))}`,
     description_short: 'Evaluate code',
     examples: ['eval console.log(\'hi\') -lang js'],
     category: 'utils',
@@ -25,6 +25,8 @@ module.exports = {
   ],
   run: async (context, args) => {
     context.triggerTyping();
+
+    if(!args.code) return editOrReply(context, createEmbed("warning", context, "No code provided."))
 
     const { matches } = Utils.regex(DiscordRegexNames.TEXT_CODEBLOCK, args.code);
 
