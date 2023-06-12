@@ -33,7 +33,7 @@ module.exports.paginator = new Paginator(cluster, {
 
 // Clients
 
-let commandPrefixes = ['.','..'] // Migration from beta -> main, remove .. eventually
+let commandPrefixes = ['lc.','lc..'] // Migration from beta -> main, remove lc.. eventually
 if(process.env.PREFIX_OVERRIDE) commandPrefixes = process.env.PREFIX_OVERRIDE.split('|');
 
 const commandClient = new CommandClient(cluster, {
