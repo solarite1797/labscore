@@ -3,6 +3,8 @@ module.exports.DISCORD_INVITES = Object.freeze({
   privacy: "https://discord.gg/sQs8FhcTGh"
 })
 
+module.exports.DEFAULT_BOT_PREFIX = 'lc.'
+
 module.exports.PRIVACY_POLICY_SECTIONS = [
   'labsCore does not collect any sort of data about its users.',
   'If the bot encounters unexpected errors we report information about the server, channel, user and command/command arguments (excluding images) to a private log in order to assist with debugging and resolving the issue. You can reference the provided error ID in our support server for further details. Contents of these automated reports will never be shared with third parties and are only accessible to the bots developers.',
@@ -629,4 +631,38 @@ module.exports.GOOGLE_CLOUD_SAFETY_LABELS = Object.freeze({
     icon: "exclaim_4",
     name: "Very Likely  "
   }
+})
+
+module.exports.MAPKIT_ACTIONS = Object.freeze({
+  SEARCH: "search",
+  STATIC_MAP: "render"
+})
+
+module.exports.REXTESTER_LANGUAGES = Object.freeze({
+  "bash": "38",
+  "node": "23",
+  "js": "23",
+  "py": "5",
+  "java": "4",
+  "lua": "14",
+  "ruby": "12",
+  "perl": "13",
+  "go": "20",
+  //"kt": "43",
+  "rust": "46",
+  "php": "8",
+  "c": "6",
+  "cpp": "7",
+  'cs': "1",
+  "elixir": "41",
+  "swift": "37",
+  "bf": "44",
+  "scala": "21",
+  "haskell": "11"
+})
+
+module.exports.REXTESTER_COMPILER_ARGS = Object.freeze({
+  "6": "-Wall -std=gnu99 -O2 -o a.out source_file.c",
+  "7": "-Wall -std=c++14 -O2 -o a.out source_file.cpp",
+  "11": "-o a.out source_file.hs"
 })

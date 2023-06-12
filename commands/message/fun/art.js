@@ -3,6 +3,7 @@ const { editOrReply } = require('../../../labscore/utils/message')
 
 const superagent = require('superagent');
 const { codeblock } = require('../../../labscore/utils/markdown');
+const { DEFAULT_BOT_PREFIX } = require('../../../labscore/constants');
 
 const SIZES = Object.freeze({
   "wallpaper": { x: 1120, y: 630},
@@ -80,11 +81,11 @@ module.exports = {
         })
       
       res = JSON.parse(res.text)
-
+      
       await response.edit({
         embeds: [
           createEmbed("default", context, {
-            description: `${codeblock(`py`, [`${context.commandClient.prefixes.custom.first()}art -type ${args.type.toLowerCase()} -seed ${seed} -variance ${variance} -rotate ${rotate}`])}`,
+            description: `${codeblock(`py`, [`${DEFAULT_BOT_PREFIX}art -type ${args.type.toLowerCase()} -seed ${seed} -variance ${variance} -rotate ${rotate}`])}`,
             image: {
               url: res.image_link
             },

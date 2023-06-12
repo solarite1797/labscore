@@ -1,7 +1,7 @@
 const { codeblock, highlight, icon, link, pill, smallPill } = require('../../../labscore/utils/markdown')
 const { createEmbed, formatPaginationEmbeds } = require('../../../labscore/utils/embed')
 
-const { DISCORD_INVITES } = require('../../../labscore/constants')
+const { DISCORD_INVITES, DEFAULT_BOT_PREFIX } = require('../../../labscore/constants')
 
 const { paginator } = require('../../../labscore/client');
 const { editOrReply } = require('../../../labscore/utils/message');
@@ -12,7 +12,7 @@ function createHelpPage(context, title, contents, descriptions){
       createEmbed("default", context, {
         description: `${title}\n\n` +
         renderCommandList(contents, descriptions) +
-          `\n\n${icon("question")} Use ${pill(`${context.commandClient.prefixes.custom.first()}help <command>`)} to view more information about a command.`
+          `\n\n${icon("question")} Use ${pill(`${DEFAULT_BOT_PREFIX}help <command>`)} to view more information about a command.`
       })
     ]
   }
@@ -120,7 +120,7 @@ module.exports = {
       }
 
       let pages = []
-      let prefix = context.commandClient.prefixes.custom.first()
+      let prefix = DEFAULT_BOT_PREFIX
       try{
         
       if(results.length == 0) return editOrReply(context, {embeds: [createEmbed("warning", context, "No commands found for the provided query.")]})
@@ -158,7 +158,6 @@ module.exports = {
       let commands = {}
       let descriptions = {}
 
-      let prefix = context.commandClient.prefixes.custom.first()
       for(const c of context.commandClient.commands){
         if(!categories[c.metadata.category]) continue;
         if(c.metadata.explicit && !context.channel.nsfw) continue;

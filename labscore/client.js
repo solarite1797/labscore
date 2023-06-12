@@ -33,12 +33,13 @@ module.exports.paginator = new Paginator(cluster, {
 
 // Clients
 
-let commandPrefixes = ['lc..', 'ic.', 'lc.'] // Migration from beta -> main, remove lc.. eventually
+let commandPrefixes = ['lc.', 'ic.', 'lc..'] // Migration from beta -> main, remove lc.. eventually
 if(process.env.PREFIX_OVERRIDE) commandPrefixes = process.env.PREFIX_OVERRIDE.split('|');
 
 const commandClient = new CommandClient(cluster, {
   activateOnEdits: true,
   mentionsEnabled: false,
+  prefix: commandPrefixes[0],
   prefixes: commandPrefixes,
   useClusterClient: true,
   ratelimits: [
@@ -57,7 +58,8 @@ const { editOrReply } = require('./utils/message');
 
 // Delete command responses if the user chooses to delete their trigger or edits the command away
 commandClient.on('commandDelete', async ({context, reply}) => {
-  if(context.message?.deleted && !reply.deleted || !context.message.content.startsWith(commandPrefix)) reply.delete();
+  for(const p of commandPrefixes) if(context.message.content.startsWith(p)) return;
+  if(context.message?.deleted && !reply.deleted) reply.delete();
 })
 
 commandClient.on('commandRunError', async ({context, error}) => {
