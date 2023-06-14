@@ -60,7 +60,7 @@ module.exports = {
       return editOrReply(context, createEmbed("default", context, {
         description: `${icon("sticker")} **${s.name}**`,
         image: {
-          url: `https://media.discordapp.net/stickers/${s.id}.png`
+          url: `https://media.discordapp.net/stickers/${s.id}.png?size=4096`
         }
       })
     )
@@ -78,7 +78,7 @@ module.exports = {
       return editOrReply(context, createEmbed("default", context, {
           description: `${icon("emoji")} **${matches[0].name}**`,
           image: {
-            url: `https://cdn.discordapp.com/emojis/${matches[0].id}${form}`
+            url: `https://cdn.discordapp.com/emojis/${matches[0].id}${form}?size=4096`
           }
         })
       )
