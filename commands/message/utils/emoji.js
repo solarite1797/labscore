@@ -116,8 +116,13 @@ module.exports = {
 
       if(!EMOJIPEDIA_PLATFORM_TYPES.includes(args.type.toLowerCase()) && EMOJIPEDIA_PLATFORM_TYPE_ALIASES[args.type.toLowerCase()]) args.type = EMOJIPEDIA_PLATFORM_TYPE_ALIASES[args.type.toLowerCase()]
 
-      let res = await emojipedia(context, emoji[0])
-      res = res.response.body
+      let res;
+      try{
+        res = await emojipedia(context, emoji[0])
+        res = res.response.body
+      }catch(e){
+        return await editOrReply(context, createEmbed("error", context, `No emoji data available for ${emoji[0]}.`))
+      }
 
       if(!res.data.vendor_images[args.type]){
         let embed = createEmbed("error", context, "No emoji image available for platform '" + args.type.toLowerCase() + "'.")
