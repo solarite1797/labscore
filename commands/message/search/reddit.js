@@ -80,6 +80,7 @@ module.exports = {
       });
     }catch(e){
       console.log(e)
+      if(e.response && e.response.body.message) return editOrReply(context, {embeds:[createEmbed("error", context, e.response.body.message)]})
       return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to perform reddit search.`)]})
     }
   },
