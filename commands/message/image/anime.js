@@ -4,6 +4,8 @@ const { editOrReply } = require("../../../labscore/utils/message");
 const superagent = require('superagent');
 const { getRecentImage } = require("../../../labscore/utils/attachment");
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 module.exports = {
   name: 'anime',
   label: 'query',
@@ -20,6 +22,7 @@ module.exports = {
     limit: 1,
     duration: 5000
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES],
   run: async (context, args) => {
     if(!context.channel.nsfw) return editOrReply(context, {embeds:[createEmbed("nsfw", context)]})
     if(args.query.length == 0) return editOrReply(context, {embeds:[createEmbed("warning", context, "Missing prompt")]})

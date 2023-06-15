@@ -5,6 +5,8 @@ const { codeblock } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 module.exports = {
   name: 'ocr',
   metadata: {
@@ -14,6 +16,7 @@ module.exports = {
     category: 'utils',
     usage: 'ocr <attachment>'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.READ_MESSAGE_HISTORY, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context) => {
     context.triggerTyping();
     let image = await getRecentImage(context, 50)

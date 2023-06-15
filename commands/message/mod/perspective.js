@@ -2,12 +2,12 @@ const { Constants } = require("detritus-client");
 const { perspective } = require("../../../labscore/api");
 const { format } = require("../../../labscore/utils/ansi");
 const { createEmbed } = require("../../../labscore/utils/embed");
-const Permissions = Constants.Permissions;
 
 const { icon, codeblock, iconPill } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 
+const { Permissions } = require("detritus-client/lib/constants");
 
 function getPerspectiveColor(score) {
   if (score >= 0.9) return "m"
@@ -45,6 +45,7 @@ module.exports = {
     limit: 1,
     duration: 5000
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     await context.triggerTyping();
 

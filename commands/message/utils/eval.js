@@ -1,5 +1,5 @@
 
-const { DiscordRegexNames } = require("detritus-client/lib/constants");
+const { DiscordRegexNames, Permissions } = require("detritus-client/lib/constants");
 const { Utils } = require("detritus-client");
 
 const { REXTESTER_LANGUAGES, COLORS, REXTESTER_COMPILER_ARGS } = require("../../../labscore/constants");
@@ -9,6 +9,7 @@ const superagent = require('superagent')
 const { createEmbed } = require("../../../labscore/utils/embed");
 const { codeblock, highlight } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
+
 
 module.exports = {
   label: 'code',
@@ -23,6 +24,7 @@ module.exports = {
   args: [
     {name: 'lang', default: 'node'}
   ],
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
     context.triggerTyping();
 

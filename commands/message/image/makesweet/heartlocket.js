@@ -6,6 +6,8 @@ const { getRecentImage } = require("../../../../labscore/utils/attachment");
 const { heartLocket } = require("../../../../service/makesweet");
 const { STATICS } = require("../../../../labscore/utils/statics");
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 module.exports = {
   name: 'heartlocket',
   label: 'text',
@@ -16,6 +18,7 @@ module.exports = {
     category: 'image',
     usage: 'heartlocket [<text>]'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES],
   run: async (context, args) => {
 
     let image = await getRecentImage(context, 50)

@@ -7,6 +7,7 @@ const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 const { isSupported, getCodeFromAny } = require("../../../labscore/utils/translate");
 
+const { Permissions } = require("detritus-client/lib/constants");
 module.exports = {
   name: 'ocrtr',
   label: 'to',
@@ -21,6 +22,7 @@ module.exports = {
   args: [
     {name: 'from', default: 'auto', type: 'string', help: "Language to translate from"}
   ],
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.READ_MESSAGE_HISTORY, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
     context.triggerTyping();
 

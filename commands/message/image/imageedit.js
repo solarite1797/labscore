@@ -4,6 +4,8 @@ const { getRecentImage } = require("../../../labscore/utils/attachment");
 
 const superagent = require('superagent');
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 module.exports = {
   name: 'editimage',
   label: 'prompt',
@@ -20,6 +22,7 @@ module.exports = {
     limit: 1,
     duration: 5000
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES],
   run: async (context, args) => {
     if(!args.prompt) return editOrReply(context, { embeds: [createEmbed("warning", context, "Missing prompt.")] })
 

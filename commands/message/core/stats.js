@@ -3,6 +3,8 @@ const { createEmbed } = require('../../../labscore/utils/embed')
 
 const { editOrReply } = require('../../../labscore/utils/message');
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 function format(seconds){
   function pad(s){
     return (s < 10 ? '0' : '') + s;
@@ -25,6 +27,7 @@ module.exports = {
     category: 'core',
     usage: 'stats'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context) => {
     context.triggerTyping();
     try{

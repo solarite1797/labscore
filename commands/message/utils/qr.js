@@ -6,6 +6,8 @@ const { codeblock, icon } = require('../../../labscore/utils/markdown');
 
 const superagent = require('superagent');
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 module.exports = {
   name: 'qr',
   label: 'text',
@@ -17,6 +19,7 @@ module.exports = {
     category: 'utils',
     usage: `qr <contents>`
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.READ_MESSAGE_HISTORY, Permissions.ATTACH_FILES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
 
     // If we have an argument, generate code 

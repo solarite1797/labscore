@@ -5,6 +5,8 @@ const { STATICS } = require('../../../labscore/utils/statics')
 const { lyrics } = require('../../../labscore/api');
 const { paginator } = require('../../../labscore/client');
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 function createLyricsPage(context, search, fields){
   let em = createEmbed("default", context, {
     author: {
@@ -32,6 +34,7 @@ module.exports = {
     category: 'search',
     usage: 'lyrics <query>'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
     context.triggerTyping();
     if(!args.query) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (query).`)]})
@@ -43,7 +46,7 @@ module.exports = {
       let fields = [];
       if(search.body.lyrics.includes('[')){
          // Split lyrics into field-sizes chunks if multiple verses are present
-        let chunks = search.body.lyrics.split(/\[(.*?)\]/)
+        let chunks = search.body.lyrics.replace(/\[Footnote .*?\]/g,'').split(/\[(.*?)\]/)
         let cur = {
           inline: false
         };
@@ -55,7 +58,7 @@ module.exports = {
             i += 1
             continue;
           }
-          cur.value = c.substr(0,2048)
+          cur.value = c.substr(0,1000)
           if(cur.value.endsWith('\n\n')) cur.value = cur.value.substr(0,cur.value.length-1)
           cur.value += `​`
           i = 0
@@ -66,14 +69,14 @@ module.exports = {
         }
       } else {
         let message = createLyricsPage(context, search, [])
-        message.description = search.body.lyrics.substr(0, 2048)
+        message.description = search.body.lyrics.substr(0, 1024)
         return editOrReply(context, message)
       }
       
-      if(fields.length > 3){
+      if(fields.length > 2){
         let pages = []
         while(fields.length) {
-          let pageFields = fields.splice(0,3)
+          let pageFields = fields.splice(0,2)
           
           // Display less fields if they take up too much vertical space
           while(pageFields.map((f)=>f.value).join('\n').split('\n').length >= 36 && pageFields[1]){
@@ -100,7 +103,7 @@ module.exports = {
           return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to perform lyrics search.`)]})
         }
       }
-      console.log(e)
+      //console.log(JSON.stringify(e.raw))
       return editOrReply(context, {embeds:[createEmbed("error", context, `Something went wrong.`)]})
     }
   },

@@ -6,6 +6,8 @@ const { STATICS } = require('../../../labscore/utils/statics')
 const { paginator } = require('../../../labscore/client');
 const { bing } = require('../../../labscore/api');
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 function createSearchResultPage(context, entry){
   let res;
   switch(entry.type){
@@ -103,6 +105,7 @@ module.exports = {
     category: 'search',
     usage: 'bing <query>'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
     context.triggerTyping();
     if(!args.query) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (query).`)]})

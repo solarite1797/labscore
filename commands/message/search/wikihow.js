@@ -1,10 +1,11 @@
 const { createEmbed, formatPaginationEmbeds } = require('../../../labscore/utils/embed')
-const { link } = require('../../../labscore/utils/markdown')
 const { editOrReply } = require('../../../labscore/utils/message')
 const { STATICS } = require('../../../labscore/utils/statics')
 
 const { paginator } = require('../../../labscore/client');
 const { wikihow } = require('../../../labscore/api');
+
+const { Permissions } = require("detritus-client/lib/constants");
 
 function createWikiHowPage(context, result){
   let e = createEmbed("default", context, {
@@ -36,6 +37,7 @@ module.exports = {
     category: 'search',
     usage: 'wikihow <query>'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
     context.triggerTyping();
     try{

@@ -6,6 +6,8 @@ const { icon, pill, iconPill } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 module.exports = {
   name: 'safetylabels',
   metadata: {
@@ -15,6 +17,7 @@ module.exports = {
     category: 'utils',
     usage: 'safetylabels <attachment>'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context) => {
     context.triggerTyping();
     let image = await getRecentImage(context, 50)

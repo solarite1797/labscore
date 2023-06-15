@@ -1,5 +1,4 @@
-const { Constants } = require("detritus-client");
-const Permissions = Constants.Permissions;
+const { Permissions } = require("detritus-client/lib/constants");
 
 const { icon } = require("../../../labscore/utils/markdown");
 
@@ -19,9 +18,8 @@ module.exports = {
     {default: 20, name: 'amount', type: 'integer', help: "Amount of messages to be checked (1-20)"},
     {default: true, name: 'case', type: 'bool', help: "If provided, should the search query be case sensitive"},
   ],
-  permissionsClient: [Permissions.MANAGE_MESSAGES],
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.MANAGE_MESSAGES, Permissions.READ_MESSAGE_HISTORY],
   permissions: [Permissions.MANAGE_MESSAGES],
-  onPermissionsFailClient: (context) => context.editOrReply(`${icon("failiure_simple")} ${context.message.author.mention}, the bot needs the \`Manage Messages\` permission to run this command.`),
   onPermissionsFail: (context) => context.editOrReply(`${icon("failiure_simple")} ${context.message.author.mention}, you are lacking the permission \`Manage Messages\`.`),
   ratelimit: {
     type: 'guild',

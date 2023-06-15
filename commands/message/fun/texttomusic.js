@@ -4,6 +4,8 @@ const { editOrReply } = require("../../../labscore/utils/message");
 const superagent = require('superagent');
 const { icon, highlight } = require("../../../labscore/utils/markdown");
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 module.exports = {
   name: 'texttomusic',
   label: 'query',
@@ -20,6 +22,7 @@ module.exports = {
     limit: 1,
     duration: 5000
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES],
   run: async (context, args) => {
     let response = await editOrReply(context, { embeds: [createEmbed("loading", context, `Generating audio...`)] })
 

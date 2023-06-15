@@ -4,6 +4,8 @@ const { icon, highlight, link } = require('../../../labscore/utils/markdown');
 
 const superagent = require('superagent');
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 const applicationFlags = {
   EMBEDDED_RELEASED: 1,
   GATEWAY_PRESENCE: 12,
@@ -43,6 +45,7 @@ module.exports = {
     category: 'info',
     usage: 'appinfo <application id>'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
     context.triggerTyping();
     let id;

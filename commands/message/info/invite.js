@@ -7,6 +7,8 @@ const { STATICS } = require("../../../labscore/utils/statics");
 
 const { paginator } = require('../../../labscore/client');
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 module.exports = {
   name: 'invite',
   label: 'invite',
@@ -18,6 +20,7 @@ module.exports = {
     category: 'info',
     usage: 'invite <invite code>'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => { 
     context.triggerTyping();
     if(!args.invite) return editOrReply(context, { content: `https://canary.discord.com/application-directory/${context.client.user.id}`, embed:createEmbed("default", context, {

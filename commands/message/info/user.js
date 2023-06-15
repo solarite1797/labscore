@@ -6,6 +6,8 @@ const { getUser, renderBadges } = require("../../../labscore/utils/users");
 const { Constants } = require('detritus-client')
 const { UserFlags } = Constants
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 module.exports = {
   name: 'user',
   label: 'user',
@@ -17,6 +19,7 @@ module.exports = {
     category: 'info',
     usage: 'user [<user>]'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => { 
     context.triggerTyping();
     try{

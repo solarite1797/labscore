@@ -6,6 +6,8 @@ const { STATICS } = require('../../../labscore/utils/statics')
 const { inferkit } = require('../../../labscore/api')
 const { codeblock } = require('../../../labscore/utils/markdown')
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 module.exports = {
   name: 'inferkit',
   aliases: ['complete'],
@@ -17,6 +19,7 @@ module.exports = {
     category: 'fun',
     usage: 'inferkit <prompt>'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
     context.triggerTyping();
     if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})

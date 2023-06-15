@@ -1,8 +1,9 @@
-const { getRecentImage } = require("../../../../labscore/utils/attachment");
 const { createEmbed } = require("../../../../labscore/utils/embed");
 const { editOrReply } = require("../../../../labscore/utils/message");
 
 const { text2image } = require('../../../../labscore/api');
+
+const { Permissions } = require("detritus-client/lib/constants");
 
 module.exports = {
   name: 'text2image',
@@ -15,6 +16,7 @@ module.exports = {
     category: 'image',
     usage: 'text2image <image>'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES],
   run: async (context, args) => {
     context.triggerTyping();
     try{

@@ -5,6 +5,8 @@ const { editOrReply } = require('../../../labscore/utils/message')
 const { paginator } = require('../../../labscore/client');
 const { dictionary } = require('../../../labscore/api');
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 function createDictionaryPage(context, result){
   let phon = ''
   if(result.phonetic) phon = `\n*${result.phonetic}*`
@@ -43,6 +45,7 @@ module.exports = {
     category: 'search',
     usage: 'define <query>'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
     context.triggerTyping();
     try{

@@ -5,6 +5,8 @@ const { editOrReply } = require("../../../labscore/utils/message");
 
 const { paginator } = require('../../../labscore/client');
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 module.exports = {
   name: 'server',
   label: 'user',
@@ -16,6 +18,7 @@ module.exports = {
     category: 'info',
     usage: 'server'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context) => {
     try{
       const emojis = context.message.guild.emojis

@@ -3,6 +3,8 @@
 const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 const APPS = [
   "appcode",
   "aqua",
@@ -61,6 +63,7 @@ module.exports = {
     category: 'fun',
     usage: `art2`
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context) => {
     context.triggerTyping();
     return editOrReply(context, createEmbed("default", context, {

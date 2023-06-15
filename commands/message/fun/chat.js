@@ -5,6 +5,8 @@ const { editOrReply } = require('../../../labscore/utils/message')
 const superagent = require('superagent')
 const { codeblock } = require('../../../labscore/utils/markdown')
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 module.exports = {
   name: 'chat',
   label: 'text',
@@ -15,6 +17,7 @@ module.exports = {
     category: 'fun',
     usage: 'chat <prompt>'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
     context.triggerTyping();
     if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})

@@ -6,6 +6,8 @@ const { STATICS } = require('../../../labscore/utils/statics')
 const { paginator } = require('../../../labscore/client');
 const { urbandictionary } = require('../../../labscore/api');
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 function createUrbanPage(context, result){
   let e = createEmbed("default", context, {
     description: `**${link(result.link, result.title)}**`,
@@ -45,6 +47,7 @@ module.exports = {
     category: 'search',
     usage: 'urbandictionary <query>'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
     context.triggerTyping();
     try{

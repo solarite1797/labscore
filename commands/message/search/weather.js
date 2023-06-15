@@ -5,6 +5,8 @@ const { STATICS } = require('../../../labscore/utils/statics')
 const { weather } = require('../../../labscore/api');
 const { pill, icon } = require('../../../labscore/utils/markdown');
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 module.exports = {
   name: 'weather',
   label: 'query',
@@ -15,6 +17,7 @@ module.exports = {
     category: 'search',
     usage: 'weather <location>'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
     context.triggerTyping();
     if(!args.query) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (location).`)]})

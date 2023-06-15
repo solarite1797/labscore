@@ -3,6 +3,8 @@ const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message');
 const { format } = require('../../../labscore/utils/ansi');
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 module.exports = {
   name: 'shard',
   metadata: {
@@ -12,6 +14,7 @@ module.exports = {
     category: 'core',
     usage: 'shard'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES],
   run: async (context) => {  
     return await editOrReply(context, 
       createEmbed("default", context, {

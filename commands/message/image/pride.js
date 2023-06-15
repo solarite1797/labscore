@@ -2,6 +2,8 @@ const { createEmbed } = require("../../../labscore/utils/embed");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { getUser } = require("../../../labscore/utils/users");
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 const superagent = require('superagent')
 module.exports = {
   name: 'pride',
@@ -14,6 +16,7 @@ module.exports = {
     category: 'image',
     usage: 'pride [<user>]'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES],
   run: async (context, args) => {
     context.triggerTyping();
     if(!args.user) args.user = context.userId;

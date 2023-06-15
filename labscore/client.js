@@ -1,5 +1,5 @@
 const { Constants, ClusterClient, CommandClient, InteractionCommandClient } = require('detritus-client');
-const { ActivityTypes, PresenceStatuses, GatewayIntents } = require('detritus-client/lib/constants');
+const { ActivityTypes, PresenceStatuses, GatewayIntents, Permissions } = require('detritus-client/lib/constants');
 
 const Paginator = require('./paginator').PaginatorCluster
 
@@ -53,13 +53,41 @@ const interactionClient = new InteractionCommandClient(cluster, {
 })
 
 const { maintower } = require('./logging');
-const { icon } = require('./utils/markdown');
+const { icon, highlight, pill } = require('./utils/markdown');
 const { editOrReply } = require('./utils/message');
+
+const { PERMISSIONS_TEXT } = require('./constants');
+const { createEmbed } = require('./utils/embed');
+
+// Handle missing permission errors
+commandClient.on('commandPermissionsFailClient', ({context, permissions}) => {
+  const perms = [];
+  for (let permission of permissions) {
+    if (permission in PERMISSIONS_TEXT) {
+      perms.push(highlight(` ${PERMISSIONS_TEXT[permission]} `));
+    } else {
+      perms.push(highlight(` (Unknown: ${permission}) `));
+    }
+  }
+
+  // Send a nicer looking embed if the bot has permission to do so
+  if(context.channel.can(Permissions.EMBED_LINKS)) return editOrReply(context, createEmbed("errordetail", context, {
+    error: "Missing Permissions",
+    content: `${context.client.user.username} needs the following permissions in <#${context.channel.id}>:\n${perms.join(' ')}`
+  }))
+  return editOrReply(context, {
+    content: `${context.client.user.username} needs the following permissions in <#${context.channel.id}> to execute this command: ${perms.join(', ')}`
+  })
+})
+
 
 // Delete command responses if the user chooses to delete their trigger or edits the command away
 commandClient.on('commandDelete', async ({context, reply}) => {
-  for(const p of commandPrefixes) if(context.message.content.startsWith(p)) return;
-  if(context.message?.deleted && !reply.deleted) reply.delete();
+  if(context.message?.deleted) return reply.delete();
+
+  let hasPrefix = false;
+  for(const p of commandPrefixes) if(context.message.content.startsWith(p)) hasPrefix = true;
+  if(!reply.deleted && !hasPrefix) reply.delete();
 })
 
 commandClient.on('commandRunError', async ({context, error}) => {

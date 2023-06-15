@@ -4,6 +4,8 @@ const { editOrReply } = require("../../../labscore/utils/message");
 
 const superagent = require('superagent')
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 async function processJob(jobUrl){
   let job = await superagent.get(jobUrl)
     .set('User-Agent', 'labscore/1.0')
@@ -22,6 +24,7 @@ module.exports = {
     category: 'utils',
     usage: 'screenshot <url>'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.ATTACH_FILES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
     if(!args.url) return editOrReply(context, { embeds: [createEmbed("warning", context, "No url supplied.")] })
     

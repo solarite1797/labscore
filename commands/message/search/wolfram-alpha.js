@@ -6,6 +6,8 @@ const { paginator } = require('../../../labscore/client');
 const { wolframAlpha } = require('../../../labscore/api');
 const { citation } = require('../../../labscore/utils/markdown');
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 function getWolframSource(ref, sources){
   for(const s of Object.values(sources)){
     if(s.ref == ref) return s
@@ -52,6 +54,7 @@ module.exports = {
     category: 'search',
     usage: 'wolframalpha <query>'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
     context.triggerTyping();
     if(!args.query) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (query).`)]})

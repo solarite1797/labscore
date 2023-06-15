@@ -6,6 +6,8 @@ const { STATICS } = require('../../../labscore/utils/statics')
 const { paginator } = require('../../../labscore/client');
 const { youtube } = require('../../../labscore/api');
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 // https://www.html-code-generator.com/javascript/shorten-long-numbers
 const intToString = num => {
   num = num.toString().replace(/[^0-9.]/g, '');
@@ -100,6 +102,7 @@ module.exports = {
     category: 'search',
     usage: 'youtube <query>'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
     context.triggerTyping();
     if(!args.query) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (query).`)]})

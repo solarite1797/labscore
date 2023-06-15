@@ -4,6 +4,8 @@ const { editOrReply } = require('../../../labscore/utils/message')
 const superagent = require('superagent');
 const { STATICS } = require('../../../labscore/utils/statics');
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 module.exports = {
   name: 'inspire',
   metadata: {
@@ -13,6 +15,7 @@ module.exports = {
     category: 'fun',
     usage: `inspire`
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES],
   run: async (context) => {
     await context.triggerTyping();
     try{

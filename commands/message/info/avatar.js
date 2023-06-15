@@ -4,6 +4,8 @@ const { getMember, getUser } = require("../../../labscore/utils/users");
 
 const { paginator } = require('../../../labscore/client');
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 module.exports = {
   name: 'avatar',
   label: 'user',
@@ -15,6 +17,7 @@ module.exports = {
     category: 'info',
     usage: 'avatar [<user>]'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
     context.triggerTyping();
     if(!args.user) args.user = context.userId;

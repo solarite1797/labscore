@@ -5,6 +5,8 @@ const { editOrReply } = require('../../../labscore/utils/message')
 const { paginator } = require('../../../labscore/client');
 const { rule34 } = require('../../../labscore/api');
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 function createRule34Page(context, result){
   let res = {
     "embeds": [
@@ -56,6 +58,7 @@ module.exports = {
   args: [
     {name: 'site', default: 'rule34', type: 'string', help: `Site to search on \` ${Object.keys(SITES).join(', ')} \``}
   ],
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
     context.triggerTyping();
 

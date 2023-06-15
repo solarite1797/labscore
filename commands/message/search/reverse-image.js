@@ -1,11 +1,12 @@
 const { createEmbed, formatPaginationEmbeds } = require('../../../labscore/utils/embed')
-const { link } = require('../../../labscore/utils/markdown')
 const { editOrReply } = require('../../../labscore/utils/message')
 const { STATICS } = require('../../../labscore/utils/statics')
 const { getRecentImage } = require("../../../labscore/utils/attachment");
 
 const { paginator } = require('../../../labscore/client');
 const { reverseImageSearch } = require('../../../labscore/api');
+
+const { Permissions } = require("detritus-client/lib/constants");
 
 function createReverseImageSearchResultPage(context, result, source){
   let res = {
@@ -43,6 +44,7 @@ module.exports = {
     category: 'search',
     usage: 'reverse <image>'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context) => {
     context.triggerTyping();
     try{

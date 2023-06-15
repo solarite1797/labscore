@@ -4,6 +4,8 @@ const { STATICS } = require('../../../../labscore/utils/statics')
 
 const { yacht } = require('../../../../labscore/api')
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 module.exports = {
   name: 'yacht',
   label: 'text',
@@ -14,6 +16,7 @@ module.exports = {
     category: 'image',
     usage: 'yacht <text>'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES],
   run: async (context, args) => {
     context.triggerTyping();
     if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})

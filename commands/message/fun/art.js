@@ -5,6 +5,8 @@ const superagent = require('superagent');
 const { codeblock } = require('../../../labscore/utils/markdown');
 const { DEFAULT_BOT_PREFIX } = require('../../../labscore/constants');
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 const SIZES = Object.freeze({
   "wallpaper": { x: 1120, y: 630},
   "phone": { x: 1170, y: 2353},
@@ -33,6 +35,7 @@ module.exports = {
     { name: 'variance', default: 'rand', required: false, help: "Variance (1000-9999)" },
     { name: 'rotate', default: 'rand', required: false, help: "Rotation amount (0-360)" }
   ],
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES],
   run: async (context, args) => {
     let response = await editOrReply(context, createEmbed("loading", context, `Generating image...`))
     try{

@@ -1,4 +1,5 @@
 const { Constants, Utils } = require("detritus-client");
+const { Permissions } = require("detritus-client/lib/constants");
 const { emojipedia, emojiKitchen } = require("../../../labscore/api");
 
 const { EMOJIPEDIA_PLATFORM_TYPES, EMOJIPEDIA_PLATFORM_TYPE_ALIASES } = require("../../../labscore/constants");
@@ -43,6 +44,7 @@ module.exports = {
   args: [
     {name: 'type', default: 'twitter', type: 'string', help: `Emoji platform type`}
   ],
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.READ_MESSAGE_HISTORY, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
     await context.triggerTyping()
     let msg = context.message;

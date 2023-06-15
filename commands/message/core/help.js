@@ -6,6 +6,8 @@ const { DISCORD_INVITES, DEFAULT_BOT_PREFIX } = require('../../../labscore/const
 const { paginator } = require('../../../labscore/client');
 const { editOrReply } = require('../../../labscore/utils/message');
 
+const { Permissions } = require("detritus-client/lib/constants");
+
 function createHelpPage(context, title, contents, descriptions){
   return {
     "embeds": [
@@ -107,6 +109,7 @@ module.exports = {
     category: 'core',
     usage: 'help [<command>]'
   },
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
     if(args.command){
       // Detailed command view

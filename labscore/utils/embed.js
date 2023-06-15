@@ -51,6 +51,15 @@ const embedTypes = Object.freeze({
       color: COLORS.error
     }
   },
+  "errordetail": (context) => {
+    return {
+      author: {
+        iconUrl: STATIC_ICONS.error,
+        name: `Error`
+      },
+      color: COLORS.error
+    }
+  },
   "nsfw": (context) => {
     return {
       author: {
@@ -80,6 +89,12 @@ module.exports.createEmbed = function(type, context, content){
 
   if(["success","warning","error","loading"].includes(type)){
     emb.author.name = content
+    return emb
+  }
+  
+  if(["errordetail"].includes(type)){
+    emb.author.name = content.error
+    emb.description = content.content
     return emb
   }
 
