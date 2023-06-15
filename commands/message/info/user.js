@@ -27,7 +27,7 @@ module.exports = {
       if(!args.user) { args.user = context.user.id }
       user = await getUser(context, args.user)
       u = user.user
-      if(!u || !u.user) return editOrReply(context, { embeds: [createEmbed("warning", context, "No users found.")] })
+      if(!u) return editOrReply(context, { embeds: [createEmbed("warning", context, "No users found.")] })
       let m = user.member
       
       // User Card
