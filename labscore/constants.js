@@ -595,7 +595,9 @@ module.exports.EMOJIPEDIA_PLATFORM_TYPES = [
 module.exports.EMOJIPEDIA_PLATFORM_TYPE_ALIASES = {
   "fluent": "microsoft-teams",
   "twemoji": "twitter",
-  "playstation": "sony"
+  "playstation": "sony",
+  "ios": "apple",
+  "android": "google"
 }
 
 module.exports.GOOGLE_CLOUD_SAFETY_LABELS_NAMES = Object.freeze({
