@@ -8,7 +8,7 @@ const { DEFAULT_BOT_PREFIX } = require('../../../labscore/constants');
 const { Permissions } = require("detritus-client/lib/constants");
 
 const SIZES = Object.freeze({
-  "wallpaper": { x: 1120, y: 630},
+  "wallpaper": { x: 1920, y: 1200},
   "phone": { x: 1170, y: 2353},
   "avatar": { x: 512, y: 512}
 })
@@ -85,19 +85,15 @@ module.exports = {
       
       res = JSON.parse(res.text)
       
+      const image = await superagent.get(res.image_link)
+
       await response.edit({
-        embeds: [
-          createEmbed("default", context, {
-            description: `${codeblock(`py`, [`${DEFAULT_BOT_PREFIX}art -type ${args.type.toLowerCase()} -seed ${seed} -variance ${variance} -rotate ${rotate}`])}`,
-            image: {
-              url: res.image_link
-            },
-            footer: {
-              iconUrl: `https://cdn.discordapp.com/avatars/${context.application.id}/${context.application.icon}.png?size=256`,
-              text: `labsCore • Took ${((Date.now() - timings) / 1000).toFixed(2)}s`
-            }
-          })
-        ]
+        embeds: [createEmbed("image", context, {
+          url: "art.png",
+          description: `${codeblock(`py`, [`${DEFAULT_BOT_PREFIX}art -type ${args.type.toLowerCase()} -seed ${seed} -variance ${variance} -rotate ${rotate}`])}`,
+          time: ((Date.now() - timings) / 1000).toFixed(2)
+        })],
+        files: [{ filename: "art.png", value: image.body }]
       })
     }catch(e){
       console.log(e)
