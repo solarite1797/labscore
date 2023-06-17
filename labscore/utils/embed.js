@@ -112,6 +112,8 @@ module.exports.createEmbed = function(type, context, content){
       if(content.provider.icon) emb.footer.iconUrl = content.provider.icon
     }
 
+    if(content.description) emb.description = content.description
+
     if(content.time && emb.footer) emb.footer.text = `${emb.footer.text} • Took ${content.time}s`
 
     return emb

@@ -89,11 +89,11 @@ module.exports = {
 
       await response.edit({
         embeds: [createEmbed("image", context, {
-          url: "art.png",
+          url: res.hash,
           description: `${codeblock(`py`, [`${DEFAULT_BOT_PREFIX}art -type ${args.type.toLowerCase()} -seed ${seed} -variance ${variance} -rotate ${rotate}`])}`,
           time: ((Date.now() - timings) / 1000).toFixed(2)
         })],
-        files: [{ filename: "art.png", value: image.body }]
+        files: [{ filename: res.hash, value: image.body }]
       })
     }catch(e){
       console.log(e)
