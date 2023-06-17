@@ -4,7 +4,7 @@ const { emojipedia, emojiKitchen } = require("../../../labscore/api");
 
 const { EMOJIPEDIA_PLATFORM_TYPES, EMOJIPEDIA_PLATFORM_TYPE_ALIASES } = require("../../../labscore/constants");
 const { createEmbed } = require("../../../labscore/utils/embed");
-const { icon } = require("../../../labscore/utils/markdown");
+const { icon, pill, iconPill, highlight } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 
@@ -57,10 +57,10 @@ module.exports = {
     if(msg.stickerItems.length){
       let s = msg.stickerItems.first()
       if(s.formatType == 3) return editOrReply(context, createEmbed("default", context, {
-          description: `${icon("sticker")} **${s.name}**\nhttps://cdn.discordapp.com/stickers/${s.id}.json`,
+          description: `${iconPill("sticker", s.name)} ${highlight(`(${s.id})`)}\nhttps://cdn.discordapp.com/stickers/${s.id}.json`,
         }))
       return editOrReply(context, createEmbed("default", context, {
-        description: `${icon("sticker")} **${s.name}**`,
+        description: `${iconPill("sticker", s.name)} ${highlight(`(${s.id})`)}`,
         image: {
           url: `https://media.discordapp.net/stickers/${s.id}.png?size=4096`
         }
@@ -78,7 +78,7 @@ module.exports = {
       if(matches[0].animated) form = '.gif'
 
       return editOrReply(context, createEmbed("default", context, {
-          description: `${icon("emoji")} **${matches[0].name}**`,
+          description: `${iconPill("emoji", `:${matches[0].name}:`)} ${highlight(`(${matches[0].id})`)}`,
           image: {
             url: `https://cdn.discordapp.com/emojis/${matches[0].id}${form}?size=4096`
           }
