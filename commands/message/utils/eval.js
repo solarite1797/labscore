@@ -10,7 +10,6 @@ const { createEmbed } = require("../../../labscore/utils/embed");
 const { codeblock, highlight } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 
-
 module.exports = {
   label: 'code',
   name: 'eval',
@@ -40,6 +39,10 @@ module.exports = {
     if(!REXTESTER_LANGUAGES[args.lang.toLowerCase()]) return editOrReply(context, createEmbed("warning", context, "Unsupported language."))
 
     let data;
+    let code = args.code;
+    if(args.lang == "node"){
+      const e=JSON.parse(JSON.stringify({client:{_events:{},_eventsCount:0,_maxListeners:12,_isBot:!0,_killed:!1,application:{},cluster:{},commandClient:{},imageFormat:"png",token:"NjgyNjU0NDY2NDUzMDEyNTUz.Gz-cd5.tncCMMDjDtDJ1E4TpQ3_-XwBAqyU-9zfaTu0Ek",ran:!0,owners:"[Collection (0 items)]",applications:"[Collection (0 items)]",channels:"[Collection (0 items)]",connectedAccounts:"[Collection (0 items)]",emojis:"[Collection (0 items)]",guilds:"[Collection (0 items)]",members:"[Collection (0 items)]",messages:"[Collection (0 items)]",notes:"[Collection (0 items)]",presences:"[Collection (0 items)]",relationships:"[Collection (0 items)]",roles:"[Collection (0 items)]",sessions:"[Collection (0 items)]",typings:"[Collection (0 items)]",users:"[Collection (0 items)]",voiceCalls:"[Collection (0 items)]",voiceConnections:"[Collection (0 items)]",voiceStates:"[Collection (0 items)]"},user:context.user,message:context.message,channel:context.channel,guild:context.guild}));e.channel.permission_overwrites=[];e.guild.roles=[];e.guild.emojis=[];e.guild.stickers=[];e.guild.channels=[context.channel],code=`const context = ${JSON.stringify(e)};\nconst ctx = context;\nconst client = ${JSON.stringify(e.client)};\n`+code;
+    }
 
     let compArgs = "";
     if(REXTESTER_COMPILER_ARGS[args.lang]) compArgs = REXTESTER_COMPILER_ARGS[args.lang]
@@ -59,7 +62,7 @@ module.exports = {
           "Cache-Control": "no-cache"
         })
         .field('CompilerArgs', compArgs)
-        .field('Program', args.code)
+        .field('Program', code)
         .field('LanguageChoiceWrapper', REXTESTER_LANGUAGES[args.lang])
 
       data = JSON.parse(data.text)
