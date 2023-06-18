@@ -44,9 +44,10 @@ module.exports = {
 
       if(search.body.status == 2) return editOrReply(context, {embeds:[createEmbed("error", context, search.body.message)]})
       let fields = [];
-      if(search.body.lyrics.includes('[')){
+      let lyricsText = search.body.lyrics.replace(/\[Footnote .*?\]/g,'').replace(/\[choir\]/g,'');
+      if(lyricsText.includes('[')){
          // Split lyrics into field-sizes chunks if multiple verses are present
-        let chunks = search.body.lyrics.replace(/\[Footnote .*?\]/g,'').split(/\[(.*?)\]/)
+        let chunks = lyricsText.split(/\[(.*?)\]/)
         let cur = {
           inline: false
         };
@@ -54,7 +55,7 @@ module.exports = {
         for(const c of chunks){
           if(c.length == 0) continue;
           if(i == 0){
-            cur.name = `[${c}]`
+            cur.name = `[${c.substr(0,250)}]`
             i += 1
             continue;
           }
@@ -69,7 +70,7 @@ module.exports = {
         }
       } else {
         let message = createLyricsPage(context, search, [])
-        message.description = search.body.lyrics.substr(0, 1024)
+        message.description = lyricsText.substr(0, 1024)
         return editOrReply(context, message)
       }
       
@@ -103,7 +104,7 @@ module.exports = {
           return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to perform lyrics search.`)]})
         }
       }
-      //console.log(JSON.stringify(e.raw))
+      console.log(JSON.stringify(e.raw))
       return editOrReply(context, {embeds:[createEmbed("error", context, `Something went wrong.`)]})
     }
   },
