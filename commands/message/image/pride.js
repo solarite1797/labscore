@@ -21,7 +21,7 @@ module.exports = {
     context.triggerTyping();
     if(!args.user) args.user = context.userId;
     let u = await getUser(context, args.user)
-    if(!u) return editOrReply(context, { embeds: [createEmbed("warning", context, "No users found.")] })
+    if(!u|| !u.user) return editOrReply(context, { embeds: [createEmbed("warning", context, "No users found.")] })
 
     const avatar = u.user.avatarUrl + '?size=512'
     try{
