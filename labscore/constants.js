@@ -597,7 +597,8 @@ module.exports.EMOJIPEDIA_PLATFORM_TYPE_ALIASES = {
   "twemoji": "twitter",
   "playstation": "sony",
   "ios": "apple",
-  "android": "google"
+  "android": "google",
+  "windows": "microsoft"
 }
 
 module.exports.GOOGLE_CLOUD_SAFETY_LABELS_NAMES = Object.freeze({
