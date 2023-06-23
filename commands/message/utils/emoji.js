@@ -1,5 +1,5 @@
 const { Constants, Utils } = require("detritus-client");
-const { Permissions } = require("detritus-client/lib/constants");
+const { Permissions, InteractionCallbackTypes } = require("detritus-client/lib/constants");
 const { emojipedia, emojiKitchen } = require("../../../labscore/api");
 
 const { EMOJIPEDIA_PLATFORM_TYPES, EMOJIPEDIA_PLATFORM_TYPE_ALIASES } = require("../../../labscore/constants");
@@ -7,6 +7,7 @@ const { createEmbed } = require("../../../labscore/utils/embed");
 const { icon, pill, iconPill, highlight } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
+const { Components } = require("detritus-client/lib/utils");
 
 const onlyEmoji = require('emoji-aware').onlyEmoji;
 
@@ -126,7 +127,7 @@ module.exports = {
         return await editOrReply(context, createEmbed("error", context, `No emoji data available for ${emoji[0]}.`))
       }
 
-      if(!res.data.vendor_images[args.type]){
+      if(!res.data.platforms[args.type]){
         let embed = createEmbed("error", context, "No emoji image available for platform '" + args.type.toLowerCase() + "'.")
         embed.footer = {
           text: "Available platforms: " + Object.keys(res.data.vendor_images).join(', ').substr(0, 2000)
@@ -136,22 +137,83 @@ module.exports = {
 
       // Use the high-res emojipedia icon, if available
       let ico = `https://abs.twimg.com/emoji/v2/72x72/${toCodePoint(emoji[0])}.png`
-      if(res.data.vendor_images["twitter"]) ico = res.data.vendor_images["twitter"]
+      if(res.data.platforms["twitter"]) ico = res.data.platforms["twitter"].images[0].src
 
-      return editOrReply(context, createEmbed("default", context, {
+      const platformEmoji = res.data.platforms[args.type]
+      
+      if(platformEmoji.images.length == 1) return editOrReply(context, createEmbed("default", context, {
         author: {
           iconUrl: ico,
-          name: res.data.name,
-          url: res.data.permalink
+          name: `${res.data.name} • ${res.data.platforms[args.type].images[0].version}`,
+          url: res.data.link
         },
         image: {
-          url: res.data.vendor_images[args.type]
+          url: res.data.platforms[args.type].images[0].src
         },
         footer: {
           iconUrl: STATICS.emojipedia,
           text: `Emojipedia • ${context.application.name}`
         }
       }))
+
+      const components = new Components({
+        timeout: 100000,
+        run: async (ctx) => {
+          if (ctx.userId !== context.userId) return await ctx.respond(InteractionCallbackTypes.DEFERRED_UPDATE_MESSAGE);
+          
+          const emojiAsset = platformEmoji.images.filter((p)=>{
+            return p.id == ctx.data.values[0]
+          })
+
+          await ctx.editOrRespond({embeds: [createEmbed("default", context, {
+            author: {
+              iconUrl: ico,
+              name: `${res.data.name} • ${emojiAsset[0].version}`,
+              url: res.data.link
+            },
+            image: {
+              url: emojiAsset[0].src
+            },
+            footer: {
+              iconUrl: STATICS.emojipedia,
+              text: `Emojipedia • ${context.application.name}`
+            }
+          })], components})
+        },
+      });
+
+      let selectOptions = res.data.platforms[args.type].images.map((r) => {
+        return {
+          label: r.version,
+          value: r.id,
+          default: (r.id == res.data.latest),
+          emoji: {
+            name: res.data.icon
+          }
+        }
+      })
+
+      components.addSelectMenu({
+        placeholder: "Select emoji revision",
+        customId: "emoji-version",
+        options: selectOptions
+      })
+
+
+      return editOrReply(context, {embeds: [createEmbed("default", context, {
+        author: {
+          iconUrl: ico,
+          name: `${res.data.name} • ${res.data.platforms[args.type].images[0].version}`,
+          url: res.data.link
+        },
+        image: {
+          url: res.data.platforms[args.type].images[0].src
+        },
+        footer: {
+          iconUrl: STATICS.emojipedia,
+          text: `Emojipedia • ${context.application.name}`
+        }
+      })], components})
     }
   }
 };
