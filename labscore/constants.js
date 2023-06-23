@@ -424,9 +424,9 @@ module.exports.TRANSLATE_LANGUAGE_MAPPINGS = Object.freeze({
   "xh": "🇿🇦",
   "yo": "🇳🇬",
   "zu": "🇿🇦",
+  "zh-TW": "🇨🇳",
   "zh": "🇨🇳",
   "zh-CN": "🇨🇳",
-  "zh-TW": "🇨🇳",
 })
 
 module.exports.TRANSLATE_LANGUAGES = Object.freeze({
