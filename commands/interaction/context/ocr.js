@@ -27,7 +27,7 @@ module.exports = {
 
       let ocr = await googleVisionOcr(context, attachment)
 
-      if(ocr.response.body.text.length == 0) return context.editOrRespond({ embeds: [createEmbed("warning", context, "No text detected.")], flags: MessageFlags.EPHEMERAL })
+      if(ocr.response.body.status == 1) return context.editOrRespond({ embeds: [createEmbed("warning", context, ocr.response.body.text)], flags: MessageFlags.EPHEMERAL })
 
       await context.editOrRespond({
         embeds: [createEmbed("default", context, {

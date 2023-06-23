@@ -29,7 +29,7 @@ module.exports = {
       return editOrReply(context, { embeds: [createEmbed("error", context, "Unable to retrieve Google Vision API response.")] })
     }
     
-    if(ocr.response.body.status == 1) return editOrReply(context, { embeds: [createEmbed("warning", context, ocr.response.body.message)] })
+    if(ocr.response.body.status == 1) return editOrReply(context, { embeds: [createEmbed("warning", context, ocr.response.body.text)] })
 
     return editOrReply(context, createEmbed("default", context, {
       thumbnail: {
