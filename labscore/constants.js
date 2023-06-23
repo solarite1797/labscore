@@ -423,7 +423,8 @@ module.exports.TRANSLATE_LANGUAGE_MAPPINGS = Object.freeze({
   "cy": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
   "xh": "🇿🇦",
   "yo": "🇳🇬",
-  "zu": "🇿🇦"
+  "zu": "🇿🇦",
+  "zh": "🇨🇳"
 })
 
 module.exports.TRANSLATE_LANGUAGES = Object.freeze({
@@ -445,7 +446,8 @@ module.exports.TRANSLATE_LANGUAGES = Object.freeze({
   "bg": "Bulgarian",
   "ca": "Catalan",
   "ceb": "Cebuano",
-  "zh-CN or zh": "Chinese (Simplified)",
+  "zh-CN": "Chinese",
+  "zh": "Chinese",
   "zh-TW": "Chinese (Traditional)",
   "co": "Corsican",
   "hr": "Croatian",
