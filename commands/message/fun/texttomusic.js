@@ -14,7 +14,7 @@ module.exports = {
     description: 'Generates a short music piece from a text input.',
     description_short: 'AI Music generation from a prompt',
     examples: ['ttm Tropical'],
-    category: 'image',
+    category: 'broken',
     usage: 'texttomusic <prompt>'
   },
   ratelimit: {
@@ -24,6 +24,7 @@ module.exports = {
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES],
   run: async (context, args) => {
+    return;
     let response = await editOrReply(context, { embeds: [createEmbed("loading", context, `Generating audio...`)] })
 
     let noticeTimer = setTimeout(()=>{

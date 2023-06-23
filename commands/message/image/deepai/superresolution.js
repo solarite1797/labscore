@@ -13,11 +13,12 @@ module.exports = {
     description: 'Upscales an image with SuperResolution.',
     description_short: 'SuperResolution upscaling',
     examples: ['superresolution'],
-    category: 'image',
+    category: 'broken',
     usage: 'superresolution <image>'
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES],
   run: async (context) => {
+    return;
     context.triggerTyping();
     try{
       let image = await getRecentImage(context, 50)

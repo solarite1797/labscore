@@ -14,11 +14,12 @@ module.exports = {
     description: 'Ask AI questions. May not be accurate.',
     description_short: 'AI questions',
     examples: ['ask How many otter species are there?'],
-    category: 'fun',
+    category: 'broken',
     usage: 'ask <prompt>'
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
+    return;
     context.triggerTyping();
     if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
     try{

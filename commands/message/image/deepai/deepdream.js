@@ -13,11 +13,12 @@ module.exports = {
     description: 'Processes an image with DeepAI DeepDream.',
     description_short: 'DeepDream image processing',
     examples: ['deepdream'],
-    category: 'image',
+    category: 'broken',
     usage: 'deepdream <image>'
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES],
   run: async (context) => {
+    return;
     context.triggerTyping();
     try{
       let image = await getRecentImage(context, 50)
