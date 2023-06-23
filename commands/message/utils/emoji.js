@@ -130,7 +130,7 @@ module.exports = {
       if(!res.data.platforms[args.type]){
         let embed = createEmbed("error", context, "No emoji image available for platform '" + args.type.toLowerCase() + "'.")
         embed.footer = {
-          text: "Available platforms: " + Object.keys(res.data.vendor_images).join(', ').substr(0, 2000)
+          text: "Available platforms: " + Object.keys(res.data.platforms).join(', ').substr(0, 2000)
         }
         return await editOrReply(context, embed)
       }
