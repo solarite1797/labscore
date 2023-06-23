@@ -52,6 +52,7 @@ const Api = Object.freeze({
 
   UTILS_EMOJIPEDIA: '/utils/emojipedia',
   UTILS_INFERKIT: '/utils/inferkit',
+  UTILS_MAPKIT: '/utils/mapkit',
   UTILS_PERSPECTIVE: '/utils/perspective',
   UTILS_SCREENSHOT: '/utils/screenshot',
   UTILS_TEXTGENERATOR: '/utils/text-generator',
