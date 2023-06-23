@@ -199,6 +199,9 @@ module.exports = {
         options: selectOptions
       })
 
+      setTimeout(()=>{
+        editOrReply(context, {components:[]})
+      }, 10000)
 
       return editOrReply(context, {embeds: [createEmbed("default", context, {
         author: {
