@@ -200,8 +200,11 @@ module.exports = {
       })
 
       setTimeout(()=>{
-        editOrReply(context, {components:[]})
-      }, 10000)
+        editOrReply(context, {
+          embeds: context.response.embeds,
+          components:[]
+        })
+      }, 100000)
 
       return editOrReply(context, {embeds: [createEmbed("default", context, {
         author: {
