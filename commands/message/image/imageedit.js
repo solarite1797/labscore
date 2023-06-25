@@ -14,7 +14,7 @@ module.exports = {
     description: 'Edits an image using AI.',
     description_short: 'AI image editing',
     examples: ['editimage Wearing a crown'],
-    category: 'image',
+    category: 'broken',
     usage: 'editimage <prompt>'
   },
   ratelimit: {
@@ -24,6 +24,7 @@ module.exports = {
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES],
   run: async (context, args) => {
+    return;
     if(!args.prompt) return editOrReply(context, { embeds: [createEmbed("warning", context, "Missing prompt.")] })
 
     let image = await getRecentImage(context, 50)

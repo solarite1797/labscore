@@ -14,7 +14,7 @@ module.exports = {
     description_short: 'AI Anime image generation',
     explicit: true,
     examples: ['anime otter'],
-    category: 'image',
+    category: 'broken',
     usage: 'anime <text>'
   },
   ratelimit: {
@@ -24,6 +24,7 @@ module.exports = {
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES],
   run: async (context, args) => {
+    return;
     if(!context.channel.nsfw) return editOrReply(context, {embeds:[createEmbed("nsfw", context)]})
     if(args.query.length == 0) return editOrReply(context, {embeds:[createEmbed("warning", context, "Missing prompt")]})
 

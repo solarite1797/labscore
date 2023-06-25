@@ -13,7 +13,7 @@ module.exports = {
     description: 'Uses Stable Diffusion to generate four images from a text prompt.',
     description_short: 'Stable Diffusion image generation',
     examples: ['genimg Otter, digital art'],
-    category: 'image',
+    category: 'broken',
     usage: 'stability <text>'
   },
   ratelimit: {
@@ -23,6 +23,7 @@ module.exports = {
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES],
   run: async (context, args) => {
+    return;
     let response = await editOrReply(context, { embeds: [createEmbed("loading", context, `Synthesizing images...`)] })
 
     let noticeTimer = setTimeout(()=>{
