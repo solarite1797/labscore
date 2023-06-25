@@ -56,6 +56,8 @@ module.exports = {
         pages.push(createImageResultPage(context, res))
       }
       
+      if(!pages.length) return editOrReply(context, {embeds:[createEmbed("warning", context, `No results found.`)]})
+      
       pages = formatPaginationEmbeds(pages)
       const paging = await paginator.createPaginator({
         context,

@@ -20,7 +20,6 @@ module.exports = {
     context.triggerTyping();
     ping = await context.client.ping()
     editOrReply(context, {
-      content: "",
       embeds: [createEmbed("default", context, {
         description: `${icon("connection")} **Pong!**\n` + codeblock("ansi", [`rest      ${format(`${ping.rest}ms`, "m")}`, `gateway   ${format(`${ping.gateway}ms`, "m")}`])
       })]
