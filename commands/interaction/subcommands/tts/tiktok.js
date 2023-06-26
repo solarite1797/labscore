@@ -22,13 +22,16 @@ module.exports = {
       name: 'text',
       description: 'Text',
       type: ApplicationCommandOptionTypes.STRING,
-      required: true,
-      maxLength: 100
+      required: true
     }
   ],
   run: async (context, args) => {
     try {
       await context.respond({ data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE })
+
+      if(args.text.length >= 101) return await context.editOrRespond({
+        embeds: [createEmbed("warning", context, "Text too long (must be 100 or shorter).")]
+      })
 
       let audio = await tiktok(context, args.text, args.voice)
 
