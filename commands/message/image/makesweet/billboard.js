@@ -31,7 +31,7 @@ module.exports = {
       const timings = Date.now();
       let mkswt = await billboardCityscape(image)
       
-      return await response.edit({
+      return await editOrReply(context, {
         embeds: [createEmbed("image", context, {
           url: "makesweet.gif",
           time: ((Date.now() - timings) / 1000).toFixed(2),
@@ -44,7 +44,7 @@ module.exports = {
       })
     } catch (e) {
       console.log(e)
-      await response.edit({ embeds: [createEmbed("error", context, "Something went wrong.")] })
+      await editOrReply(context, { embeds: [createEmbed("error", context, "Something went wrong.")] })
     }
   },
 }

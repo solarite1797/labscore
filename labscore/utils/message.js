@@ -4,5 +4,6 @@ module.exports.editOrReply = function(context, message, disableReference = false
   if(!message.message_reference && !disableReference) message.reference = true
   // Disable mentions
   if(!message.allowedMentions) message.allowedMentions = {parse: [], repliedUser: false}
-  return context.editOrReply(message)
+  // Only respond if the command is still available.
+  if(!context.message.deleted) return context.editOrReply(message)
 }

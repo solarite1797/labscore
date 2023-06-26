@@ -24,13 +24,13 @@ module.exports = {
       const t = Date.now()
       if(args.force) execSync("git checkout .")
       const r = execSync("git pull")
-      if(r.toString().includes("Already up to date.")) return await response.edit({embeds: [createEmbed("warning", context, "Already up to date.")]})
+      if(r.toString().includes("Already up to date.")) return await editOrReply(context, {embeds: [createEmbed("warning", context, "Already up to date.")]})
 
       let com = r.toString().match(/([a-z0-9]{7})\.\.([a-z0-9]{7})/)
-      return await response.edit({ content: `${icon("success_simple")} Updated ${highlight(com[1] + ' -> ' + com[2])} in ${((Date.now() - t) / 1000).toFixed(2)}s`, embeds: []})
+      return await editOrReply(context, { content: `${icon("success_simple")} Updated ${highlight(com[1] + ' -> ' + com[2])} in ${((Date.now() - t) / 1000).toFixed(2)}s`, embeds: []})
     }catch(e){
       console.log(e)
-      return await response.edit({embeds: [createEmbed("error", context, "Update failed.")]})
+      return await editOrReply(context, createEmbed("error", context, "Update failed."))
     }
   }
 };

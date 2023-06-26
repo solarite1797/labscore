@@ -31,7 +31,7 @@ module.exports = {
       const timings = Date.now();
       let mkswt = await flag(image)
       
-      return await response.edit({
+      return await editOrReply(context, {
         embeds: [createEmbed("image", context, {
           url: "makesweet.gif",
           time: ((Date.now() - timings) / 1000).toFixed(2),
@@ -43,7 +43,7 @@ module.exports = {
         files: [{ filename: "makesweet.gif", value: mkswt.body }]
       })
     } catch (e) {
-      await response.edit({ embeds: [createEmbed("error", context, e)] })
+      await editOrReply(context, createEmbed("error", context, e))
     }
   },
 }

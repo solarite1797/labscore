@@ -36,29 +36,29 @@ module.exports = {
       let ss = await screenshot(context, args.url, context.channel.nsfw)
 
       if(ss.response.body.status && ss.response.body.status !== 3){
-        if(ss.response.body.image) return await response.edit({
+        if(ss.response.body.image) return await editOrReply(context, {
           embeds: [createEmbed("image", context, {
             url: ss.response.body.image,
             time: ((Date.now() - t) / 1000).toFixed(2)
           })]
         })
-        return await response.edit({ embeds: [createEmbed("error", context, "Unable to create screenshot.")] })
+        return await editOrReply(context, createEmbed("error", context, "Unable to create screenshot."))
       }
 
       let job = await processJob(ss.response.body.job)
 
       if(job.status){
         if(!job.image) job = await processJob(ss.response.body.job)
-        if(job.image) return await response.edit({
+        if(job.image) return await editOrReply(context, {
           embeds: [createEmbed("image", context, {
             url: job.image,
             time: ((Date.now() - t) / 1000).toFixed(2)
           })]
         })
-        return await response.edit({ embeds: [createEmbed("error", context, "Unable to create screenshot.")] })
+        return await editOrReply(context, createEmbed("error", context, "Unable to create screenshot."))
       }
 
-      return await response.edit({
+      return await editOrReply(context, {
         embeds: [createEmbed("image", context, {
           url: "screenshot.png",
           time: ((Date.now() - t) / 1000).toFixed(2)
@@ -67,11 +67,9 @@ module.exports = {
       })
     } catch(e){
       console.log(e)
-      return await response.edit({
-        embeds: [createEmbed("image", context, {
-          url: "https://derpystuff.gitlab.io/webstorage4/v2/assets/screenshot/screenshot_error.png"
-        })]
-      })
+      return await editOrReply(context, createEmbed("image", context, {
+        url: "https://derpystuff.gitlab.io/webstorage4/v2/assets/screenshot/screenshot_error.png"
+      }))
     }
   }
 };

@@ -41,10 +41,10 @@ module.exports = class BasePaginator extends EventEmitter {
   async update(data) {
     if (this.isShared) {
       for (const m of this.commandMessage.values()) {
-        await m.edit(data);
+        if(!m.deleted) await m.edit(data);
       }
     } else if (this.commandMessage) {
-      this.commandMessage.edit(data);
+      if(!this.commandMessage.deleted) this.commandMessage.edit(data);
     }
   }
 

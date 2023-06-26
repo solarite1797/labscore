@@ -30,7 +30,7 @@ module.exports = {
       emb.footer = {
         text: "This might take several minutes to complete."
       };
-      response.edit({ embeds: [ emb ] });
+      editOrReply(context, { embeds: [ emb ] });
     }, 30000)
 
     try{
@@ -54,10 +54,10 @@ module.exports = {
         })
       }
       
-      await response.edit({ embeds, files })
+      await editOrReply(context, { embeds, files })
     }catch(e){
-      if(e.response.status == 503) return await response.edit({embeds:[createEmbed("error", context, `DALL-E server is busy, try again later.`)]})
-      await response.edit({embeds:[createEmbed("error", context, `Image generation failed.`)]})
+      if(e.response.status == 503) return await editOrReply(context, createEmbed("error", context, `DALL-E Mini server is busy, try again later.`))
+      await editOrReply(context, createEmbed("error", context, `Image generation failed.`))
     }
   },
 };

@@ -87,7 +87,7 @@ module.exports = {
       
       const image = await superagent.get(res.image_link)
 
-      await response.edit({
+      return await editOrReply(context, {
         embeds: [createEmbed("image", context, {
           url: res.hash,
           description: `${codeblock(`py`, [`${DEFAULT_BOT_PREFIX}art -type ${args.type.toLowerCase()} -seed ${seed} -variance ${variance} -rotate ${rotate}`])}`,
@@ -97,7 +97,7 @@ module.exports = {
       })
     }catch(e){
       console.log(e)
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to generate image.`)]})
+      return await editOrReply(context, {embeds:[createEmbed("error", context, `Unable to generate image.`)]})
     }
   }
 };

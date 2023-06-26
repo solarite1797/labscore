@@ -34,7 +34,7 @@ module.exports = {
             "data": args.text
           })
         
-        return await response.edit({
+        return await editOrReply(context, {
           embeds: [createEmbed("image", context, {
             url: "qrcode.png",
             time: ((Date.now() - t) / 1000).toFixed(2)
@@ -42,7 +42,7 @@ module.exports = {
           files: [{ filename: "qrcode.png", value: res.body }]
         })
       }catch(e){
-        return await response.edit({ embeds: [createEmbed("error", context, `Unable to generate qr code.`) ] })
+        return await editOrReply(context, createEmbed("error", context, `Unable to generate qr code.`))
       }
     }
 
