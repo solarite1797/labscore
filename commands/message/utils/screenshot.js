@@ -68,7 +68,7 @@ module.exports = {
     } catch(e){
       console.log(e)
       return await editOrReply(context, createEmbed("image", context, {
-        url: "https://derpystuff.gitlab.io/webstorage4/v2/assets/screenshot/screenshot_error.png"
+        url: "https://bignutty.gitlab.io/webstorage4/v2/assets/screenshot/screenshot_error.png"
       }))
     }
   }

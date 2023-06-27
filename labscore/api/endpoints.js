@@ -1,7 +1,7 @@
 const Hosts = Object.freeze({
   prod: "https://labscore-v2.vercel.app",
   local: "http://localhost",
-  statics: "https://derpystuff.gitlab.io/webstorage4/v2/"
+  statics: "https://bignutty.gitlab.io/webstorage4/v2/"
 })
 
 const Api = Object.freeze({
