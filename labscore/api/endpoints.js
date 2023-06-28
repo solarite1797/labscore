@@ -51,6 +51,7 @@ const Api = Object.freeze({
   TTS_TIKTOK: '/tts/tiktok',
 
   UTILS_EMOJIPEDIA: '/utils/emojipedia',
+  UTILS_GARFIELD: '/utils/garfield',
   UTILS_INFERKIT: '/utils/inferkit',
   UTILS_MAPKIT: '/utils/mapkit',
   UTILS_PERSPECTIVE: '/utils/perspective',
