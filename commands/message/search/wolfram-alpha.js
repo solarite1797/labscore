@@ -31,7 +31,7 @@ function createWolframPage(context, pod, query, sources){
     ]
   }
   if(pod.icon) res.embeds[0].author.iconUrl = pod.icon
-  if(pod.value) res.embeds[0].description = pod.value
+  if(pod.value) res.embeds[0].description = pod.value.subst(0,1000)
   if(pod.value && pod.refs) {
     for(const r of pod.refs){
       let src = getWolframSource(r, sources)
