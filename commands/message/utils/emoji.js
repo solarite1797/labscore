@@ -121,7 +121,9 @@ module.exports = {
       // Regular Emoji Handling
       if(emoji.length == 0) return await editOrReply(context, createEmbed("warning", context, "You need to specify an emoji to enlarge."))
 
-      if(!EMOJIPEDIA_PLATFORM_TYPES.includes(args.type.toLowerCase()) && EMOJIPEDIA_PLATFORM_TYPE_ALIASES[args.type.toLowerCase()]) args.type = EMOJIPEDIA_PLATFORM_TYPE_ALIASES[args.type.toLowerCase()]
+      args.type = args.type.toLowerCase()
+
+      if(!EMOJIPEDIA_PLATFORM_TYPES.includes(args.type) && EMOJIPEDIA_PLATFORM_TYPE_ALIASES[args.type]) args.type = EMOJIPEDIA_PLATFORM_TYPE_ALIASES[args.type]
 
       let res;
       try{
@@ -132,7 +134,7 @@ module.exports = {
       }
 
       if(!res.data.platforms[args.type]){
-        let embed = createEmbed("error", context, "No emoji image available for platform '" + args.type.toLowerCase() + "'.")
+        let embed = createEmbed("error", context, "No emoji image available for platform '" + args.type + "'.")
         embed.footer = {
           text: "Available platforms: " + Object.keys(res.data.platforms).join(', ').substr(0, 2000)
         }
