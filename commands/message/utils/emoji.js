@@ -8,6 +8,7 @@ const { icon, pill, iconPill, highlight } = require("../../../labscore/utils/mar
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 const { Components } = require("detritus-client/lib/utils");
+const { bold } = require("detritus-client/lib/utils/markup");
 
 const onlyEmoji = require('emoji-aware').onlyEmoji;
 
@@ -78,8 +79,11 @@ module.exports = {
       let form = '.png'
       if(matches[0].animated) form = '.gif'
 
+      const tagline = ''
+      if(context.guild.emojis.find((e)=>e.id == matches[0].id)) tagline == `\nThis emoji is from ${bold(context.guild.name)}`
+
       return editOrReply(context, createEmbed("default", context, {
-          description: `${iconPill("emoji", `:${matches[0].name}:`)} ${highlight(`(${matches[0].id})`)}`,
+          description: `${iconPill("emoji", `:${matches[0].name}:`)} ${highlight(`(${matches[0].id})`)}${tagline}`,
           image: {
             url: `https://cdn.discordapp.com/emojis/${matches[0].id}${form}?size=4096`
           }
