@@ -6,6 +6,7 @@ const { icon, highlight } = require('../../../labscore/utils/markdown');
 
 module.exports = {
   name: "update",
+  label: "flags",
   metadata: {
     description: 'Fetches latest bot version.',
     description_short: 'Bot update',
@@ -13,16 +14,13 @@ module.exports = {
     category: 'dev',
     usage: 'update [-force true]'
   },
-  args: [
-    { default: false, name: "force", type: "bool", help: "Force update" }
-  ],
   onBefore: context => context.user.isClientOwner,
   onCancel: ()=>{},
   run: async (context, args) => {
     let response = await editOrReply(context, createEmbed("loading", context, "Updating bot..."))
     try{
       const t = Date.now()
-      if(args.force) execSync("git checkout .")
+      if(args.flags.includes('-force') || args.flags.includes('-f')) execSync("git checkout .")
       const r = execSync("git pull")
       if(r.toString().includes("Already up to date.")) return await editOrReply(context, {embeds: [createEmbed("warning", context, "Already up to date.")]})
 
@@ -30,7 +28,7 @@ module.exports = {
       return await editOrReply(context, { content: `${icon("success_simple")} Updated ${highlight(com[1] + ' -> ' + com[2])} in ${((Date.now() - t) / 1000).toFixed(2)}s`, embeds: []})
     }catch(e){
       console.log(e)
-      return await editOrReply(context, createEmbed("error", context, "Update failed."))
+      return await editOrReply(context, createEmbed("error", context, "Update failed. Use -f to force update."))
     }
   }
 };
