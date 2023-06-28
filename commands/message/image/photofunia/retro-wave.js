@@ -27,6 +27,7 @@ module.exports = {
     if(args.background > 5 || args.background < 1) return editOrReply(context, {embeds:[createEmbed("warning", context, `Invalid Parameter (background).`)]})
     if(args.style > 4 || args.style < 1) return editOrReply(context, {embeds:[createEmbed("warning", context, `Invalid Parameter (style).`)]})
     let lines = `${args.text}| | `.split('|')
+    if(args.text.includes('|')) lines = [lines[1], lines[2], lines[0]]
     try{
       let res = await retroWave(context, args.background, args.style, lines[2], lines[0], lines[1])
       
