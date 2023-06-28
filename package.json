@@ -1,5 +1,5 @@
 {
-  "name": "v2",
+  "name": "labscore",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "local": "node local"
   },
   "keywords": [],
-  "author": "",
+  "author": "bignutty",
   "license": "ISC",
   "dependencies": {
     "detritus-client": "^0.17.0-beta.16",
