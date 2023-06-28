@@ -12,7 +12,7 @@ module.exports = {
   metadata: {
     description: 'Generates an image with a retro style.',
     description_short: 'Retro-styled text',
-    examples: ['retro cyberspace|chaos|crazy'],
+    examples: ['retro crazy|chaos in|cyberspace'],
     category: 'image',
     usage: 'retro <line1|line2|line3> [-background <1-5>] [-style <1-4>]'
   },
