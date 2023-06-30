@@ -43,7 +43,7 @@ function renderCommandList(commands, descriptions, limit){
 function createCommandPage(context, prefix, command){
   alias = ' ​ '
   if(command.aliases.length >= 1){
-    for(const al of command.aliases) alias += pill(al)
+    for(const al of command.aliases) alias += smallPill(al)
     alias += "\n"
   }
 
