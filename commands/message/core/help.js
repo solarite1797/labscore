@@ -113,15 +113,26 @@ module.exports = {
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {
     if(args.command){
+      await context.triggerTyping()
       // Detailed command view
-      let results = []
       
+      let resultScores = {}
+      let resultMappings = {}
+
       for(const c of context.commandClient.commands){
         if(c.name.includes(args.command.toLowerCase()) || c.aliases.filter((f)=>{return f.includes(args.command.toLowerCase())}).length >= 1){
           if(c.metadata.explicit && !context.channel.nsfw) continue;
-          results.push(c)
+          resultScores[c.name] = 1
+          resultMappings[c.name] = c
         }
+        // Boost exact matches to rank higher in the result list
+        if(c.name == args.command.toLowerCase()) resultScores[c.name] += 1
+        if(c.aliases.filter((f)=>{return f == args.command.toLowerCase()}).length >= 1) resultScores[c.name] += 1
       }
+
+      let results = [];
+      resultScores = Object.fromEntries(Object.entries(resultScores).sort(([,a],[,b]) => b-a));
+      for(const k of Object.keys(resultScores)) results.push(resultMappings[k])
 
       let pages = []
       let prefix = DEFAULT_BOT_PREFIX
