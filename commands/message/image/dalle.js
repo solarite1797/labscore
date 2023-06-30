@@ -12,7 +12,7 @@ module.exports = {
   metadata: {
     description: 'Uses Craiyon to generate four images from a text prompt.',
     description_short: 'Craiyon AI image generation',
-    examples: ['dalle'],
+    examples: ['dalle Otter'],
     category: 'image',
     usage: 'dalle <text>'
   },
@@ -23,6 +23,8 @@ module.exports = {
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES],
   run: async (context, args) => {
+    if(!context.channel.nsfw) return editOrReply(context, {embeds:[createEmbed("nsfw", context)]})
+
     let response = await editOrReply(context, { embeds: [createEmbed("loading", context, `Synthesizing images...`)] })
 
     let noticeTimer = setTimeout(()=>{

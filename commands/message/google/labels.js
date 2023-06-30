@@ -12,7 +12,6 @@ module.exports = {
   metadata: {
     description: 'Applies labels to an image based on its visual contents.',
     description_short: 'Image content label detection',
-    examples: ['labels'],
     category: 'utils',
     usage: 'labels <attachment>'
   },

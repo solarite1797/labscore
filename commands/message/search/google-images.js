@@ -37,7 +37,7 @@ module.exports = {
   metadata: {
     description: 'Returns image search results from Google.',
     description_short: 'Search on Google Images',
-    examples: ['image Large Magenta Sphere'],
+    examples: ['image Eurasian Small Clawed Otter'],
     category: 'search',
     usage: 'image <query>'
   },

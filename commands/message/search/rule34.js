@@ -51,7 +51,7 @@ module.exports = {
     description: 'Returns image search results from various rule34-focused sites.',
     description_short: 'Search on rule34 sites',
     explicit: true,
-    examples: ['r34 sex -site rule34'],
+    examples: ['r34 vaporeon -site e621'],
     category: 'search',
     usage: 'rule34 <query> [-site <service>]'
   },

@@ -39,7 +39,7 @@ module.exports = {
   metadata: {
     description: 'Displays information about emoji. Supports regular emoji, discord emoji and stickers.\nAlso supports replies.\n\nUsing two emoji will mix them together.',
     description_short: 'Get emoji/sticker source images, mix two emoji together.',
-    examples: ['enlarge 😀', 'emojimix 🐱 🍞'],
+    examples: ['e 😀', 'emojimix 🐱 🍞'],
     category: 'utils',
     usage: 'emoji <emoji> [<emoji to mix>]'
   },

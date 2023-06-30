@@ -12,7 +12,6 @@ module.exports = {
   metadata: {
     description: 'Upscales an image with SuperResolution.',
     description_short: 'SuperResolution upscaling',
-    examples: ['superresolution'],
     category: 'broken',
     usage: 'superresolution <image>'
   },

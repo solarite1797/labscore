@@ -9,7 +9,6 @@ module.exports = {
   metadata: {
     description: 'Displays the server icon.',
     description_short: 'Server icon',
-    examples: ['gi'],
     category: 'info',
     usage: 'guildicon'
   },

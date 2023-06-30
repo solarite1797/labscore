@@ -59,7 +59,6 @@ module.exports = {
   metadata: {
     description: 'Returns a random colorful wallpaper from JetBrains Eidos.',
     description_short: 'AI wallpapers',
-    examples: ['art2'],
     category: 'fun',
     usage: `art2`
   },

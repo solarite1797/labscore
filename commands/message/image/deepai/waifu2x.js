@@ -12,7 +12,6 @@ module.exports = {
   metadata: {
     description: 'Processes an image with Waifu2x.',
     description_short: 'Waifu2x upscaling',
-    examples: ['waifu2x'],
     category: 'broken',
     usage: 'waifu2x <image>'
   },

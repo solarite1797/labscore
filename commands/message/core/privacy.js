@@ -10,7 +10,6 @@ module.exports = {
   metadata: {
     description: 'Shows the bots privacy policy.',
     description_short: 'Privacy policy',
-    examples: ['privacy'],
     category: 'core',
     usage: 'privacy'
   },

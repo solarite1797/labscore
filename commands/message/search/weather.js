@@ -9,11 +9,12 @@ const { Permissions } = require("detritus-client/lib/constants");
 
 module.exports = {
   name: 'weather',
+  aliases: ['forecast'],
   label: 'query',
   metadata: {
     description: 'Displays information about the weather.',
     description_short: 'Local weather information',
-    examples: ['weather Berlin'],
+    examples: ['weather Otter, Germany'],
     category: 'search',
     usage: 'weather <location>'
   },

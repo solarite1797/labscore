@@ -12,7 +12,6 @@ module.exports = {
   metadata: {
     description: 'Processes an image with DeepAI DeepDream.',
     description_short: 'DeepDream image processing',
-    examples: ['deepdream'],
     category: 'broken',
     usage: 'deepdream <image>'
   },

@@ -14,7 +14,6 @@ module.exports = {
   metadata: {
     description: 'Generates an animated gif with the MakeSweet flag template.',
     description_short: 'Animated flag generation',
-    examples: ['flag'],
     category: 'image',
     usage: 'flag'
   },

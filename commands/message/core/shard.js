@@ -10,7 +10,6 @@ module.exports = {
   metadata: {
     description: 'Details about the bots connection to this server.',
     description_short: 'Shard information',
-    examples: ['shard'],
     category: 'core',
     usage: 'shard'
   },

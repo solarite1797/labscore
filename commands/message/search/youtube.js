@@ -98,7 +98,7 @@ module.exports = {
   metadata: {
     description: 'Returns search results from YouTube.',
     description_short: 'Search YouTube videos, channels and playlists',
-    examples: ['youtube Google'],
+    examples: ['youtube otter live cam'],
     category: 'search',
     usage: 'youtube <query>'
   },

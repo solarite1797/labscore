@@ -41,7 +41,7 @@ module.exports = {
   metadata: {
     description: 'Returns dictionary definitions for words.',
     description_short: 'Dictionary word definitions.',
-    examples: ['dictionary Flask'],
+    examples: ['dictionary Walking'],
     category: 'search',
     usage: 'define <query>'
   },

@@ -14,7 +14,6 @@ module.exports = {
   metadata: {
     description: 'Displays information about the server.',
     description_short: 'Information about the server',
-    examples: ['guild'],
     category: 'info',
     usage: 'server'
   },

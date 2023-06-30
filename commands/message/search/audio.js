@@ -15,7 +15,6 @@ module.exports = {
   metadata: {
     description: '__Replying__ to a message while using this command will return a list of music streamin platforms the provided song (link) is available on.',
     description_short: 'Cross-platform music search',
-    examples: ['aud'],
     category: 'search',
     usage: 'audio'
   },

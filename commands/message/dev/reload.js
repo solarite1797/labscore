@@ -6,7 +6,6 @@ module.exports = {
   metadata: {
     description: 'Reloads commands on all shards.',
     description_short: 'Bot reload',
-    examples: ['reload'],
     category: 'dev',
     usage: 'reload'
   },

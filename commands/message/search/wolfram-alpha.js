@@ -50,7 +50,7 @@ module.exports = {
   metadata: {
     description: 'Computes a query using Wolfram|Alpha.',
     description_short: 'Compute via Wolfram|Alpha',
-    examples: ['wa 1+1'],
+    examples: ['wa x^2+5x+6=0', 'wa 5€ to $', 'wa 5\'11 to cm'],
     category: 'search',
     usage: 'wolframalpha <query>'
   },

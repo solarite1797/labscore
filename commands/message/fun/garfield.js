@@ -18,7 +18,6 @@ module.exports = {
   metadata: {
     description: 'Returns a random garfield comic strip.',
     description_short: 'Random garfield comic',
-    examples: ['garf'],
     category: 'fun',
     usage: `garfield`
   },

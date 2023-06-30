@@ -11,7 +11,6 @@ module.exports = {
   metadata: {
     description: 'Generates a random inspirational quote.',
     description_short: 'Inspirational Quotes',
-    examples: ['inspire'],
     category: 'fun',
     usage: `inspire`
   },

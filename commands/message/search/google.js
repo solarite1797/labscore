@@ -60,7 +60,7 @@ module.exports = {
   metadata: {
     description: 'Returns search results from Google.',
     description_short: 'Search on Google',
-    examples: ['google Flask'],
+    examples: ['google Eurasian Small Clawed Otter'],
     category: 'search',
     usage: 'google <query>'
   },

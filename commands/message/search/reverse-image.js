@@ -40,7 +40,6 @@ module.exports = {
   metadata: {
     description: 'Performs a reverse-image-search.',
     description_short: 'Reverse image search',
-    examples: ['reverseimage'],
     category: 'search',
     usage: 'reverse <image>'
   },

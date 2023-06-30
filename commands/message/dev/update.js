@@ -2,17 +2,17 @@ const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
 const { execSync } = require("child_process");
-const { icon, highlight } = require('../../../labscore/utils/markdown');
+const { icon, highlight, smallPill } = require('../../../labscore/utils/markdown');
 
 module.exports = {
   name: "update",
   label: "flags",
   metadata: {
-    description: 'Fetches latest bot version.',
+    description: `Fetches latest bot version.\nUse ${smallPill('-f')} to force an update.`,
     description_short: 'Bot update',
-    examples: ['update'],
+    examples: ['update -f'],
     category: 'dev',
-    usage: 'update [-force true]'
+    usage: 'update [-f]'
   },
   onBefore: context => context.user.isClientOwner,
   onCancel: ()=>{},

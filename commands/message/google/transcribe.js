@@ -14,7 +14,6 @@ module.exports = {
   metadata: {
     description: '__Replying__ to a voice message when using this command will transcribe the contents of the voice message.',
     description_short: 'Discord voice message transcription',
-    examples: ['tcr'],
     category: 'utils',
     usage: 'transcribe'
   },

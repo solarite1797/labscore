@@ -37,7 +37,7 @@ module.exports = {
   metadata: {
     description: 'Returns image search results from Microsoft Bing.',
     description_short: 'Search on Bing Images',
-    examples: ['bing Large Magenta Sphere'],
+    examples: ['bing Eurasian Small Clawed Otter'],
     category: 'search',
     usage: 'bing <query>'
   },

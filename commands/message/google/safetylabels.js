@@ -2,7 +2,7 @@ const { googleVisionSafetyLabels } = require("../../../labscore/api");
 const { GOOGLE_CLOUD_SAFETY_LABELS, GOOGLE_CLOUD_SAFETY_LABELS_NAMES } = require("../../../labscore/constants");
 const { getRecentImage } = require("../../../labscore/utils/attachment");
 const { createEmbed } = require("../../../labscore/utils/embed");
-const { icon, pill, iconPill } = require("../../../labscore/utils/markdown");
+const { pill, iconPill } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 
@@ -13,7 +13,6 @@ module.exports = {
   metadata: {
     description: 'Applies detection labels for potentially sensitive content of an image.',
     description_short: 'Sentivite content detection labels',
-    examples: ['safetylabels'],
     category: 'utils',
     usage: 'safetylabels <attachment>'
   },

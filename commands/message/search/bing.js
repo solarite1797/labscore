@@ -101,7 +101,7 @@ module.exports = {
   metadata: {
     description: 'Returns search results from Microsoft Bing.',
     description_short: 'Search on Bing',
-    examples: ['bing Flask'],
+    examples: ['bing Eurasian Small Clawed Otter'],
     category: 'search',
     usage: 'bing <query>'
   },
