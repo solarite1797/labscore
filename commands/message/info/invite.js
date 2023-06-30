@@ -1,7 +1,7 @@
 const { DISCORD_INVITES } = require("../../../labscore/constants");
 const { createEmbed, formatPaginationEmbeds, page } = require("../../../labscore/utils/embed");
 const { guildFeaturesField } = require("../../../labscore/utils/fields");
-const { icon, highlight, timestamp, link } = require("../../../labscore/utils/markdown");
+const { icon, highlight, timestamp, link, iconPill } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 
@@ -36,7 +36,7 @@ module.exports = {
       const g = invite.guild
       // Guild Card
       let inviteCard = createEmbed("default", context, {
-        description: `${icon("link")} **https://discord.gg/${inviteCode[1]}**\n\n​${icon("house")} **${g.name}** ${highlight(`(${g.id})`)}\n${icon("calendar")} **Created at: **${timestamp(g.createdAt, "f")}\n\n${icon("people")}${highlight(invite.approximateMemberCount.toLocaleString())}​ ​ ​ ​ ​ ​ ${icon("online")}${highlight(invite.approximatePresenceCount.toLocaleString())}​ ​ ​ ${icon("offline")}${highlight((invite.approximateMemberCount - invite.approximatePresenceCount).toLocaleString())}`,
+        description: `${icon("link")} **https://discord.gg/${inviteCode[1]}**\n\n​${icon("house")} **${g.name}** ${highlight(`(${g.id})`)}\n${icon("calendar")} **Created at: **${timestamp(g.createdAt, "f")}\n\n${iconPill("people", invite.approximateMemberCount.toLocaleString())} ​ ​ ​ ​ ​ ${iconPill("online", invite.approximatePresenceCount.toLocaleString())}​ ​ ​ ${iconPill("offline", invite.approximateMemberCount - invite.approximatePresenceCount).toLocaleString()}`,
         fields: []
       })
 
