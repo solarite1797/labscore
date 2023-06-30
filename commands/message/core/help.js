@@ -147,7 +147,7 @@ module.exports = {
         let dscs = results.map((m)=>{return m.metadata.description_short})
         pages.push({embeds:[
           createEmbed("default", context, {
-            description: `Check pages for detailed command descriptions.\n\n` + renderCommandList(cmds, dscs, 15) + `\n\n${icon("question")} Need help with something else? Contact us via our ${link(DISCORD_INVITES.support, "Support Server")}.`
+            description: `Check the pages for full command details.\n\n` + renderCommandList(cmds, dscs, 15) + `\n\n${icon("question")} Need help with something else? Contact us via our ${link(DISCORD_INVITES.support, "Support Server")}.`
           })
         ]})
 
