@@ -11,7 +11,7 @@ const { Permissions } = require("detritus-client/lib/constants");
 module.exports = {
   name: 'user',
   label: 'user',
-  aliases: ['u', 'profile'],
+  aliases: ['u', 'profile', 'userinfo', 'ui'],
   metadata: {
     description: 'Displays information about a discord user. Accepts IDs, Mentions and Usernames.',
     description_short: 'Information about discord users',
