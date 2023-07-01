@@ -68,6 +68,10 @@ const Statics = Object.freeze({
       file: "brands/wikihow.png",
       revision: 1
     },
+    wikipedia: {
+      file: "brands/wikipedia.png",
+      revision: 1
+    },
     wolframalpha: {
       file: "brands/wolframalpha.png",
       revision: 2
@@ -118,6 +122,7 @@ module.exports.STATICS = Object.freeze({
   tineye: staticAsset(Statics.brands.tineye),
   urbandictionary: staticAsset(Statics.brands.urbandictionary),
   wikihow: staticAsset(Statics.brands.wikihow),
+  wikipedia: staticAsset(Statics.brands.wikipedia),
   wolframalpha: staticAsset(Statics.brands.wolframalpha),
   youtube: staticAsset(Statics.brands.youtube),
   embedSpacerInvite: staticAsset({
