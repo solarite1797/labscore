@@ -192,10 +192,7 @@ module.exports = {
         return {
           label: r.version,
           value: r.id,
-          default: (r.id == res.data.latest),
-          emoji: {
-            name: res.data.icon
-          }
+          default: (r.id == res.data.latest)
         }
       })
 
