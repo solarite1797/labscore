@@ -177,6 +177,7 @@ module.exports = {
               name: `${res.data.name} • ${emojiAsset[0].version}`,
               url: res.data.link
             },
+            description: res.data.codes.map((c)=>pill(c)).join(' '),
             image: {
               url: emojiAsset[0].src
             },
@@ -215,6 +216,7 @@ module.exports = {
           name: `${res.data.name} • ${res.data.platforms[args.type].images[0].version}`,
           url: res.data.link
         },
+        description: res.data.codes.map((c)=>pill(c)).join(' '),
         image: {
           url: res.data.platforms[args.type].images[0].src
         },
