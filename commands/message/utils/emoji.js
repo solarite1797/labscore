@@ -143,7 +143,8 @@ module.exports = {
 
       // Use the high-res emojipedia icon, if available
       let ico = `https://abs.twimg.com/emoji/v2/72x72/${toCodePoint(emoji[0])}.png`
-      if(res.data.platforms["twitter"]) ico = res.data.platforms["twitter"].images[0].src
+      if(!res.data.platforms["twitter"]) ico = res.data.platforms[args.type].images[0].src
+      else ico = res.data.platforms["twitter"].images[0].src
 
       const platformEmoji = res.data.platforms[args.type]
       
