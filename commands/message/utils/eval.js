@@ -45,7 +45,7 @@ module.exports = {
     }
 
     let compArgs = "";
-    if(REXTESTER_COMPILER_ARGS[args.lang]) compArgs = REXTESTER_COMPILER_ARGS[args.lang]
+    if(REXTESTER_COMPILER_ARGS[REXTESTER_LANGUAGES[args.lang]]) compArgs = REXTESTER_COMPILER_ARGS[REXTESTER_LANGUAGES[args.lang]]
     try{
       data = await superagent.post(`https://rextester.com/rundotnet/Run`)
         .set({
