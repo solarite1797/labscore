@@ -95,6 +95,7 @@ const categories = {
   "info": `${icon("info")} Information Commands`,
   "search": `${icon("search")} Search Commands`,
   "utils": `${icon("utils")} Utility Commands`,
+  "fun": `${icon("fun")} Fun Commands`,
   "image": `${icon("image")} Image Commands`,
   "mod": `${icon("moderation")} Moderation Commands`
 }
