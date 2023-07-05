@@ -8,12 +8,6 @@ const { citation } = require('../../../labscore/utils/markdown');
 
 const { Permissions } = require("detritus-client/lib/constants");
 
-function getWolframSource(ref, sources){
-  for(const s of Object.values(sources)){
-    if(s.ref == ref) return s
-  }
-}
-
 function createWolframPage(context, pod, query, sources){
   let res = {
     "embeds": [
@@ -34,9 +28,13 @@ function createWolframPage(context, pod, query, sources){
   if(pod.value) res.embeds[0].description = pod.value.substr(0,1000)
   if(pod.value && pod.refs) {
     for(const r of pod.refs){
-      let src = getWolframSource(r, sources)
+      let src = Object.values(sources).filter((s)=>s.ref == r)[0]
+      // Only add a direct source if one is available
+      if(src.sources && src.sources[0].url){
+        res.embeds[0].description += citation(r, src.sources[0].url, src.title + ' | ' + src.sources[0].text)
+        continue;
+      }
       if(src.url) res.embeds[0].description += citation(r, src.url, src.title)
-      if(src.sources) res.embeds[0].description += citation(r, src.sources[0].url, src.title + ' | ' + src.sources[0].text)
     }
   }
   if(pod.image) res.embeds[0].image = { url: pod.image };

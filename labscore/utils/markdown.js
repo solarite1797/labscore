@@ -42,7 +42,10 @@ module.exports.citation = function(number = 1, url, tooltip = ""){
   let formatted = "";
   for(const n of number.toString().split('')) formatted += SUPERSCRIPT_NUMBERS[parseInt(n)]
   if(url){
-    if(tooltip.length) tooltip = ` '${tooltip}'`
+    if(tooltip.length){
+      if(tooltip.endsWith(' ')) tooltip = tooltip.substr(0, tooltip.length - 1)
+      tooltip = ` '${tooltip.replace(/["*]/g, '')}'`
+    }
     return `[⁽${formatted}⁾](${url}${tooltip})`
   }
   return `⁽${formatted}⁾`
