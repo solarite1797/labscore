@@ -94,7 +94,9 @@ module.exports.ICONS = Object.freeze({
   "arrow_left": "<:ico_arrowleft:1086628775644647464>",
   "arrow_right": "<:ico_arrowright:1086628777880191016>",
   "sticker": "<:ico_sticker:1096937131793985546> ",
-  "emoji": "<:ico_emoji:1096936794731315251>"
+  "emoji": "<:ico_emoji:1096936794731315251>",
+  "empty": "<:e:749601069298090034>",
+  "book": "<:ico_book:1127622851265048576>"
 })
 
 const GUILD_FEATURE_ICONS = Object.freeze({

@@ -28,7 +28,6 @@ const Api = Object.freeze({
 
   SEARCH_BING: '/search/bing',
   SEARCH_BING_IMAGES: '/search/bing-images',
-  SEARCH_DICTIONARY: '/search/dictionary',
   SEARCH_GOOGLE: '/search/google',
   SEARCH_GOOGLE_IMAGES: '/search/google-images',
   SEARCH_LYRICS: '/search/lyrics',
@@ -50,6 +49,7 @@ const Api = Object.freeze({
   TTS_SAPI4: '/tts/sapi4',
   TTS_TIKTOK: '/tts/tiktok',
 
+  UTILS_DICTIONARY: '/utils/dictionary',
   UTILS_EMOJIPEDIA: '/utils/emojipedia',
   UTILS_GARFIELD: '/utils/garfield',
   UTILS_INFERKIT: '/utils/inferkit',

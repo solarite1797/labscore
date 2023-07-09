@@ -158,12 +158,6 @@ module.exports.bingImages = async function(context, query, nsfw){
   })
 }
 
-module.exports.dictionary = async function(context, query){
-  return await request(Api.SEARCH_DICTIONARY, "GET", {}, {
-    q: query
-  })
-}
-
 module.exports.reverseImageSearch = async function(context, url){
   return await request(Api.SEARCH_REVERSE_IMAGE, "GET", {}, {
     url: url
@@ -287,6 +281,12 @@ module.exports.tiktok = async function(context, text, voice){
   return await request(Api.TTS_TIKTOK, "GET", {}, {
     text: text,
     voice: voice
+  })
+}
+
+module.exports.dictionary = async function(context, query){
+  return await request(Api.UTILS_DICTIONARY, "GET", {}, {
+    q: query
   })
 }
 
