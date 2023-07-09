@@ -4,6 +4,7 @@ const { editOrReply } = require("../../../labscore/utils/message");
 const superagent = require('superagent');
 
 const { Permissions } = require("detritus-client/lib/constants");
+const { STATICS } = require("../../../labscore/utils/statics");
 
 module.exports = {
   name: 'dalle',
@@ -49,7 +50,7 @@ module.exports = {
       let files = [];
 
       for(let i = 0; i < 4; i++){
-        embeds.push(createEmbed("default", context, {image: {url:`attachment://dalle${i}.jpeg`}, url: `https://example.com`, footer: { iconUrl: `https://cdn.discordapp.com/avatars/${context.application.id}/${context.application.icon}.png?size=256`, text: `${context.application.name} • Took ${((Date.now() - t) / 1000).toFixed(2)}s` }}))
+        embeds.push(createEmbed("default", context, {image: {url:`attachment://dalle${i}.jpeg`}, url: `https://example.com`, footer: { iconUrl: STATICS.labscore, text: `${context.application.name} • Took ${((Date.now() - t) / 1000).toFixed(2)}s` }}))
         files.push({
           filename: `dalle${i}.jpeg`,
           value: Buffer.from(img.body.images[i], 'base64')

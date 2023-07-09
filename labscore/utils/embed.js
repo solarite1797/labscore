@@ -1,12 +1,12 @@
 const { COLORS } = require('../constants')
-const { STATIC_ICONS } = require('./statics')
+const { STATIC_ICONS, STATICS } = require('./statics')
 
 const embedTypes = Object.freeze({
   "default": (context) => {
     return {
       color: COLORS.embed,
       footer: {
-        iconUrl: `https://cdn.discordapp.com/avatars/${context.application.id}/${context.application.icon}.png?size=256`,
+        iconUrl: STATICS.labscore,
         text: context.application.name
       }
     }
@@ -15,7 +15,7 @@ const embedTypes = Object.freeze({
     return {
       color: COLORS.embed,
       footer: {
-        iconUrl: `https://cdn.discordapp.com/avatars/${context.application.id}/${context.application.icon}.png?size=256`,
+        iconUrl: STATICS.labscore,
         text: context.application.name
       }
     }
@@ -98,7 +98,7 @@ module.exports.createEmbed = function(type, context, content){
     return emb
   }
 
-  if(content && content.footer && !content.footer.iconUrl) content.footer.iconUrl = `https://cdn.discordapp.com/avatars/${context.application.id}/${context.application.icon}.png?size=256`
+  if(content && content.footer && !content.footer.iconUrl) content.footer.iconUrl = STATICS.labscore
   
   if(["image"].includes(type)){
     if(content.url.includes('://')){

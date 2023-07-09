@@ -7,6 +7,7 @@ const { codeblock, icon } = require('../../../labscore/utils/markdown');
 const superagent = require('superagent');
 
 const { Permissions } = require("detritus-client/lib/constants");
+const { STATICS } = require('../../../labscore/utils/statics');
 
 module.exports = {
   name: 'qr',
@@ -76,7 +77,7 @@ module.exports = {
           url: image
         },
         footer: {
-          iconUrl: `https://cdn.discordapp.com/avatars/${context.application.id}/${context.application.icon}.png?size=256`,
+          iconUrl: STATICS.labscore,
           text: `labsCore • Took ${((Date.now() - t) / 1000).toFixed(2)}s`
         }
       }))

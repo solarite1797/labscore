@@ -5,6 +5,7 @@ const superagent = require('superagent');
 const { getRecentImage } = require("../../../labscore/utils/attachment");
 
 const { Permissions } = require("detritus-client/lib/constants");
+const { STATICS } = require("../../../labscore/utils/statics");
 
 module.exports = {
   name: 'anime',
@@ -69,7 +70,7 @@ module.exports = {
       let embeds = [];
       let files = [];
       
-      embeds.push(createEmbed("default", context, {image: {url:`attachment://anime.png`}, url: `https://example.com`, footer: { iconUrl: `https://cdn.discordapp.com/avatars/${context.application.id}/${context.application.icon}.png?size=256`, text: `${context.application.name} • Took ${((Date.now() - t) / 1000).toFixed(2)}s` }}))
+      embeds.push(createEmbed("default", context, {image: {url:`attachment://anime.png`}, url: `https://example.com`, footer: { iconUrl: STATICS.labscore, text: `${context.application.name} • Took ${((Date.now() - t) / 1000).toFixed(2)}s` }}))
       files.push({
         filename: `anime.png`,
         value: Buffer.from(img.body.image, 'base64')
