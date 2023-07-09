@@ -1,5 +1,5 @@
 const { createEmbed, formatPaginationEmbeds } = require('../../../labscore/utils/embed')
-const { link, pill, iconPill, smallPill, citation, icon } = require('../../../labscore/utils/markdown')
+const { link, iconPill, smallPill, citation, icon } = require('../../../labscore/utils/markdown')
 const { editOrReply } = require('../../../labscore/utils/message')
 
 const { paginator } = require('../../../labscore/client');
