@@ -53,7 +53,7 @@ const interactionClient = new InteractionCommandClient(cluster, {
 })
 
 const { maintower } = require('./logging');
-const { icon, highlight, pill } = require('./utils/markdown');
+const { icon, highlight } = require('./utils/markdown');
 const { editOrReply } = require('./utils/message');
 
 const { PERMISSIONS_TEXT } = require('./constants');
@@ -61,6 +61,7 @@ const { createEmbed } = require('./utils/embed');
 
 // Handle missing permission errors
 commandClient.on('commandPermissionsFailClient', ({context, permissions}) => {
+  if(!context.channel.can(Permissions.SEND_MESSAGES)) return;
   const perms = [];
   for (let permission of permissions) {
     if (permission in PERMISSIONS_TEXT) {
