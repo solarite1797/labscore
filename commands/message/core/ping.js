@@ -14,7 +14,7 @@ module.exports = {
     category: 'core',
     usage: 'ping'
   },
-  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context) => {
     context.triggerTyping();
     ping = await context.client.ping()

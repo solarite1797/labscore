@@ -14,7 +14,7 @@ module.exports = {
     category: 'core',
     usage: 'undo [<amount (1-5)>]'
   },
-  permissionsClient: [Permissions.SEND_MESSAGES, Permissions.EMBED_LINKS],
+  permissionsClient: [Permissions.SEND_MESSAGES, Permissions.EMBED_LINKS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     try{
       if(typeof(args.amount) == "string") args.amount = parseInt(args.amount)

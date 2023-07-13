@@ -35,7 +35,7 @@ module.exports = {
     { name: 'variance', default: 'rand', required: false, help: "Variance (1000-9999)" },
     { name: 'rotate', default: 'rand', required: false, help: "Rotation amount (0-360)" }
   ],
-  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES],
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     let response = await editOrReply(context, createEmbed("loading", context, `Generating image...`))
     try{

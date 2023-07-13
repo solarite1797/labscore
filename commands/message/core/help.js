@@ -111,7 +111,7 @@ module.exports = {
     category: 'core',
     usage: 'help [<command>]'
   },
-  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     if(args.command){
       await context.triggerTyping()

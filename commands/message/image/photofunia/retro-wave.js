@@ -20,7 +20,7 @@ module.exports = {
     {default: 5, name: 'background', type: 'integer', help: "Background Style ` 1, 2, 3, 4, 5 `"},
     {default: 4, name: 'style', type: 'integer', help: "Text Style ` 1, 2, 3, 4 `"},
   ],
-  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES],
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     context.triggerTyping();
     if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})

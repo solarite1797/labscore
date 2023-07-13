@@ -24,7 +24,7 @@ module.exports = {
     category: 'utils',
     usage: 'screenshot <url>'
   },
-  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.ATTACH_FILES, Permissions.USE_EXTERNAL_EMOJIS],
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.ATTACH_FILES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     if(!args.url) return editOrReply(context, { embeds: [createEmbed("warning", context, "No url supplied.")] })
     

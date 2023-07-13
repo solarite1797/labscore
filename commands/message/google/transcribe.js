@@ -17,7 +17,7 @@ module.exports = {
     category: 'utils',
     usage: 'transcribe'
   },
-  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY, Permissions.READ_MESSAGE_HISTORY],
   run: async (context) => {
     context.triggerTyping();
     if (!context.message.messageReference) return editOrReply(context, { embeds: [createEmbed("warning", context, "You need to reply to a voice message.")] })

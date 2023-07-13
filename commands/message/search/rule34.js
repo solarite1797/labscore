@@ -58,7 +58,7 @@ module.exports = {
   args: [
     {name: 'site', default: 'rule34', type: 'string', help: `Site to search on \` ${Object.keys(SITES).join(', ')} \``}
   ],
-  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS],
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     context.triggerTyping();
 

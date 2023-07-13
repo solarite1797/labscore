@@ -13,7 +13,7 @@ module.exports = {
     category: 'core',
     usage: 'shard'
   },
-  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES],
+  permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.READ_MESSAGE_HISTORY],
   run: async (context) => {  
     return await editOrReply(context, 
       createEmbed("default", context, {
