@@ -133,7 +133,7 @@ commandClient.on('commandRunError', async ({context, error}) => {
         const message = `Shard #${shard.shardId}: (NOT OK) ${response.statusCode} ${response.request.method}-${response.request.url} (${route.path})`;
         console.log(message);
         console.log(await response.text());
-        await basecamp(`<:ico_w3:1086624963047460874>\`[${process.env.HOSTNAME}]\` **\` SHARD_REST_ERROR  \`**  Shard ${shard.shardId} received request error \`${response.statusCode}\` @ \`${Date.now()}\`\n**\` ${response.request.method}  \`** \`${response.request.url}\` (${route.path})\n\`\`\`js\n${await response.text()}\`\`\``)
+        await basecamp(`<:ico_w3:1086624963047460874>\`[${process.env.HOSTNAME}]\` **\` SHARD_REST_ERROR  \`**  \`[Shard ${shard.shardId}]\` Shard request error: \`${response.statusCode}\` @ \`${Date.now()}\`\n**\` ${response.request.method}  \`** \`${response.request.url}\` (${route.path})\n\`\`\`js\n${await response.text()}\`\`\``)
       }
     }
   });
