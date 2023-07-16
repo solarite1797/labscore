@@ -24,3 +24,18 @@ module.exports.maintower = async function (packages, type){
     throw "Maintower request failed."
   }
 }
+
+module.exports.basecamp = async function (log){
+  try{
+    let res = await superagent.post(MAINTOWER_BASE_URL + 'basecamp')
+      .set({
+        "Authorization": process.env.api_prod,
+        "x-labscore-client": "labscore/2.0"
+      })
+      .send({log})
+    return;
+  }catch(e){
+    console.log(e)
+    throw "Basecamp request failed."
+  }
+}
