@@ -1,4 +1,5 @@
 const { Permissions } = require("detritus-client/lib/constants")
+const { basecamp } = require("../logging")
 
 module.exports.editOrReply = function(context, message, disableReference = false){
   // Apply message_reference
@@ -7,5 +8,7 @@ module.exports.editOrReply = function(context, message, disableReference = false
   // Disable mentions
   if(!message.allowedMentions) message.allowedMentions = {parse: [], repliedUser: false}
   // Only respond if the command is still available and we have permissions to respond.
-  if(!context.message.deleted && context.channel.can(Permissions.SEND_MESSAGES)) return context.editOrReply(message)
+  if(!context.message.deleted && context.channel.can(Permissions.SEND_MESSAGES)) return context.editOrReply(message).catch((e)=>
+    basecamp(`<:ico_w3:1086624963047460874>\`[${process.env.HOSTNAME}]\` **\` SHARD_MESSAGE_ERROR  \`** \`[${context.client.shardId}\` Command \`${context.command.name}\` failed to reply: @ \`${Date.now()}\`\n\`\`\`js\n${e}\`\`\``)
+  )
 }
