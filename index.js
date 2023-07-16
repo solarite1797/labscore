@@ -18,6 +18,8 @@ const manager = new ClusterManager(client, token, {
 
 (async () => {
   console.log(`v2 | starting v2.`)
+
+  // Logging
   manager.on("clusterProcess", ({ clusterProcess }) => {
     clusterProcess.on('close', ({code, signal}) => {
       basecamp(`<:ico_w4:1086624964284788787>\`[${process.env.HOSTNAME}]\` **\` CLUSTER_CLOSED  \`**  Cluster ${clusterProcess.clusterId} closed with code \`${code}\` and signal \`${signal}\` @ \`${Date.now()}\``)
@@ -27,6 +29,7 @@ const manager = new ClusterManager(client, token, {
       await basecamp(`\`\`\`js\n${error}\`\`\``)
     });
   })
+  
   await manager.run();
   console.log(`v2 | ready. took ${(Date.now() - time) / 1000}.`)
 })();

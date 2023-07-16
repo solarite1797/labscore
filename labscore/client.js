@@ -1,5 +1,5 @@
 const { Constants, ClusterClient, CommandClient, InteractionCommandClient } = require('detritus-client');
-const { ActivityTypes, PresenceStatuses, GatewayIntents, Permissions } = require('detritus-client/lib/constants');
+const { ActivityTypes, PresenceStatuses, GatewayIntents, Permissions, ClientEvents } = require('detritus-client/lib/constants');
 
 const Paginator = require('./paginator').PaginatorCluster
 
@@ -52,7 +52,7 @@ const interactionClient = new InteractionCommandClient(cluster, {
   useClusterClient: true
 })
 
-const { maintower } = require('./logging');
+const { maintower, basecamp } = require('./logging');
 const { icon, highlight } = require('./utils/markdown');
 const { editOrReply } = require('./utils/message');
 
@@ -124,11 +124,34 @@ commandClient.on('commandRunError', async ({context, error}) => {
 });
 
 (async () => {
-  await cluster.run();
-  await commandClient.addMultipleIn('../commands/message/');
-  await commandClient.run()
 
-  await interactionClient.addMultipleIn('../commands/interaction/context');
-  await interactionClient.addMultipleIn('../commands/interaction/slash');
-  await interactionClient.run();
+  // Logging
+  cluster.on(ClientEvents.REST_RESPONSE, async ({response, restRequest, shard}) => {
+    const route = response.request.route;
+    if (route) {
+      if (!response.ok) {
+        const message = `Shard #${shard.shardId}: (NOT OK) ${response.statusCode} ${response.request.method}-${response.request.url} (${route.path})`;
+        console.log(message);
+        console.log(await response.text());
+        await basecamp(`<:ico_w3:1086624963047460874>\`[${process.env.HOSTNAME}]\` **\` SHARD_REST_ERROR  \`**  Shard ${shard.shardId} received request error \`${response.statusCode}\` @ \`${Date.now()}\`\n\` ${response.request.method}  \` \`${response.request.url}\` (${route.path})\n\`\`\`js\n${await response.text()}\`\`\``)
+      }
+    }
+  });
+
+  cluster.on(ClientEvents.WARN, async ({error}) => {
+    await basecamp(`<:ico_w2:1086624961025810485>\`[${process.env.HOSTNAME}]\` **\` CLUSTER_WARNING  \`**  Cluster ${cluster.manager.clusterId} reported warning @ \`${Date.now()}\`:\n\`\`\`${error}\`\`\``)
+  });
+
+  try{
+    await cluster.run();
+    await commandClient.addMultipleIn('../commands/message/');
+    await commandClient.run()
+  
+    await interactionClient.addMultipleIn('../commands/interaction/context');
+    await interactionClient.addMultipleIn('../commands/interaction/slash');
+    await interactionClient.run();
+  } catch(e){
+    console.log(e)
+    console.log(e.errors)
+  }
 })();
