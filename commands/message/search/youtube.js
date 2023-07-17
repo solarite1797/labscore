@@ -34,9 +34,9 @@ function createYoutubePage(context, result){
   switch(result.type){
     case 1: //video
       iconHeader = [
-        iconPill("eye", intToString(parseInt(result.metadata.views))),
-        iconPill("like", intToString(parseInt(result.metadata.likes))), 
-        iconPill("message", intToString(parseInt(result.metadata.comments)))
+        iconPill("eye", intToString(parseInt(result.metadata.views)) + ' Views'),
+        iconPill("like", intToString(parseInt(result.metadata.likes)) + ' Likes'), 
+        '\n' + iconPill("message", intToString(parseInt(result.metadata.comments)) + ' Comments')
       ]
       res = page(createEmbed("default", context, {
         author: {
@@ -44,7 +44,7 @@ function createYoutubePage(context, result){
           url: result.channel.url,
           iconUrl: result.channel.icon
         },
-        description: `**${link(result.url, result.name)}**\n${iconHeader.join(' ​ ​ ​ ​')}\n*Uploaded ${timestamp(result.date, "f")}*\n\n${result.description}`,
+        description: `**${link(result.url, result.name)}**\n\n${iconHeader.join(' ​ ​ ​ ​')}\n\n${result.description}`,
         thumbnail: {
           url: result.image
         },
@@ -56,11 +56,17 @@ function createYoutubePage(context, result){
       break;
     case 2: // channel
       iconHeader = [
-        iconPill("videos", intToString(parseInt(result.metadata.videos).toLocaleString('en-US'))),
-        iconPill("eye", intToString(parseInt(result.metadata.views).toLocaleString('en-US')))
+        iconPill("people", intToString(parseInt(result.metadata.subscribers).toLocaleString('en-US')) + ' Subscribers'),
+        iconPill("eye", intToString(parseInt(result.metadata.views).toLocaleString('en-US')) + ' Views'),
+        '\n' + iconPill("videos", intToString(parseInt(result.metadata.videos).toLocaleString('en-US')) + ' Videos'),
       ]
       res = page(createEmbed("default", context, {
-        description: `**${link(result.url, result.name)}**\n${iconHeader.join(' ​ ​ ​ ​')}\n*Created ${timestamp(result.date, "f")}*\n\n${result.description}`,
+        author: {
+          name: result.name,
+          url: result.url,
+          iconUrl: result.icon
+        },
+        description: `${iconHeader.join(' ​ ​ ​ ​')}\n\n${result.description}`,
         thumbnail: {
           url: result.icon
         },
@@ -72,10 +78,16 @@ function createYoutubePage(context, result){
       break;
     case 3: // playlist
       iconHeader = [
-        iconPill("videos", intToString(parseInt(result.metadata.videos).toLocaleString('en-US')))
+        '',
+        iconPill("videos", intToString(parseInt(result.metadata.videos).toLocaleString('en-US')) + ' Videos')
       ]
       res = page(createEmbed("default", context, {
-        description: `**${link(result.url, result.name)}**\n${iconHeader.join(' ​ ​ ​ ​')} ​ ​ ​ *Created ${timestamp(result.date, "f")}*\n\n${result.description}`,
+        author: {
+          name: result.channel.name,
+          url: result.channel.url,
+          iconUrl: result.channel.icon
+        },
+        description: `**${link(result.url, result.name)}**${iconHeader.join(' ​ ​ ​ ​')}\n\n${result.description}`,
         thumbnail: {
           url: result.image
         },
@@ -85,7 +97,7 @@ function createYoutubePage(context, result){
         }
       }))
       break;
-    default: // wtf?
+    default:
       break;
   }
   return res;
