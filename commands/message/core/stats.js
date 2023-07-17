@@ -62,7 +62,7 @@ module.exports = {
           `${iconPill("connection", "Memory Usage")} ${highlight(` ${Math.round(formatted.usage / 1024 / 1024)}MB `)}`,
           `${iconPill("timer",      "Uptime      ")} ${highlight(` ${format(process.uptime())} `)}`,
           ``,
-          `${iconLinkPill('gitlab', OPEN_SOURCE_REPOSITORY_URL, 'Source Code')} ​ ​ ${iconLinkPill('link', `https://canary.discord.com/application-directory/${context.client.user.id}`, `Invite ${context.client.user.username}`)}`
+          `${iconLinkPill('gitlab', OPEN_SOURCE_REPOSITORY_URL, 'Source Code')} ​ ​ ${iconLinkPill('link', context.application.oauth2UrlFormat({ scope: 'bot applications.commands', permissions: 412317248576 }), `Invite ${context.client.user.username}`)}`
         ]
 
         return editOrReply(context, createEmbed("default", context, {
