@@ -1,7 +1,7 @@
-const { DISCORD_INVITES } = require("../../../labscore/constants");
+const { DISCORD_INVITES, OPEN_SOURCE_REPOSITORY_URL } = require("../../../labscore/constants");
 const { createEmbed, formatPaginationEmbeds, page } = require("../../../labscore/utils/embed");
 const { guildFeaturesField } = require("../../../labscore/utils/fields");
-const { icon, highlight, timestamp, link, iconPill } = require("../../../labscore/utils/markdown");
+const { icon, highlight, timestamp, link, iconPill, iconLinkPill } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 
@@ -24,7 +24,14 @@ module.exports = {
   run: async (context, args) => { 
     context.triggerTyping();
     if(!args.invite) return editOrReply(context, { content: `https://canary.discord.com/application-directory/${context.client.user.id}`, embed:createEmbed("default", context, {
-      description: `​\n${icon("link")}  You can invite the bot with ${link(context.application.oauth2UrlFormat({ scope: 'bot applications.commands', permissions: 412317248576 }), 'this link')}.\n\n${icon('robouser')} Join our ${link(DISCORD_INVITES.support, "support server")} if you need help with anything!`,
+      description: [
+        '​',
+        icon('link') + ` You can invite ${context.client.user.username} with ${link(context.application.oauth2UrlFormat({ scope: 'bot applications.commands', permissions: 412317248576 }), 'this link')}.`,
+        '',
+        icon('robouser') + ` Need help? Join our ${link(DISCORD_INVITES.support, 'Support Server')}.`,
+        '',
+        iconLinkPill('gitlab', OPEN_SOURCE_REPOSITORY_URL, 'Source Code'),
+      ].join('\n'),
       image: {
         url: STATICS.embedSpacerInvite
       }

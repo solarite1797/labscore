@@ -1,9 +1,10 @@
-const { highlight, iconPill } = require('../../../labscore/utils/markdown')
+const { highlight, iconPill, link, icon, pill, linkPill, iconLinkPill } = require('../../../labscore/utils/markdown')
 const { createEmbed } = require('../../../labscore/utils/embed')
 
 const { editOrReply } = require('../../../labscore/utils/message');
 
 const { Permissions } = require("detritus-client/lib/constants");
+const { OPEN_SOURCE_REPOSITORY_URL } = require('../../../labscore/constants');
 
 function format(seconds){
   function pad(s){
@@ -59,7 +60,9 @@ module.exports = {
           `${iconPill("house",      "Servers     ")} ${highlight(` ${formatted.guilds} `)}`,
           `${iconPill("robot",      "Shard       ")} ${highlight(` ${context.shardId + 1}/${context.manager.cluster.shardCount} `)}`,
           `${iconPill("connection", "Memory Usage")} ${highlight(` ${Math.round(formatted.usage / 1024 / 1024)}MB `)}`,
-          `${iconPill("timer",      "Uptime      ")} ${highlight(` ${format(process.uptime())} `)}`
+          `${iconPill("timer",      "Uptime      ")} ${highlight(` ${format(process.uptime())} `)}`,
+          ``,
+          `${iconLinkPill('gitlab', OPEN_SOURCE_REPOSITORY_URL, 'Source Code')} ​ ​ ${iconLinkPill('link', `https://canary.discord.com/application-directory/${context.client.user.id}`, `Invite ${context.client.user.username}`)}`
         ]
 
         return editOrReply(context, createEmbed("default", context, {

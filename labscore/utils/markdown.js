@@ -37,6 +37,18 @@ module.exports.iconPill = function(icon, content){
   return ICONS[icon] + "  **` " + content + "  `**"
 }
 
+module.exports.iconLinkPill = function(icon, url, content, tooltip = ""){
+  if(!ICONS[icon]) icon = "question"
+  if(tooltip.length) tooltip = ` '${tooltip}'`
+  if(content) return `${ICONS[icon]} [**\` ${content}  \`**](${url}${tooltip})`
+  return url
+}
+module.exports.linkPill = function(url, content, tooltip = ""){
+  if(tooltip.length) tooltip = ` '${tooltip}'`
+  if(content) return `[**\` ${content}  \`**](${url}${tooltip})`
+  return url
+}
+
 const SUPERSCRIPT_NUMBERS = ["⁰","¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹"]
 module.exports.citation = function(number = 1, url, tooltip = ""){
   let formatted = "";

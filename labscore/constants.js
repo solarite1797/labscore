@@ -13,6 +13,8 @@ module.exports.PRIVACY_POLICY_SECTIONS = [
 
 module.exports.PRIVACY_POLICY_LAST_UPDATE = 1655325547140
 
+module.exports.OPEN_SOURCE_REPOSITORY_URL = "https://gitlab.com/bignutty/labscore"
+
 module.exports.COLORS = Object.freeze({
   error: 15548997,
   success: 6411359,
@@ -96,7 +98,8 @@ module.exports.ICONS = Object.freeze({
   "sticker": "<:ico_sticker:1096937131793985546> ",
   "emoji": "<:ico_emoji:1096936794731315251>",
   "empty": "<:e:749601069298090034>",
-  "book": "<:ico_book:1127622851265048576>"
+  "book": "<:ico_book:1127622851265048576>",
+  "gitlab": "<:ico_gitlab:1130603378704138411>"
 })
 
 const GUILD_FEATURE_ICONS = Object.freeze({
