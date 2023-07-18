@@ -123,6 +123,7 @@ module.exports = {
       for(const c of context.commandClient.commands){
         if(c.name.includes(args.command.toLowerCase()) || c.aliases.filter((f)=>{return f.includes(args.command.toLowerCase())}).length >= 1){
           if(c.metadata.explicit && !context.channel.nsfw) continue;
+          if(!categories[c.metadata.category] && !context.user.isClientOwner) continue;
           resultScores[c.name] = 1
           resultMappings[c.name] = c
         }
