@@ -33,11 +33,12 @@ function createYoutubePage(context, result){
   let iconHeader;
   switch(result.type){
     case 1: //video
-      iconHeader = [
-        iconPill("eye", intToString(parseInt(result.metadata.views)) + ' Views'),
-        iconPill("like", intToString(parseInt(result.metadata.likes)) + ' Likes'), 
-        '\n' + iconPill("message", intToString(parseInt(result.metadata.comments)) + ' Comments')
-      ]
+      iconHeader = []
+
+      iconHeader.push(iconPill("eye", intToString(parseInt(result.metadata.views).toLocaleString('en-US')) + ' Views'))
+      if(result.metadata.likes >= 1) iconHeader.push(iconPill("like", intToString(parseInt(result.metadata.likes)) + ' Likes'))
+      if(result.metadata.comments >= 1) iconHeader.push('\n' + iconPill("message", intToString(parseInt(result.metadata.comments)) + ' Comments'))
+
       res = page(createEmbed("default", context, {
         author: {
           name: result.channel.name,
@@ -55,11 +56,13 @@ function createYoutubePage(context, result){
       }))
       break;
     case 2: // channel
-      iconHeader = [
-        iconPill("people", intToString(parseInt(result.metadata.subscribers).toLocaleString('en-US')) + ' Subscribers'),
-        iconPill("eye", intToString(parseInt(result.metadata.views).toLocaleString('en-US')) + ' Views'),
-        '\n' + iconPill("videos", intToString(parseInt(result.metadata.videos).toLocaleString('en-US')) + ' Videos'),
-      ]
+      iconHeader = []
+
+      iconHeader.push(iconPill("people", intToString(parseInt(result.metadata.subscribers).toLocaleString('en-US')) + ' Subscribers'))
+      iconHeader.push(iconPill("eye", intToString(parseInt(result.metadata.views).toLocaleString('en-US')) + ' Views'))
+      
+      iconHeader.push('\n' + iconPill("videos", intToString(parseInt(result.metadata.videos).toLocaleString('en-US')) + ' Videos'))
+
       res = page(createEmbed("default", context, {
         author: {
           name: result.name,
