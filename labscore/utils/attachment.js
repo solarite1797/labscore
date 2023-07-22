@@ -1,5 +1,5 @@
 const attachmentTypes = Object.freeze({
-  image: ["image/png", "image/jpeg", "image/gif"]
+  image: ["image/png", "image/jpeg", "image/gif", "image/webp"]
 })
 
 module.exports.attachmentTypes = attachmentTypes
