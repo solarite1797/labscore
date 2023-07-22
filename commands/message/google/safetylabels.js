@@ -2,7 +2,7 @@ const { googleVisionSafetyLabels } = require("../../../labscore/api");
 const { GOOGLE_CLOUD_SAFETY_LABELS, GOOGLE_CLOUD_SAFETY_LABELS_NAMES } = require("../../../labscore/constants");
 const { getRecentImage } = require("../../../labscore/utils/attachment");
 const { createEmbed } = require("../../../labscore/utils/embed");
-const { pill, iconPill } = require("../../../labscore/utils/markdown");
+const { pill, iconPill, smallPill } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 
@@ -28,7 +28,7 @@ module.exports = {
     for(const l of Object.keys(label.response.body.labels)){
       let rating = GOOGLE_CLOUD_SAFETY_LABELS[label.response.body.labels[l]]
       labels.push([
-        pill(GOOGLE_CLOUD_SAFETY_LABELS_NAMES[l]),
+        smallPill(GOOGLE_CLOUD_SAFETY_LABELS_NAMES[l]),
         iconPill(rating.icon, rating.name)
       ].join(' ​ ​'))
     }

@@ -1,7 +1,7 @@
 const { googleVisionLabels } = require("../../../labscore/api");
 const { getRecentImage } = require("../../../labscore/utils/attachment");
 const { createEmbed } = require("../../../labscore/utils/embed");
-const { pill } = require("../../../labscore/utils/markdown");
+const { pill, smallPill } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 
@@ -25,7 +25,7 @@ module.exports = {
 
     let labels = []
     for(const l of label.response.body.labels){
-      labels.push(pill(`${l.score.toString().substr(2,2)}.${l.score.toString().substr(3,1)}%`) + ' ​ ​' + pill(l.name))
+      labels.push(smallPill(`${l.score.toString().substr(2,2)}.${l.score.toString().substr(3,1)}%`) + ' ​ ​' + pill(l.name))
     }
     return editOrReply(context, {
       embeds: [createEmbed("default", context, {
