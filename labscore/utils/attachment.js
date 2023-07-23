@@ -8,10 +8,12 @@ module.exports.attachmentTypes = attachmentTypes
 function getMessageAttachment(message) {
   if (message.attachments.first()) {
     return message.attachments.first()
-  } else if (message.embeds.length > 0 && message.embeds.toArray()[0].image) {
+  } else if (message.embeds.length && message.embeds.toArray()[0].image) {
     return message.embeds.toArray()[0].image
-  } else if (message.embeds.length > 0 && message.embeds.toArray()[0].thumbnail) {
+  } else if (message.embeds.length && message.embeds.toArray()[0].thumbnail) {
     return message.embeds.toArray()[0].thumbnail
+  } else if (message.stickerItems.length && message.stickerItems.first().formatType !== 3){
+    return { url: `https://media.discordapp.net/stickers/${message.stickerItems.first().id}.png?size=4096`, contentType: "image/png" }
   }
   return;
 }
