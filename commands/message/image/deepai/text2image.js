@@ -12,12 +12,11 @@ module.exports = {
   metadata: {
     description: 'Generates an image with DeepAI Text2Image using a text prompt.',
     description_short: 'Image from text prompt',
-    category: 'broken',
+    category: 'hidden',
     usage: 'text2image <image>'
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
-    return;
     context.triggerTyping();
     try{
       if(!args.text) return editOrReply(context, { embeds: [createEmbed("warning", context, "Missing parameter (text).")] })
