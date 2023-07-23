@@ -48,11 +48,14 @@ module.exports = {
 
       clearTimeout(noticeTimer)
       
-      await response.edit({ embeds: [
-        createEmbed("image", context, {
-          url: img.body.image
-        })
-      ] })
+      let imageData = await superagent.get(img.body.image)
+
+      return editOrReply(context, {
+        embeds: [createEmbed("image", context, {
+          url: "edited.jpg"
+        })],
+        files: [{ filename: "edited.jpg", value: imageData.body }]
+      })
     }catch(e){
       console.log(e)
       clearTimeout(noticeTimer)
