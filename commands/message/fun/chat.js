@@ -14,12 +14,11 @@ module.exports = {
     description: 'Chat with an AI language model.',
     description_short: 'AI Language Model',
     examples: ['chat How many otter species are there?'],
-    category: 'broken',
+    category: 'hidden',
     usage: 'chat <prompt>'
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
-    return;
     context.triggerTyping();
     if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
     try{
