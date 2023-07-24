@@ -12,8 +12,6 @@ function getMessageAttachment(message) {
     return message.embeds.toArray()[0].image
   } else if (message.embeds.length && message.embeds.toArray()[0].thumbnail) {
     return message.embeds.toArray()[0].thumbnail
-  } else if (message.stickerItems.length && message.stickerItems.first().formatType !== 3){
-    return { url: `https://media.discordapp.net/stickers/${message.stickerItems.first().id}.png?size=4096`, contentType: "image/png" }
   }
   return;
 }
@@ -31,7 +29,9 @@ async function getRecentMedia(context, limit) {
 
   // Handle Replies
   if (context.message.messageReference) {
-    messages = [[context.message.messageReference.messageId, await context.message.channel.fetchMessage(context.message.messageReference.messageId)]] // somewhat hacky but it works lol
+    let ref = await context.message.channel.fetchMessage(context.message.messageReference.messageId)
+    if(ref.stickerItems.length && ref.stickerItems.first().formatType !== 3) return [{ url: `https://media.discordapp.net/stickers/${ref.stickerItems.first().id}.png?size=4096`, contentType: "image/png" }]
+    messages = [[context.message.messageReference.messageId, ref]] // somewhat hacky but it works lol
   } else {
     messages = await context.message.channel.fetchMessages({
       limit: limit,
