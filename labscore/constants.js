@@ -716,3 +716,24 @@ module.exports.PERMISSIONS_TEXT = Object.freeze({
   [Permissions.VIEW_CHANNEL]: "View Channel",
   [Permissions.VIEW_GUILD_ANALYTICS]: "View Server Insights"
 });
+
+module.exports.YOUTUBE_CATEGORIES = {
+  "music": "10",
+  "animals": "15",
+  "sports": "17",
+  "travel": "19",
+  "gaming": "20",
+  "comedy": "34",
+  "entertainment": "24",
+  "news": "25",
+  "howto": "26",
+  "education": "27",
+  "science": "28",
+  "movies": "30",
+  "animation": "31",
+  "documentary": "35",
+  "horror": "39",
+  "fantasy": "40",
+  "shorts": "42",
+  "shows": "43"
+}
