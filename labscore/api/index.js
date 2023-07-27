@@ -188,9 +188,10 @@ module.exports.wolframAlpha = async function(context, query){
   })
 }
 
-module.exports.youtube = async function(context, query){
+module.exports.youtube = async function(context, query, category){
   return await request(Api.SEARCH_YOUTUBE, "GET", {}, {
-    q: query
+    q: query,
+    category
   })
 }
 

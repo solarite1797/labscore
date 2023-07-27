@@ -1,5 +1,5 @@
 const { createEmbed, formatPaginationEmbeds, page } = require('../../../labscore/utils/embed')
-const { link, iconPill, timestamp } = require('../../../labscore/utils/markdown')
+const { link, iconPill, timestamp, smallPill } = require('../../../labscore/utils/markdown')
 const { editOrReply } = require('../../../labscore/utils/message')
 const { STATICS } = require('../../../labscore/utils/statics')
 
@@ -7,6 +7,7 @@ const { paginator } = require('../../../labscore/client');
 const { youtube } = require('../../../labscore/api');
 
 const { Permissions } = require("detritus-client/lib/constants");
+const { YOUTUBE_CATEGORIES } = require('../../../labscore/constants');
 
 // https://www.html-code-generator.com/javascript/shorten-long-numbers
 const intToString = num => {
@@ -111,18 +112,26 @@ module.exports = {
   label: 'query',
   aliases: ['yt'],
   metadata: {
-    description: 'Returns search results from YouTube.',
-    description_short: 'Search YouTube videos, channels and playlists',
+    description: `Search YouTube videos, channels and playlists.\n\nAvailable categories are ${Object.keys(YOUTUBE_CATEGORIES).map((c)=>smallPill(c)).join(' ')}\n\nNote that category search is limited to videos.`,
+    description_short: `Search YouTube videos, channels and playlists.`,
     examples: ['youtube otter live cam'],
     category: 'search',
-    usage: 'youtube <query>'
+    usage: 'youtube <query> [-type <category>]'
   },
+  args: [
+    {name: 'type', default: 'all', type: 'string', help: `Video Category`}
+  ],
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     context.triggerTyping();
     if(!args.query) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (query).`)]})
     try{
-      let search = await youtube(context, args.query)
+      if(args.type == 'all') args.type = undefined;
+      else {
+        if(!YOUTUBE_CATEGORIES[args.type.toLowerCase()]) return editOrReply(context, {embeds:[createEmbed("warning", context, `Invalid Parameter (type).`)]})
+        args.type = YOUTUBE_CATEGORIES[args.type.toLowerCase()]
+      }
+      let search = await youtube(context, args.query, args.type)
       search = search.response
      
       let pages = []

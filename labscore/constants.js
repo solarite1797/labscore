@@ -724,7 +724,6 @@ module.exports.YOUTUBE_CATEGORIES = {
   "travel": "19",
   "gaming": "20",
   "comedy": "34",
-  "entertainment": "24",
   "news": "25",
   "howto": "26",
   "education": "27",
