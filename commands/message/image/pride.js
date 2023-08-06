@@ -27,7 +27,7 @@ module.exports = {
     try{
       let pride = await superagent.get(`https://labscore.vercel.app/v2/image/pridev2`)
         .set({
-          "x-labscore-auth": process.env.labscore_legacy_api_key
+          "x-labscore-auth": process.env.LEGACY_API_KEY
         })
         .query({
           url: avatar

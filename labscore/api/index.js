@@ -9,7 +9,7 @@ async function request(path, type, headers, args, host) {
   if(host) url = host + path
 
   // apply default headers
-  if(!headers["Authorization"]) headers["Authorization"] = process.env.api_prod
+  if(!headers["Authorization"]) headers["Authorization"] = process.env.API_KEY
   if(!headers["user-agent"]) headers["user-agent"] = "labscore/2.0"
   if(!headers["x-labscore-client"]) headers["x-labscore-client"] = "labscore/2.0"
 
