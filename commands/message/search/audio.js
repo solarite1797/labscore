@@ -32,6 +32,10 @@ module.exports = {
       let urls = msg.content.match(urlr)
       if (urls) {
         let songlink = await superagent.get(`https://api.song.link/v1-alpha.1/links?url=${encodeURIComponent(urls[0])}`)
+          .query({
+            url: urls[0],
+            key: process.env.SONGLINK_KEY
+          })
         let song = songlink.body.entitiesByUniqueId[songlink.body.entityUniqueId]
 
         let btns = renderMusicButtons(songlink.body.linksByPlatform)
