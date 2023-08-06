@@ -29,14 +29,14 @@ async function processMakesweet(effect, args, image) {
       if(!image) throw "Unable to fetch image"
 
       let res = await superagent.post(`http://api.makesweet.com/make/${effect.toLowerCase()}`)
-        .set("Authorization", process.env.makesweet)
+        .set("Authorization", process.env.MAKESWEET_KEY)
         .buffer(true)
         .query(args)
         .attach('image', image, 'image.png')
       return res;
     }
     let res = await superagent.post(`http://api.makesweet.com/make/${effect.toLowerCase()}`)
-      .set("Authorization", process.env.makesweet)
+      .set("Authorization", process.env.MAKESWEET_KEY)
       .buffer(true)
       .query(args)
     return res
