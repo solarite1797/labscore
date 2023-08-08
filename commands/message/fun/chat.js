@@ -11,8 +11,8 @@ module.exports = {
   name: 'chat',
   label: 'text',
   metadata: {
-    description: 'Chat with an AI language model.',
-    description_short: 'AI Language Model',
+    description: `Talk to ChatGPT.\n\n<:bonzi:1138585089891106836> He will explore the Internet with you as your very own friend and sidekick! He can talk, walk, and joke like no other friend you've ever had!`,
+    description_short: 'Talk to ChatGPT.',
     examples: ['chat How many otter species are there?'],
     category: 'hidden',
     usage: 'chat <prompt>'
