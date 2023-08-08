@@ -8,7 +8,7 @@ const { codeblock } = require('../../../labscore/utils/markdown')
 const { Permissions } = require("detritus-client/lib/constants");
 
 module.exports = {
-  name: 'chat',
+  name: 'disstrack',
   label: 'text',
   metadata: {
     description: `Talk to ChatGPT.\n\n<:bonzi:1138585089891106836> He will explore the Internet with you as your very own friend and sidekick! He can talk, walk, and joke like no other friend you've ever had!`,
@@ -28,13 +28,13 @@ module.exports = {
           Authorization: process.env.AI_SERVER_KEY
         })
         .send({
-          prompt: "You are a friendly chat bot designed to help people. You should always use gender neutral pronouns when possible.",
+          prompt: "Write a disstrack about the subject the user supplies. The disstrack should have at least two verses and a chorus.",
           input: [args.text],
           temperature: 0.6,
           model: "CHATGPT"
         })
       return editOrReply(context, {embeds:[createEmbed("default", context, {
-        description: codeblock("ansi", ["👤 " + format(args.text, "cyan") + "\n🤖 " + res.body.output.substr(0, 2000 - args.text.length)]),
+        description: codeblock("ansi", [res.body.output.substr(0, 2020)]),
         footer: {
           text: `This information may be inaccurate or biased • ${context.application.name}`
         }
