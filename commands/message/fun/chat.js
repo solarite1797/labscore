@@ -28,7 +28,8 @@ module.exports = {
         })
         .send({
           prompt: "You are a friendly chat bot designed to help people. You should always use gender neutral pronouns when possible.",
-          input: [args.text]
+          input: [args.text],
+          temperature: 0.6
         })
       return editOrReply(context, {embeds:[createEmbed("default", context, {
         description: codeblock("ansi", ["👤 " + format(args.text, "cyan") + "\n🤖 " + res.body.output.substr(0, 2000 - args.text.length)]),
