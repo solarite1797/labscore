@@ -31,7 +31,7 @@ module.exports = {
           input: [args.text]
         })
       return editOrReply(context, {embeds:[createEmbed("default", context, {
-        description: codeblock("ansi", ["👤 " + format(args.text, "cyan") + "\n🤖 " + res.body.output]),
+        description: codeblock("ansi", ["👤 " + format(args.text, "cyan") + "\n🤖 " + res.body.output.substr(0, 2000 - args.text.length)]),
         footer: {
           text: `This information may be inaccurate or biased • ${context.application.name}`
         }
