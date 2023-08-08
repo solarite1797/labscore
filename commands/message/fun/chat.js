@@ -27,7 +27,7 @@ module.exports = {
           Authorization: process.env.AI_SERVER_KEY
         })
         .send({
-          prompt: "You are a friendly chat bot designed to help people.",
+          prompt: "You are a friendly chat bot designed to help people. You should always use gender neutral pronouns when possible.",
           input: [args.text]
         })
       return editOrReply(context, {embeds:[createEmbed("default", context, {
