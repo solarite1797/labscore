@@ -9,7 +9,7 @@ module.exports.maintower = async function (packages, type){
   try{
     let res = await superagent.post(MAINTOWER_BASE_URL + 'invoke')
       .set({
-        "Authorization": process.env.api_prod,
+        "Authorization": process.env.API_KEY,
         "x-labscore-client": "labscore/2.0"
       })
       .query({
@@ -29,7 +29,7 @@ module.exports.basecamp = async function (log){
   try{
     let res = await superagent.post(MAINTOWER_BASE_URL + 'basecamp')
       .set({
-        "Authorization": process.env.api_prod,
+        "Authorization": process.env.API_KEY,
         "x-labscore-client": "labscore/2.0"
       })
       .send({log})
