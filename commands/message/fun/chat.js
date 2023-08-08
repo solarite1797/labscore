@@ -22,14 +22,15 @@ module.exports = {
     context.triggerTyping();
     if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
     try{
-      let res = await superagent.post(`${process.env.AI_SERVER}/chatgpt`)
+      let res = await superagent.post(`${process.env.AI_SERVER}/openai`)
         .set({
           Authorization: process.env.AI_SERVER_KEY
         })
         .send({
           prompt: "You are a friendly chat bot designed to help people. You should always use gender neutral pronouns when possible.",
           input: [args.text],
-          temperature: 0.6
+          temperature: 0.6,
+          model: "CHATGPT"
         })
       return editOrReply(context, {embeds:[createEmbed("default", context, {
         description: codeblock("ansi", ["👤 " + format(args.text, "cyan") + "\n🤖 " + res.body.output.substr(0, 2000 - args.text.length)]),
