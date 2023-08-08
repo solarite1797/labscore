@@ -22,12 +22,16 @@ module.exports = {
     context.triggerTyping();
     if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
     try{
-      let res = await superagent.get(`${process.env.AI_SERVER}/chat`)
-      .query({
-        prompt: args.text
-      })
+      let res = await superagent.post(`${process.env.AI_SERVER}/chatgpt`)
+        .set({
+          Authorization: process.env.AI_SERVER_KEY
+        })
+        .send({
+          prompt: "You are a friendly chat bot designed to help people.",
+          input: [args.text]
+        })
       return editOrReply(context, {embeds:[createEmbed("default", context, {
-        description: codeblock("ansi", ["👤 " + format(args.text, "cyan") + "\n🤖 " + res.body.text]),
+        description: codeblock("ansi", ["👤 " + format(args.text, "cyan") + "\n🤖 " + res.body.output]),
         footer: {
           text: `This information may be inaccurate or biased • ${context.application.name}`
         }
