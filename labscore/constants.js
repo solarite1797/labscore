@@ -4,6 +4,7 @@ module.exports.DISCORD_INVITES = Object.freeze({
 })
 
 module.exports.DEFAULT_BOT_PREFIX = 'lc.'
+module.exports.DEFAULT_BOT_NAME = 'labsCore'
 
 module.exports.PRIVACY_POLICY_SECTIONS = [
   'labsCore does not collect any sort of data about its users.',
