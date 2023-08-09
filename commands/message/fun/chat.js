@@ -16,20 +16,27 @@ module.exports = {
     description_short: 'Talk to ChatGPT.',
     examples: ['chat How many otter species are there?'],
     category: 'limited',
-    usage: 'chat <prompt>'
+    usage: 'chat <input> [-prompt <prompt override>]'
   },
+  args: [
+    { name: 'prompt', default: '', required: false, help: "The starting system prompt." },
+  ],
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     if(!canUseLimitedTestCommands(context)) return;
     context.triggerTyping();
     if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
+
+    let prompt = 'You are a friendly chat bot designed to help people. You should always use gender neutral pronouns when possible.'
+    if(args.prompt !== "") prompt = args.prompt
+
     try{
       let res = await superagent.post(`${process.env.AI_SERVER}/openai`)
         .set({
           Authorization: process.env.AI_SERVER_KEY
         })
         .send({
-          prompt: "You are a friendly chat bot designed to help people. You should always use gender neutral pronouns when possible.",
+          prompt: prompt,
           input: [args.text],
           temperature: 0.6,
           model: "CHATGPT"
