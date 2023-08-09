@@ -7,6 +7,7 @@ const { paginator } = require('../../../labscore/client');
 const { editOrReply } = require('../../../labscore/utils/message');
 
 const { Permissions } = require("detritus-client/lib/constants");
+const { canUseLimitedTestCommands } = require('../utils/testing');
 
 function createHelpPage(context, title, contents, descriptions){
   return {
@@ -113,6 +114,7 @@ module.exports = {
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
+    if(canUseLimitedTestCommands(context)) categories["limited"] = `${icon("fun")} Limited Test Commands`;
     if(args.command){
       await context.triggerTyping()
       // Detailed command view

@@ -3,23 +3,24 @@ const { format } = require('../../../labscore/utils/ansi')
 const { editOrReply } = require('../../../labscore/utils/message')
 
 const superagent = require('superagent')
-const { codeblock } = require('../../../labscore/utils/markdown')
+const { codeblock, iconPill } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
+const { canUseLimitedTestCommands } = require('../utils/testing')
 
 module.exports = {
   name: 'disstrack',
   label: 'text',
   metadata: {
-    description: `Talk to ChatGPT.\n\n<:bonzi:1138585089891106836> He will explore the Internet with you as your very own friend and sidekick! He can talk, walk, and joke like no other friend you've ever had!`,
-    description_short: 'Talk to ChatGPT.',
-    examples: ['chat How many otter species are there?'],
-    category: 'hidden',
-    usage: 'chat <prompt>'
+    description: `${iconPill("fun", "LIMITED TESTING")}\n\nAI Generated Disstracks, powered by ChatGPT`,
+    description_short: 'AI generated disstracks.',
+    examples: ['disstrack'],
+    category: 'limited',
+    usage: 'disstrack <prompt>'
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
-    if(!process.env.TESTING_SERVER_IDS.split(';').includes(context.guild.id)) return;
+    if(!canUseLimitedTestCommands(context)) return;
     context.triggerTyping();
     if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
     try{
