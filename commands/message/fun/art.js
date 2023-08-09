@@ -14,7 +14,7 @@ const SIZES = Object.freeze({
 })
 
 function validateNumber(input, low, high){
-  if(input == "rand") return true;
+  if(input == "") return true;
   if(isNaN(input)) return true;
   return (parseInt(input) <= high && parseInt(input) >= low);
 }
@@ -31,9 +31,9 @@ module.exports = {
   },
   args: [
     { name: 'type', default: 'wallpaper', required: false, help: `Image Type \` ${Object.keys(SIZES).join(', ')} \`` },
-    { name: 'seed', default: 'rand', required: false, help: "Image Seed (10000-999999)" },
-    { name: 'variance', default: 'rand', required: false, help: "Variance (1000-9999)" },
-    { name: 'rotate', default: 'rand', required: false, help: "Rotation amount (0-360)" }
+    { name: 'seed', default: '', required: false, help: "Image Seed (10000-999999)" },
+    { name: 'variance', default: '', required: false, help: "Variance (1000-9999)" },
+    { name: 'rotate', default: '', required: false, help: "Rotation amount (0-360)" }
   ],
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
@@ -44,13 +44,13 @@ module.exports = {
         rotate = Math.floor(Math.random() * 360)
 
       if(!validateNumber(args.seed, 10000, 999999)) return await editOrReply(context, createEmbed("warning", context, "Invalid Seed (must be between 10000 and 999999)"))
-      if(args.seed !== "rand") seed = parseInt(args.seed);
+      if(args.seed !== "") seed = parseInt(args.seed);
 
       if(!validateNumber(args.variance, 1000, 9999)) return await editOrReply(context, createEmbed("warning", context, "Invalid Variance (must be between 1000 and 9999)"))
-      if(args.variance !== "rand") variance = parseInt(args.variance);
+      if(args.variance !== "") variance = parseInt(args.variance);
 
       if(!validateNumber(args.rotate, 0, 360)) return await editOrReply(context, createEmbed("warning", context, "Invalid Rotation (must be between 0 and 360)"))
-      if(args.rotate !== "rand") rotate = parseInt(args.rotate);
+      if(args.rotate !== "") rotate = parseInt(args.rotate);
 
       if(!SIZES[args.type.toLowerCase()]) return await editOrReply(context, createEmbed("warning", context, `Invalid Type (must be one of '${Object.keys(SIZES).join(`', '`)}')`))
       let sizeX = SIZES[args.type.toLowerCase()].x,
