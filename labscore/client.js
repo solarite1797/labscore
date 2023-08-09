@@ -1,7 +1,7 @@
 const { Constants, ClusterClient, CommandClient, InteractionCommandClient } = require('detritus-client');
 const { ActivityTypes, PresenceStatuses, GatewayIntents, Permissions, ClientEvents } = require('detritus-client/lib/constants');
 
-const { PERMISSIONS_TEXT, DEFAULT_BOT_PREFIX } = require('./constants');
+const { PERMISSIONS_TEXT, DEFAULT_BOT_PREFIX, DEFAULT_BOT_NAME } = require('./constants');
 const Paginator = require('./paginator').PaginatorCluster
 
 const cluster = new ClusterClient("", {
@@ -17,8 +17,8 @@ const cluster = new ClusterClient("", {
     ],
     presence: {
       activity: {
-        state: `${DEFAULT_BOT_PREFIX}help ​ ​| ​ ​labsCore`,
-        name: `${DEFAULT_BOT_PREFIX}help ​ ​| ​ ​labsCore`,
+        state: `${DEFAULT_BOT_PREFIX}help ​ • ​ ${DEFAULT_BOT_NAME}`,
+        name: `${DEFAULT_BOT_PREFIX}help ​ ​• ​ ${DEFAULT_BOT_NAME}`,
         emoji: {
           name: "🧪"
         },
