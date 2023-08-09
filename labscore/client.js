@@ -1,6 +1,7 @@
 const { Constants, ClusterClient, CommandClient, InteractionCommandClient } = require('detritus-client');
 const { ActivityTypes, PresenceStatuses, GatewayIntents, Permissions, ClientEvents } = require('detritus-client/lib/constants');
 
+const { PERMISSIONS_TEXT, DEFAULT_BOT_PREFIX } = require('./constants');
 const Paginator = require('./paginator').PaginatorCluster
 
 const cluster = new ClusterClient("", {
@@ -16,8 +17,12 @@ const cluster = new ClusterClient("", {
     ],
     presence: {
       activity: {
-        name: 'lc.help',
-        type: ActivityTypes.WATCHING,
+        state: `${DEFAULT_BOT_PREFIX}help ​ ​| ​ ​labsCore`,
+        name: `${DEFAULT_BOT_PREFIX}help ​ ​| ​ ​labsCore`,
+        emoji: {
+          name: "🧪"
+        },
+        type: ActivityTypes.CUSTOM_STATUS,
       },
       status: PresenceStatuses.ONLINE,
     },
@@ -56,7 +61,6 @@ const { maintower, basecamp } = require('./logging');
 const { icon, highlight } = require('./utils/markdown');
 const { editOrReply } = require('./utils/message');
 
-const { PERMISSIONS_TEXT } = require('./constants');
 const { createEmbed } = require('./utils/embed');
 
 // Handle missing permission errors
