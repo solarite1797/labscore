@@ -34,6 +34,8 @@ module.exports = {
     if(args.prompt !== "") prompt = args.prompt
 
     try{
+      await editOrReply(context, createEmbed("typing", context, "Generating response..."))
+
       let res = await superagent.post(`${process.env.AI_SERVER}/openai`)
         .set({
           Authorization: process.env.AI_SERVER_KEY

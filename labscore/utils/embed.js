@@ -78,6 +78,15 @@ const embedTypes = Object.freeze({
       },
       color: COLORS.embed
     }
+  },
+  "typing": (context) => {
+    return {
+      author: {
+        iconUrl: STATIC_ICONS.typing,
+        name: `Loading`
+      },
+      color: COLORS.embed
+    }
   }
 })
 
@@ -87,7 +96,7 @@ module.exports.createEmbed = function(type, context, content){
   if(!content) embedTypes[type](context)
   let emb = embedTypes[type](context)
 
-  if(["success","warning","error","loading"].includes(type)){
+  if(["success","warning","error","loading","typing"].includes(type)){
     emb.author.name = content
     return emb
   }
