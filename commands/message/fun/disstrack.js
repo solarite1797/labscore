@@ -37,7 +37,8 @@ module.exports = {
       return editOrReply(context, {embeds:[createEmbed("default", context, {
         description: codeblock("ansi", [res.body.output.substr(0, 2020)]),
         footer: {
-          text: `🗣🗣📢🔥🔥🔥🔥💯 • ${context.application.name}`
+          text: `🗣🗣📢🔥🔥🔥🔥💯 • ${context.application.name}`,
+          icon: STATICS.openai
         }
       })]})
     }catch(e){

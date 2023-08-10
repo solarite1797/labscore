@@ -9,6 +9,7 @@ const { Permissions } = require("detritus-client/lib/constants");
 const { canUseLimitedTestCommands } = require('../utils/testing')
 const { Regexes } = require('detritus-client/lib/utils/markup')
 const { DiscordRegexNames } = require('detritus-client/lib/constants')
+const { STATICS } = require('../../../labscore/utils/statics')
 
 module.exports = {
   name: 'chat',
@@ -50,7 +51,8 @@ module.exports = {
       return editOrReply(context, {embeds:[createEmbed("default", context, {
         description: description.join('\n').substr(),
         footer: {
-          text: `This information may be inaccurate or biased • ${context.application.name}`
+          text: `This information may be inaccurate or biased • ${context.application.name}`,
+          icon: STATICS.openai
         }
       })]})
     }catch(e){
