@@ -104,7 +104,7 @@ const Statics = Object.freeze({
     },
     typing: {
       file: "icons/core/ico_notice_typing.gif",
-      revision: 0
+      revision: 1
     },
     warning: {
       file: "icons/core/ico_notice_warning.png",
