@@ -7,6 +7,7 @@ const { codeblock, iconPill } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
 const { canUseLimitedTestCommands } = require('../utils/testing')
+const { STATICS } = require('../../../labscore/utils/statics')
 
 module.exports = {
   name: 'disstrack',
