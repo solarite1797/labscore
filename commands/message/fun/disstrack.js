@@ -38,7 +38,7 @@ module.exports = {
         description: codeblock("ansi", [res.body.output.substr(0, 2020)]),
         footer: {
           text: `🗣🗣📢🔥🔥🔥🔥💯 • ${context.application.name}`,
-          icon: STATICS.openai
+          iconUrl: STATICS.openai
         }
       })]})
     }catch(e){

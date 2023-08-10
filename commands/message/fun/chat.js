@@ -52,7 +52,7 @@ module.exports = {
         description: description.join('\n').substr(),
         footer: {
           text: `This information may be inaccurate or biased • ${context.application.name}`,
-          icon: STATICS.openai
+          iconUrl: STATICS.openai
         }
       })]})
     }catch(e){
