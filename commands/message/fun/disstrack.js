@@ -37,7 +37,7 @@ module.exports = {
       return editOrReply(context, {embeds:[createEmbed("default", context, {
         description: codeblock("ansi", [res.body.output.substr(0, 2020)]),
         footer: {
-          text: `This information may be inaccurate or biased • ${context.application.name}`
+          text: `🗣🗣📢🔥🔥🔥🔥💯 • ${context.application.name}`
         }
       })]})
     }catch(e){

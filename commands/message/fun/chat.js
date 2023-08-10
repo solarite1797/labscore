@@ -7,6 +7,8 @@ const { codeblock, iconPill } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
 const { canUseLimitedTestCommands } = require('../utils/testing')
+const { Regexes } = require('detritus-client/lib/utils/markup')
+const { DiscordRegexNames } = require('detritus-client/lib/constants')
 
 module.exports = {
   name: 'chat',
@@ -41,8 +43,12 @@ module.exports = {
           temperature: 0.6,
           model: "CHATGPT"
         })
+
+      let description = [codeblock("ansi", ["👤 " + format(args.text, "cyan")])]
+      description.push(res.body.output.substr(0, 2000 - args.text.length))
+
       return editOrReply(context, {embeds:[createEmbed("default", context, {
-        description: codeblock("ansi", ["👤 " + format(args.text, "cyan") + "\n🤖 " + res.body.output.substr(0, 2000 - args.text.length)]),
+        description: description.join('\n').substr(),
         footer: {
           text: `This information may be inaccurate or biased • ${context.application.name}`
         }
