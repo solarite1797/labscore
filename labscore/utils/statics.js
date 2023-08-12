@@ -103,7 +103,7 @@ const Statics = Object.freeze({
       revision: 0
     },
     ai: {
-      file: "icons/core/ico_notice_ai.gif",
+      file: "icons/core/ico_notice_ai_sparks.gif",
       revision: 2
     },
     warning: {
