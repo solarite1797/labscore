@@ -24,7 +24,7 @@ module.exports = {
     context.triggerTyping();
     if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
     try{
-      await editOrReply(context, createEmbed("typing", context, "Generating response..."))
+      await editOrReply(context, createEmbed("ai", context, "Generating response..."))
       
       let res = await superagent.post(`${process.env.AI_SERVER}/openai`)
         .set({
