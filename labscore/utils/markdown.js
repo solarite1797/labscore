@@ -1,8 +1,8 @@
-const { ICONS } = require('../constants')
+const { ICONS, REDESIGN_ICONS } = require('../constants')
 
 module.exports.icon = function(icon){
-  if(!ICONS[icon]) return ICONS.question
-  return ICONS[icon].replace(/:[a-z1-9_]*:/, ':i:')
+  if(!REDESIGN_ICONS[icon]) return ICONS.question
+  return REDESIGN_ICONS[icon].replace(/:[a-z1-9_]*:/, ':i:')
 }
 
 module.exports.highlight = function(content){
@@ -33,14 +33,19 @@ module.exports.smallPill = function(content){
 }
 
 module.exports.iconPill = function(icon, content){
-  if(!ICONS[icon]) icon = "question"
-  return ICONS[icon].replace(/:[a-z1-9_]*:/, ':i:') + "  **` " + content + "  `**"
+  if(!REDESIGN_ICONS[icon]) icon = "question"
+  return REDESIGN_ICONS[icon].replace(/:[a-z1-9_]*:/, ':i:') + "  **` " + content + "  `**"
+}
+
+module.exports.smallIconPill = function(icon, content){
+  if(!REDESIGN_ICONS[icon]) icon = "question"
+  return REDESIGN_ICONS[icon].replace(/:[a-z1-9_]*:/, ':i:') + "  ` " + content + "  `"
 }
 
 module.exports.iconLinkPill = function(icon, url, content, tooltip = ""){
-  if(!ICONS[icon]) icon = "question"
+  if(!REDESIGN_ICONS[icon]) icon = "question"
   if(tooltip.length) tooltip = ` '${tooltip}'`
-  if(content) return `${ICONS[icon].replace(/:[a-z1-9_]*:/, ':i:')} [**\` ${content}  \`**](${url}${tooltip})`
+  if(content) return `${REDESIGN_ICONS[icon].replace(/:[a-z1-9_]*:/, ':i:')} [**\` ${content}  \`**](${url}${tooltip})`
   return url
 }
 module.exports.linkPill = function(url, content, tooltip = ""){

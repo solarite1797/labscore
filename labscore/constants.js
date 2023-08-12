@@ -103,6 +103,91 @@ module.exports.ICONS = Object.freeze({
   "gitlab": "<:ico_gitlab:1130603378704138411>"
 })
 
+
+module.exports.REDESIGN_ICONS = Object.freeze({
+  "home": "<:ico_home:1139699944295510036>",
+  "image": "<:ico_image:1139704766906245191>",
+  "search": "<:ico_search:1139704772472086598>",
+  "shield": "<:ico_shield:1139704774653136947>",
+  "stars": " <:ico_stars:1139704776620253309>",
+  "tools": "<:ico_tools:1139704779073921034>",
+
+
+  "agreements": "<:ico_agreements:1139855990481768510>",
+  "calendar": "<:ico_calendar:1139856007334477896>",
+  "certificate": "<:ico_certificate:1139856009024786483>",
+  "clock": "<:ico_clock:1139856015840522240>",
+  "definition": "<:ico_definition:1139856055292133398>",
+  "example": "<:ico_example:1139857087015440474>",
+  "flag": "<:ico_flag:1139857089683009666>",
+  "list": "<:ico_list:1139857100646924408>",
+  "mag": "<:ico_mag:1139857104304345120>",
+  "note": "<:ico_note:1139857873082515527>",
+  "padlock": "<:ico_padlock:1139857874537947196>",
+  "pencil": "<:ico_pencil:1139857877092270080>",
+  "planet": "<:ico_planet:1139857878249898017>",
+  "qr": "<:ico_qr:1139857880594526291>",
+  "robot": "<:ico_robot:1139857884663005235>",
+  "settings": "<:ico_settings:1139857885652856884>",
+  "trend": "<:ico_trend:1139858673494130770>",
+  "visible": "<:ico_visible:1139858684420300860>",
+
+  "attachment_image": "<:ico_attachment:1139856000195756044>",
+  "emoji": "<:ico_emoji:1139856021934833744>",
+  "boost": "<:ico_boost:1139856005132468224>",
+  "link": "<:ico_link:1139857098235199499>",
+  "locale": "<:ico_locale:1139857103125741678>",
+  "message": "<:ico_message:1139857108548988929>",
+  "nitro": "<:ico_nitro:1139857137124786176>",
+  "reply": "<:ico_reply:1139857882402258964>",
+  "slash": "<:ico_slash:1139857887485763584>",
+  "sticker": "<:ico_sticker:1139858670260330559>",
+
+  "audio": "<:ico_audio:1139856002972401714>",
+  "microphone": "<:ico_microphone:1139857135488995350>",
+  "channel": "<:ico_channel:1139856012069847131>",
+  "channel_nsfw": "<:ico_channel_nsfw:1139856013743362048>",
+  "mention": "<:ico_mention:1139857106577670154>",
+
+  "user": "<:ico_user:1139858676493070337>",
+  "user_multiple": "<:ico_user_multiple:1139858678732836965>",
+  "user_profile": "<:ico_user_profile:1139858680553160765>",
+  "user_shield": "<:ico_user_shield:1139858682520285226>",
+
+  "status_offline": "<:ico_status_offline:1139858665428500533>",
+  "status_online": "<:ico_status_online:1139858667345301577>",
+
+  "arrow_down": "<:ico_arrow_down:1139855992989945916>",
+  "arrow_left": "<:ico_arrow_left:1139855994084667424>",
+  "arrow_right": "<:ico_arrow_right:1139855995716243486>",
+  "arrow_up": "<:ico_arrow_up:1139855998245421088>",
+
+  "stat_comments": "<:ico_stat_comments:1139857889813606471>",
+  "stat_likes": "<:ico_stat_likes:1139857891667476520>",
+  "stat_people": "<:ico_stat_people:1139861631812243499>",
+  "stat_videos": "<:ico_stat_videos:1139857894343454720>",
+  "stat_views": "<:ico_stat_views:1139857917047209985>",
+
+  "downvote": "<:ico_downvote:1139856056902754335>",
+  "upvote": "<:ico_upvote:1139858674945380352>",
+
+  "gitlab": "<:ico_gitlab:1139857092921020486>",
+
+  "generative_ai": "<:ico_generative_ai:1139857090698027043>",
+  "latency": "<:ico_latency:1139857096284831845>",
+
+  "information": "<:ico_information:1139704769179562064>",
+  "question": "<:ico_question:1139704770760806502>",
+
+  // Legacy icons for now
+  "question_large": "<:ico_question:1086624956235919391>",
+  "exclaim_0": "<:ico_w0:1086624957586489364>",
+  "exclaim_1": "<:ico_w1:1086624959142580275>",
+  "exclaim_2": "<:ico_w2:1086624961025810485>",
+  "exclaim_3": "<:ico_w3:1086624963047460874>",
+  "exclaim_4": "<:ico_w4:1086624964284788787>",
+})
+
 const GUILD_FEATURE_ICONS = Object.freeze({
   ACTIVITY: "<:activity:995078510492266606>",
   AUDIO: "<:audio:995073876381945986>",

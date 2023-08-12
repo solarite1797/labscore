@@ -46,7 +46,7 @@ module.exports = {
       clearTimeout(noticeTimer)
 
       await response.edit({
-        embeds: [createEmbed("defaultNoFooter", context, { description: `${icon("audio")} Audio Generated in ${highlight(((Date.now() - t) / 1000).toFixed(2) + "s")}.` })],
+        embeds: [createEmbed("defaultNoFooter", context, { description: `${icon("note")} Audio Generated in ${highlight(((Date.now() - t) / 1000).toFixed(2) + "s")}.` })],
         file: { value: img.body, filename: "music.mp3" }
       })
 

@@ -1,4 +1,4 @@
-const { codeblock, highlight, icon, link, pill, smallPill } = require('../../../labscore/utils/markdown')
+const { codeblock, highlight, icon, link, pill, smallPill, iconPill } = require('../../../labscore/utils/markdown')
 const { createEmbed, formatPaginationEmbeds } = require('../../../labscore/utils/embed')
 
 const { DISCORD_INVITES, DEFAULT_BOT_PREFIX } = require('../../../labscore/constants')
@@ -7,7 +7,7 @@ const { paginator } = require('../../../labscore/client');
 const { editOrReply } = require('../../../labscore/utils/message');
 
 const { Permissions } = require("detritus-client/lib/constants");
-const { canUseLimitedTestCommands } = require('../utils/testing');
+const { canUseLimitedTestCommands } = require('../../../labscore/utils/testing');
 
 function createHelpPage(context, title, contents, descriptions){
   return {
@@ -15,7 +15,7 @@ function createHelpPage(context, title, contents, descriptions){
       createEmbed("default", context, {
         description: `${title}\n\n` +
         renderCommandList(contents, descriptions) +
-          `\n\n${icon("question")} Use ${pill(`${DEFAULT_BOT_PREFIX}help <command>`)} to view more information about a command.`
+          `\n\n${icon("question")} Use ${smallPill(`${DEFAULT_BOT_PREFIX}help <command>`)} to view more information about a command.`
       })
     ]
   }
@@ -32,7 +32,7 @@ function renderCommandList(commands, descriptions, limit){
     if(desc.includes('\n')) desc = desc.split('\n')[0]
     if(desc.length >= 41) desc = desc.substr(0, 40) + '...'
 
-    render.push(` ​ ​ **​\` ${c}${' '.repeat(pad)}\`** ​ ​ ​ ​ ​${desc}`)
+    render.push(` ​ ​ \` ${c}${' '.repeat(pad)}\` ​ ​ ​ ​ ​${desc}`)
     i++
   }
 
@@ -49,7 +49,7 @@ function createCommandPage(context, prefix, command){
   }
 
   let explicit = '';
-  if(command.metadata.explicit) explicit = `\n${icon('nsfw')} This command contains explicit content and can only be used in Age-Restricted channels. ${link("https://support.discord.com/hc/en-us/articles/115000084051-Age-Restricted-Channels-and-Content", "Learn More")}\n`
+  if(command.metadata.explicit) explicit = `\n${icon('channel_nsfw')} This command contains explicit content and can only be used in Age-Restricted channels. ${link("https://support.discord.com/hc/en-us/articles/115000084051-Age-Restricted-Channels-and-Content", "Learn More")}\n`
 
   // Render argument pills if present
   let args = [];
@@ -66,13 +66,13 @@ function createCommandPage(context, prefix, command){
   }
 
   let page = createEmbed("default", context, {
-    description: `${icon("command")}  ${pill(command.name)}\n${alias}${explicit}\n${command.metadata.description}\n\n${args.join('\n\n')}`,
+    description: `${icon("slash")}  ${smallPill(command.name)}\n${alias}${explicit}\n${command.metadata.description}\n\n${args.join('\n\n')}`,
     fields: []
   })
 
   // TODO: maybe try building a little parser that highlights things via ansi
   if(command.metadata.usage) page.fields.push({
-    name: `${icon("util")} Usage`,
+    name: `${icon("settings")} Usage`,
     value: codeblock("py", [prefix + command.metadata.usage]),
     inline: true
   })
@@ -81,7 +81,7 @@ function createCommandPage(context, prefix, command){
     let ex = []
     for(const e of command.metadata.examples) ex.push(prefix + e)
     page.fields.push({
-      name: `${icon("info")} Examples`,
+      name: `${icon("example")} Examples`,
       value: '```' + ex.join('``````') + '```',
       inline: false
     })
@@ -93,13 +93,13 @@ function createCommandPage(context, prefix, command){
 
 // These categories will be displayed to users, add them in the correct order
 const categories = {
-  "core": `${icon("house")} Core Commands`,
-  "info": `${icon("info")} Information Commands`,
-  "search": `${icon("search")} Search Commands`,
-  "utils": `${icon("utils")} Utility Commands`,
-  "fun": `${icon("fun")} Fun Commands`,
-  "image": `${icon("image")} Image Commands`,
-  "mod": `${icon("moderation")} Moderation Commands`
+  "core": `${iconPill("home", "Core Commands")}`,
+  "info": `${iconPill("information", "Information Commands")}`,
+  "search": `${iconPill("search", "Search Commands")}`,
+  "utils": `${iconPill("tools", "Utility Commands")}`,
+  "fun": `${iconPill("stars", "Fun Commands")}`,
+  "image": `${iconPill("image", "Image Commands")}`,
+  "mod": `${iconPill("shield", "Moderation Commands")}`
 }
 
 module.exports = {
@@ -115,7 +115,7 @@ module.exports = {
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
-    if(canUseLimitedTestCommands(context)) categories["limited"] = `${icon("fun")} Limited Test Commands`;
+    if(canUseLimitedTestCommands(context)) categories["limited"] = `${icon("stars")} Limited Test Commands`;
     if(args.command){
       await context.triggerTyping()
       // Detailed command view

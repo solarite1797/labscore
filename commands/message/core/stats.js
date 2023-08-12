@@ -57,10 +57,10 @@ module.exports = {
         }
 
         const display = [
-          `${iconPill("house",      "Servers     ")} ${highlight(` ${formatted.guilds} `)}`,
-          `${iconPill("robot",      "Shard       ")} ${highlight(` ${context.shardId + 1}/${context.manager.cluster.shardCount} `)}`,
-          `${iconPill("connection", "Memory Usage")} ${highlight(` ${Math.round(formatted.usage / 1024 / 1024)}MB `)}`,
-          `${iconPill("timer",      "Uptime      ")} ${highlight(` ${format(process.uptime())} `)}`,
+          `${iconPill("home",      "Servers     ")} ${highlight(` ${formatted.guilds} `)}`,
+          `${iconPill("robot",     "Shard       ")} ${highlight(` ${context.shardId + 1}/${context.manager.cluster.shardCount} `)}`,
+          `${iconPill("latency",   "Memory Usage")} ${highlight(` ${Math.round(formatted.usage / 1024 / 1024)}MB `)}`,
+          `${iconPill("clock",     "Uptime      ")} ${highlight(` ${format(process.uptime())} `)}`,
           ``,
           `${iconLinkPill('gitlab', OPEN_SOURCE_REPOSITORY_URL, 'Source Code')} ​ ​ ${iconLinkPill('link', context.application.oauth2UrlFormat({ scope: 'bot applications.commands', permissions: 412317248576 }), `Invite ${context.client.user.username}`)}`
         ]

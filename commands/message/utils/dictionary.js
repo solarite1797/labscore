@@ -12,7 +12,7 @@ function createDictionaryPage(context, result, word){
   if(result.phonetic) phon = `\n*${result.phonetic}*`
 
   let e = createEmbed("default", context, {
-    description: `${icon("book")} **${link(`https://en.wiktionary.org/wiki/${encodeURIComponent(word.word)}`, word.word, "Definition on Wiktionary")}**`,
+    description: `${icon("definition")} **${link(`https://en.wiktionary.org/wiki/${encodeURIComponent(word.word)}`, word.word, "Definition on Wiktionary")}**`,
     fields: []
   })
 
@@ -28,7 +28,7 @@ function createDictionaryPage(context, result, word){
     defItms.push(d.definition, citation(ref, d.src))
     if(d.examples) defItms.push(`\n ​ ​ ${icon("message")} *${d.examples.join(`*\n ​ ​ ${icon("message")} *`)}*`)
     // Synonyms are limited to 5 to prevent overflow
-    if(d.synonyms) defItms.push(`\n ​ ​ ${iconPill("book", "Synonyms")} ${d.synonyms.splice(0, 5).map((s)=>smallPill(s)).join(' ')}`)
+    if(d.synonyms) defItms.push(`\n ​ ​ ${iconPill("definition", "Synonyms")} ${d.synonyms.splice(0, 5).map((s)=>smallPill(s)).join(' ')}`)
 
     ref++;
     if([...defDesc, defItms.join(' ')].join('\n\n').length >= 1024) continue;

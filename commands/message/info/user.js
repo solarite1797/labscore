@@ -41,7 +41,7 @@ module.exports = {
       if(u.discriminator && u.discriminator !== "0") usernameDisplay += `#${u.discriminator}`
 
       let userCard = createEmbed("default", context, {
-        description: `${icon("person")} **${usernameDisplay}**${botTag} ${highlight(`(${u.id})`)}`,
+        description: `${icon("user")} **${usernameDisplay}**${botTag} ${highlight(`(${u.id})`)}`,
         thumbnail: {
           url: u.avatarUrl + `?size=4096`
         },
@@ -62,7 +62,7 @@ module.exports = {
         if(m.roles.length >= 1) guildFields.push(`**Roles: ** ${m.roles.length}/${context.guild.roles.length}`)
         if(m.premiumSince) guildFields.push(`**Boosting since: ** ${timestamp(m.premiumSince, 'f')}`)
         userCard.fields.push({
-          name: `${icon("house")} Server`,
+          name: `${icon("home")} Server`,
           value: guildFields.join('\n'),
           inline: true
         })

@@ -36,9 +36,9 @@ function createYoutubePage(context, result){
     case 1: //video
       iconHeader = []
 
-      iconHeader.push(iconPill("eye", intToString(parseInt(result.metadata.views).toLocaleString('en-US')) + ' Views'))
-      if(result.metadata.likes >= 1) iconHeader.push(iconPill("like", intToString(parseInt(result.metadata.likes)) + ' Likes'))
-      if(result.metadata.comments >= 1) iconHeader.push('\n' + iconPill("message", intToString(parseInt(result.metadata.comments)) + ' Comments'))
+      iconHeader.push(iconPill("stat_views", intToString(parseInt(result.metadata.views).toLocaleString('en-US')) + ' Views'))
+      if(result.metadata.likes >= 1) iconHeader.push(iconPill("stat_likes", intToString(parseInt(result.metadata.likes)) + ' Likes'))
+      if(result.metadata.comments >= 1) iconHeader.push('\n' + iconPill("stat_comments", intToString(parseInt(result.metadata.comments)) + ' Comments'))
 
       res = page(createEmbed("default", context, {
         author: {
@@ -59,10 +59,10 @@ function createYoutubePage(context, result){
     case 2: // channel
       iconHeader = []
 
-      iconHeader.push(iconPill("people", intToString(parseInt(result.metadata.subscribers).toLocaleString('en-US')) + ' Subscribers'))
-      iconHeader.push(iconPill("eye", intToString(parseInt(result.metadata.views).toLocaleString('en-US')) + ' Views'))
+      iconHeader.push(iconPill("stat_people", intToString(parseInt(result.metadata.subscribers).toLocaleString('en-US')) + ' Subscribers'))
+      iconHeader.push(iconPill("stat_views", intToString(parseInt(result.metadata.views).toLocaleString('en-US')) + ' Views'))
       
-      iconHeader.push('\n' + iconPill("videos", intToString(parseInt(result.metadata.videos).toLocaleString('en-US')) + ' Videos'))
+      iconHeader.push('\n' + iconPill("stat_videos", intToString(parseInt(result.metadata.videos).toLocaleString('en-US')) + ' Videos'))
 
       res = page(createEmbed("default", context, {
         author: {
@@ -83,7 +83,7 @@ function createYoutubePage(context, result){
     case 3: // playlist
       iconHeader = [
         '',
-        iconPill("videos", intToString(parseInt(result.metadata.videos).toLocaleString('en-US')) + ' Videos')
+        iconPill("stat_videos", intToString(parseInt(result.metadata.videos).toLocaleString('en-US')) + ' Videos')
       ]
       res = page(createEmbed("default", context, {
         author: {

@@ -1,19 +1,18 @@
 const { createEmbed } = require('../../../labscore/utils/embed')
-const { format } = require('../../../labscore/utils/ansi')
 const { editOrReply } = require('../../../labscore/utils/message')
 
 const superagent = require('superagent')
-const { codeblock, iconPill } = require('../../../labscore/utils/markdown')
+const { codeblock, iconPill, smallIconPill } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
-const { canUseLimitedTestCommands } = require('../utils/testing')
+const { canUseLimitedTestCommands } = require('../../../labscore/utils/testing')
 const { STATICS } = require('../../../labscore/utils/statics')
 
 module.exports = {
   name: 'disstrack',
   label: 'text',
   metadata: {
-    description: `${iconPill("fun", "LIMITED TESTING")}\n\nAI Generated Disstracks, powered by ChatGPT`,
+    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nAI Generated Disstracks, powered by ChatGPT`,
     description_short: 'AI generated disstracks.',
     examples: ['disstrack'],
     category: 'limited',
@@ -38,7 +37,7 @@ module.exports = {
           model: "CHATGPT"
         })
       return editOrReply(context, {embeds:[createEmbed("default", context, {
-        description: codeblock("ansi", [res.body.output.substr(0, 2020)]),
+        description: smallIconPill("generative_ai", args.text) + '\n' + codeblock("ansi", [res.body.output.substr(0, 2020 - args.text.length)]),
         footer: {
           text: `🗣🗣📢🔥🔥🔥🔥💯 • ${context.application.name}`,
           iconUrl: STATICS.openai

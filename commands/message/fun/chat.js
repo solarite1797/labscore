@@ -1,21 +1,18 @@
 const { createEmbed } = require('../../../labscore/utils/embed')
-const { format } = require('../../../labscore/utils/ansi')
 const { editOrReply } = require('../../../labscore/utils/message')
 
 const superagent = require('superagent')
-const { codeblock, iconPill } = require('../../../labscore/utils/markdown')
+const { iconPill, smallIconPill } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
-const { canUseLimitedTestCommands } = require('../utils/testing')
-const { Regexes } = require('detritus-client/lib/utils/markup')
-const { DiscordRegexNames } = require('detritus-client/lib/constants')
+const { canUseLimitedTestCommands } = require('../../../labscore/utils/testing')
 const { STATICS } = require('../../../labscore/utils/statics')
 
 module.exports = {
   name: 'chat',
   label: 'text',
   metadata: {
-    description: `${iconPill("fun", "LIMITED TESTING")}\n\nTalk to ChatGPT.\n\n<:bonzi:1138585089891106836> He will explore the Internet with you as your very own friend and sidekick! He can talk, walk, and joke like no other friend you've ever had!`,
+    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nTalk to ChatGPT.\n\n<:bonzi:1138585089891106836> He will explore the Internet with you as your very own friend and sidekick! He can talk, walk, and joke like no other friend you've ever had!`,
     description_short: 'Talk to ChatGPT.',
     examples: ['chat How many otter species are there?'],
     category: 'limited',
@@ -47,7 +44,7 @@ module.exports = {
           model: "CHATGPT"
         })
 
-      let description = [codeblock("ansi", ["👤 " + format(args.text, "cyan")])]
+      let description = [smallIconPill("generative_ai", args.text), '']
       description.push(res.body.output.substr(0, 2000 - args.text.length))
 
       return editOrReply(context, {embeds:[createEmbed("default", context, {

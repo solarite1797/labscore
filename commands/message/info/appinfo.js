@@ -31,7 +31,7 @@ const applicationFlagNames = {
   GATEWAY_MESSAGE_CONTENT: "Message Content Intent",
   GATEWAY_MESSAGE_CONTENT_LIMITED: "Message Content Intent (Not approved)",
   EMBEDDED_FIRST_PARTY: "Embedded First Party",
-  APPLICATION_COMMAND_BADGE: `Has Slash Commands ${icon("badge_slash")}`
+  APPLICATION_COMMAND_BADGE: `Has Slash Commands ${icon("slash")}`
 }
 
 module.exports = {
@@ -76,8 +76,8 @@ module.exports = {
 
     if(application.terms_of_service_url || application.privacy_policy_url){
       let content = []
-      if(application.terms_of_service_url) content.push(`${icon("rules")} ${link(application.terms_of_service_url, "Terms of Service")}`)
-      if(application.privacy_policy_url) content.push(`${icon("lock")} ${link(application.privacy_policy_url, "Privacy Policy")}`)
+      if(application.terms_of_service_url) content.push(`${icon("agreements")} ${link(application.terms_of_service_url, "Terms of Service")}`)
+      if(application.privacy_policy_url) content.push(`${icon("padlock")} ${link(application.privacy_policy_url, "Privacy Policy")}`)
 
       embed.fields.push({
         name: `${icon("link")} Links`,
@@ -88,13 +88,13 @@ module.exports = {
 
     if("bot_public" in application){
       let content = []
-      if(application.bot_public) content.push(`• Bot is public`)
-      if(application.custom_install_url) content.push(`${icon("link")} ${link(application.custom_install_url, "Invite Bot")}`)
-      if(application.install_params) content.push(`${icon("downloading")} ${link(`https://discord.com/api/oauth2/authorize?client_id=${application.id}&permissions=${application.install_params.permissions}&scope=${application.install_params.scopes.join('+')}`, "Invite Bot")}`)
-      if(application.bot_require_code_grant) content.push(`\n• Bot requires code grant`)
+      if(application.bot_public) content.push(`• App is public`)
+      if(application.custom_install_url) content.push(`${icon("link")} ${link(application.custom_install_url, "Invite App")}`)
+      if(application.install_params) content.push(`${icon("link")} ${link(`https://discord.com/api/oauth2/authorize?client_id=${application.id}&permissions=${application.install_params.permissions}&scope=${application.install_params.scopes.join('+')}`, "OAuth2 Invite URL")}`)
+      if(application.bot_require_code_grant) content.push(`\n• App requires code grant`)
       
       if(content.length) embed.fields.push({
-        name: `${icon("robouser")} Bot`,
+        name: `${icon("user")} Bot`,
         value: content.join('\n'),
         inline: true
       })
@@ -102,7 +102,7 @@ module.exports = {
 
     if(application.tags){
       embed.fields.push({
-        name: `${icon("activity")} Tags`,
+        name: `${icon("list")} Tags`,
         value: application.tags.map(t => highlight(t)).join(', '),
         inline: true
       })

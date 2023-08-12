@@ -34,7 +34,7 @@ module.exports = {
       const g = context.guild
       // Guild Card
       let guildCard = createEmbed("default", context, {
-        description: `${icon("house")} **${g.name}** ${highlight(`(${g.id})`)}\n\n${icon("calendar")} **Created at: **${timestamp(g.createdAt, "f")}`,
+        description: `${icon("home")} **${g.name}** ${highlight(`(${g.id})`)}\n\n${icon("calendar")} **Created at: **${timestamp(g.createdAt, "f")}`,
         fields: []
       })
 
@@ -91,11 +91,11 @@ module.exports = {
         let i = 0;
         let ic = Math.ceil(featureCards.length / 2);
         
-        if(ic == 1) featureCards[0].name = `${icon("activity")} Guild Features`
+        if(ic == 1) featureCards[0].name = `${icon("list")} Guild Features`
         while(featureCards.length >= 1){
           i++;
           const sub = featureCards.splice(0, 2)
-          sub[0].name = `${icon("activity")} Guild Features (${i}/${ic})`
+          sub[0].name = `${icon("list")} Guild Features (${i}/${ic})`
 
           pages.push(page(JSON.parse(JSON.stringify(Object.assign({ ...guildCard }, { fields: sub })))))
         }

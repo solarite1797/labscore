@@ -54,14 +54,14 @@ module.exports = {
       if (context.message.messageReference) {
         msg = await context.message.channel.fetchMessage(context.message.messageReference.messageId)
         args.input = msg.content
-        msg = `${icon("robouser")} <@${msg.author.id}> (${msg.author.id})\n${codeblock("ansi", [msg.content])}\n`
+        msg = `${icon("robot")} <@${msg.author.id}> (${msg.author.id})\n${codeblock("ansi", [msg.content])}\n`
       }
 
       let perspectiveApi = await perspective(context, [args.input])
 
       return await editOrReply(context, {
         embeds: [createEmbed("default", context, {
-          description: `${msg}${iconPill("rules", "Scores")} ${codeblock("ansi", formatPerspectiveScores(perspectiveApi.response.body))}`,
+          description: `${msg}${iconPill("agreements", "Scores")} ${codeblock("ansi", formatPerspectiveScores(perspectiveApi.response.body))}`,
           footer: {
             iconUrl: STATICS.perspectiveapi,
             text: `Perspective • ${context.application.name}`

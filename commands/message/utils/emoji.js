@@ -80,7 +80,7 @@ module.exports = {
       if(matches[0].animated) form = '.gif'
 
       let tagline = ''
-      if(context.guild.emojis.find((e)=>e.id == matches[0].id)) tagline = `\n${icon("house")} This emoji is from ${bold(context.guild.name)}`
+      if(context.guild.emojis.find((e)=>e.id == matches[0].id)) tagline = `\n${icon("home")} This emoji is from ${bold(context.guild.name)}`
 
       return editOrReply(context, createEmbed("default", context, {
           description: `${iconPill("emoji", `:${matches[0].name}:`)} ${highlight(`(${matches[0].id})`)}${tagline}`,
