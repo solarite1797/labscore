@@ -95,7 +95,7 @@ function createCommandPage(context, prefix, command){
 const categories = {
   "core": `${iconPill("home", "Core Commands")}`,
   "info": `${iconPill("information", "Information Commands")}`,
-  "search": `${iconPill("search", "Search Commands")}`,
+  "search": `${iconPill("mag", "Search Commands")}`,
   "utils": `${iconPill("tools", "Utility Commands")}`,
   "fun": `${iconPill("stars", "Fun Commands")}`,
   "image": `${iconPill("image", "Image Commands")}`,
