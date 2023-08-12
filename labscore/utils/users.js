@@ -6,7 +6,8 @@ async function getUser(context, query){
     let uid = query.match(/[0-9]{17,19}/)
     try{
       user = await context.client.rest.fetchUser(uid)
-      if(context.guild) member = await getMember(context, user.id)
+      if(context.guild) member = await getMember(context, user.username)
+      if(member && member.id !== user.id) member = undefined;
     } catch(e){
       user = undefined
     }
