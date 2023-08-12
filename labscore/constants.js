@@ -112,7 +112,6 @@ module.exports.REDESIGN_ICONS = Object.freeze({
   "stars": " <:ico_stars:1139704776620253309>",
   "tools": "<:ico_tools:1139704779073921034>",
 
-
   "agreements": "<:ico_agreements:1139855990481768510>",
   "calendar": "<:ico_calendar:1139856007334477896>",
   "certificate": "<:ico_certificate:1139856009024786483>",
@@ -127,7 +126,7 @@ module.exports.REDESIGN_ICONS = Object.freeze({
   "pencil": "<:ico_pencil:1139857877092270080>",
   "planet": "<:ico_planet:1139857878249898017>",
   "qr": "<:ico_qr:1139857880594526291>",
-  "robot": "<:ico_robot:1139857884663005235>",
+  "robot": "<:ico_robot:1139928883915915364>",
   "settings": "<:ico_settings:1139857885652856884>",
   "trend": "<:ico_trend:1139858673494130770>",
   "visible": "<:ico_visible:1139858684420300860>",
