@@ -1,12 +1,13 @@
 const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
+const { canUseLimitedTestCommands } = require('../../../labscore/utils/testing')
+const { STATICS } = require('../../../labscore/utils/statics');
+
 const superagent = require('superagent')
 const { iconPill, smallIconPill } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
-const { canUseLimitedTestCommands } = require('../../../labscore/utils/testing')
-const { STATICS } = require('../../../labscore/utils/statics')
 
 module.exports = {
   name: 'chat',
@@ -45,15 +46,26 @@ module.exports = {
         })
 
       let description = [smallIconPill("generative_ai", args.text), '']
-      description.push(res.body.output.substr(0, 2000 - args.text.length))
+      let files = [];
+      
+      if(res.body.output.length <= 2000) description.push(res.body.output.substr(0, 2000 - args.text.length))
+      else {
+        files.push({
+          filename: `chat.${Date.now().toString(36)}.txt`,
+          value: Buffer.from(res.body.output)
+        })
+      }
 
-      return editOrReply(context, {embeds:[createEmbed("default", context, {
-        description: description.join('\n').substr(),
-        footer: {
-          text: `This information may be inaccurate or biased • ${context.application.name}`,
-          iconUrl: STATICS.openai
-        }
-      })]})
+      return editOrReply(context, {
+        embeds:[createEmbed("default", context, {
+          description: description.join('\n').substr(),
+          footer: {
+            text: `This information may be inaccurate or biased • ${context.application.name}`,
+            iconUrl: STATICS.openai
+          }
+        })],
+        files
+      })
     }catch(e){
       console.log(e)
       return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to generate text.`)]})
