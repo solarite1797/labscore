@@ -48,6 +48,8 @@ module.exports = {
       let description = [smallIconPill("generative_ai", args.text), '']
       let files = [];
       
+      if(!res.body.output) res.body.output = '[Empty Response]'
+      
       if(res.body.output.length <= 2000) description.push(res.body.output.substr(0, 2000 - args.text.length))
       else {
         files.push({
