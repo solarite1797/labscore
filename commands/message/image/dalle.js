@@ -7,15 +7,14 @@ const { Permissions } = require("detritus-client/lib/constants");
 const { STATICS } = require("../../../labscore/utils/statics");
 
 module.exports = {
-  name: 'dalle',
+  name: 'craiyon',
   label: 'query',
-  aliases: ['craiyon'],
   metadata: {
     description: 'Uses Craiyon to generate four images from a text prompt.',
     description_short: 'Craiyon AI image generation',
-    examples: ['dalle Otter'],
+    examples: ['craiyon Otter'],
     category: 'image',
-    usage: 'dalle <text>'
+    usage: 'craiyon <text>'
   },
   ratelimit: {
     type: 'guild',
