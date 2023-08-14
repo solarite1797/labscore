@@ -13,8 +13,8 @@ module.exports = {
   name: 'dalle',
   label: 'text',
   metadata: {
-    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nGenerate images with DALL-E 2`,
-    description_short: 'Generate images with DALL-E 2.',
+    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nGenerate images with DALL-E`,
+    description_short: 'Generate images with DALL-E.',
     examples: ['dalle Otter, in the style of the great wave'],
     category: 'limited',
     usage: 'dalle <prompt>'
@@ -62,7 +62,7 @@ module.exports = {
             url: "attachment://" + f
           },
           footer: {
-            text: `OpenAI DALL-E 2 • ${context.application.name}`,
+            text: `OpenAI DALL-E • ${context.application.name}`,
             iconUrl: STATICS.openai
           }
         })],
