@@ -101,7 +101,6 @@ module.exports = {
     }
 
     if(application.tags){
-      console.log(application.tags)
       embed.fields.push({
         name: `${icon("list")} Tags`,
         value: application.tags.map(t => highlight(t + '​')).join(', '),
@@ -138,7 +137,10 @@ module.exports = {
     }
 
     if(assets.length){
-      let asset = assets.map(a => link(`https://cdn.discordapp.com/app-assets/${application.id}/${a.id}.png?size=4096`, a.name.substr(0,25)))
+      let asset = assets.map(a => {
+        if(a.name.length >= 25) return link(`https://cdn.discordapp.com/app-assets/${application.id}/${a.id}.png?size=4096`, a.name.substr(0,23) + '...')
+        return link(`https://cdn.discordapp.com/app-assets/${application.id}/${a.id}.png?size=4096`, a.name.substr(0,23))
+      })
       if(asset.length >= 6) asset[5] = link(`https://canary.discord.com/api/oauth2/applications/${application.id}/assets`, `View ${asset.length - 6} remaining assets`)
       embed.fields.push({
         name: `${icon("image")} Assets`,
