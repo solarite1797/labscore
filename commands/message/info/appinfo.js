@@ -137,7 +137,7 @@ module.exports = {
     }
 
     if(assets.length){
-      let asset = assets.map(a => link(`https://cdn.discordapp.com/app-assets/${application.id}/${a.id}.png?size=4096`, a.name.substr(0,50)))
+      let asset = assets.map(a => link(`https://cdn.discordapp.com/app-assets/${application.id}/${a.id}.png?size=4096`, a.name.substr(0,25)))
       if(asset.length >= 6) asset[5] = link(`https://canary.discord.com/api/oauth2/applications/${application.id}/assets`, `View ${asset.length - 6} remaining assets`)
       embed.fields.push({
         name: `${icon("image")} Assets`,
