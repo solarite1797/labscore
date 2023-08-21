@@ -101,9 +101,10 @@ module.exports = {
     }
 
     if(application.tags){
+      console.log(application.tags)
       embed.fields.push({
         name: `${icon("list")} Tags`,
-        value: application.tags.map(t => highlight(t)).join(', '),
+        value: application.tags.map(t => highlight(t + '​')).join(', '),
         inline: true
       })
     }

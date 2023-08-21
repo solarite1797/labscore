@@ -6,12 +6,12 @@ module.exports.icon = function(icon){
 }
 
 module.exports.highlight = function(content){
-  return "`" + content.replace(/`/g, 'ˋ') + "`"
+  return "`" + content.replace(/\`/g, 'ˋ') + "`"
 }
 
 module.exports.codeblock = function(type, content){
   if(!content.length) return "```" + type + "\n```"
-  return "```" + type + "\n" + content.join('\n').replace(/`/g, '`​') + "\n```"
+  return "```" + type + "\n" + content.join('\n').replace(/\`/g, '`​') + "\n```"
 }
 
 module.exports.link = function(url, masked, tooltip = ""){
@@ -25,32 +25,32 @@ module.exports.timestamp = function(time, flag = "t"){
 }
 
 module.exports.pill = function(content){
-  return "  **` " + content.replace(/`/g, 'ˋ') + "  `**"
+  return "  **` " + content.replace(/\`/g, 'ˋ') + "  `**"
 }
 
 module.exports.smallPill = function(content){
-  return "  ` " + content.replace(/`/g, 'ˋ') + " `"
+  return "  ` " + content.replace(/\`/g, 'ˋ') + " `"
 }
 
 module.exports.iconPill = function(icon, content){
   if(!REDESIGN_ICONS[icon]) icon = "question"
-  return REDESIGN_ICONS[icon].replace(/:[a-z1-9_]*:/, ':i:') + "  **` " + content.replace(/`/g, 'ˋ') + "  `**"
+  return REDESIGN_ICONS[icon].replace(/:[a-z1-9_]*:/, ':i:') + "  **` " + content.replace(/\`/g, 'ˋ') + "  `**"
 }
 
 module.exports.smallIconPill = function(icon, content){
   if(!REDESIGN_ICONS[icon]) icon = "question"
-  return REDESIGN_ICONS[icon].replace(/:[a-z1-9_]*:/, ':i:') + "  ` " + content.replace(/`/g, 'ˋ') + "  `"
+  return REDESIGN_ICONS[icon].replace(/:[a-z1-9_]*:/, ':i:') + "  ` " + content.replace(/\`/g, 'ˋ') + "  `"
 }
 
 module.exports.iconLinkPill = function(icon, url, content, tooltip = ""){
   if(!REDESIGN_ICONS[icon]) icon = "question"
   if(tooltip.length) tooltip = ` '${tooltip}'`
-  if(content) return `${REDESIGN_ICONS[icon].replace(/:[a-z1-9_]*:/, ':i:')} [**\` ${content.replace(/`/g, 'ˋ')}  \`**](${url}${tooltip})`
+  if(content) return `${REDESIGN_ICONS[icon].replace(/:[a-z1-9_]*:/, ':i:')} [**\` ${content.replace(/\`/g, 'ˋ')}  \`**](${url}${tooltip})`
   return url
 }
 module.exports.linkPill = function(url, content, tooltip = ""){
   if(tooltip.length) tooltip = ` '${tooltip}'`
-  if(content) return `[**\` ${content.replace(/`/g, 'ˋ')}  \`**](${url}${tooltip})`
+  if(content) return `[**\` ${content.replace(/\`/g, 'ˋ')}  \`**](${url}${tooltip})`
   return url
 }
 
