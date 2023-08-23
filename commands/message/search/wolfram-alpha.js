@@ -30,8 +30,8 @@ function createWolframPage(context, pod, query, sources){
     for(const r of pod.refs){
       let src = Object.values(sources).filter((s)=>s.ref == r)[0]
       // Only add a direct source if one is available
-      if(src.sources && src.sources[0].url){
-        res.embeds[0].description += citation(r, src.sources[0].url, src.title + ' | ' + src.sources[0].text)
+      if(src.collections){
+        res.embeds[0].description += citation(r, src.url, src.title + ' | ' + src.collections[0].text)
         continue;
       }
       if(src.url) res.embeds[0].description += citation(r, src.url, src.title)
