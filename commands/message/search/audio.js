@@ -31,7 +31,7 @@ module.exports = {
       }
       let urls = msg.content.match(urlr)
       if (urls) {
-        let songlink = await superagent.get(`https://api.song.link/v1-alpha.1/links?url=${encodeURIComponent(urls[0])}`)
+        let songlink = await superagent.get(`https://api.song.link/v1-alpha.1/links`)
           .query({
             url: urls[0],
             key: process.env.SONGLINK_KEY
@@ -53,6 +53,7 @@ module.exports = {
         })
       }
     } catch (e) {
+      console.log(e)
       return editOrReply(context, { embeds: [createEmbed("error", context, `Unable to perform song search.`)] })
     }
   },
