@@ -21,6 +21,7 @@ module.exports = {
   },
   args: [
     { name: 'prompt', default: '', required: false, help: "The starting system prompt." },
+    { name: 'temperature', default: 0.5, required: false, help: "Model temperature." },
     { name: 'model', default: 'CHATGPT', required: false, help: "The model to use. (Restricted to CHATGPT)" },
   ],
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.ATTACH_FILES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
@@ -38,6 +39,13 @@ module.exports = {
       model = args.model
       modelDisplay = "  " + smallIconPill("robot", model) 
     }
+    
+    let temperature = "CHATGPT"
+    let temperatureDisplay = ""
+    if(args.temperature){
+      temperature = parseFloat(args.temperature)
+      temperatureDisplay = "  " + smallIconPill("example", temperature) 
+    }
 
     try{
       await editOrReply(context, createEmbed("ai", context, "Generating response..."))
@@ -47,10 +55,10 @@ module.exports = {
           Authorization: process.env.AI_SERVER_KEY
         })
         .send({
-          prompt: prompt,
+          prompt,
           input: [args.text],
-          temperature: 0.6,
-          model: model
+          temperature,
+          model
         })
 
       let description = [smallIconPill("generative_ai", args.text) + modelDisplay, '']
