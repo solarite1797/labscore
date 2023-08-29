@@ -1,7 +1,7 @@
 const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
-const { canUseLimitedTestCommands } = require('../../../labscore/utils/testing')
+const { canUseLimitedTestCommands, isLimitedTestUser } = require('../../../labscore/utils/testing')
 const { STATICS } = require('../../../labscore/utils/statics');
 
 const superagent = require('superagent')
@@ -21,6 +21,7 @@ module.exports = {
   },
   args: [
     { name: 'prompt', default: '', required: false, help: "The starting system prompt." },
+    { name: 'model', default: 'CHATGPT', required: false, help: "The model to use. (Restricted to CHATGPT)" },
   ],
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.ATTACH_FILES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
@@ -30,6 +31,9 @@ module.exports = {
 
     let prompt = 'You are a friendly chat bot designed to help people. You should always use gender neutral pronouns when possible.'
     if(args.prompt !== "") prompt = args.prompt
+
+    let model = "CHATGPT"
+    if(args.model && isLimitedTestUser(context.user)) model = args.model
 
     try{
       await editOrReply(context, createEmbed("ai", context, "Generating response..."))
@@ -42,7 +46,7 @@ module.exports = {
           prompt: prompt,
           input: [args.text],
           temperature: 0.6,
-          model: "CHATGPT"
+          model: model
         })
 
       let description = [smallIconPill("generative_ai", args.text), '']
