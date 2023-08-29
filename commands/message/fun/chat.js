@@ -5,7 +5,7 @@ const { canUseLimitedTestCommands, isLimitedTestUser } = require('../../../labsc
 const { STATICS } = require('../../../labscore/utils/statics');
 
 const superagent = require('superagent')
-const { iconPill, smallIconPill } = require('../../../labscore/utils/markdown')
+const { iconPill, smallIconPill, icon } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
 
@@ -33,7 +33,11 @@ module.exports = {
     if(args.prompt !== "") prompt = args.prompt
 
     let model = "CHATGPT"
-    if(args.model && isLimitedTestUser(context.user)) model = args.model
+    let modelDisplay = ""
+    if(args.model && isLimitedTestUser(context.user)){
+      model = args.model
+      modelDisplay = "  " + smallIconPill("robot", model) 
+    }
 
     try{
       await editOrReply(context, createEmbed("ai", context, "Generating response..."))
@@ -49,7 +53,7 @@ module.exports = {
           model: model
         })
 
-      let description = [smallIconPill("generative_ai", args.text), '']
+      let description = [smallIconPill("generative_ai", args.text) + modelDisplay, '']
       let files = [];
       
       if(!res.body.output) res.body.output = '[Empty Response]'
