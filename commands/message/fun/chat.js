@@ -61,7 +61,7 @@ module.exports = {
           model
         })
 
-      let description = [smallIconPill("generative_ai", args.text) + modelDisplay, '']
+      let description = [smallIconPill("generative_ai", args.text) + modelDisplay + temperatureDisplay, '']
       let files = [];
       
       if(!res.body.output) res.body.output = '[Empty Response]'
