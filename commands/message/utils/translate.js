@@ -33,6 +33,7 @@ module.exports = {
     if(context.message.messageReference) {
       let msg = await context.message.channel.fetchMessage(context.message.messageReference.messageId);
       if(msg.content && msg.content.length) content = msg.content
+      else if(msg.embeds?.length) for(const e of msg.embeds) if(e[1].description?.length) { content = e[1].description; break; } 
     }
 
     if(!content.length) return editOrReply(context, createEmbed("warning", context, "No text supplied."))
