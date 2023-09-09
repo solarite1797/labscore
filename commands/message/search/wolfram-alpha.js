@@ -44,7 +44,7 @@ function createWolframPage(context, pod, query, sources){
 module.exports = {
   name: 'wolframalpha',
   label: 'query',
-  aliases: ['wa', 'wolfram-alpha'],
+  aliases: ['wa', 'wolfram-alpha', 'wolfram'],
   metadata: {
     description: 'Computes a query using Wolfram|Alpha.',
     description_short: 'Compute via Wolfram|Alpha',
