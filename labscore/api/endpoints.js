@@ -30,7 +30,7 @@ const Api = Object.freeze({
   SEARCH_BING_IMAGES: '/search/bing-images',
   SEARCH_GOOGLE: '/search/google',
   SEARCH_GOOGLE_IMAGES: '/search/google-images',
-  SEARCH_LYRICS: '/search/lyrics',
+  SEARCH_LYRICS: '/search/lyrics-v2',
   SEARCH_QUORA: '/search/quora',
   SEARCH_QUORA_RESULT: '/search/quora-result',
   SEARCH_REDDIT: '/search/reddit',
@@ -57,6 +57,7 @@ const Api = Object.freeze({
   UTILS_PERSPECTIVE: '/utils/perspective',
   UTILS_SCREENSHOT: '/utils/screenshot',
   UTILS_TEXTGENERATOR: '/utils/text-generator',
+  UTILS_WEATHER: '/utils/weather',
 })
 
 module.exports = {

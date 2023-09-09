@@ -40,6 +40,10 @@ const Statics = Object.freeze({
       file: "brands/makesweet.png",
       revision: 0
     },
+    musixmatch: {
+      file: "brands/musixmatch.png",
+      revision: 0
+    },
     openai: {
       file: "brands/openai.png",
       revision: 0
@@ -127,6 +131,7 @@ module.exports.STATICS = Object.freeze({
   inspirobot: staticAsset(Statics.brands.inspirobot),
   labscore: staticAsset(Statics.brands.labscore),
   makesweet: staticAsset(Statics.brands.makesweet),
+  musixmatch: staticAsset(Statics.brands.musixmatch),
   openai: staticAsset(Statics.brands.openai),
   openweathermap: staticAsset(Statics.brands.openweathermap),
   perspectiveapi: staticAsset(Statics.brands.perspectiveapi),

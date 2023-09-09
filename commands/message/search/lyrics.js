@@ -6,21 +6,36 @@ const { lyrics } = require('../../../labscore/api');
 const { paginator } = require('../../../labscore/client');
 
 const { Permissions } = require("detritus-client/lib/constants");
+const { smallIconPill } = require('../../../labscore/utils/markdown');
+
+const META_FIELDS = {
+  "Album": "stat_videos",
+  "Released": "note"
+}
+
+function renderMetadata(metadata){
+  const pills = []
+  for(const m of metadata){
+    if(!META_FIELDS[m.id]) continue;
+    pills.push(smallIconPill(META_FIELDS[m.id], `${m.id}: ${m.value}`))
+  }
+  return pills.join('  ')
+}
 
 function createLyricsPage(context, search, fields){
   let em = createEmbed("default", context, {
     author: {
-      iconUrl: search.body.artist.image,
-      name: search.body.song.title,
-      url: search.body.song.url
+      iconUrl: search.body.track.artist_cover,
+      name: `${search.body.track.title} by ${search.body.track.artist}`
     },
     fields: fields,
     footer: {
-      iconUrl: STATICS.genius,
-      text: `Genius • ${context.application.name}`
+      iconUrl: STATICS.musixmatch,
+      text: `Musixmatch • ${context.application.name}`
     }
   }) 
-  if(search.body.song.image) em.thumbnail = { url: search.body.song.image }
+  if(search.body.track.cover) em.thumbnail = { url: search.body.track.cover }
+  if(search.body.track.metadata.length) em.description = renderMetadata(search.body.track.metadata)
   return em;
 }
 
@@ -44,60 +59,33 @@ module.exports = {
 
       if(search.body.status == 2) return editOrReply(context, {embeds:[createEmbed("error", context, search.body.message)]})
       let fields = [];
-      let lyricsText = search.body.lyrics.replace(/\[Footnote .*?\]/g,'').replace(/\[choir\]/g,'');
-      if(lyricsText.includes('[')){
-         // Split lyrics into field-sizes chunks if multiple verses are present
-        let chunks = lyricsText.split(/\[(.*?)\]/)
-        let cur = {
-          inline: false
-        };
-        let i = 0;
-        for(const c of chunks){
-          if(c.length == 0) continue;
-          if(i == 0){
-            cur.name = `[${c.substr(0,250)}]`
-            i += 1
-            continue;
-          }
-          cur.value = c.substr(0,1000)
-          if(cur.value.endsWith('\n\n')) cur.value = cur.value.substr(0,cur.value.length-1)
-          cur.value += `​`
-          i = 0
-          fields.push(cur)
-          cur = {
-            inline: false
-          }
-        }
-      } else {
-        let message = createLyricsPage(context, search, [])
-        message.description = lyricsText.substr(0, 1024)
-        return editOrReply(context, message)
-      }
       
-      if(fields.length > 2){
-        let pages = []
-        while(fields.length) {
-          let pageFields = fields.splice(0,2)
-          
-          // Display less fields if they take up too much vertical space
-          while(pageFields.map((f)=>f.value).join('\n').split('\n').length >= 36 && pageFields[1]){
-            fields.unshift(pageFields[pageFields.length - 1])
-            pageFields = pageFields.splice(0, pageFields.length - 1)
-          }
-          
-          pages.push({embeds:[createLyricsPage(context, search, pageFields)]})
-        }
-        
-        pages = formatPaginationEmbeds(pages)
-        const paging = await paginator.createPaginator({
-          context,
-          pages
-        });
-        return;
+      for(const f of search.body.lyrics.split('\n\n')){
+        fields.push({
+          name: '​',
+          value: f,
+          inline: false
+        })
       }
 
-      return editOrReply(context, {embeds: [createLyricsPage(context, search, fields)]})
+      let pages = []
+      while(fields.length) {
+        let pageFields = fields.splice(0,3)
+        
+        // Display less fields if they take up too much vertical space
+        while(pageFields.map((f)=>f.value).join('\n').split('\n').length >= 30 && pageFields[1]){
+          fields.unshift(pageFields[pageFields.length - 1])
+          pageFields = pageFields.splice(0, pageFields.length - 1)
+        }
+        
+        pages.push({embeds:[createLyricsPage(context, search, pageFields)]})
+      }
       
+      pages = formatPaginationEmbeds(pages)
+      const paging = await paginator.createPaginator({
+        context,
+        pages
+      });
     }catch(e){
       if(e.response?.body?.status){
         if(e.response.body.status == 2){
