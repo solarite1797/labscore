@@ -1,5 +1,5 @@
 const { createEmbed } = require("../../../labscore/utils/embed");
-const { icon, highlight, timestamp, smallIconPill } = require("../../../labscore/utils/markdown");
+const { icon, highlight, timestamp, smallIconPill, smallPill } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { getUser, renderBadges } = require("../../../labscore/utils/users");
 
@@ -37,12 +37,14 @@ module.exports = {
       if(u.bot) botTag = ""
       if(u.hasFlag(UserFlags.VERIFIED_BOT)) botTag = ""
 
-      let usernameDisplay = "@" + u.name
+      let usernameDisplay = u.name
       if(u.discriminator && u.discriminator !== "0") usernameDisplay += `#${u.discriminator}`
-      if(m.nick !== null) usernameDisplay += `\n${smallIconPill("user_card", "Nickname")} ${highlight(m.nick)}`
+
+      usernameDisplay = `**@${usernameDisplay}**${botTag} ${highlight(`(${u.id})`)}`
+      if(m.nick !== null) usernameDisplay += `\n${smallIconPill("user_card", "Nickname")} ${smallPill(m.nick)}`
 
       let userCard = createEmbed("default", context, {
-        description: `${icon("user")} **${usernameDisplay}**${botTag} ${highlight(`(${u.id})`)}`,
+        description: `${icon("user")} ${usernameDisplay}`,
         thumbnail: {
           url: u.avatarUrl + `?size=4096`
         },
