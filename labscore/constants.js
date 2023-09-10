@@ -149,6 +149,7 @@ module.exports.REDESIGN_ICONS = Object.freeze({
   "mention": "<:ico_mention:1139857106577670154>",
 
   "user": "<:ico_user:1139858676493070337>",
+  "user_card": "<:ico_user_card:1150505014347960412>",
   "user_multiple": "<:ico_user_multiple:1139858678732836965>",
   "user_profile": "<:ico_user_profile:1139858680553160765>",
   "user_shield": "<:ico_user_shield:1139858682520285226>",
