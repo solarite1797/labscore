@@ -49,7 +49,7 @@ const Api = Object.freeze({
   TTS_SAPI4: '/tts/sapi4',
   TTS_TIKTOK: '/tts/tiktok',
 
-  UTILS_DICTIONARY: '/utils/dictionary',
+  UTILS_DICTIONARY: '/utils/dictionary-v2',
   UTILS_EMOJIPEDIA: '/utils/emojipedia',
   UTILS_GARFIELD: '/utils/garfield',
   UTILS_INFERKIT: '/utils/inferkit',

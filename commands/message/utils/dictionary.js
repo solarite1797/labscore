@@ -7,37 +7,31 @@ const { dictionary } = require('../../../labscore/api');
 
 const { Permissions } = require("detritus-client/lib/constants");
 
-function createDictionaryPage(context, result, word){
+function createDictionaryPage(context, result, index){
   let phon = ''
   if(result.phonetic) phon = `\n*${result.phonetic}*`
 
   let e = createEmbed("default", context, {
-    description: `${icon("definition")} **${link(`https://en.wiktionary.org/wiki/${encodeURIComponent(word.word)}`, word.word, "Definition on Wiktionary")}**`,
+    description: `${icon("definition")} **${link(`https://en.wiktionary.org/wiki/${encodeURIComponent(result.word)}`, result.word, "Definition on Wiktionary")}**`,
     fields: []
   })
 
-  if(word.phonetics) e.description += smallPill(word.phonetics)
+  if(result.phonetic) e.description += smallPill(result.phonetic)
 
-  let def = word.definitions[result]
+  let word = result.entries[index]
+  let defItms = []
 
-  let ref = 1;
-  let defDesc = []
-
-  for(const d of def){
-    let defItms = [`**${ref}.** `]
-    defItms.push(d.definition, citation(ref, d.src))
-    if(d.examples) defItms.push(`\n ​ ​ ${icon("message")} *${d.examples.join(`*\n ​ ​ ${icon("message")} *`)}*`)
-    // Synonyms are limited to 5 to prevent overflow
-    if(d.synonyms) defItms.push(`\n ​ ​ ${iconPill("definition", "Synonyms")} ${d.synonyms.splice(0, 5).map((s)=>smallPill(s)).join(' ')}`)
-
-    ref++;
-    if([...defDesc, defItms.join(' ')].join('\n\n').length >= 1024) continue;
-    defDesc.push(defItms.join(''))
+  let i = 1;
+  for(const def of word.definitions){
+    let entry = `${i}. ${def.definition}\n  - *${def.example}*`
+    if(def.synonyms) entry += `\n${icon("empty")}${def.synonyms.splice(0, 5).map((s)=>smallPill(s)).join(' ')}`
+    defItms.push(entry)
+    i++
   }
 
   e.fields.push({
-    name: result,
-    value: defDesc.join('\n\n')
+    name: word.type,
+    value: defItms.join('\n')
   })
 
   let res = {"embeds": [e]}
@@ -65,8 +59,11 @@ module.exports = {
       if(search.body.status == 1) return editOrReply(context, createEmbed("warning", context, search.body.message))
 
       let pages = []
-      for(const res of Object.keys(search.body.result.definitions)){
-        pages.push(createDictionaryPage(context, res, search.body.result))
+
+      let i = 0;
+      for(const d of search.body.results[0].entries){
+        pages.push(createDictionaryPage(context, search.body.results[0], i))
+        i++;
       }
       
       pages = formatPaginationEmbeds(pages)
@@ -75,6 +72,7 @@ module.exports = {
         pages
       });
     }catch(e){
+      console.log(e)
       if(e.response?.body?.status && e.response.body.status == 2) return editOrReply(context, {embeds:[createEmbed("warning", context, e.response.body.message)]})
       return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to perform dictionary lookup.`)]})
     }
