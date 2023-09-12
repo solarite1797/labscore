@@ -7,6 +7,10 @@ const { dictionary } = require('../../../labscore/api');
 
 const { Permissions } = require("detritus-client/lib/constants");
 
+const LABELS = {
+  "offensive": `${iconPill("warning", "Offensive")}`
+}
+
 function createDictionaryPage(context, result, index){
   let phon = ''
   if(result.phonetic) phon = `\n*${result.phonetic}*`
@@ -21,18 +25,20 @@ function createDictionaryPage(context, result, index){
   let word = result.entries[index]
   let defItms = []
 
+
   let i = 1;
   for(const def of word.definitions){
-    let entry = `${i}. ${def.definition}\n  - *${def.example}*`
-    if(def.synonyms) entry += `\n${icon("empty")}${def.synonyms.splice(0, 5).map((s)=>smallPill(s)).join(' ')}`
+    let entry = `${i}. ${def.definition}`
+    if(def.example) entry += `\n  - *${def.example}*`
+    if(def.synonyms) entry += `\n${icon("empty")}${def.synonyms.splice(0, 4).map((s)=>smallPill(s)).join(' ')}`
     defItms.push(entry)
     i++
   }
 
-  e.fields.push({
-    name: word.type,
-    value: defItms.join('\n')
-  })
+  let type = word.type
+  if(word.labels) type += " " + word.labels.map((label)=>{if(LABELS[label]) return LABELS[label]; else return ""}).join('  ')
+
+  e.description += `\n\n**${type}**\n${defItms.join('\n\n')}`
 
   let res = {"embeds": [e]}
   return res;

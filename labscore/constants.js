@@ -178,10 +178,11 @@ module.exports.REDESIGN_ICONS = Object.freeze({
 
   "information": "<:ico_information:1139704769179562064>",
   "question": "<:ico_question:1139704770760806502>",
+  "warning": "<:ico_warning:1151286226117201970>",
 
   // Internal Icons
   "empty": "<:e:749601069298090034>",
-  
+
   // Legacy Icon Compat
   "success_simple": "<:lc_success:699608002910617670>",
   "failiure_simple": "<:lc_denied:688071041787887647>",
