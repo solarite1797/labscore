@@ -30,8 +30,19 @@ module.exports = {
     context.triggerTyping();
     if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
 
+    let input = args.text;
+    
     let prompt = 'You are a friendly chat bot designed to help people. You should always use gender neutral pronouns when possible.'
     if(args.prompt !== "") prompt = args.prompt
+
+    if(context.message.messageReference) {
+      let msg = await context.message.channel.fetchMessage(context.message.messageReference.messageId);
+      if(msg.content && msg.content.length) input = msg.content
+      else if(msg.embeds?.length) for(const e of msg.embeds) if(e[1].description?.length) { input = e[1].description; break; } 
+
+      prompt = args.text
+      if(args.prompt !== "") return editOrReply(context, {embeds:[createEmbed("warning", context, `Prompt parameter is unsupported for message replies.`)]})
+    }
 
     let model = "CHATGPT"
     let modelDisplay = ""
@@ -56,7 +67,7 @@ module.exports = {
         })
         .send({
           prompt,
-          input: [args.text],
+          input: [input],
           temperature,
           model
         })
