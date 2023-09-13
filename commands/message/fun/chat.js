@@ -58,6 +58,7 @@ module.exports = {
       temperatureDisplay = "  " + smallIconPill("example", temperature) 
     }
 
+    
     try{
       await editOrReply(context, createEmbed("ai", context, "Generating response..."))
 
@@ -72,7 +73,10 @@ module.exports = {
           model
         })
 
-      let description = [smallIconPill("generative_ai", args.text) + modelDisplay + temperatureDisplay, '']
+      let inputDisplay = args.text
+      if(inputDisplay.length >= 50) inputDisplay = inputDisplay.substr(0,50) + '...'
+
+      let description = [smallIconPill("generative_ai", inputDisplay) + modelDisplay + temperatureDisplay, '']
       let files = [];
       
       if(!res.body.output) res.body.output = '[Empty Response]'
