@@ -41,7 +41,7 @@ module.exports = {
       if(u.discriminator && u.discriminator !== "0") usernameDisplay += `#${u.discriminator}`
 
       usernameDisplay = `**@${usernameDisplay}**${botTag} ${highlight(`(${u.id})`)}`
-      if(m.nick !== null) usernameDisplay += `\n${smallIconPill("user_card", "Nickname")} ${smallPill(m.nick)}`
+      if(m && m.nick !== null) usernameDisplay += `\n${smallIconPill("user_card", "Nickname")} ${smallPill(m.nick)}`
 
       let userCard = createEmbed("default", context, {
         description: `${icon("user")} ${usernameDisplay}`,
