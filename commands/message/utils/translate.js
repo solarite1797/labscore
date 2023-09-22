@@ -36,7 +36,7 @@ module.exports = {
       else if(msg.embeds?.length) for(const e of msg.embeds) if(e[1].description?.length) { content = e[1].description; break; } 
 
       // Translate using direct language input
-      args.to = args.text;
+      if(args.text) args.to = args.text;
     }
 
     if(!content.length) return editOrReply(context, createEmbed("warning", context, "No text supplied."))
