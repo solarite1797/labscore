@@ -117,7 +117,7 @@ module.exports = {
       }
       
       embed.fields.push({
-        name: `${icon("rocket")} Embedded Activity`,
+        name: `${icon("activity")} Embedded Activity`,
         value: content.join('\n').substr(0,1024),
         inline: true
       })

@@ -131,9 +131,10 @@ module.exports.REDESIGN_ICONS = Object.freeze({
   "trend": "<:ico_trend:1139858673494130770>",
   "visible": "<:ico_visible:1139858684420300860>",
 
+  "activity": "<:ico_activity:1155980424959496235>",
   "attachment_image": "<:ico_attachment:1139856000195756044>",
   "emoji": "<:ico_emoji:1139856021934833744>",
-  "boost": "<:ico_boost:1139856005132468224>",
+  "boost": "<:ico_boost:1155978750073245756>",
   "link": "<:ico_link:1139857098235199499>",
   "locale": "<:ico_locale:1139857103125741678>",
   "message": "<:ico_message:1139857108548988929>",
