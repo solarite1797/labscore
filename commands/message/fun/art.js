@@ -87,6 +87,21 @@ module.exports = {
       
       const image = await superagent.get(res.image_link)
 
+      // Upload the image to the labscore art feed channel
+      await superagent.post(process.env.ART_WEBHOOK)
+        .field("payload_json", JSON.stringify({
+          "content": null,
+          "embeds": [
+            createEmbed("image", context, {
+              url: res.hash,
+              description: `${codeblock(`py`, [`${DEFAULT_BOT_PREFIX}art -type ${args.type.toLowerCase()} -seed ${seed} -variance ${variance} -rotate ${rotate}`])}`,
+              time: ((Date.now() - timings) / 1000).toFixed(2)
+            })
+          ]
+        }))
+        .attach('file[0]', Buffer.from(image.body), res.hash);
+
+
       return await editOrReply(context, {
         embeds: [createEmbed("image", context, {
           url: res.hash,
