@@ -87,11 +87,7 @@ module.exports = {
         pages
       });
     }catch(e){
-      if(e.response?.body?.status){
-        if(e.response.body.status == 2){
-          return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to perform lyrics search.`)]})
-        }
-      }
+      if(e.response?.body?.status && e.response.body.status == 2 && e.response.body.message) return editOrReply(context, {embeds:[createEmbed("error", context, e.response.body.message)]})
       console.log(JSON.stringify(e.raw))
       return editOrReply(context, {embeds:[createEmbed("error", context, `Something went wrong.`)]})
     }
