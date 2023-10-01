@@ -44,7 +44,10 @@ module.exports = {
       // Fetch the image
       let img = await superagent.get(res.body.output)
 
-      let description = [smallIconPill("generative_ai", args.text), '']
+      let inputDisplay = args.text
+      if(inputDisplay.length >= 50) inputDisplay = inputDisplay.substr(0,50) + '...'
+
+      let description = [smallIconPill("generative_ai", inputDisplay), '']
       let files = [];
       
       if(!res.body.output) res.body.output = '[Empty Response]'
