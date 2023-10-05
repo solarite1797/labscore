@@ -12,6 +12,7 @@ const { Permissions } = require("detritus-client/lib/constants");
 module.exports = {
   name: 'chat',
   label: 'text',
+  aliases: ['openai','gpt','chatgpt'],
   metadata: {
     description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nTalk to ChatGPT.\n\n<:bonzi:1138585089891106836> He will explore the Internet with you as your very own friend and sidekick! He can talk, walk, and joke like no other friend you've ever had!`,
     description_short: 'Talk to ChatGPT.',
