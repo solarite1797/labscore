@@ -30,7 +30,7 @@ module.exports = {
       }
 
       if(!msg.attachments.first()) return editOrReply(context, { embeds: [createEmbed("warning", context, "No voice message found.")] })
-      if(!msg.attachments.first().url.endsWith('voice-message.ogg')) return editOrReply(context, { embeds: [createEmbed("warning", context, "No voice message found.")] })
+      if(!msg.attachments.first().url.split('?')[0].endsWith('voice-message.ogg')) return editOrReply(context, { embeds: [createEmbed("warning", context, "No voice message found.")] })
       
       const recog = await googleSpeechRecognition(context, msg.attachments.first().url)
 
