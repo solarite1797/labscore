@@ -43,7 +43,7 @@ module.exports = {
       const g = invite.guild
       // Guild Card
       let inviteCard = createEmbed("default", context, {
-        description: `${icon("link")} **https://discord.gg/${inviteCode[1]}**\n\n​${icon("home")} **${g.name}** ${highlight(`(${g.id})`)}\n${icon("calendar")} **Created at: **${timestamp(g.createdAt, "f")}\n\n${iconPill("user_multiple", invite.approximateMemberCount.toLocaleString())} ​ ​ ​ ​ ​ ${iconPill("status_online", invite.approximatePresenceCount.toLocaleString())}​ ​ ​ ${iconPill("status_offline", invite.approximateMemberCount - invite.approximatePresenceCount).toLocaleString()}`,
+        description: `${icon("link")} **https://discord.gg/${inviteCode[1]}**\n\n​${icon("home")} **${g.name}** ${highlight(`(${g.id})`)}\n${icon("calendar")} **Created at: **${timestamp(g.createdAt, "f")}\n\n${iconPill("user_multiple", invite.approximateMemberCount.toLocaleString())} ​ ​ ​ ​ ​ ${iconPill("status_online", invite.approximatePresenceCount.toLocaleString())}​ ​ ​ ${iconPill("status_offline", (invite.approximateMemberCount - invite.approximatePresenceCount).toLocaleString())}`,
         fields: []
       })
 
