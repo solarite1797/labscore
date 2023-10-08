@@ -110,6 +110,10 @@ const Statics = Object.freeze({
       file: "icons/core/ico_notice_ai_spark.gif",
       revision: 0
     },
+    ai_bard: {
+      file: "icons/core/ico_notice_bard_spark.gif",
+      revision: 0
+    },
     warning: {
       file: "icons/core/ico_notice_warning.png",
       revision: 0
@@ -155,5 +159,6 @@ module.exports.STATIC_ICONS = Object.freeze({
   error: staticAsset(Statics.icons.error),
   loading: staticAsset(Statics.icons.loading),
   ai: staticAsset(Statics.icons.ai),
+  ai_bard: staticAsset(Statics.icons.ai_bard),
   warning: staticAsset(Statics.icons.warning)
 })

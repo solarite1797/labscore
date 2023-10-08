@@ -87,6 +87,15 @@ const embedTypes = Object.freeze({
       },
       color: COLORS.embed
     }
+  },
+  "ai_bard": (context) => {
+    return {
+      author: {
+        iconUrl: STATIC_ICONS.ai_bard,
+        name: `Generating`
+      },
+      color: COLORS.embed
+    }
   }
 })
 
