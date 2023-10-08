@@ -53,7 +53,7 @@ module.exports = {
     
     let temperature = "0.25"
     let temperatureDisplay = ""
-    if(args.temperature){
+    if(args.temperature !== 0.25){
       temperature = parseFloat(args.temperature)
       temperatureDisplay = "  " + smallIconPill("example", temperature) 
     }

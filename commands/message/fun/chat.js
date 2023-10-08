@@ -52,9 +52,9 @@ module.exports = {
       modelDisplay = "  " + smallIconPill("robot", model) 
     }
     
-    let temperature = "CHATGPT"
+    let temperature = "0.25"
     let temperatureDisplay = ""
-    if(args.temperature){
+    if(args.temperature !== 0.25){
       temperature = parseFloat(args.temperature)
       temperatureDisplay = "  " + smallIconPill("example", temperature) 
     }
