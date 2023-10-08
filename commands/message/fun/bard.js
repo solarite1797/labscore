@@ -94,7 +94,7 @@ module.exports = {
           description: description.join('\n').substr(),
           footer: {
             text: `This information may be inaccurate or biased • ${context.application.name}`,
-            iconUrl: STATICS.google
+            iconUrl: STATICS.bard
           }
         })],
         files
