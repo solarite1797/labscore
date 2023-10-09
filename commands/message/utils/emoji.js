@@ -4,10 +4,10 @@ const { emojipedia, emojiKitchen } = require("../../../labscore/api");
 
 const { EMOJIPEDIA_PLATFORM_TYPES, EMOJIPEDIA_PLATFORM_TYPE_ALIASES } = require("../../../labscore/constants");
 const { createEmbed } = require("../../../labscore/utils/embed");
-const { icon, pill, iconPill, highlight } = require("../../../labscore/utils/markdown");
+const { icon, pill, iconPill, highlight, timestamp } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
-const { Components } = require("detritus-client/lib/utils");
+const { Components, Snowflake } = require("detritus-client/lib/utils");
 const { bold } = require("detritus-client/lib/utils/markup");
 
 const onlyEmoji = require('emoji-aware').onlyEmoji;
@@ -80,7 +80,9 @@ module.exports = {
       if(matches[0].animated) form = '.gif'
 
       let tagline = ''
-      if(context.guild.emojis.find((e)=>e.id == matches[0].id)) tagline = `\n${icon("home")} This emoji is from ${bold(context.guild.name)}`
+      tagline += `\n${icon("clock")} Created ${timestamp(Snowflake.timestamp(matches[0].id), "f")}`
+      if(context.guild.emojis.find((e)=>e.id == matches[0].id)) tagline += `\n${icon("home")} This emoji is from ${bold(context.guild.name)}`
+
 
       return editOrReply(context, createEmbed("default", context, {
           description: `${iconPill("emoji", `:${matches[0].name}:`)} ${highlight(`(${matches[0].id})`)}${tagline}`,
