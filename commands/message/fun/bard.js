@@ -2,7 +2,7 @@ const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
 const { canUseLimitedTestCommands, isLimitedTestUser } = require('../../../labscore/utils/testing')
-const { STATICS } = require('../../../labscore/utils/statics');
+const { STATICS, STATIC_ICONS } = require('../../../labscore/utils/statics');
 
 const superagent = require('superagent')
 const { iconPill, smallIconPill, icon } = require('../../../labscore/utils/markdown')
@@ -32,7 +32,7 @@ module.exports = {
 
     let input = args.text;
     
-    let prompt = 'You are a friendly chat bot designed to help people. You should always use gender neutral pronouns when possible.'
+    let prompt = 'You are a friendly chat bot designed to help people.\n- You should always use gender neutral pronouns when possible.\n- Try to keep your responses under 2000 characters. This isn\'t required for more detailed answers.'
     if(args.prompt !== "") prompt = args.prompt
 
     if(context.message.messageReference) {
@@ -45,20 +45,11 @@ module.exports = {
     }
 
     let model = "chat-bison-001"
-    let modelDisplay = ""
-    if(args.model && isLimitedTestUser(context.user)){
-      model = args.model
-      modelDisplay = "  " + smallIconPill("robot", model) 
-    }
+    if(args.model && isLimitedTestUser(context.user)) model = args.model
     
     let temperature = "0.25"
-    let temperatureDisplay = ""
-    if(args.temperature !== 0.25){
-      temperature = parseFloat(args.temperature)
-      temperatureDisplay = "  " + smallIconPill("example", temperature) 
-    }
+    if(args.temperature !== 0.25) temperature = parseFloat(args.temperature)
 
-    
     try{
       await editOrReply(context, createEmbed("ai_bard", context, "Generating response..."))
 
@@ -76,12 +67,12 @@ module.exports = {
       let inputDisplay = args.text
       if(inputDisplay.length >= 50) inputDisplay = inputDisplay.substr(0,50) + '...'
 
-      let description = [smallIconPill("generative_ai", inputDisplay) + modelDisplay + temperatureDisplay, '']
+      let description = []
       let files = [];
       
       if(!res.body.output) res.body.output = '[Empty Response]'
-      
-      if(res.body.output.length <= 2000) description.push(res.body.output.substr(0, 2000 - args.text.length))
+
+      if(res.body.output.length <= 2000) description.push(res.body.output)
       else {
         files.push({
           filename: `chat.${Date.now().toString(36)}.txt`,
@@ -90,11 +81,14 @@ module.exports = {
       }
 
       return editOrReply(context, {
-        embeds:[createEmbed("default", context, {
+        embeds:[createEmbed("defaultNoFooter", context, {
+          author: {
+            name: inputDisplay,
+            iconUrl: STATIC_ICONS.ai_bard_idle
+          },
           description: description.join('\n').substr(),
           footer: {
-            text: `This information may be inaccurate or biased • ${context.application.name}`,
-            iconUrl: STATICS.bard
+            text: `This information may be inaccurate or biased • ${context.application.name}`
           }
         })],
         files

@@ -105,7 +105,7 @@ module.exports.createEmbed = function(type, context, content){
   if(!content) embedTypes[type](context)
   let emb = embedTypes[type](context)
 
-  if(["success","warning","error","loading","ai"].includes(type)){
+  if(["success","warning","error","loading","ai","ai_bard"].includes(type)){
     emb.author.name = content
     return emb
   }
@@ -116,7 +116,7 @@ module.exports.createEmbed = function(type, context, content){
     return emb
   }
 
-  if(content && content.footer && !content.footer.iconUrl) content.footer.iconUrl = STATICS.labscore
+  if(content && content.footer && !content.footer.iconUrl && type !== "defaultNoFooter") content.footer.iconUrl = STATICS.labscore
   
   if(["image"].includes(type)){
     if(content.url.includes('://')){
