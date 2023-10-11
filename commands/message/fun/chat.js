@@ -87,8 +87,6 @@ module.exports = {
         })
       }
 
-      console.log(MODEL_ICONS[model])
-
       return editOrReply(context, {
         embeds:[createEmbed("defaultNoFooter", context, {
           author: {
