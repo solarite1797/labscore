@@ -33,7 +33,7 @@ module.exports = {
 
     let input = args.text;
     
-    let prompt = 'You are a friendly chat bot designed to help people.\n- You should always use gender neutral pronouns when possible.\n- Try to keep your responses within 2000-4000 characters. This isn\'t required for more in-depth and detailed answers.'
+    let prompt = 'You are a friendly chat bot designed to help people.\n- You should always use gender neutral pronouns when possible.\n- When answering a question, be concise and to the point.\n- Try to stay at around 500-1000 characters for most responses, unless more text is required to properly explain something.'
     if(args.prompt !== "") prompt = args.prompt
 
     // Get content if the user replies to anything

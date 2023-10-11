@@ -3,7 +3,7 @@ const { createEmbed, formatPaginationEmbeds, page } = require("../../../labscore
 const { guildFeaturesField } = require("../../../labscore/utils/fields");
 const { icon, highlight, timestamp, link, iconPill, iconLinkPill } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
-const { STATICS } = require("../../../labscore/utils/statics");
+const { STATICS, STATIC_ASSETS } = require("../../../labscore/utils/statics");
 
 const { paginator } = require('../../../labscore/client');
 
@@ -33,7 +33,7 @@ module.exports = {
         iconLinkPill('gitlab', OPEN_SOURCE_REPOSITORY_URL, 'Source Code'),
       ].join('\n'),
       image: {
-        url: STATICS.embedSpacerInvite
+        url: STATIC_ASSETS.embed_invite_spacer
       }
     })})
     try{

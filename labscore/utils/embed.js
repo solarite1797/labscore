@@ -1,5 +1,5 @@
 const { COLORS } = require('../constants')
-const { STATIC_ICONS, STATICS } = require('./statics')
+const { STATIC_ICONS, STATICS, STATIC_ASSETS } = require('./statics')
 
 const embedTypes = Object.freeze({
   "default": (context) => {
@@ -92,7 +92,10 @@ const embedTypes = Object.freeze({
     return {
       author: {
         iconUrl: STATIC_ICONS.ai_bard,
-        name: `Generating`
+        name: `​`
+      },
+      image: {
+        url: STATIC_ASSETS.chat_loading
       },
       color: COLORS.embed
     }
@@ -105,7 +108,7 @@ module.exports.createEmbed = function(type, context, content){
   if(!content) embedTypes[type](context)
   let emb = embedTypes[type](context)
 
-  if(["success","warning","error","loading","ai","ai_bard"].includes(type)){
+  if(["success","warning","error","loading","ai"].includes(type)){
     emb.author.name = content
     return emb
   }

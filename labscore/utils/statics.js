@@ -3,6 +3,16 @@ const { Hosts } = require('../api/endpoints')
 // Add static brand icons here
 // Update the revision id to break discord cache
 const Statics = Object.freeze({
+  assets: {
+    chat_loading: {
+      file: "loading/02_chat_loading.47madop37as0.gif",
+      revision: 0
+    },
+    embed_invite_spacer: {
+      file: "misc/embed-spacer-botinvite.png",
+      revision: 0
+    },
+  },
   brands: {
     applemaps: {
       file: "brands/applemaps.png",
@@ -161,11 +171,7 @@ module.exports.STATICS = Object.freeze({
   wikihow: staticAsset(Statics.brands.wikihow),
   wikipedia: staticAsset(Statics.brands.wikipedia),
   wolframalpha: staticAsset(Statics.brands.wolframalpha),
-  youtube: staticAsset(Statics.brands.youtube),
-  embedSpacerInvite: staticAsset({
-    file: "misc/embed-spacer-botinvite.png",
-    revision: 0
-  })
+  youtube: staticAsset(Statics.brands.youtube)
 })
 
 module.exports.STATIC_ICONS = Object.freeze({
@@ -176,4 +182,9 @@ module.exports.STATIC_ICONS = Object.freeze({
   ai_bard: staticAsset(Statics.icons.ai_bard),
   ai_bard_idle: staticAsset(Statics.icons.ai_bard_idle),
   warning: staticAsset(Statics.icons.warning)
+})
+
+module.exports.STATIC_ASSETS = Object.freeze({
+  chat_loading: staticAsset(Statics.assets.chat_loading),
+  embed_invite_spacer: staticAsset(Statics.assets.embed_invite_spacer)
 })
