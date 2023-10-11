@@ -27,16 +27,19 @@ module.exports = {
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.ATTACH_FILES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     if(!canUseLimitedTestCommands(context)) return;
+
     context.triggerTyping();
     if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
 
     let input = args.text;
     
-    let prompt = 'You are a friendly chat bot designed to help people.\n- You should always use gender neutral pronouns when possible.\n- Try to keep your responses within 2000-4000 characters. This isn\'t required for more detailed answers.'
+    let prompt = 'You are a friendly chat bot designed to help people.\n- You should always use gender neutral pronouns when possible.\n- Try to keep your responses within 2000-4000 characters. This isn\'t required for more in-depth and detailed answers.'
     if(args.prompt !== "") prompt = args.prompt
 
+    // Get content if the user replies to anything
     if(context.message.messageReference) {
       let msg = await context.message.channel.fetchMessage(context.message.messageReference.messageId);
+
       if(msg.content && msg.content.length) input = msg.content
       else if(msg.embeds?.length) for(const e of msg.embeds) if(e[1].description?.length) { input = e[1].description; break; } 
 
@@ -86,9 +89,9 @@ module.exports = {
             name: inputDisplay,
             iconUrl: STATIC_ICONS.ai_bard_idle
           },
-          description: description.join('\n').substr(),
+          description: description.join('\n'),
           footer: {
-            text: `This information may be inaccurate or biased • ${context.application.name}`
+            text: `This information may be inaccurate or biased • Bard`
           }
         })],
         files

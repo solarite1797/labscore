@@ -9,9 +9,15 @@ const { iconPill } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
 
-const MODEL_ICONS = {
-  "CHATGPT": STATICS.chatgpt,
-  "GPT4": STATICS.openai
+const MODELS = {
+  "CHATGPT": {
+    icon: STATICS.chatgpt,
+    name: "ChatGPT"
+  },
+  "GPT4": {
+    icon: STATICS.openai,
+    name: "GPT-4"
+  }
 }
 
 module.exports = {
@@ -19,7 +25,7 @@ module.exports = {
   label: 'text',
   aliases: ['openai','gpt','chatgpt'],
   metadata: {
-    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nTalk to ChatGPT.\n\n<:bonzi:1138585089891106836> He will explore the Internet with you as your very own friend and sidekick! He can talk, walk, and joke like no other friend you've ever had!`,
+    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nTalk to ChatGPT.`,
     description_short: 'Talk to ChatGPT.',
     examples: ['chat How many otter species are there?'],
     category: 'limited',
@@ -28,11 +34,12 @@ module.exports = {
   args: [
     { name: 'prompt', default: '', required: false, help: "The starting system prompt." },
     { name: 'temperature', default: 0.5, required: false, help: "Model temperature." },
-    { name: 'model', default: 'CHATGPT', required: false, help: "The model to use. (Restricted to CHATGPT)" },
+    { name: 'model', default: 'CHATGPT', required: false, help: "The model to use. (Model cannot be changed for regular users)" },
   ],
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.ATTACH_FILES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     if(!canUseLimitedTestCommands(context)) return;
+
     context.triggerTyping();
     if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
 
@@ -41,8 +48,10 @@ module.exports = {
     let prompt = 'You are a friendly chat bot designed to help people. You should always use gender neutral pronouns when possible.'
     if(args.prompt !== "") prompt = args.prompt
 
+    // Get content if the user replies to anything
     if(context.message.messageReference) {
       let msg = await context.message.channel.fetchMessage(context.message.messageReference.messageId);
+
       if(msg.content && msg.content.length) input = msg.content
       else if(msg.embeds?.length) for(const e of msg.embeds) if(e[1].description?.length) { input = e[1].description; break; } 
 
@@ -53,6 +62,8 @@ module.exports = {
     let model = "CHATGPT"
     if(args.model && isLimitedTestUser(context.user)) model = args.model
     
+    if(!MODELS[model]) return editOrReply(context, {embeds:[createEmbed("warning", context, `Invalid or unsupported model (${model}).`)]})
+
     let temperature = "0.25"
     if(args.temperature !== 0.25) temperature = parseFloat(args.temperature)
 
@@ -90,12 +101,12 @@ module.exports = {
       return editOrReply(context, {
         embeds:[createEmbed("defaultNoFooter", context, {
           author: {
-            iconUrl: MODEL_ICONS[model],
+            iconUrl: MODELS[model].icon,
             name: inputDisplay
           },
-          description: description.join('\n').substr(),
+          description: description.join('\n'),
           footer: {
-            text: `This information may be inaccurate or biased • ${context.application.name}`
+            text: `This information may be inaccurate or biased • ${MODELS[model].name}`
           }
         })],
         files
