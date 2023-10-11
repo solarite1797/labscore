@@ -106,7 +106,7 @@ module.exports = {
           },
           description: description.join('\n'),
           footer: {
-            text: `This information may be inaccurate or biased • ${MODELS[model].name}`
+            text: `${MODELS[model].name} • This information may be inaccurate or biased`
           }
         })],
         files

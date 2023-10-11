@@ -91,7 +91,7 @@ module.exports = {
           },
           description: description.join('\n'),
           footer: {
-            text: `This information may be inaccurate or biased • Bard`
+            text: `Bard • This information may be inaccurate or biased`
           }
         })],
         files
