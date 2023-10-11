@@ -5,7 +5,7 @@ const { Hosts } = require('../api/endpoints')
 const Statics = Object.freeze({
   assets: {
     chat_loading: {
-      file: "loading/02_chat_loading.47madop37as0.gif",
+      file: "loading/05_chat_loading.7y2ji893rho0.gif",
       revision: 0
     },
     embed_invite_spacer: {

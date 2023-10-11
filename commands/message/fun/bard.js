@@ -33,7 +33,7 @@ module.exports = {
 
     let input = args.text;
     
-    let prompt = 'You are a friendly chat bot designed to help people.\n- You should always use gender neutral pronouns when possible.\n- When answering a question, be concise and to the point.\n- Try to stay at around 500-1000 characters for most responses, unless more text is required to properly explain something.'
+    let prompt = 'You are a friendly chat bot designed to help people.\n- You should always use gender neutral pronouns when possible.\n- When answering a question, be concise and to the point.\n- Try to keep responses below 1000 characters. This does not apply to subjects that require more exhaustive or in-depth explanation.'
     if(args.prompt !== "") prompt = args.prompt
 
     // Get content if the user replies to anything
@@ -53,8 +53,11 @@ module.exports = {
     let temperature = "0.25"
     if(args.temperature !== 0.25) temperature = parseFloat(args.temperature)
 
+    let inputDisplay = args.text
+    if(inputDisplay.length >= 50) inputDisplay = inputDisplay.substr(0,50) + '...'
+
     try{
-      await editOrReply(context, createEmbed("ai_bard", context, "Generating response..."))
+      await editOrReply(context, createEmbed("ai_bard", context, inputDisplay))
 
       let res = await superagent.post(`${process.env.AI_SERVER}/google/palm2`)
         .set({
@@ -66,9 +69,6 @@ module.exports = {
           temperature,
           model
         })
-
-      let inputDisplay = args.text
-      if(inputDisplay.length >= 50) inputDisplay = inputDisplay.substr(0,50) + '...'
 
       let description = []
       let files = [];
