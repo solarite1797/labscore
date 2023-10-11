@@ -73,7 +73,7 @@ module.exports = {
       let description = []
       let files = [];
       
-      if(!res.body.output) res.body.output = '[Empty Response]'
+      if(!res.body.output) return editOrReply(context, {embeds:[createEmbed("error", context, `Bard returned an error. Try again later.`)]}) 
 
       if(res.body.output.length <= 4000) description.push(res.body.output)
       else {
