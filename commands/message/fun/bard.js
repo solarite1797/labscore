@@ -32,7 +32,7 @@ module.exports = {
 
     let input = args.text;
     
-    let prompt = 'You are a friendly chat bot designed to help people.\n- You should always use gender neutral pronouns when possible.\n- Try to keep your responses under 2000 characters. This isn\'t required for more detailed answers.'
+    let prompt = 'You are a friendly chat bot designed to help people.\n- You should always use gender neutral pronouns when possible.\n- Try to keep your responses within 2000-4000 characters. This isn\'t required for more detailed answers.'
     if(args.prompt !== "") prompt = args.prompt
 
     if(context.message.messageReference) {
@@ -72,7 +72,7 @@ module.exports = {
       
       if(!res.body.output) res.body.output = '[Empty Response]'
 
-      if(res.body.output.length <= 2000) description.push(res.body.output)
+      if(res.body.output.length <= 4000) description.push(res.body.output)
       else {
         files.push({
           filename: `chat.${Date.now().toString(36)}.txt`,

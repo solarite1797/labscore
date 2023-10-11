@@ -5,9 +5,14 @@ const { canUseLimitedTestCommands, isLimitedTestUser } = require('../../../labsc
 const { STATICS } = require('../../../labscore/utils/statics');
 
 const superagent = require('superagent')
-const { iconPill, smallIconPill, icon } = require('../../../labscore/utils/markdown')
+const { iconPill } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
+
+const MODEL_ICONS = {
+  "CHATGPT": STATICS.chatgpt,
+  "GPT4": STATICS.openai
+}
 
 module.exports = {
   name: 'chat',
@@ -46,18 +51,10 @@ module.exports = {
     }
 
     let model = "CHATGPT"
-    let modelDisplay = ""
-    if(args.model && isLimitedTestUser(context.user)){
-      model = args.model
-      modelDisplay = "  " + smallIconPill("robot", model) 
-    }
+    if(args.model && isLimitedTestUser(context.user)) model = args.model
     
     let temperature = "0.25"
-    let temperatureDisplay = ""
-    if(args.temperature !== 0.25){
-      temperature = parseFloat(args.temperature)
-      temperatureDisplay = "  " + smallIconPill("example", temperature) 
-    }
+    if(args.temperature !== 0.25) temperature = parseFloat(args.temperature)
 
     
     try{
@@ -77,12 +74,12 @@ module.exports = {
       let inputDisplay = args.text
       if(inputDisplay.length >= 50) inputDisplay = inputDisplay.substr(0,50) + '...'
 
-      let description = [smallIconPill("generative_ai", inputDisplay) + modelDisplay + temperatureDisplay, '']
+      let description = []
       let files = [];
       
       if(!res.body.output) res.body.output = '[Empty Response]'
       
-      if(res.body.output.length <= 2000) description.push(res.body.output.substr(0, 2000 - args.text.length))
+      if(res.body.output.length <= 4000) description.push(res.body.output)
       else {
         files.push({
           filename: `chat.${Date.now().toString(36)}.txt`,
@@ -90,12 +87,17 @@ module.exports = {
         })
       }
 
+      console.log(MODEL_ICONS[model])
+
       return editOrReply(context, {
-        embeds:[createEmbed("default", context, {
+        embeds:[createEmbed("defaultNoFooter", context, {
+          author: {
+            iconUrl: MODEL_ICONS[model],
+            name: inputDisplay
+          },
           description: description.join('\n').substr(),
           footer: {
-            text: `This information may be inaccurate or biased • ${context.application.name}`,
-            iconUrl: STATICS.openai
+            text: `This information may be inaccurate or biased • ${context.application.name}`
           }
         })],
         files
