@@ -53,7 +53,7 @@ module.exports = {
     let temperature = "0.25"
     if(args.temperature !== 0.25) temperature = parseFloat(args.temperature)
 
-    let inputDisplay = args.text
+    let inputDisplay = args.text.replace(/\n/g, ' ')
     if(inputDisplay.length >= 50) inputDisplay = inputDisplay.substr(0,50) + '...'
 
     try{
