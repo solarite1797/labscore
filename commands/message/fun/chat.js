@@ -45,7 +45,7 @@ module.exports = {
 
     let input = args.text;
     
-    let prompt = 'You are a friendly chat bot designed to help people. You should always use gender neutral pronouns when possible.'
+    let prompt = `You are a friendly chat bot designed to help people.\n- Today\'s date is ${new Date().toUTCString().split(' ').splice(0,4).join(' ')}\n- You should always use gender neutral pronouns when possible.`
     if(args.prompt !== "") prompt = args.prompt
 
     // Get content if the user replies to anything
