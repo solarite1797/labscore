@@ -88,10 +88,10 @@ const embedTypes = Object.freeze({
       color: COLORS.embed
     }
   },
-  "ai_bard": (context) => {
+  "ai_custom": (context) => {
     return {
       author: {
-        iconUrl: STATIC_ICONS.ai_bard,
+        iconUrl: STATIC_ICONS.ai,
         name: `​`
       },
       image: {
@@ -111,6 +111,10 @@ module.exports.createEmbed = function(type, context, content){
   if(["success","warning","error","loading","ai"].includes(type)){
     emb.author.name = content
     return emb
+  }
+
+  if(["ai_custom"].includes(type)){
+    emb.author.iconUrl = content
   }
   
   if(["errordetail"].includes(type)){

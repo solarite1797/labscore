@@ -57,7 +57,7 @@ module.exports = {
     if(inputDisplay.length >= 50) inputDisplay = inputDisplay.substr(0,50) + '...'
 
     try{
-      await editOrReply(context, createEmbed("ai_bard", context, inputDisplay))
+      await editOrReply(context, createEmbed("ai_custom", context, STATIC_ICONS.ai_palm_idle))
 
       let res = await superagent.post(`${process.env.AI_SERVER}/google/palm2`)
         .set({
@@ -87,7 +87,7 @@ module.exports = {
         embeds:[createEmbed("defaultNoFooter", context, {
           author: {
             name: inputDisplay,
-            iconUrl: STATIC_ICONS.ai_bard_idle
+            iconUrl: STATIC_ICONS.ai_palm_idle
           },
           description: description.join('\n'),
           footer: {

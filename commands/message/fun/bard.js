@@ -9,6 +9,8 @@ const { iconPill, smallIconPill, icon } = require('../../../labscore/utils/markd
 
 const { Permissions } = require("detritus-client/lib/constants");
 
+const BLOCKED_PHRASES = process.env.BARD_BLOCKLIST.split(';')
+
 module.exports = {
   name: 'bard',
   label: 'text',
@@ -32,11 +34,13 @@ module.exports = {
 
     let input = args.text;
 
+    for(const p of BLOCKED_PHRASES) if(input.toLowerCase().includes(p)) return await editOrReply(context, createEmbed("error", context, "Query includes blocked phrases. This incident will be reported."));
+
     let inputDisplay = args.text.replace(/\n/g, ' ')
     if(inputDisplay.length >= 50) inputDisplay = inputDisplay.substr(0,50) + '...'
 
     try{
-      await editOrReply(context, createEmbed("ai_bard", context, inputDisplay))
+      await editOrReply(context, createEmbed("ai_custom", context, STATIC_ICONS.ai_bard))
 
       let res = await superagent.post(`${process.env.AI_SERVER}/google/bard`)
         .set({
