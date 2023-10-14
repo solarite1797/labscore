@@ -10,14 +10,15 @@ const { iconPill, smallIconPill, icon } = require('../../../labscore/utils/markd
 const { Permissions } = require("detritus-client/lib/constants");
 
 module.exports = {
-  name: 'bard',
+  name: 'palm',
   label: 'text',
+  aliases: ['palm2'],
   metadata: {
     description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nTalk to Bard.`,
-    description_short: 'Chat with Bard.',
+    description_short: 'Chat with Palm2.',
     examples: ['bard How many otter species are there?'],
     category: 'limited',
-    usage: 'bard <input>'
+    usage: 'palm <input> [-prompt <prompt override>]'
   },
   args: [
     { name: 'prompt', default: '', required: false, help: "The starting system prompt." },
@@ -31,6 +32,26 @@ module.exports = {
     if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
 
     let input = args.text;
+    
+    let prompt = `You are a friendly chat bot designed to help people.\n- Today\'s date is ${new Date().toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"long", day:"numeric"})}\n- You should always use gender neutral pronouns when possible.\n- When answering a question, be concise and to the point.\n- Try to keep responses below 1000 characters. This does not apply to subjects that require more exhaustive or in-depth explanation.`
+    if(args.prompt !== "") prompt = args.prompt
+
+    // Get content if the user replies to anything
+    if(context.message.messageReference) {
+      let msg = await context.message.channel.fetchMessage(context.message.messageReference.messageId);
+
+      if(msg.content && msg.content.length) input = msg.content
+      else if(msg.embeds?.length) for(const e of msg.embeds) if(e[1].description?.length) { input = e[1].description; break; } 
+
+      prompt = args.text
+      if(args.prompt !== "") return editOrReply(context, {embeds:[createEmbed("warning", context, `Prompt parameter is unsupported for message replies.`)]})
+    }
+
+    let model = "chat-bison-001"
+    if(args.model && isLimitedTestUser(context.user)) model = args.model
+    
+    let temperature = "0.25"
+    if(args.temperature !== 0.25) temperature = parseFloat(args.temperature)
 
     let inputDisplay = args.text.replace(/\n/g, ' ')
     if(inputDisplay.length >= 50) inputDisplay = inputDisplay.substr(0,50) + '...'
@@ -38,12 +59,15 @@ module.exports = {
     try{
       await editOrReply(context, createEmbed("ai_bard", context, inputDisplay))
 
-      let res = await superagent.post(`${process.env.AI_SERVER}/google/bard`)
+      let res = await superagent.post(`${process.env.AI_SERVER}/google/palm2`)
         .set({
           Authorization: process.env.AI_SERVER_KEY
         })
         .send({
-          input
+          prompt,
+          input: [input],
+          temperature,
+          model
         })
 
       let description = []
@@ -67,7 +91,7 @@ module.exports = {
           },
           description: description.join('\n'),
           footer: {
-            text: `Bard • This information may be inaccurate or biased`
+            text: `Palm2 • This information may be inaccurate or biased`
           }
         })],
         files
