@@ -15,7 +15,7 @@ module.exports = {
   name: 'bard',
   label: 'text',
   metadata: {
-    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nTalk to Bard.`,
+    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nChat with <:bard:1163200801871765504> Bard.`,
     description_short: 'Chat with Bard.',
     examples: ['bard How many otter species are there?'],
     category: 'limited',
