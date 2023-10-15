@@ -16,7 +16,7 @@ module.exports = {
   metadata: {
     description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nTalk to PaLM 2.`,
     description_short: 'Chat with PaLM 2.',
-    examples: ['bard How many otter species are there?'],
+    examples: ['palm How many otter species are there?'],
     category: 'limited',
     usage: 'palm <input> [-prompt <prompt override>]'
   },

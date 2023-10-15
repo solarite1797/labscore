@@ -21,10 +21,7 @@ module.exports = {
     category: 'limited',
     usage: 'bard <input>'
   },
-  args: [
-    { name: 'prompt', default: '', required: false, help: "The starting system prompt." },
-    { name: 'temperature', default: 0.25, required: false, help: "Model temperature." },
-  ],
+  args: [],
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.ATTACH_FILES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     if(!canUseLimitedTestCommands(context)) return;
