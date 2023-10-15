@@ -14,7 +14,7 @@ module.exports = {
     description: 'Edits an image using AI.',
     description_short: 'AI image editing',
     examples: ['editimage Wearing a crown'],
-    category: 'hidden',
+    category: 'image',
     usage: 'editimage <prompt>'
   },
   ratelimit: {

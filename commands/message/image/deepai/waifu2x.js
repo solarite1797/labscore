@@ -12,7 +12,7 @@ module.exports = {
   metadata: {
     description: 'Processes an image with Waifu2x.',
     description_short: 'Waifu2x upscaling',
-    category: 'hidden',
+    category: 'image',
     usage: 'waifu2x <image>'
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES, Permissions.READ_MESSAGE_HISTORY],

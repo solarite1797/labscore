@@ -12,7 +12,7 @@ module.exports = {
   metadata: {
     description: 'Upscales an image with SuperResolution.',
     description_short: 'SuperResolution upscaling',
-    category: 'hidden',
+    category: 'image',
     usage: 'superresolution <image>'
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES, Permissions.READ_MESSAGE_HISTORY],
