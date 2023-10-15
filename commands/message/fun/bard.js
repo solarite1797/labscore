@@ -78,6 +78,7 @@ module.exports = {
       })
     }catch(e){
       if(e.response.body?.message) return editOrReply(context, {embeds:[createEmbed("warning", context, e.response.body.message)]})
+      
       console.log(e)
       return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to generate text.`)]})
     }

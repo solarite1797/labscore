@@ -14,8 +14,8 @@ module.exports = {
   label: 'text',
   aliases: ['palm2'],
   metadata: {
-    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nTalk to Bard.`,
-    description_short: 'Chat with Palm2.',
+    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nTalk to PaLM 2.`,
+    description_short: 'Chat with PaLM 2.',
     examples: ['bard How many otter species are there?'],
     category: 'limited',
     usage: 'palm <input> [-prompt <prompt override>]'
@@ -73,7 +73,7 @@ module.exports = {
       let description = []
       let files = [];
       
-      if(!res.body.output) return editOrReply(context, {embeds:[createEmbed("error", context, `Bard returned an error. Try again later.`)]}) 
+      if(!res.body.output) return editOrReply(context, {embeds:[createEmbed("error", context, `PaLM 2 returned an error. Try again later.`)]}) 
 
       if(res.body.output.length <= 4000) description.push(res.body.output)
       else {
@@ -91,7 +91,7 @@ module.exports = {
           },
           description: description.join('\n'),
           footer: {
-            text: `Palm2 • This information may be inaccurate or biased`
+            text: `PaLM 2 • This information may be inaccurate or biased`
           }
         })],
         files
