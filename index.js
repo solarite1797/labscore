@@ -6,7 +6,7 @@ const time = Date.now();
 const token = process.env.token;
 
 let client = `../${__dirname}/labscore/client.js`
-if(process.env.environment == "local") client = `${__dirname}/labscore/client.js`
+if(process.env.environment == "local") client = `./labscore/client.js`
 if(process.env.environment == "prodnew") client = `./labscore/labscore/client.js`
 
 const SHARDS = process.env.SHARDS || 2;
