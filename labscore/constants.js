@@ -103,6 +103,21 @@ module.exports.ICONS = Object.freeze({
   "gitlab": "<:ico_gitlab:1130603378704138411>"
 })
 
+module.exports.BADGE_ICONS = Object.freeze({
+  "active_developer": "<:b:1165742549865074909>",
+  "bot_developer": "<:b:1165741989950672977>",
+  "bug_hunter": "<:b:1165741991464804582>",
+  "bug_hunter_lvl2": "<:b:1165741993436139620>",
+  "early_supporter": "<:b:1165741996208570368>",
+  "hypesquad_events": "<:b:1165741998507032657>",
+  "hypesquad_balance": "<:b:1165742000008605746>",
+  "hypesquad_bravery": "<:b:1165742001388535828>",
+  "hypesquad_brilliance": "<:b:1165742003393405048>",
+  "mod_program": "<:b:1165743361106378872> ",
+  "nitro": "<:b:1165743359013441656>",
+  "partner": "<:b:1165742007122149437>",
+  "staff": "<:b:1165741987773812746>"
+})
 
 module.exports.REDESIGN_ICONS = Object.freeze({
   "home": "<:ico_home:1165257185488551976>",

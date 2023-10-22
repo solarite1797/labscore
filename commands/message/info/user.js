@@ -1,3 +1,4 @@
+const { BADGE_ICONS } = require("../../../labscore/constants");
 const { createEmbed } = require("../../../labscore/utils/embed");
 const { icon, highlight, timestamp, smallIconPill, smallPill } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
@@ -61,7 +62,7 @@ module.exports = {
         userCard.fields[0].value = userCard.fields[0].value + `\n**Joined Guild: **${timestamp(m.joinedAt, "f")}`
         let guildFields = []
         
-        if(m.isOwner) guildFields.push(`**Server Owner** <:lc_guild_owner:674652779406426122>`)
+        if(m.isOwner) guildFields.push(`**Server Owner**`)
         if(m.roles.length >= 1) guildFields.push(`**Roles: ** ${m.roles.length}/${context.guild.roles.length}`)
         if(m.premiumSince) guildFields.push(`**Boosting since: ** ${timestamp(m.premiumSince, 'f')}`)
         userCard.fields.push({
@@ -73,7 +74,7 @@ module.exports = {
 
       // Badge Container
       let b = renderBadges(u)
-      if(u.avatarUrl.endsWith('.gif') || u.banner){ b.push('<:badge_nitro:917012997463998485>' )}
+      if(u.avatarUrl.endsWith('.gif') || u.banner){ b.push(BADGE_ICONS.nitro)}
       if(b.length >= 1){
         userCard.fields.push({
           name: `${icon("nitro")} Badges`,

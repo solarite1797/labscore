@@ -39,66 +39,68 @@ async function getMember(context, query){
 const { Constants } = require('detritus-client');
 const { UserFlags } = Constants
 
+const { BADGE_ICONS } = require('../constants');
+
 const BADGE_TYPES = Object.freeze({
   "staff": {
     description: "Discord Staff",
     link: "https://discord.com/company",
-    icon: "<:b:903276633161609246>"
+    icon: BADGE_ICONS.staff
   },
   "partner": {
     description: "Partnered Server Owner",
     link: "https://discord.com/partners",
-    icon: "<:b:903276631559389196>"
+    icon: BADGE_ICONS.partner
   },
   "certified_moderator": {
     description: "Moderator Programs Alumni",
     link: "https://discord.com/safety",
-    icon: "<:b:1049594117849632778>"
+    icon: BADGE_ICONS.mod_program
   },
   "hypesquad": {
     description: "HypeSquad Events",
     link: "https://discord.com/hypesquad",
-    icon: "<:b:903276631408394351>"
+    icon: BADGE_ICONS.hypesquad
   },
   "hypesquad_house_1": {
     description: "HypeSquad Bravery",
     link: "https://discord.com/settings/hypesquad-online",
-    icon: "<:b:903276631790059540>"
+    icon: BADGE_ICONS.hypesquad_bravery
   },
   "hypesquad_house_2": {
     description: "HypeSquad Brilliance",
     link: "https://discord.com/settings/hypesquad-online",
-    icon: "<:b:903276631261597706>"
+    icon: BADGE_ICONS.hypesquad_brilliance
   },
   "hypesquad_house_3": {
     description: "HypeSquad Balance",
     link: "https://discord.com/settings/hypesquad-online",
-    icon: "<:b:903276631211249674>"
+    icon: BADGE_ICONS.hypesquad_balance
   },
   "bug_hunter_level_1": {
     description: "Discord Bug Hunter",
     link: "https://support.discord.com/hc/en-us/articles/360046057772-Discord-Bugs",
-    icon: "<:b:903276631173509131>"
+    icon: BADGE_ICONS.bug_hunter
   },
   "bug_hunter_level_2": {
     description: "Discord Bug Hunter",
     link: "https://support.discord.com/hc/en-us/articles/360046057772-Discord-Bugs",
-    icon: "<:b:903276883523797033>"
+    icon: BADGE_ICONS.bug_hunter_lvl2
   },
   "active_developer": {
     description: "Active Developer",
     link: "https://support-dev.discord.com/hc/en-us/articles/10113997751447?ref=badge",
-    icon: "<:b:1112811846009892915>"
+    icon: BADGE_ICONS.active_developer
   },
   "verified_developer": {
     description: "Early Verified Bot Developer",
-    icon: "<:b:903276631173509130>",
+    icon: BADGE_ICONS.bot_developer,
     link: "https://discord.com/developers" //not on the actual badge, added for consistency
   },
   "early_supporter": {
     description: "Early Supporter",
     link: "https://discord.com/settings/premium",
-    icon: "<:b:903277590956101672>"
+    icon: BADGE_ICONS.early_supporter
   }
 })
 
