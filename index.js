@@ -7,7 +7,10 @@ const token = process.env.token;
 
 let client = `../${__dirname}/labscore/client.js`
 if(process.env.environment == "local") client = `./labscore/client.js`
-if(process.env.environment == "prodnew") client = `./labscore/labscore/client.js`
+if(process.env.environment == "prodnew"){
+  client = `./labscore/labscore/client.js`;
+  require('detritus-client-rest').Endpoints.Urls.STABLE = "https://canary.discord.com/";
+}
 
 const SHARDS = process.env.SHARDS || 2;
 const SHARDS_PER_CLUSTER = process.env.SHARDS_PER_CLUSTER_OVERRIDE || 2;
