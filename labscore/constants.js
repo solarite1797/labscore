@@ -138,7 +138,7 @@ module.exports.REDESIGN_ICONS = Object.freeze({
   "link": "<:ico_link:1165257615178207302>",
   "locale": "<:ico_locale:1165257616600092712>",
   "message": "<:ico_message:1165257618869207090>",
-  "nitro": "<:ico_nitro:1165257620538544178>",
+  "nitro": "<:ico_nitro:1165738595248775319>",
   "reply": "<:ico_reply:1165257622883155978>",
   "slash": "<:ico_slash:1165257624044974182>",
   "sticker": "<:ico_sticker:1165257627270385724>",
