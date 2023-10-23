@@ -30,9 +30,7 @@ module.exports = {
     if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
 
     let input = args.text;
-
-    for(const p of BLOCKED_PHRASES) if(input.toLowerCase().includes(p)) return await editOrReply(context, createEmbed("error", context, "Query includes blocked phrases. This incident will be reported."));
-
+    
     let inputDisplay = args.text.replace(/\n/g, ' ')
     if(inputDisplay.length >= 50) inputDisplay = inputDisplay.substr(0,50) + '...'
 
