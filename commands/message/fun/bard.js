@@ -1,15 +1,13 @@
 const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
-const { canUseLimitedTestCommands, isLimitedTestUser } = require('../../../labscore/utils/testing')
-const { STATICS, STATIC_ICONS } = require('../../../labscore/utils/statics');
+const { canUseLimitedTestCommands } = require('../../../labscore/utils/testing')
+const { STATIC_ICONS } = require('../../../labscore/utils/statics');
 
 const superagent = require('superagent')
-const { iconPill, smallIconPill, icon } = require('../../../labscore/utils/markdown')
+const { iconPill } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
-
-const BLOCKED_PHRASES = process.env.BARD_BLOCKLIST.split(';')
 
 module.exports = {
   name: 'bard',
