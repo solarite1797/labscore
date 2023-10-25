@@ -105,7 +105,7 @@ const categories = {
 module.exports = {
   name: 'help',
   label: 'command',
-  aliases: ['cmds', 'cmd', 'commands', 'command'],
+  aliases: ['cmds', 'cmd', 'commands', 'command', 'pleasehelpmeiamgoingtoexplode', 'h', '?'],
   metadata: {
     description: 'List all commands, get more information about individual commands.',
     description_short: 'Show full command list',
