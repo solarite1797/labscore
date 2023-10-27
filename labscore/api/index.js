@@ -176,6 +176,12 @@ module.exports.weather = async function(context, location){
   })
 }
 
+module.exports.darksky = async function(context, location){
+  return await request(Api.UTILS_WEATHER, "GET", {}, {
+    location: location
+  })
+}
+
 module.exports.wikihow = async function(context, query){
   return await request(Api.SEARCH_WIKIHOW, "GET", {}, {
     q: query

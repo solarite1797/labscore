@@ -191,6 +191,7 @@ module.exports.REDESIGN_ICONS = Object.freeze({
 
   "generative_ai": "<:ico_generative_ai:1165258096227135498>",
   "latency": "<:ico_latency:1165258097338630235>",
+  "thermometer": "<:ico_thermometer:1167576335133200414>",
 
   "exclaim_0": "<:ico_exclaim_0:1165263543583649842>",
   "exclaim_1": "<:ico_exclaim_1:1165263545747914853>",
