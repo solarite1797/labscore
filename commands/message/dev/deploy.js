@@ -2,14 +2,14 @@ const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
 module.exports = {
-  name: "update",
+  name: "deploy",
   label: "flags",
   metadata: {
     description: `Queries pb manager to trigger a deploy and restart flow`,
     description_short: '[MANAGER] Query deploy',
-    examples: ['update'],
+    examples: ['deploy'],
     category: 'dev',
-    usage: 'update'
+    usage: 'deploy'
   },
   onBefore: context => context.user.isClientOwner,
   onCancel: () => { },
