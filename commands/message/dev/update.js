@@ -14,7 +14,7 @@ module.exports = {
   onBefore: context => context.user.isClientOwner,
   onCancel: () => { },
   run: async (context) => {
-    if (process.env.environment == "prodnew") return await editOrReply(context, createEmbed("error", "Cannot update on this instance."))
+    if (process.env.environment !== "prodnew") return await editOrReply(context, createEmbed("error", "Cannot update on this instance."))
     await editOrReply(context, createEmbed("loading", context, "Querying manager..."))
 
     try {
