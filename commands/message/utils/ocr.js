@@ -34,7 +34,7 @@ module.exports = {
       thumbnail: {
         url: image
       },
-      description: codeblock("ansi", [ocr.response.body.text]),
+      description: codeblock("ansi", [ocr.response.body.text.substr(0,4000)]),
       footer: {
         iconUrl: STATICS.google,
         text: `Google Cloud Vision • ${context.application.name} • Took ${ocr.timings}s`
