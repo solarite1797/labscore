@@ -338,7 +338,7 @@ module.exports.emojiKitchen = async function(emoji){
     contentfilter: "high",
     media_filter: "png_transparent",
     component: "proactive",
-    collection: "emoji_kitchen_v5",
+    collection: "emoji_kitchen_v6",
     q: emoji.join('_')
   })
 }
