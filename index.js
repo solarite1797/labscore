@@ -39,7 +39,7 @@ const manager = new ClusterManager(client, token, {
   console.log(`v2 | ready. took ${(Date.now() - time) / 1000}.`)
   
   let liveDeploy = await superagent.get(`${process.env.PB_MANAGER_HOST}_pbs/GetPbServiceId`)
-  if(process.env.HOSTNAME !== liveDeploy.body.d){
+  if(process.env.environment == "prodnew" && process.env.HOSTNAME !== liveDeploy.body.d){
     console.log(`[${process.env.HOSTNAME}] invalid deployment session`)
     process.exit();
   }
