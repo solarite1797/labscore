@@ -1,6 +1,8 @@
 const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
+const superagent = require('superagent')
+
 module.exports = {
   name: "update",
   label: "flags",
@@ -14,7 +16,7 @@ module.exports = {
   onBefore: context => context.user.isClientOwner,
   onCancel: () => { },
   run: async (context) => {
-    if (process.env.environment !== "prodnew") return await editOrReply(context, createEmbed("error", "Cannot update on this instance."))
+    if (process.env.environment !== "prodnew") return await editOrReply(context, createEmbed("error", context, "Cannot update on this instance."))
     await editOrReply(context, createEmbed("loading", context, "Querying manager..."))
 
     try {
@@ -24,10 +26,10 @@ module.exports = {
       await superagent.post(`${process.env.PB_MANAGER_HOST}_pbs/UpdatePbService`)
         .set("Authorization", process.env.PB_MANAGER_KEY)
 
-      return await editOrReply(context, createEmbed("success", "Update queried at manager"))
+      return await editOrReply(context, createEmbed("success", context, "Update queried at manager"))
     } catch (e) {
       console.log(e)
-      return await editOrReply(context, createEmbed("error", "Manager reported error during update query."))
+      return await editOrReply(context, createEmbed("error", context, "Manager reported error during update query."))
     }
   }
 };
