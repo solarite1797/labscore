@@ -2,7 +2,7 @@ const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
 const { darksky } = require('../../../labscore/api');
-const { pill, iconPill, smallIconPill, smallPill, icon } = require('../../../labscore/utils/markdown');
+const { pill, iconPill, smallIconPill, smallPill, icon, weatherIcon } = require('../../../labscore/utils/markdown');
 
 const { Permissions } = require("detritus-client/lib/constants");
 
@@ -26,10 +26,10 @@ module.exports = {
 
       data = data.response.body
 
-      let description = `### ${data.result.location} • ${data.result.current.condition}\n${iconPill("thermometer", data.result.current.temperature.current + "°C")} ​ ​ ​ ​ ${pill("Wind")} ${smallPill(data.result.current.wind.speed + " km/h")}`
+      let description = `### ${weatherIcon(data.result.current.condition.id.toLowerCase())} ​ ​  ​ ​ ${Math.floor(data.result.current.temperature.current)}°C   •   ${data.result.current.condition.label}\n${data.result.location}\n\n${pill("Feels like")} ${smallPill(Math.floor(data.result.current.temperature.feels_like) + "°C")} ​ ​ ​ ​ ${pill("Wind")} ${smallPill(data.result.current.wind.speed + " km/h")}`
 
       let secondaryPills = [];
-      if(data.result.current.humidity > 0) secondaryPills.push(`${pill("Humidity")} ${smallPill(data.result.current.humidity)}`)
+      if(data.result.current.humidity > 0) secondaryPills.push(`${pill("Humidity")} ${smallPill((data.result.current.humidity * 100) + "%")}`)
       if(data.result.current.uvindex > 0) secondaryPills.push(`${pill("UV Index")} ${smallPill(data.result.current.uvindex)}`)
 
       if(secondaryPills.length >= 1) description += '\n' + secondaryPills.join(` ​ ​ ​ ​ `)
@@ -37,17 +37,22 @@ module.exports = {
       // Render Forecasts
       description += `\n`
       for(const i of data.result.forecast){
-        description += `\n${pill(i.day)} ​ ​ ${smallPill(i.condition)} ${icon("thermometer")} Between ${smallPill(i.temperature.min + "°C")} and ${smallPill(i.temperature.max + "°C")} `
+        description += `\n${pill(i.day)} ​ ​ ${weatherIcon(i.condition.toLowerCase().replace(' ', '_'))}`
+        if(Math.floor(i.temperature.max).toString().length == 1) description += `${pill(Math.floor(i.temperature.max) + "°C ")}`
+        else description += `${pill(Math.floor(i.temperature.max) + "°C")}`
+        description += `​**/**​`
+        if(Math.floor(i.temperature.min).toString().length == 1) description += `${smallPill(Math.floor(i.temperature.min) + "°C ")}`
+        else description += `${smallPill(Math.floor(i.temperature.min) + "°C")}`
       }
       
 
       let e = createEmbed("default", context, {
         description,
-        thumbnail: {
-          url: data.result.current.icon
-        },
         timestamp: new Date(data.result.current.date)
       })
+
+      if(data.result.current.icon) e.thumbnail = { url: data.result.current.icon }
+      if(data.result.current.image) e.image = { url: data.result.current.image }
 
       return editOrReply(context, {embeds: [e]})
     }catch(e){

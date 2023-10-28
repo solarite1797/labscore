@@ -1,8 +1,13 @@
 const { ICONS, REDESIGN_ICONS } = require('../constants')
 
 module.exports.icon = function(icon){
-  if(!REDESIGN_ICONS[icon]) return ICONS.question
+  if(!REDESIGN_ICONS[icon]) return ICONS.question.replace(/:[a-z1-9_]*:/, ':i:')
   return REDESIGN_ICONS[icon].replace(/:[a-z1-9_]*:/, ':i:')
+}
+
+module.exports.weatherIcon = function(icon){
+  if(!REDESIGN_ICONS["weather_" + icon]) return REDESIGN_ICONS["calendar"].replace(/:[a-z1-9_]*:/, ':i:')
+  return REDESIGN_ICONS["weather_" + icon].replace(/:[a-z1-9_]*:/, ':i:')
 }
 
 module.exports.highlight = function(content = ""){
