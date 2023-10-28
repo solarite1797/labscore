@@ -20,7 +20,7 @@ function format(seconds){
 
 module.exports = {
   name: 'stats',
-  aliases: ['usage', 'uptime'],
+  aliases: ['usage', 'uptime', 'status'],
   metadata: {
     description: 'Shows statistics about the bot.',
     description_short: 'Bot statistics',
