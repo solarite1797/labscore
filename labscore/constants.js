@@ -191,7 +191,13 @@ module.exports.REDESIGN_ICONS = Object.freeze({
 
   "generative_ai": "<:ico_generative_ai:1165258096227135498>",
   "latency": "<:ico_latency:1165258097338630235>",
-  "thermometer": "<:ico_thermometer:1167576335133200414>",
+
+  "moon": "<:ico_w_moon:1168187409662480405> ",
+  "raindrop": "<:ico_w_raindrop:1168187412170690592> ",
+  "sun": "<:ico_w_sun:1168187414234275981> ",
+  "thermometer": "<:ico_w_thermometer:1168187416595677314> ",
+  "thermometer_cold": "<:ico_w_thermometer_cold:1168187418139164692> ",
+  "wind": "<:ico_w_wind:1168187419594604665> ",
 
   "exclaim_0": "<:ico_exclaim_0:1165263543583649842>",
   "exclaim_1": "<:ico_exclaim_1:1165263545747914853>",
@@ -201,6 +207,7 @@ module.exports.REDESIGN_ICONS = Object.freeze({
   "question_large": "<:ico_question_large:1165263553050185950>",
 
   "weather_clear": "<:ico_weather_clear_day:1167770009557286913>",
+  "weather_clear_night": "<:ico_weather_clear_night:1168183604409544714>",
   "weather_cloudy": "<:ico_weather_cloudy:1167770011776073819>",
   "weather_drizzle": "<:ico_weather_drizzle:1167770013747388437>",
   "weather_flurries": "<:ico_weather_flurries:1167788306059247616>",
