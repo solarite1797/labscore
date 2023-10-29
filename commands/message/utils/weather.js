@@ -29,7 +29,7 @@ module.exports = {
       let description = `### ${weatherIcon(data.result.current.condition.id.toLowerCase())} ​ ​  ​ ​ ${Math.floor(data.result.current.temperature.current)}°C   •   ${data.result.current.condition.label}\n${data.result.location}\n\n${pill("Feels like")} ${smallPill(Math.floor(data.result.current.temperature.feels_like) + "°C")} ​ ​ ​ ​ ${pill("Wind")} ${smallPill(data.result.current.wind.speed + " km/h")}`
 
       let secondaryPills = [];
-      if(data.result.current.humidity > 0) secondaryPills.push(`${pill("Humidity")} ${smallPill((data.result.current.humidity * 100) + "%")}`)
+      if(data.result.current.humidity > 0) secondaryPills.push(`${pill("Humidity")} ${smallPill(Math.floor(data.result.current.humidity * 100) + "%")}`)
       if(data.result.current.uvindex > 0) secondaryPills.push(`${pill("UV Index")} ${smallPill(data.result.current.uvindex)}`)
 
       if(secondaryPills.length >= 1) description += '\n' + secondaryPills.join(` ​ ​ ​ ​ `)
