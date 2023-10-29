@@ -23,9 +23,9 @@ function isLimitedTestUser(user){
 }
 
 function canUseLimitedTestCommands(context){
-  if(LIMITED_TEST_GUILDS && LIMITED_TEST_GUILDS.includes(context.guild.id)) return true;
-  if(LIMITED_TEST_CHANNELS && LIMITED_TEST_CHANNELS.includes(context.channel.id)) return true;
-  if(LIMITED_TEST_USERS && LIMITED_TEST_USERS.includes(context.user.id)) return true;
+  if(isLimitedTestGuild(context.guild)) return true;
+  if(isLimitedTestChannel(context.channel)) return true;
+  if(isLimitedTestUser(context.user)) return true;
   return false;
 }
 

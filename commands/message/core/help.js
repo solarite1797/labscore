@@ -116,6 +116,8 @@ module.exports = {
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     if(canUseLimitedTestCommands(context)) categories["limited"] = `${icon("stars")} Limited Test Commands`;
+    else if(categories["limited"]) delete categories["limited"]
+
     if(args.command){
       await context.triggerTyping()
       // Detailed command view
