@@ -16,7 +16,7 @@ module.exports = {
     description_short: 'Animated heart locket generation',
     examples: ['heartlocket Big Nutty'],
     category: 'image',
-    usage: 'heartlocket [<text>]'
+    usage: 'heartlocket <image> [<text>]'
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {

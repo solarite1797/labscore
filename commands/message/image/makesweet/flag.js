@@ -15,7 +15,7 @@ module.exports = {
     description: 'Generates an animated gif with the MakeSweet flag template.',
     description_short: 'Animated flag generation',
     category: 'image',
-    usage: 'flag'
+    usage: 'flag <image>'
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
