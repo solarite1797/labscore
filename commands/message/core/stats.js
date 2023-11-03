@@ -10,10 +10,12 @@ function format(seconds){
   function pad(s){
     return (s < 10 ? '0' : '') + s;
   }
-  var hours = Math.floor(seconds / (60*60));
+  var days = Math.floor(seconds / (60*60*24));
+  var hours = Math.floor(seconds / (60*60*24) / (60*60));
   var minutes = Math.floor(seconds % (60*60) / 60);
   var seconds = Math.floor(seconds % 60);
 
+  if(days >= 1) return pad(days) + ' Days, ' + pad(hours) + ' Hours, ' + pad(minutes) + ' Minutes, ' + pad(seconds) + ' Seconds'
   if(hours == 0) return pad(minutes) + ' Minutes, ' + pad(seconds) + ' Seconds'
   return pad(hours) + ' Hours, ' + pad(minutes) + ' Minutes, ' + pad(seconds) + ' Seconds'
 }
