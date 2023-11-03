@@ -1,4 +1,4 @@
-const { TRANSLATE_LANGUAGES, TRANSLATE_LANGUAGE_MAPPINGS } = require("../constants");
+const { TRANSLATE_LANGUAGES, TRANSLATE_LANGUAGE_MAPPINGS, TRANSLATE_LANGUAGE_ALIASES } = require("../constants");
 
 function getCode(desiredLang) {
   if (!desiredLang) {
@@ -30,6 +30,7 @@ function getCode(desiredLang) {
 }
 
 module.exports.getCodeFromAny = function (prompt) {
+  if(TRANSLATE_LANGUAGE_ALIASES[prompt.toLowerCase()]) prompt = TRANSLATE_LANGUAGE_ALIASES[prompt.toLowerCase()]
   if(TRANSLATE_LANGUAGES[prompt.toLowerCase()]) return prompt.toLowerCase()
   let languages = [];
   for(const i of Object.keys(TRANSLATE_LANGUAGES)) if(!languages.includes(i) && TRANSLATE_LANGUAGES[i].toLowerCase() == prompt.toLowerCase()) languages.push(i)

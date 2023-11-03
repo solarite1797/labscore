@@ -435,6 +435,13 @@ module.exports.MICROSOFT_VOICE_CONFIG = {
   "Male Whisper": { pitch: 113, speed: 170 }
 }
 
+// hey if you're looking at this and annoyed that a language doesnt
+// work lmk on discord @bignutty and i'll add it (if reasonable)
+// same goes for emoji below
+module.exports.TRANSLATE_LANGUAGE_ALIASES = Object.freeze({
+  "jp": "ja"
+})
+
 module.exports.TRANSLATE_LANGUAGE_MAPPINGS = Object.freeze({
   "af": "🇿🇦",
   "sq": "🇦🇱",
@@ -445,7 +452,7 @@ module.exports.TRANSLATE_LANGUAGE_MAPPINGS = Object.freeze({
   "ay": "",
   "az": "🇦🇿",
   "bm": "",
-  "eu": "Basque",
+  "eu": "",
   "be": "🇧🇾",
   "bn": "🇧🇩",
   "bho": "",
@@ -453,7 +460,7 @@ module.exports.TRANSLATE_LANGUAGE_MAPPINGS = Object.freeze({
   "bg": "🇧🇬",
   "ca": "",
   "ceb": "🇵🇭",
-  "zh-CN or zh": "",
+  "zh-CN": "",
   "zh-TW": "",
   "co": "",
   "hr": "🇭🇷",
@@ -479,7 +486,7 @@ module.exports.TRANSLATE_LANGUAGE_MAPPINGS = Object.freeze({
   "ht": "🇭🇹",
   "ha": "🇳🇬",
   "haw": "",
-  "he or iw": "",
+  "he": "🇮🇱",
   "hi": "🇮🇳",
   "hmn": "",
   "hu": "🇭🇺",
@@ -490,7 +497,7 @@ module.exports.TRANSLATE_LANGUAGE_MAPPINGS = Object.freeze({
   "ga": "🇮🇪",
   "it": "🇮🇹",
   "ja": "🇯🇵",
-  "jv or jw": "",
+  "jv": "",
   "kn": "",
   "kk": "🇰🇿",
   "km": "🇰🇭",
@@ -610,7 +617,7 @@ module.exports.TRANSLATE_LANGUAGES = Object.freeze({
   "ht": "Haitian Creole",
   "ha": "Hausa",
   "haw": "Hawaiian",
-  "he or iw": "Hebrew",
+  "he": "Hebrew",
   "hi": "Hindi",
   "hmn": "Hmong",
   "hu": "Hungarian",
@@ -621,7 +628,7 @@ module.exports.TRANSLATE_LANGUAGES = Object.freeze({
   "ga": "Irish",
   "it": "Italian",
   "ja": "Japanese",
-  "jv or jw": "Javanese",
+  "jv": "Javanese",
   "kn": "Kannada",
   "kk": "Kazakh",
   "km": "Khmer",
