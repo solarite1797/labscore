@@ -72,7 +72,6 @@ module.exports = {
 
     if(!language) return editOrReply(context, createEmbed("warning", context, "Invalid Language"))
 
-
     try{
       let search = await dictionary(context, args.query, language)
       search = search.response
