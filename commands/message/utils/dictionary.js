@@ -23,7 +23,7 @@ function createDictionaryPage(context, result, index, language){
   })
 
   if(result.phonetic) e.description += smallPill(result.phonetic)
-  
+
   if(language !== "en") e.description += `\n${TRANSLATE_LANGUAGE_MAPPINGS[language]} ${pill(DICTIONARY_LANGUAGES[language])}`
 
   let word = result.entries[index]
@@ -69,8 +69,6 @@ module.exports = {
     context.triggerTyping();
 
     let language = dictionaryGetCodeFromAny(args.lang);
-
-    console.log(language)
 
     if(!language) return editOrReply(context, createEmbed("warning", context, "Invalid Language"))
 
