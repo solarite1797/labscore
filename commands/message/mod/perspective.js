@@ -1,4 +1,3 @@
-const { Constants } = require("detritus-client");
 const { perspective } = require("../../../labscore/api");
 const { format } = require("../../../labscore/utils/ansi");
 const { createEmbed } = require("../../../labscore/utils/embed");
@@ -59,17 +58,15 @@ module.exports = {
 
       let perspectiveApi = await perspective(context, [args.input])
 
-      return await editOrReply(context, {
-        embeds: [createEmbed("default", context, {
-          description: `${msg}${iconPill("agreements", "Scores")} ${codeblock("ansi", formatPerspectiveScores(perspectiveApi.response.body))}`,
-          footer: {
-            iconUrl: STATICS.perspectiveapi,
-            text: `Perspective • ${context.application.name}`
-          }
-        })]
-      })
+      return await editOrReply(context, createEmbed("default", context, {
+        description: `${msg}${iconPill("agreements", "Scores")} ${codeblock("ansi", formatPerspectiveScores(perspectiveApi.response.body))}`,
+        footer: {
+          iconUrl: STATICS.perspectiveapi,
+          text: `Perspective • ${context.application.name}`
+        }
+      }))
     } catch (e) {
-      await editOrReply(context, { embeds: [createEmbed("error", context, `Something went wrong.`)] })
+      await editOrReply(context, createEmbed("error", context, `Something went wrong.`))
       console.log(e)
     }
   }

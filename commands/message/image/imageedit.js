@@ -24,22 +24,22 @@ module.exports = {
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
-    if(!args.prompt) return editOrReply(context, { embeds: [createEmbed("warning", context, "Missing prompt.")] })
+    if (!args.prompt) return editOrReply(context, createEmbed("warning", context, "Missing prompt."))
 
     let image = await getRecentImage(context, 50)
-    if(!image) return editOrReply(context, { embeds: [createEmbed("warning", context, "No images found.")] })
+    if (!image) return editOrReply(context, createEmbed("warning", context, "No images found."))
 
-    let response = await editOrReply(context, { embeds: [createEmbed("loading", context, `Editing image...`)] })
+    let response = await editOrReply(context, createEmbed("loading", context, `Editing image...`))
 
-    let noticeTimer = setTimeout(()=>{
+    let noticeTimer = setTimeout(() => {
       let emb = createEmbed("loading", context, `Editing image...`)
       emb.footer = {
         text: "This might take several minutes to complete."
       };
-      response.edit({ embeds: [ emb ] });
+      response.edit({ embeds: [emb] });
     }, 45000)
 
-    try{
+    try {
       let img = await superagent.get(`${process.env.AI_SERVER}/deepai/imageeditor`)
         .query({
           prompt: args.prompt,
@@ -47,7 +47,7 @@ module.exports = {
         })
 
       clearTimeout(noticeTimer)
-      
+
       let imageData = await superagent.get(img.body.image)
 
       return editOrReply(context, {
@@ -56,10 +56,10 @@ module.exports = {
         })],
         files: [{ filename: "edited.jpg", value: imageData.body }]
       })
-    }catch(e){
+    } catch (e) {
       console.log(e)
       clearTimeout(noticeTimer)
-      await response.edit({embeds:[createEmbed("error", context, `Image generation failed.`)]})
+      await response.edit({ embeds: [createEmbed("error", context, `Image generation failed.`)] })
     }
   },
 };

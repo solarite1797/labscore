@@ -68,7 +68,7 @@ module.exports = {
       data = JSON.parse(data.text)
     }catch(e){
       console.log(e)
-      return editOrReply(context, { embeds: [createEmbed("error", context, "Code execution failed.")] })
+      return editOrReply(context, createEmbed("error", context, "Code execution failed."))
     }
     
     const embed = createEmbed("default", context, {})

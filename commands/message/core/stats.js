@@ -1,4 +1,4 @@
-const { highlight, iconPill, link, icon, pill, linkPill, iconLinkPill } = require('../../../labscore/utils/markdown')
+const { highlight, iconPill, iconLinkPill } = require('../../../labscore/utils/markdown')
 const { createEmbed } = require('../../../labscore/utils/embed')
 
 const { editOrReply } = require('../../../labscore/utils/message');
@@ -78,7 +78,7 @@ module.exports = {
       return;
     }catch(e){
       console.log(e)
-      return editOrReply(context, {embeds: [createEmbed("error", context, "Unable to fetch bot statistics.")]})
+      return editOrReply(context, createEmbed("error", context, "Unable to fetch bot statistics."))
     }
   }
 };

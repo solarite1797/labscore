@@ -19,7 +19,7 @@ module.exports = {
     try{
       if(typeof(args.amount) == "string") args.amount = parseInt(args.amount)
       if(!args.amount) args.amount = 1
-      if(args.amount >= 6 || args.amount <= 0) return await editOrReply(context, {embeds:[createEmbed("warning", context, "Invalid Argument (amount)")]})
+      if(args.amount >= 6 || args.amount <= 0) return await editOrReply(context, createEmbed("warning", context, "Invalid Argument (amount)"))
       let cmds = [];
       let found = 0;
       for(const c of context.commandClient.replies.toArray().reverse()){

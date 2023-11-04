@@ -2,10 +2,10 @@ const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
 const { canUseLimitedTestCommands, isLimitedTestUser } = require('../../../labscore/utils/testing')
-const { STATICS, STATIC_ICONS } = require('../../../labscore/utils/statics');
+const { STATIC_ICONS } = require('../../../labscore/utils/statics');
 
 const superagent = require('superagent')
-const { iconPill, smallIconPill, icon } = require('../../../labscore/utils/markdown')
+const { iconPill } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
 
@@ -29,7 +29,7 @@ module.exports = {
     if(!canUseLimitedTestCommands(context)) return;
 
     context.triggerTyping();
-    if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
+    if(!args.text) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (text).`))
 
     let input = args.text;
     
@@ -44,7 +44,7 @@ module.exports = {
       else if(msg.embeds?.length) for(const e of msg.embeds) if(e[1].description?.length) { input = e[1].description; break; } 
 
       prompt = args.text
-      if(args.prompt !== "") return editOrReply(context, {embeds:[createEmbed("warning", context, `Prompt parameter is unsupported for message replies.`)]})
+      if(args.prompt !== "") return editOrReply(context, createEmbed("warning", context, `Prompt parameter is unsupported for message replies.`))
     }
 
     let model = "chat-bison-001"
@@ -73,7 +73,7 @@ module.exports = {
       let description = []
       let files = [];
       
-      if(!res.body.output) return editOrReply(context, {embeds:[createEmbed("error", context, `PaLM 2 returned an error. Try again later.`)]}) 
+      if(!res.body.output) return editOrReply(context, createEmbed("error", context, `PaLM 2 returned an error. Try again later.`)) 
 
       if(res.body.output.length <= 4000) description.push(res.body.output)
       else {
@@ -97,9 +97,9 @@ module.exports = {
         files
       })
     }catch(e){
-      if(e.response.body?.message) return editOrReply(context, {embeds:[createEmbed("warning", context, e.response.body.message)]})
+      if(e.response.body?.message) return editOrReply(context, createEmbed("warning", context, e.response.body.message))
       console.log(e)
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to generate text.`)]})
+      return editOrReply(context, createEmbed("error", context, `Unable to generate text.`))
     }
   }
 };

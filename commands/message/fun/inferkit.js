@@ -22,19 +22,19 @@ module.exports = {
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     context.triggerTyping();
-    if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
-    try{
+    if (!args.text) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (text).`))
+    try {
       let res = await inferkit(context, args.text)
-      return editOrReply(context, {embeds:[createEmbed("default", context, {
+      return editOrReply(context, createEmbed("default", context, {
         description: codeblock("ansi", [format(res.response.body.input, "cyan") + res.response.body.output]),
         footer: {
           iconUrl: STATICS.inferkit,
           text: `InferKit • ${context.application.name} • Took ${res.timings}s`
         }
-      })]})
-    }catch(e){
+      }))
+    } catch (e) {
       console.log(e)
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to generate text.`)]})
+      return editOrReply(context, createEmbed("error", context, `Unable to generate text.`))
     }
   }
 };

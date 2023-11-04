@@ -1,4 +1,4 @@
-const { createEmbed, formatPaginationEmbeds } = require('../../../labscore/utils/embed')
+const { createEmbed, formatPaginationEmbeds, page } = require('../../../labscore/utils/embed')
 const { link, iconPill } = require('../../../labscore/utils/markdown')
 const { editOrReply } = require('../../../labscore/utils/message')
 const { STATICS } = require('../../../labscore/utils/statics')
@@ -32,8 +32,7 @@ function createUrbanPage(context, result){
     value: result.example.substr(0, 1023),
     inline: false
   })
-  let res = {"embeds": [e]}
-  return res;
+  return page(e);
 }
 
 module.exports = {
@@ -61,14 +60,13 @@ module.exports = {
         pages.push(createUrbanPage(context, res))
       }
       
-      pages = formatPaginationEmbeds(pages)
-      const paging = await paginator.createPaginator({
+      await paginator.createPaginator({
         context,
-        pages
+        pages: formatPaginationEmbeds(pages)
       });
     }catch(e){
       console.log(e)
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to perform urban dictionary search.`)]})
+      return editOrReply(context, createEmbed("error", context, `Unable to perform urban dictionary search.`))
     }
   },
 };

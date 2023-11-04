@@ -19,8 +19,10 @@ module.exports = {
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     context.triggerTyping();
-    if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
-    if(args.text.length >= 26) return editOrReply(context, {embeds:[createEmbed("warning", context, `Parameter text too long (>25).`)]})
+
+    if(!args.text) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (text).`))
+    if(args.text.length >= 26) return editOrReply(context, createEmbed("warning", context, `Parameter text too long (>25).`))
+
     try{
       let res = await yacht(context, args.text)
       image = res.response.body.data.images[res.response.body.data.best_quality]
@@ -35,7 +37,7 @@ module.exports = {
       }))
     }catch(e){
       console.log(e)
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to generate image.`)]})
+      return editOrReply(context, createEmbed("error", context, `Unable to generate image.`))
     }
   }
 };

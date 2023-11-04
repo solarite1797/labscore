@@ -25,7 +25,7 @@ module.exports = {
     if(!canUseLimitedTestCommands(context)) return;
 
     context.triggerTyping();
-    if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
+    if(!args.text) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (text).`))
 
     let input = args.text;
     
@@ -46,7 +46,7 @@ module.exports = {
       let description = []
       let files = [];
       
-      if(!res.body.output) return editOrReply(context, {embeds:[createEmbed("error", context, `Bard returned an error. Try again later.`)]}) 
+      if(!res.body.output) return editOrReply(context, createEmbed("error", context, `Bard returned an error. Try again later.`)) 
 
       if(res.body.output.length <= 4000) description.push(res.body.output)
       else {
@@ -70,10 +70,10 @@ module.exports = {
         files
       })
     }catch(e){
-      if(e.response.body?.message) return editOrReply(context, {embeds:[createEmbed("warning", context, e.response.body.message)]})
+      if(e.response.body?.message) return editOrReply(context, createEmbed("warning", context, e.response.body.message))
       
       console.log(e)
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to generate text.`)]})
+      return editOrReply(context, createEmbed("error", context, `Unable to generate text.`))
     }
   }
 };

@@ -22,7 +22,7 @@ module.exports = {
   run: async (context, args) => {
     if(!canUseLimitedTestCommands(context)) return;
     context.triggerTyping();
-    if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
+    if(!args.text) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (text).`))
     try{
       await editOrReply(context, createEmbed("ai", context, "Generating response..."))
       
@@ -36,16 +36,16 @@ module.exports = {
           temperature: 0.6,
           model: "CHATGPT"
         })
-      return editOrReply(context, {embeds:[createEmbed("default", context, {
+      return editOrReply(context, createEmbed("default", context, {
         description: smallIconPill("generative_ai", args.text) + '\n' + codeblock("ansi", [res.body.output.substr(0, 2020 - args.text.length)]),
         footer: {
           text: `🗣🗣📢🔥🔥🔥🔥💯 • ${context.application.name}`,
           iconUrl: STATICS.openai
         }
-      })]})
+      }))
     }catch(e){
       console.log(e)
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to generate text.`)]})
+      return editOrReply(context, createEmbed("error", context, `Unable to generate text.`))
     }
   }
 };

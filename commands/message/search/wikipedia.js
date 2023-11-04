@@ -8,25 +8,6 @@ const superagent = require('superagent')
 
 const { Permissions } = require("detritus-client/lib/constants");
 
-function createWikiHowPage(context, result){
-  let e = createEmbed("default", context, {
-    author: {
-      name: result.title,
-      url: result.link
-    },
-    description: result.snippet,
-    footer: {
-      iconUrl: STATICS.wikihow,
-      text: `WikiHow • ${context.application.name}`
-    }
-  })
-  if(result.image) e.image = {
-    url: result.image
-  }
-  let res = {"embeds": [e]}
-  return res;
-}
-
 module.exports = {
   name: 'wikipedia',
   label: 'query',
@@ -51,7 +32,7 @@ module.exports = {
 
       let pages = []
 
-      if(!search.body.pages.length) return editOrReply(context, {embeds:[createEmbed("error", context, `No results found.`)]})
+      if(!search.body.pages.length) return editOrReply(context, createEmbed("error", context, `No results found.`))
 
       for(const res of Object.values(search.body.pages)){
         let p = createEmbed("default", context, {
@@ -74,14 +55,13 @@ module.exports = {
         pages.push(page(p))
       }
       
-      pages = formatPaginationEmbeds(pages)
-      const paging = await paginator.createPaginator({
+      await paginator.createPaginator({
         context,
-        pages
+        pages: formatPaginationEmbeds(pages)
       });
     }catch(e){
       console.log(e)
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to perform wikipedia search.`)]})
+      return editOrReply(context, createEmbed("error", context, `Unable to perform wikipedia search.`))
     }
   },
 };

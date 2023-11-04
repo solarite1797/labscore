@@ -22,8 +22,7 @@ function createWikiHowPage(context, result){
   if(result.image) e.image = {
     url: result.image
   }
-  let res = {"embeds": [e]}
-  return res;
+  return page(e);
 }
 
 module.exports = {
@@ -46,20 +45,19 @@ module.exports = {
      
       let pages = []
 
-      if(search.body.data.length == 0) return editOrReply(context, {embeds:[createEmbed("error", context, `No results found.`)]})
+      if(search.body.data.length == 0) return editOrReply(context, createEmbed("error", context, `No results found.`))
 
       for(const res of search.body.data){
         pages.push(createWikiHowPage(context, res))
       }
       
-      pages = formatPaginationEmbeds(pages)
-      const paging = await paginator.createPaginator({
+      await paginator.createPaginator({
         context,
-        pages
+        pages: formatPaginationEmbeds(pages)
       });
     }catch(e){
       console.log(e)
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to perform wikihow search.`)]})
+      return editOrReply(context, createEmbed("error", context, `Unable to perform wikihow search.`))
     }
   },
 };

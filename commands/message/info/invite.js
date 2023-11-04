@@ -3,7 +3,7 @@ const { createEmbed, formatPaginationEmbeds, page } = require("../../../labscore
 const { guildFeaturesField } = require("../../../labscore/utils/fields");
 const { icon, highlight, timestamp, link, iconPill, iconLinkPill } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
-const { STATICS, STATIC_ASSETS } = require("../../../labscore/utils/statics");
+const { STATIC_ASSETS } = require("../../../labscore/utils/statics");
 
 const { paginator } = require('../../../labscore/client');
 
@@ -76,10 +76,9 @@ module.exports = {
           pages.push(page(JSON.parse(JSON.stringify(Object.assign({ ...inviteCard }, { fields: sub })))))
         }
 
-        pages = formatPaginationEmbeds(pages)
-        const paging = await paginator.createPaginator({
+        await paginator.createPaginator({
           context,
-          pages
+          pages: formatPaginationEmbeds(pages)
         });
         return;
       }

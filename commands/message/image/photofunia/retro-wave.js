@@ -23,15 +23,18 @@ module.exports = {
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     context.triggerTyping();
-    if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
-    if(args.background > 5 || args.background < 1) return editOrReply(context, {embeds:[createEmbed("warning", context, `Invalid Parameter (background).`)]})
-    if(args.style > 4 || args.style < 1) return editOrReply(context, {embeds:[createEmbed("warning", context, `Invalid Parameter (style).`)]})
+
+    if(!args.text) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (text).`))
+    if(args.background > 5 || args.background < 1) return editOrReply(context, createEmbed("warning", context, `Invalid Parameter (background).`))
+    if(args.style > 4 || args.style < 1) return editOrReply(context, createEmbed("warning", context, `Invalid Parameter (style).`))
+
     let lines = `${args.text}| | `.split('|')
     if(args.text.includes('|')) lines = [lines[1], lines[2], lines[0]]
+
     try{
       let res = await retroWave(context, args.background, args.style, lines[2], lines[0], lines[1])
       
-      if(res.response.body.status == 1) return editOrReply(context, {embeds:[createEmbed("warning", context, res.response.body.errors[0])]})
+      if(res.response.body.status == 1) return editOrReply(context, createEmbed("warning", context, res.response.body.errors[0]))
 
       image = res.response.body.data.images[res.response.body.data.best_quality]
       
@@ -45,8 +48,8 @@ module.exports = {
       }))
     }catch(e){
       console.log(e)
-      if(e.response?.body?.message) return editOrReply(context, {embeds:[createEmbed("error", context, e.response.body.message)]})
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to generate image.`)]})
+      if(e.response?.body?.message) return editOrReply(context, createEmbed("error", context, e.response.body.message))
+      return editOrReply(context, createEmbed("error", context, `Unable to generate image.`))
     }
   }
 };

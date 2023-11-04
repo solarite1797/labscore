@@ -36,16 +36,16 @@ module.exports = {
     args.from = getCodeFromAny(args.from)
 
     let image = await getRecentImage(context, 50)
-    if (!image) return editOrReply(context, { embeds: [createEmbed("warning", context, "No images found.")] })
+    if (!image) return editOrReply(context, createEmbed("warning", context, "No images found."))
 
     let ocr;
     try{
       ocr = await googleVisionOcr(context, image)
     }catch(e){
-      return editOrReply(context, { embeds: [createEmbed("error", context, "Unable to retrieve Google Vision API response.")] })
+      return editOrReply(context, createEmbed("error", context, "Unable to retrieve Google Vision API response."))
     }
     
-    if(ocr.response.body.status == 1) return editOrReply(context, { embeds: [createEmbed("warning", context, ocr.response.body.text)] })
+    if(ocr.response.body.status == 1) return editOrReply(context, createEmbed("warning", context, ocr.response.body.text))
 
     try{
       let translate = await googleTranslate(context, ocr.response.body.text, args.to, args.from)
@@ -65,8 +65,8 @@ module.exports = {
       }))
     }catch(e){
       console.log(e)
-      if(e.response?.body?.status && e.response.body.status == 2) return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to translate text.`)]})
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Something went wrong.`)]})
+      if(e.response?.body?.status && e.response.body.status == 2) return editOrReply(context, createEmbed("error", context, `Unable to translate text.`))
+      return editOrReply(context, createEmbed("error", context, `Something went wrong.`))
     }
   }
 };

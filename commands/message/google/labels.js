@@ -19,25 +19,23 @@ module.exports = {
   run: async (context) => {
     context.triggerTyping();
     let image = await getRecentImage(context, 50)
-    if (!image) return editOrReply(context, { embeds: [createEmbed("warning", context, "No images found.")] })
+    if (!image) return editOrReply(context, createEmbed("warning", context, "No images found."))
 
     let label = await googleVisionLabels(context, image)
 
     let labels = []
-    for(const l of label.response.body.labels){
-      labels.push(smallPill(`${l.score.toString().substr(2,2)}.${l.score.toString().substr(3,1)}%`) + ' ​ ​' + pill(l.name))
+    for (const l of label.response.body.labels) {
+      labels.push(smallPill(`${l.score.toString().substr(2, 2)}.${l.score.toString().substr(3, 1)}%`) + ' ​ ​' + pill(l.name))
     }
-    return editOrReply(context, {
-      embeds: [createEmbed("default", context, {
-        description: labels.join('\n'),
-        thumbnail: {
-          url: image
-        },
-        footer: {
-          iconUrl: STATICS.google,
-          text: `Google Cloud Vision • ${context.application.name}`
-        }
-      })]
-    })
+    return editOrReply(context, createEmbed("default", context, {
+      description: labels.join('\n'),
+      thumbnail: {
+        url: image
+      },
+      footer: {
+        iconUrl: STATICS.google,
+        text: `Google Cloud Vision • ${context.application.name}`
+      }
+    }))
   },
 };

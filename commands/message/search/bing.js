@@ -108,12 +108,12 @@ module.exports = {
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     context.triggerTyping();
-    if(!args.query) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (query).`)]})
+    if(!args.query) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (query).`))
     try{
       let search = await bing(context, args.query, context.channel.nsfw)
       search = search.response
      
-      if(search.body.status == 2) return editOrReply(context, {embeds:[createEmbed("error", context, search.body.message)]})
+      if(search.body.status == 2) return editOrReply(context, createEmbed("error", context, search.body.message))
       
       let pages = []
       for(const res of search.body.results){
@@ -121,16 +121,15 @@ module.exports = {
         if(sp) pages.push(sp)
       }
       
-      if(!pages.length) return editOrReply(context, {embeds:[createEmbed("warning", context, `No results found.`)]})
+      if(!pages.length) return editOrReply(context, createEmbed("warning", context, `No results found.`))
       
-      pages = formatPaginationEmbeds(pages)
-      const paging = await paginator.createPaginator({
+      await paginator.createPaginator({
         context,
-        pages
+        pages: formatPaginationEmbeds(pages)
       });
     }catch(e){
       console.log(e)
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to perform bing search.`)]})
+      return editOrReply(context, createEmbed("error", context, `Unable to perform bing search.`))
     }
   },
 };

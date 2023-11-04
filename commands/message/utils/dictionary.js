@@ -86,15 +86,14 @@ module.exports = {
         i++;
       }
       
-      pages = formatPaginationEmbeds(pages)
-      const paging = await paginator.createPaginator({
+      await paginator.createPaginator({
         context,
-        pages
+        pages: formatPaginationEmbeds(pages)
       });
     }catch(e){
       console.log(e)
-      if(e.response?.body?.status && e.response.body.status == 2) return editOrReply(context, {embeds:[createEmbed("warning", context, e.response.body.message)]})
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to perform dictionary lookup.`)]})
+      if(e.response?.body?.status && e.response.body.status == 2) return editOrReply(context, createEmbed("warning", context, e.response.body.message))
+      return editOrReply(context, createEmbed("error", context, `Unable to perform dictionary lookup.`))
     }
   },
 };

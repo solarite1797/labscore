@@ -27,7 +27,7 @@ module.exports = {
         files: [{ filename: `otter.${res.headers["x-file-ext"]}`, value: res.body }]
       })
     }catch(e){
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to fetch otter.`)]})
+      return editOrReply(context, createEmbed("error", context, `Unable to fetch otter.`))
     }
   }
 };

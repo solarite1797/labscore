@@ -17,21 +17,19 @@ module.exports = {
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES, Permissions.READ_MESSAGE_HISTORY],
   run: async (context) => {
     await context.triggerTyping();
-    try{
+    try {
       let res = await superagent.get(`https://inspirobot.me/api?generate=true`)
-        .set("User-Agent","labscore/2.0")
-    
-      return await editOrReply(context, {
-        embeds: [ createEmbed("image", context, {
-          url: res.text,
-          provider: {
-            icon: STATICS.inspirobot,
-            text: "Inspirobot"
-          }
-        })]
-      })
-    }catch(e){
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to fetch inspirational quote.`)]})
+        .set("User-Agent", "labscore/2.0")
+
+      return await editOrReply(context, createEmbed("image", context, {
+        url: res.text,
+        provider: {
+          icon: STATICS.inspirobot,
+          text: "Inspirobot"
+        }
+      }))
+    } catch (e) {
+      return editOrReply(context, createEmbed("error", context, `Unable to fetch inspirational quote.`))
     }
   }
 };

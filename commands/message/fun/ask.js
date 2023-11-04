@@ -20,18 +20,18 @@ module.exports = {
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     context.triggerTyping();
-    if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
-    try{
+    if (!args.text) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (text).`))
+    try {
       let res = await superagent.get(`${process.env.AI_SERVER}/ask`)
-      .query({
-        prompt: args.text
-      })
-      return editOrReply(context, {embeds:[createEmbed("default", context, {
+        .query({
+          prompt: args.text
+        })
+      return editOrReply(context, createEmbed("default", context, {
         description: codeblock("ansi", [format(args.text, "cyan") + res.body.text])
-      })]})
-    }catch(e){
+      }))
+    } catch (e) {
       console.log(e)
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to generate text.`)]})
+      return editOrReply(context, createEmbed("error", context, `Unable to generate text.`))
     }
   }
 };

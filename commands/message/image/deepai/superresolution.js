@@ -20,11 +20,11 @@ module.exports = {
     context.triggerTyping();
     try{
       let image = await getRecentImage(context, 50)
-      if(!image) return editOrReply(context, { embeds: [createEmbed("warning", context, "No images found.")] })
+      if(!image) return editOrReply(context, createEmbed("warning", context, "No images found."))
 
       let res = await superresolution(context, image)
 
-      if(res.response.body.status == 1) return editOrReply(context, {embeds:[createEmbed("warning", context, res.response.body.errors[0])]})
+      if(res.response.body.status == 1) return editOrReply(context, createEmbed("warning", context, res.response.body.errors[0]))
       
       return editOrReply(context, createEmbed("image", context, {
         url: res.response.body.image,
@@ -32,7 +32,7 @@ module.exports = {
       }))
     }catch(e){
       console.log(e)
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Superresolution timed out.`)]})
+      return editOrReply(context, createEmbed("error", context, `Superresolution timed out.`))
     }
   },
 };

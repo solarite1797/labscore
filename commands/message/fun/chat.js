@@ -41,7 +41,7 @@ module.exports = {
     if(!canUseLimitedTestCommands(context)) return;
 
     context.triggerTyping();
-    if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
+    if(!args.text) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (text).`))
 
     let input = args.text;
     
@@ -56,13 +56,13 @@ module.exports = {
       else if(msg.embeds?.length) for(const e of msg.embeds) if(e[1].description?.length) { input = e[1].description; break; } 
 
       prompt = args.text
-      if(args.prompt !== "") return editOrReply(context, {embeds:[createEmbed("warning", context, `Prompt parameter is unsupported for message replies.`)]})
+      if(args.prompt !== "") return editOrReply(context, createEmbed("warning", context, `Prompt parameter is unsupported for message replies.`))
     }
 
     let model = "CHATGPT"
     if(args.model && isLimitedTestUser(context.user)) model = args.model
     
-    if(!MODELS[model]) return editOrReply(context, {embeds:[createEmbed("warning", context, `Invalid or unsupported model (${model}).`)]})
+    if(!MODELS[model]) return editOrReply(context, createEmbed("warning", context, `Invalid or unsupported model (${model}).`))
 
     let temperature = "0.25"
     if(args.temperature !== 0.25) temperature = parseFloat(args.temperature)
@@ -113,7 +113,7 @@ module.exports = {
       })
     }catch(e){
       console.log(e)
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to generate text.`)]})
+      return editOrReply(context, createEmbed("error", context, `Unable to generate text.`))
     }
   }
 };

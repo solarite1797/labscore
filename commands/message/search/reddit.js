@@ -1,5 +1,5 @@
-const { createEmbed, formatPaginationEmbeds } = require('../../../labscore/utils/embed')
-const { link, icon, highlight, iconPill } = require('../../../labscore/utils/markdown')
+const { createEmbed, formatPaginationEmbeds, page } = require('../../../labscore/utils/embed')
+const { link, icon, iconPill } = require('../../../labscore/utils/markdown')
 const { editOrReply } = require('../../../labscore/utils/message')
 const { STATICS } = require('../../../labscore/utils/statics')
 
@@ -8,24 +8,20 @@ const { reddit } = require('../../../labscore/api');
 
 const { Permissions } = require("detritus-client/lib/constants");
 
-function createRedditPage(context, result){
-  let res = {
-    "embeds": [
-      createEmbed("default", context, {
-        author: {
-          iconUrl: result.subreddit.icon,
-          name: result.subreddit.name,
-          url: result.subreddit.link
-        },
-        footer: {
-          iconUrl: STATICS.reddit,
-          text: `Reddit • ${context.application.name}`
-        }
-      })
-    ]
-  }
+function createRedditPage(context, result) {
+  let res = page(createEmbed("default", context, {
+    author: {
+      iconUrl: result.subreddit.icon,
+      name: result.subreddit.name,
+      url: result.subreddit.link
+    },
+    footer: {
+      iconUrl: STATICS.reddit,
+      text: `Reddit • ${context.application.name}`
+    }
+  }))
 
-  if(result.post.image) res.embeds[0].image = { url: result.post.image };
+  if (result.post.image) res.embeds[0].image = { url: result.post.image };
 
   let description = [`**${link(result.post.link, result.post.title)}**`]
 
@@ -35,7 +31,7 @@ function createRedditPage(context, result){
   //  awardData.push(`${icon(`reddit_${a}`)}${highlight(result.awards[a])}`)
   //}
 
-  if(awardData.length >= 1) description.push(`${awardData.join(' ')}`)
+  if (awardData.length >= 1) description.push(`${awardData.join(' ')}`)
 
   description.push(``)
   description.push(`${iconPill("upvote", result.post.score)}  ​  ${icon("user")} ${link(result.author.link, `u/${result.author.name}`)}`)
@@ -61,30 +57,29 @@ module.exports = {
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     context.triggerTyping();
-    if(!args.query) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (query).`)]})
-    try{
+    if (!args.query) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (query).`))
+    try {
       let search = await reddit(context, args.query, context.channel.nsfw)
       search = search.response
-     
-      if(search.body.status == 2) return editOrReply(context, {embeds:[createEmbed("error", context, search.body.message)]})
+
+      if (search.body.status == 2) return editOrReply(context, createEmbed("error", context, search.body.message))
 
       let pages = []
-      for(const res of search.body.results){
-        if(args.type == "image" && !res.post.image) continue;
+      for (const res of search.body.results) {
+        if (args.type == "image" && !res.post.image) continue;
         pages.push(createRedditPage(context, res))
       }
-      
-      if(pages.length == 0) return editOrReply(context, {embeds:[createEmbed("warning", context, `No results found.`)]})
 
-      pages = formatPaginationEmbeds(pages)
-      const paging = await paginator.createPaginator({
+      if (pages.length == 0) return editOrReply(context, createEmbed("warning", context, `No results found.`))
+
+      await paginator.createPaginator({
         context,
-        pages
+        pages: formatPaginationEmbeds(pages)
       });
-    }catch(e){
+    } catch (e) {
       console.log(e)
-      if(e.response && e.response.body.message) return editOrReply(context, {embeds:[createEmbed("error", context, e.response.body.message)]})
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to perform reddit search.`)]})
+      if (e.response && e.response.body.message) return editOrReply(context, createEmbed("error", context, e.response.body.message))
+      return editOrReply(context, createEmbed("error", context, `Unable to perform reddit search.`))
     }
   },
 };

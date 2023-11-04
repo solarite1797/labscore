@@ -1,4 +1,4 @@
-const { createEmbed, formatPaginationEmbeds } = require('../../../labscore/utils/embed')
+const { createEmbed, formatPaginationEmbeds, page } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 const { STATICS } = require('../../../labscore/utils/statics')
 
@@ -52,12 +52,12 @@ module.exports = {
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     context.triggerTyping();
-    if(!args.query) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (query).`)]})
+    if(!args.query) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (query).`))
     try{
       let search = await lyrics(context, args.query)
       search = search.response
 
-      if(search.body.status == 2) return editOrReply(context, {embeds:[createEmbed("error", context, search.body.message)]})
+      if(search.body.status == 2) return editOrReply(context, createEmbed("error", context, search.body.message))
       let fields = [];
       
       for(const f of search.body.lyrics.split('\n\n')){
@@ -78,18 +78,17 @@ module.exports = {
           pageFields = pageFields.splice(0, pageFields.length - 1)
         }
         
-        pages.push({embeds:[createLyricsPage(context, search, pageFields)]})
+        pages.push(page(createLyricsPage(context, search, pageFields)))
       }
       
-      pages = formatPaginationEmbeds(pages)
-      const paging = await paginator.createPaginator({
+      await paginator.createPaginator({
         context,
-        pages
+        pages: formatPaginationEmbeds(pages)
       });
     }catch(e){
-      if(e.response?.body?.status && e.response.body.status == 2 && e.response.body.message) return editOrReply(context, {embeds:[createEmbed("error", context, e.response.body.message)]})
+      if(e.response?.body?.status && e.response.body.status == 2 && e.response.body.message) return editOrReply(context, createEmbed("error", context, e.response.body.message))
       console.log(JSON.stringify(e.raw))
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Something went wrong.`)]})
+      return editOrReply(context, createEmbed("error", context, `Something went wrong.`))
     }
   },
 };

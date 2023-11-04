@@ -21,15 +21,15 @@ module.exports = {
   run: async (context, args) => {
 
     let image = await getRecentImage(context, 50)
-    if(!image) return editOrReply(context, createEmbed("warning", context, "No images found."))
+    if (!image) return editOrReply(context, createEmbed("warning", context, "No images found."))
 
-    let response = await editOrReply(context, createEmbed("loading", context, `Generating image...`))
+    await editOrReply(context, createEmbed("loading", context, `Generating image...`))
 
-    if(!args.text) args.text = ""
+    if (!args.text) args.text = ""
     try {
       const timings = Date.now();
       let mkswt = await billboardCityscape(image)
-      
+
       return await editOrReply(context, {
         embeds: [createEmbed("image", context, {
           url: "makesweet.gif",
@@ -43,7 +43,7 @@ module.exports = {
       })
     } catch (e) {
       console.log(e)
-      await editOrReply(context, { embeds: [createEmbed("error", context, "Something went wrong.")] })
+      await editOrReply(context, createEmbed("error", context, "Something went wrong."))
     }
   },
 }

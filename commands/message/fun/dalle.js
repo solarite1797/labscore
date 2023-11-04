@@ -23,7 +23,7 @@ module.exports = {
   run: async (context, args) => {
     if(!canUseLimitedTestCommands(context)) return;
     context.triggerTyping();
-    if(!args.text) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (text).`)]})
+    if(!args.text) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (text).`))
 
     let prompt = 'You are a friendly chat bot designed to help people. You should always use gender neutral pronouns when possible.'
     if(args.prompt !== "") prompt = args.prompt
@@ -73,7 +73,7 @@ module.exports = {
       })
     }catch(e){
       console.log(e)
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Unable to generate text.`)]})
+      return editOrReply(context, createEmbed("error", context, `Unable to generate text.`))
     }
   }
 };

@@ -37,7 +37,7 @@ module.exports = {
   ],
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
-    let response = await editOrReply(context, createEmbed("loading", context, `Generating image...`))
+    await editOrReply(context, createEmbed("loading", context, `Generating image...`))
     try{
       let seed = Math.floor(Math.random() * 999999) + 100000,
         variance = Math.floor(Math.random() * 9999) + 1000,
@@ -112,7 +112,7 @@ module.exports = {
       })
     }catch(e){
       console.log(e)
-      return await editOrReply(context, {embeds:[createEmbed("error", context, `Unable to generate image.`)]})
+      return await editOrReply(context, createEmbed("error", context, `Unable to generate image.`))
     }
   }
 };

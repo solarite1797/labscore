@@ -23,9 +23,9 @@ module.exports = {
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
-    if(!context.channel.nsfw) return editOrReply(context, {embeds:[createEmbed("nsfw", context)]})
+    if(!context.channel.nsfw) return editOrReply(context, createEmbed("nsfw", context))
 
-    let response = await editOrReply(context, { embeds: [createEmbed("loading", context, `Synthesizing images...`)] })
+    await editOrReply(context, createEmbed("loading", context, `Synthesizing images...`))
 
     let noticeTimer = setTimeout(()=>{
       let emb = createEmbed("loading", context, `Synthesizing images...`)

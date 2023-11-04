@@ -19,11 +19,11 @@ module.exports = {
   run: async (context, args) => {
     context.triggerTyping();
     try{
-      if(!args.text) return editOrReply(context, { embeds: [createEmbed("warning", context, "Missing parameter (text).")] })
+      if(!args.text) return editOrReply(context, createEmbed("warning", context, "Missing parameter (text)."))
 
       let res = await text2image(context, args.text)
 
-      if(res.response.body.status == 1) return editOrReply(context, {embeds:[createEmbed("warning", context, res.response.body.errors[0])]})    
+      if(res.response.body.status == 1) return editOrReply(context, createEmbed("warning", context, res.response.body.errors[0]))    
       
       return editOrReply(context, createEmbed("image", context, {
         url: res.response.body.image,
@@ -31,7 +31,7 @@ module.exports = {
       }))
     }catch(e){
       console.log(e)
-      return editOrReply(context, {embeds:[createEmbed("error", context, `Text2image timed out.`)]})
+      return editOrReply(context, createEmbed("error", context, `Text2image timed out.`))
     }
   },
 };

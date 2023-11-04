@@ -37,14 +37,14 @@ module.exports = {
       if(!image) return editOrReply(context, createEmbed("warning", context, "No images found."))
     }
 
-    let response = await editOrReply(context, { embeds: [createEmbed("loading", context, `Generating image...`)] })
+    let response = await editOrReply(context, createEmbed("loading", context, `Generating image...`))
 
     let noticeTimer = setTimeout(()=>{
       let emb = createEmbed("loading", context, `Generating image...`)
       emb.footer = {
         text: "This might take a moment to complete."
       };
-      response.edit({ embeds: [ emb ] });
+      editOrReply(context, { embeds: [ emb ] });
     }, 45000)
 
     try{

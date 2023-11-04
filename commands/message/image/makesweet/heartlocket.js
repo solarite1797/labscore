@@ -24,7 +24,7 @@ module.exports = {
     let image = await getRecentImage(context, 50)
     if(!image) return editOrReply(context, createEmbed("warning", context, "No images found."))
 
-    let response = await editOrReply(context, createEmbed("loading", context, `Generating image...`))
+    await editOrReply(context, createEmbed("loading", context, `Generating image...`))
 
     if(!args.text) args.text = ""
     try {

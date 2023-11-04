@@ -21,13 +21,13 @@ module.exports = {
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context) => {
     context.triggerTyping();
-    if (!context.message.messageReference) return editOrReply(context, { embeds: [createEmbed("warning", context, "You need to reply to a message containing a song link.")] })
+    if (!context.message.messageReference) return editOrReply(context, createEmbed("warning", context, "You need to reply to a message containing a song link."))
     try {
       let msg;
       try {
         msg = await context.message.channel.fetchMessage(context.message.messageReference.messageId)
       } catch (e) {
-        return editOrReply(context, { embeds: [createEmbed("error", context, "Unable to fetch message.")] })
+        return editOrReply(context, createEmbed("error", context, "Unable to fetch message."))
       }
       let urls = msg.content.match(urlr)
       if (urls) {
@@ -54,7 +54,7 @@ module.exports = {
       }
     } catch (e) {
       console.log(e)
-      return editOrReply(context, { embeds: [createEmbed("error", context, `Unable to perform song search.`)] })
+      return editOrReply(context, createEmbed("error", context, `Unable to perform song search.`))
     }
   },
 };

@@ -2,7 +2,7 @@ const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
 const { darksky } = require('../../../labscore/api');
-const { pill, iconPill, smallIconPill, smallPill, icon, weatherIcon, timestamp } = require('../../../labscore/utils/markdown');
+const { pill, iconPill, smallPill, weatherIcon, timestamp } = require('../../../labscore/utils/markdown');
 
 const { Permissions } = require("detritus-client/lib/constants");
 const { STATICS } = require('../../../labscore/utils/statics');
@@ -21,7 +21,7 @@ module.exports = {
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     context.triggerTyping();
-    if(!args.query) return editOrReply(context, {embeds:[createEmbed("warning", context, `Missing Parameter (location).`)]})
+    if(!args.query) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (location).`))
     try{
       let data = await darksky(context, args.query)
 
@@ -60,10 +60,10 @@ module.exports = {
       if(data.result.current.icon) e.thumbnail = { url: data.result.current.icon }
       if(data.result.current.image) e.image = { url: data.result.current.image }
 
-      return editOrReply(context, {embeds: [e]})
+      return editOrReply(context, e)
     }catch(e){
       console.log(e)
-      return editOrReply(context, {embeds:[createEmbed("warning", context, `No weather data available for given location.`)]})
+      return editOrReply(context, createEmbed("warning", context, `No weather data available for given location.`))
     }
   },
 };
