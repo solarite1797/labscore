@@ -1,4 +1,4 @@
-const { createEmbed, formatPaginationEmbeds } = require('../../../labscore/utils/embed')
+const { createEmbed, formatPaginationEmbeds, page } = require('../../../labscore/utils/embed')
 const { link, iconPill, smallPill, icon, iconLinkPill, pill } = require('../../../labscore/utils/markdown')
 const { editOrReply } = require('../../../labscore/utils/message')
 
@@ -46,7 +46,7 @@ function createDictionaryPage(context, result, index, language){
 
   e.description += `\n\n**${type}**\n${defItms.join('\n\n')}`
 
-  let res = {"embeds": [e]}
+  let res = page(e)
   return res;
 }
 
