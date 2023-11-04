@@ -291,9 +291,10 @@ module.exports.tiktok = async function(context, text, voice){
   })
 }
 
-module.exports.dictionary = async function(context, query){
+module.exports.dictionary = async function(context, query, language){
   return await request(Api.UTILS_DICTIONARY, "GET", {}, {
-    q: query
+    q: query,
+    l: language
   })
 }
 

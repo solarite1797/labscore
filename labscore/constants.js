@@ -435,6 +435,46 @@ module.exports.MICROSOFT_VOICE_CONFIG = {
   "Male Whisper": { pitch: 113, speed: 170 }
 }
 
+module.exports.DICTIONARY_LANGUAGES = Object.freeze({
+  ar: "Arabic",
+  ca: "Catalan",
+  cs: "Czech",
+  da: "Danish",
+  de: "German",
+  el: "Greek",
+  "en-uk": "English (UK)",
+  en: "English (US)",
+  es: "Spanish",
+  fi: "Finnish",
+  fr: "French",
+  hi: "Hindi",
+  hr: "Croatian",
+  id: "Indonesian",
+  it: "Italian",
+  iw: "Hebrew",
+  ja: "Japanese",
+  ko: "Korean",
+  nl: "Dutch",
+  no: "Norwegian",
+  pl: "Polish",
+  "pt-br": "Portuguese",
+  "pt-pt": "Portuguese",
+  pt: "Portuguese",
+  ro: "Romanian",
+  ru: "Russian",
+  sr: "Serbian",
+  sk: "Slovak",
+  sv: "Swedish",
+  th: "Thai",
+  tl: "Tagalog",
+  tr: "Turkish",
+  uk: "Ukrainian",
+  vi: "Vietnamese",
+  "zh-cn": "Chinese",
+  "zh-tw": "Chinese",
+  zh: "Chinese"
+})
+
 // hey if you're looking at this and annoyed that a language doesnt
 // work lmk on discord @bignutty and i'll add it (if reasonable)
 // same goes for emoji below

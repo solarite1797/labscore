@@ -1,4 +1,4 @@
-const { TRANSLATE_LANGUAGES, TRANSLATE_LANGUAGE_MAPPINGS, TRANSLATE_LANGUAGE_ALIASES } = require("../constants");
+const { TRANSLATE_LANGUAGES, TRANSLATE_LANGUAGE_MAPPINGS, TRANSLATE_LANGUAGE_ALIASES, DICTIONARY_LANGUAGES } = require("../constants");
 
 function getCode(desiredLang) {
   if (!desiredLang) {
@@ -37,6 +37,15 @@ module.exports.getCodeFromAny = function (prompt) {
   for(const i of Object.keys(TRANSLATE_LANGUAGE_MAPPINGS)) if(!languages.includes(i) && TRANSLATE_LANGUAGE_MAPPINGS[i].toLowerCase() == prompt.toLowerCase()) languages.push(i)
   return languages[0];
 };
+
+
+module.exports.dictionaryGetCodeFromAny = function (prompt) {
+  if(DICTIONARY_LANGUAGES[prompt.toLowerCase()]) return prompt.toLowerCase()
+  let languages = [];
+  for(const i of Object.keys(DICTIONARY_LANGUAGES)) if(!languages.includes(i) && DICTIONARY_LANGUAGES[i].toLowerCase() == prompt.toLowerCase()) languages.push(i)
+  return languages[0];
+};
+
 
 module.exports.isSupported = function (desiredLang) {
   return Boolean(getCode(desiredLang));
