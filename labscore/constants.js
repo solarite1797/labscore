@@ -14,14 +14,18 @@ module.exports.PRIVACY_POLICY_SECTIONS = [
 
 module.exports.PRIVACY_POLICY_LAST_UPDATE = 1655325547140
 
+module.exports.SUPPORT_ARTICLES = {
+  AGE_RESTRICTED_CHANNELS: 115000084051
+}
+
 module.exports.OPEN_SOURCE_REPOSITORY_URL = "https://gitlab.com/bignutty/labscore"
 
 module.exports.COLORS = Object.freeze({
   error: 15548997,
-  success: 6411359,
+  success: 8191849,
   warning: 16426522,
   embed: 2829617,
-  brand: 6085465,
+  brand: 6809687,
   nsfw: 15549056
 })
 
@@ -120,6 +124,8 @@ module.exports.BADGE_ICONS = Object.freeze({
 })
 
 module.exports.REDESIGN_ICONS = Object.freeze({
+  "brand": "<:ico_brand:1170410186062712872>",
+
   "home": "<:ico_home:1165257185488551976>",
   "image": "<:ico_image:1165257188235825274>",
   "search": "<:ico_search:1165257190047748176>",
@@ -149,6 +155,7 @@ module.exports.REDESIGN_ICONS = Object.freeze({
   "activity": "<:ico_activity:1165257605858476073>",
   "attachment": "<:ico_attachment:1165257607309688945>",
   "boost": "<:ico_boost:1165257610983907398>",
+  "discord": "<:ico_discord:1170410879129485464>",
   "emoji": "<:ico_emoji:1165257613320130651>",
   "link": "<:ico_link:1165257615178207302>",
   "locale": "<:ico_locale:1165257616600092712>",

@@ -1,4 +1,4 @@
-const { COLORS } = require('../constants')
+const { COLORS, SUPPORT_ARTICLES } = require('../constants')
 const { STATIC_ICONS, STATICS, STATIC_ASSETS } = require('./statics')
 
 const embedTypes = Object.freeze({
@@ -65,7 +65,7 @@ const embedTypes = Object.freeze({
       author: {
         iconUrl: STATIC_ICONS.adult,
         name: `This command is only available in Age Restricted channels.`,
-        url: `https://support.discord.com/hc/en-us/articles/115000084051-Age-Restricted-Channels-and-Content`
+        url: `https://support.discord.com/hc/en-us/articles/${SUPPORT_ARTICLES.AGE_RESTRICTED_CHANNELS}`
       },
       color: COLORS.nsfw
     }
