@@ -7,12 +7,14 @@ module.exports.DEFAULT_BOT_PREFIX = 'lc.'
 module.exports.DEFAULT_BOT_NAME = 'labsCore'
 
 module.exports.PRIVACY_POLICY_SECTIONS = [
-  'labsCore does not collect any sort of data about its users.',
-  'If the bot encounters unexpected errors we report information about the server, channel, user and command/command arguments (excluding images) to a private log in order to assist with debugging and resolving the issue. You can reference the provided error ID in our support server for further details. Contents of these automated reports will never be shared with third parties and are only accessible to the bots developers.',
-  `Images modified via our proprietary api are never stored outside of the channel you executed the command in.`
+  '### Summary\n- We do not store or collect information about our users or their servers.\n- We do share data with third parties that isn\'t strictly necessary to operate certain functionality.',
+  '### The information we collect\nWe use technology to log unexpected issues that may occur when interacting with our application. These logs are only shared with the developers of the application and not accessible to the public. Logged information includes:\n- Your username, server and channel\n- The command you executed, as well as its arguments (excluding images)',
+  'Images modified via our proprietary api are directly uploaded to Discord and never permanently stored anywhere other than the requested channel by us.\n- The only exception to this is the art command, wallpapers generated via art will be publicly shared in the support server for anyone to view.)',
+  '### Third Parties\nWe use a variety of third party products and services to operate certain functionality of our application. Information shared with third parties is strictly limited to information necessary to provide the functionality (command arguments).\nWe do not offer any functionality that shares details about users, a channel or a server with third parties and their services.'
 ]
 
-module.exports.PRIVACY_POLICY_LAST_UPDATE = 1655325547140
+module.exports.PRIVACY_POLICY_LAST_UPDATE = 1699120509970
+module.exports.PRIVACY_POLICY_PREVIOUS_REVISION = "privacy_june22.1dborzeh8yhs"
 
 module.exports.SUPPORT_ARTICLES = {
   AGE_RESTRICTED_CHANNELS: 115000084051
