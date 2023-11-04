@@ -46,8 +46,7 @@ function createDictionaryPage(context, result, index, language){
 
   e.description += `\n\n**${type}**\n${defItms.join('\n\n')}`
 
-  let res = page(e)
-  return res;
+  return page(e);
 }
 
 module.exports = {
