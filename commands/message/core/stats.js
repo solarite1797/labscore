@@ -7,11 +7,13 @@ const { Permissions } = require("detritus-client/lib/constants");
 const { OPEN_SOURCE_REPOSITORY_URL } = require('../../../labscore/constants');
 
 function format(seconds){
+
   function pad(s){
     return (s < 10 ? '0' : '') + s;
   }
+
   var days = Math.floor(seconds / (60*60*24));
-  var hours = Math.floor(seconds / (60*60*24) / (60*60));
+  var hours = Math.floor(seconds % (60*60*24) / (60*60));
   var minutes = Math.floor(seconds % (60*60) / 60);
   var seconds = Math.floor(seconds % 60);
 
