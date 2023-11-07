@@ -17,6 +17,10 @@ const MODELS = {
   "GPT4": {
     icon: STATICS.openai,
     name: "GPT-4"
+  },
+  "CLAUDE": {
+    icon: STATICS.anthropic,
+    name: "Claude"
   }
 }
 

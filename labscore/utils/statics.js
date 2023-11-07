@@ -14,6 +14,10 @@ const Statics = Object.freeze({
     },
   },
   brands: {
+    anthropic: {
+      file: "brands/anthropic.png",
+      revision: 0
+    },
     applemaps: {
       file: "brands/applemaps.png",
       revision: 1
@@ -156,6 +160,7 @@ function staticAsset(static) {
 }
 
 module.exports.STATICS = Object.freeze({
+  anthropic: staticAsset(Statics.brands.anthropic),
   applemaps: staticAsset(Statics.brands.applemaps),
   bard: staticAsset(Statics.brands.bard),
   bing: staticAsset(Statics.brands.bing),
