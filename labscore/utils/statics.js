@@ -118,11 +118,11 @@ const Statics = Object.freeze({
   icons: {
     adult: {
       file: "icons/core/ico_notice_nsfw.png",
-      revision: 2
+      revision: 3
     },
     error: {
       file: "icons/core/ico_notice_error.png",
-      revision: 2
+      revision: 3
     },
     loading: {
       file: "icons/core/ico_notice_loading.gif",
@@ -146,7 +146,7 @@ const Statics = Object.freeze({
     },
     warning: {
       file: "icons/core/ico_notice_warning.png",
-      revision: 2
+      revision: 3
     }
   }
 })

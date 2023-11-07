@@ -26,6 +26,9 @@ module.exports = {
     try{
       let u;
       if(!args.user) { args.user = context.user.id }
+      
+      if(args.user == "456226577798135808") return editOrReply(context, createEmbed("error", context, "This user has been deleted."))
+
       user = await getUser(context, args.user)
       u = user.user
       if(!u) return editOrReply(context, createEmbed("warning", context, "No users found."))
