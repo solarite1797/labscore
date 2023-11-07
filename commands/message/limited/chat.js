@@ -10,17 +10,20 @@ const { iconPill } = require('../../../labscore/utils/markdown')
 const { Permissions } = require("detritus-client/lib/constants");
 
 const MODELS = {
-  "CHATGPT": {
+  "chatgpt": {
     icon: STATICS.chatgpt,
-    name: "ChatGPT"
+    name: "ChatGPT",
+    id: "CHATGPT",
   },
-  "GPT4": {
+  "gpt4": {
     icon: STATICS.openai,
-    name: "GPT-4"
+    name: "GPT-4",
+    id: "GPT4"
   },
-  "CLAUDE": {
+  "claude": {
     icon: STATICS.anthropic,
-    name: "Claude"
+    name: "Claude",
+    id: "CLAUDE"
   }
 }
 
@@ -66,7 +69,7 @@ module.exports = {
     let model = "CHATGPT"
     if(args.model && isLimitedTestUser(context.user)) model = args.model
     
-    if(!MODELS[model]) return editOrReply(context, createEmbed("warning", context, `Invalid or unsupported model (${model}).`))
+    if(!MODELS[model.toLowerCase()]) return editOrReply(context, createEmbed("warning", context, `Invalid or unsupported model (${model}).`))
 
     let temperature = "0.25"
     if(args.temperature !== 0.25) temperature = parseFloat(args.temperature)
@@ -83,7 +86,7 @@ module.exports = {
           prompt,
           input: [input],
           temperature,
-          model
+          model: MODELS[model.toLowerCase()].id
         })
 
       let inputDisplay = args.text.replace(/\n/g, ' ')
