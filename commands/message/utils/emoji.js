@@ -166,6 +166,7 @@ module.exports = {
         }
       }))
 
+      let currentView ;
       const components = new Components({
         timeout: 100000,
         run: async (ctx) => {
@@ -175,7 +176,7 @@ module.exports = {
             return p.id == ctx.data.values[0]
           })
 
-          await ctx.editOrRespond({embeds: [createEmbed("default", context, {
+          currentView = createEmbed("default", context, {
             author: {
               iconUrl: ico,
               name: `${res.data.name} • ${emojiAsset[0].version}`,
@@ -189,7 +190,8 @@ module.exports = {
               iconUrl: STATICS.emojipedia,
               text: `Emojipedia • ${context.application.name}`
             }
-          })], components})
+          })
+          await ctx.editOrRespond({embeds: [currentView], components})
         },
       });
 
@@ -209,11 +211,12 @@ module.exports = {
 
       setTimeout(()=>{
         editOrReply(context, {
+          embeds:[currentView],
           components:[]
         })
       }, 100000)
 
-      return editOrReply(context, {embeds: [createEmbed("default", context, {
+      currentView = createEmbed("default", context, {
         author: {
           iconUrl: ico,
           name: `${res.data.name} • ${res.data.platforms[args.type].images[0].version}`,
@@ -227,7 +230,8 @@ module.exports = {
           iconUrl: STATICS.emojipedia,
           text: `Emojipedia • ${context.application.name}`
         }
-      })], components})
+      })
+      return editOrReply(context, {embeds: [currentView], components})
     }
   }
 };
