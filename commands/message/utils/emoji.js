@@ -209,7 +209,6 @@ module.exports = {
 
       setTimeout(()=>{
         editOrReply(context, {
-          embeds: context.response.embeds,
           components:[]
         })
       }, 100000)
