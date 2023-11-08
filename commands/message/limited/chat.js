@@ -108,12 +108,12 @@ module.exports = {
       return editOrReply(context, {
         embeds:[createEmbed("defaultNoFooter", context, {
           author: {
-            iconUrl: MODELS[model].icon,
+            iconUrl: MODELS[model.toLowerCase()].icon,
             name: inputDisplay
           },
           description: description.join('\n'),
           footer: {
-            text: `${MODELS[model].name} • This information may be inaccurate or biased`
+            text: `${MODELS[model.toLowerCase()].name} • This information may be inaccurate or biased`
           }
         })],
         files
