@@ -229,9 +229,9 @@ module.exports.REDESIGN_ICONS = Object.freeze({
   "weather_thunderstorms": "<:ico_weather_thunderstorms:1167770030063231117>",
   "weather_windy": "<:ico_weather_windy:1167770031682232420>",
 
-  "information": "<:ico_information:1139704769179562064>",
-  "question": "<:ico_question:1139704770760806502>",
-  "warning": "<:ico_warning:1151286226117201970>",
+  "information": "<:ico_information:1174428063849795594>",
+  "question": "<:ico_question:1174427888347512935>",
+  "warning": "<:ico_warning:1174428169168760873>",
 
   // Internal Icons
   "empty": "<:e:749601069298090034>",
