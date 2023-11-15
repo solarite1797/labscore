@@ -3,8 +3,12 @@ module.exports.DISCORD_INVITES = Object.freeze({
   privacy: "https://discord.gg/sQs8FhcTGh"
 })
 
-module.exports.DEFAULT_BOT_PREFIX = 'lc.'
 module.exports.DEFAULT_BOT_NAME = 'labsCore'
+
+// The first prefix in this list is considered the
+// default prefix and will be displayed in various
+// places throughout the app
+module.exports.DEFAULT_PREFIXES = ['lc.', 'ic.', 'pb.']
 
 module.exports.PRIVACY_POLICY_SECTIONS = [
   '### Summary\n- We do not store or collect information about our users or their servers.\n- We do share data with third parties that isn\'t strictly necessary to operate certain functionality.',

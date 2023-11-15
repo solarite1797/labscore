@@ -3,9 +3,9 @@ const { editOrReply } = require('../../../labscore/utils/message')
 
 const superagent = require('superagent');
 const { codeblock } = require('../../../labscore/utils/markdown');
-const { DEFAULT_BOT_PREFIX } = require('../../../labscore/constants');
 
 const { Permissions } = require("detritus-client/lib/constants");
+const { DEFAULT_PREFIXES } = require('../../../labscore/constants');
 
 const SIZES = Object.freeze({
   "wallpaper": { x: 1920, y: 1200},
@@ -94,7 +94,7 @@ module.exports = {
           "embeds": [
             createEmbed("image", context, {
               url: res.hash,
-              description: `${codeblock(`py`, [`${DEFAULT_BOT_PREFIX}art -type ${args.type.toLowerCase()} -seed ${seed} -variance ${variance} -rotate ${rotate}`])}`,
+              description: `${codeblock(`py`, [`${DEFAULT_PREFIXES[0]}art -type ${args.type.toLowerCase()} -seed ${seed} -variance ${variance} -rotate ${rotate}`])}`,
               time: ((Date.now() - timings) / 1000).toFixed(2)
             })
           ]
@@ -105,7 +105,7 @@ module.exports = {
       return await editOrReply(context, {
         embeds: [createEmbed("image", context, {
           url: res.hash,
-          description: `${codeblock(`py`, [`${DEFAULT_BOT_PREFIX}art -type ${args.type.toLowerCase()} -seed ${seed} -variance ${variance} -rotate ${rotate}`])}`,
+          description: `${codeblock(`py`, [`${DEFAULT_PREFIXES[0]}art -type ${args.type.toLowerCase()} -seed ${seed} -variance ${variance} -rotate ${rotate}`])}`,
           time: ((Date.now() - timings) / 1000).toFixed(2)
         })],
         files: [{ filename: res.hash, value: image.body }]

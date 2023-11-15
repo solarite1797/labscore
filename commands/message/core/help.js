@@ -1,7 +1,7 @@
 const { codeblock, icon, link, pill, smallPill, iconPill } = require('../../../labscore/utils/markdown')
 const { createEmbed, formatPaginationEmbeds, page } = require('../../../labscore/utils/embed')
 
-const { DISCORD_INVITES, DEFAULT_BOT_PREFIX } = require('../../../labscore/constants')
+const { DISCORD_INVITES, DEFAULT_PREFIXES } = require('../../../labscore/constants')
 
 const { paginator } = require('../../../labscore/client');
 const { editOrReply } = require('../../../labscore/utils/message');
@@ -13,7 +13,7 @@ function createHelpPage(context, title, contents, descriptions) {
   return page(createEmbed("default", context, {
     description: `${title}\n\n` +
       renderCommandList(contents, descriptions) +
-      `\n\n${icon("question")} Use ${smallPill(`${DEFAULT_BOT_PREFIX}help <command>`)} to view more information about a command.`
+      `\n\n${icon("question")} Use ${smallPill(`${DEFAULT_PREFIXES[0]}help <command>`)} to view more information about a command.`
   }))
 }
 
@@ -136,7 +136,7 @@ module.exports = {
       for (const k of Object.keys(resultScores)) results.push(resultMappings[k])
 
       let pages = []
-      let prefix = DEFAULT_BOT_PREFIX
+      let prefix = DEFAULT_PREFIXES[0]
       try {
 
         if (results.length == 0) return editOrReply(context, createEmbed("warning", context, "No commands found for the provided query."))

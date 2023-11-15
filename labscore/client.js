@@ -1,7 +1,7 @@
 const { Constants, ClusterClient, CommandClient, InteractionCommandClient } = require('detritus-client');
 const { ActivityTypes, PresenceStatuses, GatewayIntents, Permissions, ClientEvents } = require('detritus-client/lib/constants');
 
-const { PERMISSIONS_TEXT, DEFAULT_BOT_PREFIX, DEFAULT_BOT_NAME } = require('./constants');
+const { PERMISSIONS_TEXT, DEFAULT_BOT_NAME, DEFAULT_PREFIXES } = require('./constants');
 const Paginator = require('./paginator').PaginatorCluster
 
 const cluster = new ClusterClient("", {
@@ -17,8 +17,8 @@ const cluster = new ClusterClient("", {
     ],
     presence: {
       activity: {
-        state: `${DEFAULT_BOT_PREFIX}help ​ • ​ ${DEFAULT_BOT_NAME}`,
-        name: `${DEFAULT_BOT_PREFIX}help ​ ​• ​ ${DEFAULT_BOT_NAME}`,
+        state: `${DEFAULT_PREFIXES[0]}help ​ • ​ ${DEFAULT_BOT_NAME}`,
+        name: `${DEFAULT_PREFIXES[0]}help ​ ​• ​ ${DEFAULT_BOT_NAME}`,
         emoji: {
           name: "🧪"
         },
@@ -38,7 +38,7 @@ module.exports.paginator = new Paginator(cluster, {
 
 // Clients
 
-let commandPrefixes = ['lc.', 'ic.', 'lc..'] // Migration from beta -> main, remove lc.. eventually
+commandPrefixes = DEFAULT_PREFIXES
 if(process.env.PREFIX_OVERRIDE) commandPrefixes = process.env.PREFIX_OVERRIDE.split('|');
 
 const commandClient = new CommandClient(cluster, {
