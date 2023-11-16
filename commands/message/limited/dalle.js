@@ -25,9 +25,6 @@ module.exports = {
     context.triggerTyping();
     if(!args.text) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (text).`))
 
-    let prompt = 'You are a friendly chat bot designed to help people. You should always use gender neutral pronouns when possible.'
-    if(args.prompt !== "") prompt = args.prompt
-
     try{
       await editOrReply(context, createEmbed("ai", context, "Generating image..."))
 
