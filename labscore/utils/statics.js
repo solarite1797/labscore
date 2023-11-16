@@ -144,6 +144,14 @@ const Statics = Object.freeze({
       file: "icons/core/ico_notice_bard_idle.gif",
       revision: 0
     },
+    ai_clyde: {
+      file: "brands/_clyde/clyde_generating.gif",
+      revision: 0
+    },
+    ai_clyde_idle: {
+      file: "brands/_clyde/clyde.png",
+      revision: 0
+    },
     ai_palm_idle: {
       file: "icons/core/ico_notice_palm_idle.png",
       revision: 0
@@ -195,6 +203,8 @@ module.exports.STATIC_ICONS = Object.freeze({
   ai: staticAsset(Statics.icons.ai),
   ai_bard: staticAsset(Statics.icons.ai_bard),
   ai_bard_idle: staticAsset(Statics.icons.ai_bard_idle),
+  ai_clyde: staticAsset(Statics.icons.ai_clyde),
+  ai_clyde_idle: staticAsset(Statics.icons.ai_clyde_idle),
   ai_palm_idle: staticAsset(Statics.icons.ai_palm_idle),
   warning: staticAsset(Statics.icons.warning)
 })
