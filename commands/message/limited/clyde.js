@@ -50,7 +50,6 @@ module.exports = {
 
     let input = args.text;
     
-    const owner = await getUser(context, context.guild.owner.id)
     // You can also reply with a gif, by using @gif("description of the gif you want to send"), for example if you wanted to send a cat gif, you would do: @gif("happy cat"). Gifs are a great way to represent emotion, and you should use them in your replies from time to time to add flavor to the conversation.
     const prompt = `You are named Clyde - and are currently chatting in a Discord server.
 
@@ -59,7 +58,6 @@ Do not include name: or message: in your response.
 Information about your environment:
 
   - The server you are in is called: ${context.guild.name}
-  - The server is owned by: ${owner.user.username}
   - The channel you are in is called: #${context.channel.name}
 
 You can use this information about the chat participants in the conversation in your replies. Use this information to answer questions, or add flavor to your responses.
