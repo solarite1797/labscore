@@ -233,6 +233,8 @@ module.exports.REDESIGN_ICONS = Object.freeze({
   "weather_thunderstorms": "<:ico_weather_thunderstorms:1167770030063231117>",
   "weather_windy": "<:ico_weather_windy:1167770031682232420>",
 
+  "generativeai_text": "<:ico_generativeai_text:1175527265707233341>",
+
   "information": "<:ico_information:1174428063849795594>",
   "question": "<:ico_question:1174427888347512935>",
   "warning": "<:ico_warning:1174428169168760873>",
@@ -447,6 +449,16 @@ module.exports.MICROSOFT_VOICE_CONFIG = {
   "Female Whisper": { pitch: 169, speed: 170 },
   "Male Whisper": { pitch: 113, speed: 170 }
 }
+
+module.exports.REWRITE_STYLES = [
+  { name: "📝 Fix Grammar", value: "GRAMMAR" },
+  { name: "🤩 Excited", value: "EXCITED" },
+  { name: "😎 Chill", value: "CHILL" },
+  { name: "📜 Shakespeare", value: "SHAKESPEARE" },
+  { name: "📰 Shorten", value: "SHORTEN" },
+  { name: "📄 Formal", value: "FORMAL" }
+]
+
 
 module.exports.DICTIONARY_LANGUAGES = Object.freeze({
   ar: "Arabic",
