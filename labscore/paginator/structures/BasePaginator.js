@@ -18,10 +18,7 @@ module.exports = class BasePaginator extends EventEmitter {
     // Support application command context
     if(data.context.editOrRespond) {
       this.editOrRespond = data.context.editOrRespond.bind(data.context)
-      this.editOrReply = (d) => {
-        console.log(d)
-        return this.editOrRespond(d)
-      }
+      this.editOrReply = (d) => this.editOrRespond(d)
     }
   }
 
