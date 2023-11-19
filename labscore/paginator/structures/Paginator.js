@@ -1,7 +1,7 @@
-const InteractionPaginator = require("./InteractionPaginator");
+const BasePaginator = require("./BasePaginator");
 const assert = require("assert");
 
-const { Constants, Utils } = require('detritus-client')
+const { Constants, Utils } = require('detritus-client');
 const { Components } = Utils
 const { InteractionCallbackTypes } = Constants
 
@@ -44,7 +44,7 @@ module.exports = class Paginator {
       if (!allowedEvents.has(event)) return;
 
       for (const listener of this.activeListeners) {
-        if (!(listener instanceof InteractionPaginator)) continue;
+        if (!(listener instanceof BasePaginator)) continue;
         if (!listener.commandMessage) continue;
 
         if (event === "MESSAGE_CREATE" &&
@@ -60,7 +60,7 @@ module.exports = class Paginator {
   async handleButtonEvent(context) {
     let listener;
     for (const l of this.activeListeners) {
-      if (!(l instanceof InteractionPaginator)) continue;
+      if (!(l instanceof BasePaginator)) continue;
       if (!l.commandMessage) continue;
       if (l.isCommandMessage(context.message.id)) {
         listener = l
@@ -150,7 +150,7 @@ module.exports = class Paginator {
     // Check if a paginator exists, if it does kill the old one
     let listener;
     for (const l of this.activeListeners) {
-      if (!(l instanceof InteractionPaginator)) continue;
+      if (!(l instanceof BasePaginator)) continue;
       if (!l.commandMessage) continue;
 
       if (l.isCommandMessage(data.context.message.id)) {
@@ -159,7 +159,7 @@ module.exports = class Paginator {
     }
     if(listener) await listener.stop()
 
-    const instance = new InteractionPaginator(this, data);
+    const instance = new BasePaginator(this, data);
     this.activeListeners.push(instance);
 
     setTimeout(() => {
