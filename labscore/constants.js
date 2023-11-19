@@ -35,84 +35,6 @@ module.exports.COLORS = Object.freeze({
   nsfw: 15549056
 })
 
-module.exports.ICONS = Object.freeze({
-  "error": "<:ico_error:925832574239121429>",
-  "warning": "<:ico_warning:925832574931189830>",
-  "success": "<:ico_check:925813919929491516>",
-  "success_simple": "<:lc_success:699608002910617670>",
-  "failiure": "<:ico_cross:925813919577153639>",
-  "failiure_simple": "<:lc_denied:688071041787887647>",
-  "activity": "<:ico_activity:903266937247780906>",
-  "analytics": "<:ico_analytics:914630522326642761>",
-  "audio": "<:ico_audio:903260568037769286>",
-  "boost": "<:ico_boost:903266056154513428>",
-  "calendar": "<:ico_calendar:903263528557887528>",
-  "channel": "<:ico_channel:903265030647210044>",
-  "check": "<:ico_check:925813919929491516>",
-  "command": "<:ico_command:903266599694372875>",
-  "connection": "<:ico_connection:903282945551388702>",
-  "cross": "<:ico_cross:925813919577153639>",
-  "downloading": "<:ico_downloading:903301897027452998>",
-  "fun": "<:ico_fun:903260112657981510>",
-  "house": "<:ico_house:903263528591429702>",
-  "image": "<:ico_image:903259583475240961>",
-  "info": "<:ico_info:903258571335147592>",
-  "list": "<:ico_list:903263528662757426>",
-  "list_large": "<:ico_list_large:903265635155443772>",
-  "microphone": "<:ico_microphone:903273971993169920>",
-  "moderation": "<:ico_moderation:903273971523387404>",
-  "nitro": "<:ico_nitro:903263528696283168>",
-  "note": "<:ico_note:914630523828179034>",
-  "nsfw": "<:ico_nsfw:925817891260072026>",
-  "pencil": "<:ico_pencil:903273971636662313>",
-  "people": "<:ico_people:915666775700561990>",
-  "person": "<:ico_person:903275266485420082>",
-  "qr": "<:ico_qr:915278046293000253>",
-  "rocket": "<:ico_rocket:914631573238865980>",
-  "role": "<:ico_role:903273016455209040>",
-  "rules": "<:ico_rules:915269410699243560>",
-  "search": "<:ico_search:903258998432731146>",
-  "snowsgiving": "<:ico_snowsgiving:915666777646694440>",
-  "stats": "<:ico_stats:903265030752047144>",
-  "timer": "<:ico_timer:915271575274680350>",
-  "util": "<:ico_util:903259395381690379>",
-  "locale": "<:ico_locale:925891616986791936>",
-  "question": "<:ico_question:949420315677691934>",
-  "upvote": "<:ico_upvote:980238682353205259>",
-  "downvote": "<:ico_downvote:980238681971494963>",
-  "reddit_gold": "<:rdt_gold:993630360527196251>",
-  "reddit_silver": "<:rdt_silver:993630364327231628>",
-  "reddit_wholesome": "<:rdt_wholesome:993630485379031061>",
-  "reddit_helpful": "<:rdt_helpful:993630362372677774>",
-  "online": "<:ico_online:994362211772399736>",
-  "offline": "<:ico_offline:994362210061123598>",
-  "link": "<:ico_link:994364481792647229>",
-  "robot": "<:ico_robot:1002944678112530547>",
-  "robouser": "<:ico_robouser:1002944679744131092>",
-  "lock": "<:ico_lock:1002948236971085924>",
-  "badge_slash": "<:badge_slash:1002954716315140167>",
-  "flag": "<:ico_flag:1002957495138009251>",
-  "like": "<:ico_like:1086443586700181514>",
-  "message": "<:ico_message:1086443588784758844>",
-  "eye": "<:ico_eye:1086443585337036860>",
-  "videos": "<:ico_videos:1086449271609503764>",
-  "question_large": "<:ico_question:1086624956235919391>",
-  "exclaim_0": "<:ico_w0:1086624957586489364>",
-  "exclaim_1": "<:ico_w1:1086624959142580275>",
-  "exclaim_2": "<:ico_w2:1086624961025810485>",
-  "exclaim_3": "<:ico_w3:1086624963047460874>",
-  "exclaim_4": "<:ico_w4:1086624964284788787>",
-  "arrow_up": "<:ico_arrowup:980237911171674193>",
-  "arrow_down": "<:ico_arrowdown:980237911008092160>",
-  "arrow_left": "<:ico_arrowleft:1086628775644647464>",
-  "arrow_right": "<:ico_arrowright:1086628777880191016>",
-  "sticker": "<:ico_sticker:1096937131793985546> ",
-  "emoji": "<:ico_emoji:1096936794731315251>",
-  "empty": "<:e:749601069298090034>",
-  "book": "<:ico_book:1127622851265048576>",
-  "gitlab": "<:ico_gitlab:1130603378704138411>"
-})
-
 module.exports.BADGE_ICONS = Object.freeze({
   "active_developer": "<:b:1165742549865074909>",
   "bot_developer": "<:b:1165741989950672977>",
@@ -129,7 +51,7 @@ module.exports.BADGE_ICONS = Object.freeze({
   "staff": "<:b:1165741987773812746>"
 })
 
-module.exports.REDESIGN_ICONS = Object.freeze({
+module.exports.ICONS = Object.freeze({
   "brand": "<:ico_brand:1170410186062712872>",
 
   "home": "<:ico_home:1165257185488551976>",
@@ -243,8 +165,8 @@ module.exports.REDESIGN_ICONS = Object.freeze({
   "empty": "<:e:749601069298090034>",
 
   // Legacy Icon Compat
-  "success_simple": "<:lc_success:699608002910617670>",
-  "failiure_simple": "<:lc_denied:688071041787887647>"
+  "success_simple": "<:ico_check:1175774230588182618>",
+  "failiure_simple": "<:ico_cross:1175774231682875493>"
 })
 
 const GUILD_FEATURE_ICONS = Object.freeze({
