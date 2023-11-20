@@ -29,6 +29,13 @@ module.exports.timestamp = function(time, flag = "t"){
   return `<t:${Math.floor(time/1000)}:${flag}>`
 }
 
+module.exports.stringwrap = function(content = "", length){
+  console.log(content)
+  console.log(length)
+  if(content.length > length) return content.substr(0, length) + '...';
+  return content;
+}
+
 module.exports.pill = function(content = ""){
   return "  **` " + content.toString().replace(/\`/g, 'ˋ') + "  `**"
 }

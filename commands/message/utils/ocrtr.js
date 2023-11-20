@@ -2,7 +2,7 @@ const { googleVisionOcr, googleTranslate } = require("../../../labscore/api");
 const { TRANSLATE_LANGUAGES, TRANSLATE_LANGUAGE_MAPPINGS } = require("../../../labscore/constants");
 const { getRecentImage } = require("../../../labscore/utils/attachment");
 const { createEmbed } = require("../../../labscore/utils/embed");
-const { codeblock, icon, pill } = require("../../../labscore/utils/markdown");
+const { codeblock, icon, pill, limitedString } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 const { isSupported, getCodeFromAny } = require("../../../labscore/utils/translate");
@@ -29,11 +29,11 @@ module.exports = {
     if(!args.to) args.to = "en"
     if(args.to.startsWith("-to")) args.to = args.to.replace("-to ", "")
 
-    if(!isSupported(args.to)) return editOrReply(context, createEmbed("warning", context, "Invalid language (to)."))
-    if(!isSupported(args.from)) return editOrReply(context, createEmbed("warning", context, "Invalid language (from)."))
+    if(!isSupported(args.to)) return editOrReply(context, createEmbed("warning", context, `Invalid source language (${limitedString(args.from, 10)}).`))
+    if(!isSupported(args.from)) return editOrReply(context, createEmbed("warning", context, `Invalid source language (${limitedString(args.from, 10)}).`))
 
-    args.to = getCodeFromAny(args.to)
-    args.from = getCodeFromAny(args.from)
+    let targetLanguage = getCodeFromAny(args.to)
+    let sourceLanguage = getCodeFromAny(args.from)
 
     let image = await getRecentImage(context, 50)
     if (!image) return editOrReply(context, createEmbed("warning", context, "No images found."))
@@ -48,13 +48,13 @@ module.exports = {
     if(ocr.response.body.status == 1) return editOrReply(context, createEmbed("warning", context, ocr.response.body.text))
 
     try{
-      let translate = await googleTranslate(context, ocr.response.body.text, args.to, args.from)
+      let translate = await googleTranslate(context, ocr.response.body.text, targetLanguage, sourceLanguage)
       
-      let fromFlag = TRANSLATE_LANGUAGE_MAPPINGS[translate.response.body.language.from || args.from] || ''
+      let fromFlag = TRANSLATE_LANGUAGE_MAPPINGS[translate.response.body.language.from || sourceLanguage] || ''
       let toFlag = TRANSLATE_LANGUAGE_MAPPINGS[translate.response.body.language.to] || ''
 
       return editOrReply(context, createEmbed("default", context, {
-        description: `${icon("locale")} ​ ${fromFlag} ${pill(TRANSLATE_LANGUAGES[translate.response.body.language.from || args.from])} ​ ​ ​​${icon("arrow_right")} ​ ​ ​ ​${toFlag} ${pill(TRANSLATE_LANGUAGES[translate.response.body.language.to])}\n${codeblock("ansi", [translate.response.body.translation.substr(0,4000)])}`,
+        description: `${icon("locale")} ​ ${fromFlag} ${pill(TRANSLATE_LANGUAGES[translate.response.body.language.from || sourceLanguage])} ​ ​ ​​${icon("arrow_right")} ​ ​ ​ ​${toFlag} ${pill(TRANSLATE_LANGUAGES[translate.response.body.language.to])}\n${codeblock("ansi", [translate.response.body.translation.substr(0,4000)])}`,
         thumbnail: {
           url: image
         },

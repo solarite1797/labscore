@@ -1,7 +1,7 @@
 const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
-const { codeblock, icon, pill } = require('../../../labscore/utils/markdown');
+const { codeblock, icon, pill, stringwrap } = require('../../../labscore/utils/markdown');
 
 const { isSupported, getCodeFromAny } = require('../../../labscore/utils/translate');
 const { googleTranslate } = require('../../../labscore/api');
@@ -41,23 +41,23 @@ module.exports = {
 
     if(!content.length) return editOrReply(context, createEmbed("warning", context, "No text supplied."))
     
-    if(!isSupported(args.to)) return editOrReply(context, createEmbed("warning", context, "Invalid language (to)."))
-    if(!isSupported(args.from)) return editOrReply(context, createEmbed("warning", context, "Invalid language (from)."))
+    if(!isSupported(args.to)) return editOrReply(context, createEmbed("warning", context, `Invalid target language (${stringwrap(args.to, 10)}).`))
+    if(!isSupported(args.from)) return editOrReply(context, createEmbed("warning", context, `Invalid source language (${stringwrap(args.from, 10)}).`))
 
-    args.to = getCodeFromAny(args.to)
-    args.from = getCodeFromAny(args.from)
+    let targetLanguage = getCodeFromAny(args.to)
+    let sourceLanguage = getCodeFromAny(args.from)
     
-    if(!args.to) return editOrReply(context, createEmbed("warning", context, "Invalid language (to)."))
-    if(!args.from) return editOrReply(context, createEmbed("warning", context, "Invalid language (from)."))
+    if(!targetLanguage) return editOrReply(context, createEmbed("warning", context, `Invalid target language (${stringwrap(args.to, 10)}).`))
+    if(!sourceLanguage) return editOrReply(context, createEmbed("warning", context, `Invalid source language (${stringwrap(args.from, 10)}).`))
 
     try{
-      let translate = await googleTranslate(context, content, args.to, args.from)
+      let translate = await googleTranslate(context, content, targetLanguage, sourceLanguage)
 
-      let fromFlag = TRANSLATE_LANGUAGE_MAPPINGS[translate.response.body.language.from || args.from] || ''
+      let fromFlag = TRANSLATE_LANGUAGE_MAPPINGS[translate.response.body.language.from || sourceLanguage] || ''
       let toFlag = TRANSLATE_LANGUAGE_MAPPINGS[translate.response.body.language.to] || ''
 
       return editOrReply(context, createEmbed("default", context, {
-        description: `${icon("locale")} ​ ${fromFlag} ${pill(TRANSLATE_LANGUAGES[translate.response.body.language.from || args.from] || translate.response.body.language.from || args.from)} ​ ​ ​​${icon("arrow_right")} ​ ​ ​ ​${toFlag} ${pill(TRANSLATE_LANGUAGES[translate.response.body.language.to] || translate.response.body.language.to)}\n${codeblock("ansi", [translate.response.body.translation])}`,
+        description: `${icon("locale")} ​ ${fromFlag} ${pill(TRANSLATE_LANGUAGES[translate.response.body.language.from || sourceLanguage] || translate.response.body.language.from || args.from)} ​ ​ ​​${icon("arrow_right")} ​ ​ ​ ​${toFlag} ${pill(TRANSLATE_LANGUAGES[translate.response.body.language.to] || translate.response.body.language.to)}\n${codeblock("ansi", [translate.response.body.translation])}`,
         footer: {
           iconUrl: STATICS.google,
           text: `Google Translator • ${context.application.name}`
