@@ -1,4 +1,4 @@
-const { codeblock, icon, link, pill, smallPill, iconPill } = require('../../../labscore/utils/markdown')
+const { codeblock, icon, link, pill, smallPill, iconPill, stringwrap } = require('../../../labscore/utils/markdown')
 const { createEmbed, formatPaginationEmbeds, page } = require('../../../labscore/utils/embed')
 
 const { DISCORD_INVITES, DEFAULT_PREFIXES } = require('../../../labscore/constants')
@@ -26,7 +26,7 @@ function renderCommandList(commands, descriptions, limit) {
 
     let desc = descriptions[i]
     if (desc.includes('\n')) desc = desc.split('\n')[0]
-    if (desc.length >= 41) desc = desc.substr(0, 40) + '...'
+    if (desc.length >= 41) desc = stringwrap(desc, 40)
 
     render.push(` ​ ​ \` ${c}${' '.repeat(pad)}\` ​ ​ ​ ​ ​${desc}`)
     i++
