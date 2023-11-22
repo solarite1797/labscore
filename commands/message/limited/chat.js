@@ -5,7 +5,7 @@ const { canUseLimitedTestCommands, isLimitedTestUser } = require('../../../labsc
 const { STATICS } = require('../../../labscore/utils/statics');
 
 const superagent = require('superagent')
-const { iconPill } = require('../../../labscore/utils/markdown')
+const { iconPill, stringwrap } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
 
@@ -89,9 +89,6 @@ module.exports = {
           model: MODELS[model.toLowerCase()].id
         })
 
-      let inputDisplay = args.text.replace(/\n/g, ' ')
-      if(inputDisplay.length >= 50) inputDisplay = inputDisplay.substr(0,50) + '...'
-
       let description = []
       let files = [];
       
@@ -109,7 +106,7 @@ module.exports = {
         embeds:[createEmbed("defaultNoFooter", context, {
           author: {
             iconUrl: MODELS[model.toLowerCase()].icon,
-            name: inputDisplay
+            name: stringwrap(args.text, 50)
           },
           description: description.join('\n'),
           footer: {

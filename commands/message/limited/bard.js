@@ -28,9 +28,6 @@ module.exports = {
     if(!args.text) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (text).`))
 
     let input = args.text;
-    
-    let inputDisplay = args.text.replace(/\n/g, ' ')
-    if(inputDisplay.length >= 50) inputDisplay = inputDisplay.substr(0,50) + '...'
 
     try{
       await editOrReply(context, createEmbed("ai_custom", context, STATIC_ICONS.ai_bard))
@@ -59,7 +56,7 @@ module.exports = {
       return editOrReply(context, {
         embeds:[createEmbed("defaultNoFooter", context, {
           author: {
-            name: inputDisplay,
+            name: stringwrap(args.text, 50),
             iconUrl: STATIC_ICONS.ai_bard_idle
           },
           description: description.join('\n'),

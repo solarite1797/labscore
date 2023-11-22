@@ -5,7 +5,7 @@ const { canUseLimitedTestCommands, isLimitedTestUser } = require('../../../labsc
 const { STATIC_ICONS } = require('../../../labscore/utils/statics');
 
 const superagent = require('superagent')
-const { iconPill } = require('../../../labscore/utils/markdown')
+const { iconPill, stringwrap } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
 
@@ -53,13 +53,10 @@ module.exports = {
     let temperature = "0.25"
     if(args.temperature !== 0.25) temperature = parseFloat(args.temperature)
 
-    let inputDisplay = args.text.replace(/\n/g, ' ')
-    if(inputDisplay.length >= 50) inputDisplay = inputDisplay.substr(0,50) + '...'
-
     try{
       await editOrReply(context, createEmbed("ai_custom", context, STATIC_ICONS.ai_palm_idle))
 
-      let res = await superagent.post(`${process.env.AI_SERVER}/google/palm2`)
+      let res = await superagent.post(`${process.env.AI_SERVER}/google/palm2/chat`)
         .set({
           Authorization: process.env.AI_SERVER_KEY
         })
@@ -86,7 +83,7 @@ module.exports = {
       return editOrReply(context, {
         embeds:[createEmbed("defaultNoFooter", context, {
           author: {
-            name: inputDisplay,
+            name: stringwrap(prompt, 50),
             iconUrl: STATIC_ICONS.ai_palm_idle
           },
           description: description.join('\n'),
@@ -98,7 +95,6 @@ module.exports = {
       })
     }catch(e){
       if(e.response.body?.message) return editOrReply(context, createEmbed("warning", context, e.response.body.message))
-      console.log(e)
       return editOrReply(context, createEmbed("error", context, `Unable to generate text.`))
     }
   }

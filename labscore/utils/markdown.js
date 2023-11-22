@@ -30,8 +30,6 @@ module.exports.timestamp = function(time, flag = "t"){
 }
 
 module.exports.stringwrap = function(content = "", length){
-  console.log(content)
-  console.log(length)
   if(content.length > length) return content.substr(0, length) + '...';
   return content;
 }

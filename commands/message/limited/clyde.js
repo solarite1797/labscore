@@ -5,7 +5,7 @@ const { canUseLimitedTestCommands } = require('../../../labscore/utils/testing')
 const { STATIC_ICONS } = require('../../../labscore/utils/statics');
 
 const superagent = require('superagent')
-const { iconPill } = require('../../../labscore/utils/markdown')
+const { iconPill, stringwrap } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
 const { getUser } = require('../../../labscore/utils/users');
@@ -87,9 +87,6 @@ Current time: ${new Date().toLocaleDateString('en-us', { weekday:"long", year:"n
           model: "CHATGPT"
         })
 
-      let inputDisplay = args.text.replace(/\n/g, ' ')
-      if(inputDisplay.length >= 50) inputDisplay = inputDisplay.substr(0,50) + '...'
-
       let description = []
       let files = [];
       
@@ -107,7 +104,7 @@ Current time: ${new Date().toLocaleDateString('en-us', { weekday:"long", year:"n
         embeds:[createEmbed("defaultNoFooter", context, {
           author: {
             iconUrl: STATIC_ICONS.ai_clyde_idle,
-            name: inputDisplay
+            name: stringwrap(args.text, 50)
           },
           description: description.join('\n')
         })],

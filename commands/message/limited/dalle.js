@@ -5,7 +5,7 @@ const { canUseLimitedTestCommands } = require('../../../labscore/utils/testing')
 const { STATICS } = require('../../../labscore/utils/statics');
 
 const superagent = require('superagent')
-const { iconPill, smallIconPill } = require('../../../labscore/utils/markdown')
+const { iconPill, smallIconPill, stringwrap } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
 
@@ -41,10 +41,7 @@ module.exports = {
       // Fetch the image
       let img = await superagent.get(res.body.output)
 
-      let inputDisplay = args.text
-      if(inputDisplay.length >= 50) inputDisplay = inputDisplay.substr(0,50) + '...'
-
-      let description = [smallIconPill("generative_ai", inputDisplay), '']
+      let description = [smallIconPill("generative_ai", stringwrap(args.text, 50)), '']
       let files = [];
       
       if(!res.body.output) res.body.output = '[Empty Response]'
