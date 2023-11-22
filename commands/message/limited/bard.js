@@ -5,7 +5,7 @@ const { canUseLimitedTestCommands } = require('../../../labscore/utils/testing')
 const { STATIC_ICONS } = require('../../../labscore/utils/statics');
 
 const superagent = require('superagent')
-const { iconPill } = require('../../../labscore/utils/markdown')
+const { iconPill, stringwrap } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
 
@@ -67,7 +67,7 @@ module.exports = {
         files
       })
     }catch(e){
-      if(e.response.body?.message) return editOrReply(context, createEmbed("warning", context, e.response.body.message))
+      if(e.response?.body?.message) return editOrReply(context, createEmbed("warning", context, e.response.body.message))
       
       console.log(e)
       return editOrReply(context, createEmbed("error", context, `Unable to generate text.`))
