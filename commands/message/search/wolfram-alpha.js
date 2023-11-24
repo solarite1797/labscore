@@ -53,6 +53,13 @@ module.exports = {
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     context.triggerTyping();
+
+    if(context.message.messageReference) {
+      let msg = await context.message.channel.fetchMessage(context.message.messageReference.messageId);
+      if(msg.content && msg.content.length) args.query = msg.content
+      if(msg.embeds?.length) for(const e of msg.embeds) if(e[1].description?.length) { args.query += '\n' + e[1].description; break; } 
+    }
+
     if (!args.query) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (query).`))
     try {
       let search = await wolframAlpha(context, args.query)
