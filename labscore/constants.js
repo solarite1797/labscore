@@ -726,7 +726,7 @@ module.exports.EMOJIPEDIA_PLATFORM_TYPES = [
 ]
 
 module.exports.EMOJIPEDIA_PLATFORM_TYPE_ALIASES = {
-  "fluent": "microsoft-teams",
+  "fluent": "microsoft-3D-fluent",
   "twemoji": "twitter",
   "playstation": "sony",
   "ios": "apple",

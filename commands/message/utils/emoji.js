@@ -175,6 +175,11 @@ module.exports = {
           const emojiAsset = platformEmoji.images.filter((p)=>{
             return p.id == ctx.data.values[0]
           })
+          
+          // this sucks but works, ensures the newly selected option stays selected
+          for (let i = 0; i < components.components[0].components[0].options.length; i++) {
+            components.components[0].components[0].options[i].default = (components.components[0].components[0].options[i].value == ctx.data.values[0])
+          }
 
           currentView = createEmbed("default", context, {
             author: {
@@ -199,7 +204,7 @@ module.exports = {
         return {
           label: r.version,
           value: r.id,
-          default: (r.id == res.data.latest)
+          default: (r.id == res.data.platforms[args.type].images[0].id)
         }
       })
 
