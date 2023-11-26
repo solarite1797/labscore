@@ -308,6 +308,129 @@ module.exports.GUILD_FEATURES = Object.freeze({
   "TICKETING_ENABLED": { icon: GUILD_FEATURE_ICONS.TICKET }
 })
 
+module.exports.TIKTOK_VOICES_FRENCH = {
+  "fr_001": "French Male 1",
+  "fr_002": "French Male 2"
+}
+
+module.exports.TIKTOK_VOICES_GERMAN = {
+  "de_001": "German Female",
+  "de_002": "German Male"
+}
+
+module.exports.TIKTOK_VOICES_INDONESIAN = {
+  "id_male_darma": "Darma",
+  "id_female_icha": "Icha",
+  "id_female_noor": "Noor",
+  "id_male_putra": "Putra"
+}
+
+module.exports.TIKTOK_VOICES_ITALIAN = {
+  "it_male_m18": "Italian Male"
+}
+
+module.exports.TIKTOK_VOICES_JAPANESE = {
+  "jp_001": "Miho (美穂)",
+  "jp_003": "Keiko (恵子)",
+  "jp_005": "Sakura (さくら)",
+  "jp_006": "Naoki (直樹)",
+  "jp_male_osada": "モリスケ (Morisuke)",
+  "jp_male_matsuo": "モジャオ (Matsuo)",
+  "jp_female_machikoriiita": "まちこりーた (Machikoriiita)",
+  "jp_male_matsudake": " マツダ家の日常 (Matsudake)",
+  "jp_male_shuichiro": "修一朗 (Shuichiro)",
+  "jp_female_rei": "丸山礼 (Maruyama Rei)",
+  "jp_male_hikakin": "ヒカキン (Hikakin)",
+  "jp_female_yagishaki": "八木沙季 (Yagi Saki)",
+}
+
+module.exports.TIKTOK_VOICES_KOREAN = {
+  "kr_002": "Korean Male 1",
+  "kr_004": "Korean Male 2",
+  "kr_003": "Korean Female"
+}
+
+module.exports.TIKTOK_VOICES_PORTUGESE = {
+  "br_003": "Júlia",
+  "br_004": "Ana",
+  "br_005": "Lucas",
+  "pt_female_lhays": "Lhays Macedo",
+  "pt_female_laizza": "Laizza",
+}
+
+module.exports.TIKTOK_VOICES_SPANISH = {
+  "es_002": "Spanish Male",
+  "es_male_m3": "Julio",
+  "es_female_f6": "Alejandra",
+  "es_female_pb1": "Mariana",
+  "es_mx_002": "Álex (Warm)",
+  "es_mx_female_supermom": "Super Mamá",
+}
+
+module.exports.TIKTOK_VOICES_SONG = {
+  "en_male_m2_xhxs_m03_silly": "Song: Quirky Time",
+  "en_female_f08_twinkle": "Song: Pop Lullaby",
+  "en_male_m03_sunshine_soon": "Song: Toon Beat (Sunshine Soon)",
+  "en_male_sing_funny_thanksgiving": "Song: Thanksgiving",
+  "en_female_ht_f08_newyear": "Song: NYE 2023",
+  "en_female_ht_f08_wonderful_world": "Song: Melodrama (Wonderful World)",
+  "en_male_m03_lobby": "Song: Jingle (Lobby)",
+  "en_male_sing_funny_it_goes_up": "Song: Hypetrain (It Goes Up)",
+  "en_female_ht_f08_glorious": "Song: Euphoric (Glorious)",
+  "en_female_ht_f08_halloween": "Song: Opera (Halloween)",
+  "en_female_f08_warmy_breeze": "Song: Open Mic (Warmy Breeze)",
+  "en_male_m2_xhxs_m03_christmas": "Song: Cozy",
+  "en_female_f08_salut_damour": "Song: Cottagecore (Salut d'Amour)",
+  "en_male_m03_classical": "Song: Classic Electric",
+  "en_male_sing_deep_jingle": "Song: Caroler",
+}
+
+module.exports.TIKTOK_VOICES_POP_CULTURE = {
+  "en_female_madam_leota": "Madame Leota (Haunted Mansion)",
+  "en_us_rocket": "Rocket (Guardians of the Galaxy)",
+  "en_us_stitch": "Stitch (Lilo & Stitch)",
+  "en_us_stormtrooper": "Stormtrooper (Star Wars)",
+  "en_us_c3po": "C-3PO (Star Wars)",
+  "en_us_chewbacca": "Chewbacca (Star Wars)",
+  "en_us_ghostface": "Ghostface (Scream)",
+  "en_male_grinch": "Trickster (Grinch)",
+  "en_male_ghosthost": "Ghost Host",
+  "en_male_ukbutler": "Mr. Meticulous",
+  "en_male_deadpool": "Mr. GoodGuy (Deadpool)",
+//"en_male_petercullen": "Optimus Prime",
+}
+
+module.exports.TIKTOK_VOICES_CHARACTERS = {
+  "en_female_pansino": "Varsity",
+//"en_male_santa_effect": "Santa (w/ effect)",
+  "en_male_santa": "Santa",
+  "en_male_pirate": "Pirate",
+  "en_male_trevor": "Marty",
+  "en_male_wizard": "Magician",
+  "en_male_ukneighbor": "Lord Cringe",
+  "en_female_grandma": "Grandma",
+  "en_female_shenna": "Debutante",
+  "en_male_cupid": "Cupid",
+//"en_female_richgirl": "Bestie",
+  "en_female_makeup": "Beauty Guru",
+  "en_female_betty": "Bae",
+//"en_male_santa_narration": "Author",
+  "en_male_jarvis": "Alfred",
+  "en_male_funny": "Wacky",
+  "en_male_narration": "Story Teller",
+  "en_male_cody": "Serious",
+  "en_female_samc": "Empathetic",
+  "en_us_010": "Confidence",
+  "en_us_009": "Scientist",
+  "en_us_007": "Professor",
+  "en_us_006": "Joey",
+  "en_us_002": "Jessie",
+  "en_au_002": "Smooth (Alex)",
+  "en_au_001": "Metro (Eddie)",
+  "en_female_emotional": "Peaceful",
+  "en_uk_001": "Narrator (Chris)",
+}
+
 module.exports.TIKTOK_VOICES = [
   { name: "English Singing - Tenor", value: "en_male_m03_lobby" },
   { name: "English Singing - Alto", value: "en_female_f08_salut_damour" },
