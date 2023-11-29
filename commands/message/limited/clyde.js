@@ -10,26 +10,36 @@ const { iconPill, stringwrap } = require('../../../labscore/utils/markdown')
 const { Permissions } = require("detritus-client/lib/constants");
 const { getUser } = require('../../../labscore/utils/users');
 
-const quips = `Crunching the data, one byte at a time...
-Loading the knowledge banks, please wait...
-Assembling the perfect response, just for you...
-Spinning up the chatbot engines...
-Brewing up a fresh batch of answers...
-Analyzing the question, hold on tight...
-Processing your query, please stand by...
-Loading the neural network...
-Stirring the thoughts, almost there...
-Preparing a witty comeback, just a moment...
-Fueling the brain with information...
-Weaving together words, just for you...
-Unleashing the intelligence, stand by...
-Stirring the creativity, almost ready...
-Syncing with the vast knowledge base...
-Igniting the conversational skills...
-Compiling a response, just a few more seconds...
-Charging up the linguistic prowess...
-Loading the arsenal of clever comebacks...
-Infusing the responses with wit and charm...`.split('\n')
+const LOADING_QUIPS = [
+  "Crunching the data, one byte at a time...",
+  "Loading the knowledge banks, please wait...",
+  "Assembling the perfect response, just for you...",
+  "Spinning up the chatbot engines...",
+  "Brewing up a fresh batch of answers...",
+  "Analyzing the question, hold on tight...",
+  "Processing your query, please stand by...",
+  "Loading the neural network...",
+  "Stirring the thoughts, almost there...",
+  "Preparing a witty comeback, just a moment...",
+  "Fueling the brain with information...",
+  "Weaving together words, just for you...",
+  "Unleashing the intelligence, stand by...",
+  "Stirring the creativity, almost ready...",
+  "Syncing with the vast knowledge base...",
+  "Igniting the conversational skills...",
+  "Compiling a response, just a few more seconds...",
+  "Charging up the linguistic prowess...",
+  "Loading the arsenal of clever comebacks...",
+  "Infusing the responses with wit and charm..."
+]
+
+const ERROR_QUIPS = [
+  "Oops, I've run into a problem. But don't worry, my team is on it and I'll be back to full strength soon.",
+  "Woah there, I've hit a bump in the road. My creators have been notified and I'll be fixed shortly.",
+  "Oops, I seem to have hit a snag! My creators are on the case, and I'll be back to normal soon.",
+  "Sorry, something went wrong. My creators have been notified and I'll be fixed shortly.",
+  "Uh oh, I've encountered an issue. Rest assured, I have my best people working on the problem."
+]
 
 module.exports = {
   name: 'clyde',
@@ -71,7 +81,7 @@ You only have access to a limited number of text chats in this channel. You cann
 Current time: ${new Date().toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"long", day:"numeric"})}.`
 
     try{
-      let e = createEmbed("ai", context, quips[Math.floor(Math.random()*quips.length)])
+      let e = createEmbed("ai", context, LOADING_QUIPS[Math.floor(Math.random()*LOADING_QUIPS.length)])
       e.author.iconUrl = STATIC_ICONS.ai_clyde
 
       await editOrReply(context, e)
@@ -92,6 +102,8 @@ Current time: ${new Date().toLocaleDateString('en-us', { weekday:"long", year:"n
       
       if(!res.body.output) res.body.output = '[Empty Response]'
       
+      guh();
+
       if(res.body.output.length <= 4000) description.push(res.body.output)
       else {
         files.push({
@@ -112,6 +124,16 @@ Current time: ${new Date().toLocaleDateString('en-us', { weekday:"long", year:"n
       })
     }catch(e){
       console.log(e)
+
+      return editOrReply(context, {
+        embeds:[createEmbed("defaultNoFooter", context, {
+          author: {
+            iconUrl: STATIC_ICONS.ai_clyde_idle,
+            name: stringwrap(args.text, 50)
+          },
+          description: ERROR_QUIPS[Math.floor(Math.random()*ERROR_QUIPS.length)]
+        })]
+      })
       return editOrReply(context, createEmbed("error", context, `Unable to generate text.`))
     }
   }
