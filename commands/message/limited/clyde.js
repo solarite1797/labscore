@@ -100,9 +100,7 @@ Current time: ${new Date().toLocaleDateString('en-us', { weekday:"long", year:"n
       let description = []
       let files = [];
       
-      if(!res.body.output) res.body.output = '[Empty Response]'
-      
-      guh();
+      if(!res.body.output) throw "Unable to generate response"
 
       if(res.body.output.length <= 4000) description.push(res.body.output)
       else {
