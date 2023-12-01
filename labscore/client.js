@@ -43,7 +43,7 @@ if(process.env.PREFIX_OVERRIDE) commandPrefixes = process.env.PREFIX_OVERRIDE.sp
 
 const commandClient = new CommandClient(cluster, {
   activateOnEdits: true,
-  mentionsEnabled: false,
+  mentionsEnabled: true,
   prefix: commandPrefixes[0],
   prefixes: commandPrefixes,
   useClusterClient: true,
@@ -92,6 +92,8 @@ commandClient.on('commandDelete', async ({context, reply}) => {
 
   let hasPrefix = false;
   for(const p of commandPrefixes) if(context.message.content.startsWith(p)) hasPrefix = true;
+  if(context.message.content.startsWith(context.client.user.mention)) hasPrefix = true;
+  
   if(!reply.deleted && !hasPrefix) reply.delete();
 })
 
