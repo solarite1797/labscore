@@ -106,7 +106,7 @@ module.exports = {
         embeds:[createEmbed("defaultNoFooter", context, {
           author: {
             iconUrl: MODELS[model.toLowerCase()].icon,
-            name: stringwrap(args.text, 50)
+            name: stringwrap(args.text, 50, false)
           },
           description: description.join('\n'),
           footer: {

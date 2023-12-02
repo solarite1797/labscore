@@ -41,14 +41,14 @@ module.exports = {
 
     if(!content.length) return editOrReply(context, createEmbed("warning", context, "No text supplied."))
     
-    if(!isSupported(args.to)) return editOrReply(context, createEmbed("warning", context, `Invalid target language (${stringwrap(args.to, 10)}).`))
-    if(!isSupported(args.from)) return editOrReply(context, createEmbed("warning", context, `Invalid source language (${stringwrap(args.from, 10)}).`))
+    if(!isSupported(args.to)) return editOrReply(context, createEmbed("warning", context, `Invalid target language (${stringwrap(args.to, 10, false)}).`))
+    if(!isSupported(args.from)) return editOrReply(context, createEmbed("warning", context, `Invalid source language (${stringwrap(args.from, 10, false)}).`))
 
     let targetLanguage = getCodeFromAny(args.to)
     let sourceLanguage = getCodeFromAny(args.from)
     
-    if(!targetLanguage) return editOrReply(context, createEmbed("warning", context, `Invalid target language (${stringwrap(args.to, 10)}).`))
-    if(!sourceLanguage) return editOrReply(context, createEmbed("warning", context, `Invalid source language (${stringwrap(args.from, 10)}).`))
+    if(!targetLanguage) return editOrReply(context, createEmbed("warning", context, `Invalid target language (${stringwrap(args.to, 10, false)}).`))
+    if(!sourceLanguage) return editOrReply(context, createEmbed("warning", context, `Invalid source language (${stringwrap(args.from, 10, false)}).`))
 
     try{
       let translate = await googleTranslate(context, content, targetLanguage, sourceLanguage)

@@ -114,7 +114,7 @@ Current time: ${new Date().toLocaleDateString('en-us', { weekday:"long", year:"n
         embeds:[createEmbed("defaultNoFooter", context, {
           author: {
             iconUrl: STATIC_ICONS.ai_clyde_idle,
-            name: stringwrap(args.text, 50)
+            name: stringwrap(args.text, 50, false)
           },
           description: description.join('\n')
         })],
@@ -127,7 +127,7 @@ Current time: ${new Date().toLocaleDateString('en-us', { weekday:"long", year:"n
         embeds:[createEmbed("defaultNoFooter", context, {
           author: {
             iconUrl: STATIC_ICONS.ai_clyde_idle,
-            name: stringwrap(args.text, 50)
+            name: stringwrap(args.text, 50, false)
           },
           description: ERROR_QUIPS[Math.floor(Math.random()*ERROR_QUIPS.length)]
         })]

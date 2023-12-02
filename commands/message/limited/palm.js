@@ -83,7 +83,7 @@ module.exports = {
       return editOrReply(context, {
         embeds:[createEmbed("defaultNoFooter", context, {
           author: {
-            name: stringwrap(prompt, 50),
+            name: stringwrap(prompt, 50, false),
             iconUrl: STATIC_ICONS.ai_palm_idle
           },
           description: description.join('\n'),
