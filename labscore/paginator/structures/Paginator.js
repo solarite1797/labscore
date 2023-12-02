@@ -153,10 +153,11 @@ module.exports = class Paginator {
       if (!(l instanceof BasePaginator)) continue;
       if (!l.commandMessage) continue;
 
-      if (data.context.message & l.isCommandMessage(data.context.message.id)) {
+      if (data.context.message?.id && l.isCommandMessage(data.context.message?.id)) {
         listener = l
       }
     }
+
     if(listener) await listener.stop()
 
     const instance = new BasePaginator(this, data);
