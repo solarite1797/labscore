@@ -7,7 +7,7 @@ const { STATIC_ICONS } = require('../../../labscore/utils/statics');
 const superagent = require('superagent')
 const { iconPill, stringwrap } = require('../../../labscore/utils/markdown')
 
-const { Permissions } = require("detritus-client/lib/constants");
+const { Permissions, InteractionCallbackTypes } = require("detritus-client/lib/constants");
 const { Components } = require('detritus-client/lib/utils');
 
 module.exports = {
