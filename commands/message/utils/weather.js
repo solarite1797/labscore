@@ -27,7 +27,7 @@ module.exports = {
 
       data = data.response.body
 
-      let description = `### ${weatherIcon(data.result.current.condition.id.toLowerCase())} ​ ​  ​ ​ ${Math.floor(data.result.current.temperature.current)}°C   •   ${data.result.current.condition.label}\n\n${pill("Feels like")} ${smallPill(Math.floor(data.result.current.temperature.feels_like) + "°C")} ​ ​ ​ ​ ${pill("Wind")} ${smallPill(data.result.current.wind.speed + " km/h")}`
+      let description = `### ${weatherIcon(data.result.current.icon.id)} ​ ​  ​ ​ ${Math.floor(data.result.current.temperature.current)}°C   •   ${data.result.current.condition.label}\n\n${pill("Feels like")} ${smallPill(Math.floor(data.result.current.temperature.feels_like) + "°C")} ​ ​ ​ ​ ${pill("Wind")} ${smallPill(data.result.current.wind.speed + " km/h")}`
 
       let secondaryPills = [];
       if(data.result.current.humidity > 0) secondaryPills.push(`${pill("Humidity")} ${smallPill(Math.floor(data.result.current.humidity * 100) + "%")}`)
@@ -40,7 +40,7 @@ module.exports = {
       // Render Forecasts
       description += `\n`
       for(const i of data.result.forecast){
-        description += `\n${pill(i.day)} ​ ​ ${weatherIcon(i.condition.toLowerCase().replace(' ', '_'))}`
+        description += `\n${pill(i.day)} ​ ​ ${weatherIcon(i.icon)}`
         if(Math.floor(i.temperature.max).toString().length == 1) description += `${pill(Math.floor(i.temperature.max) + "°C ")}`
         else description += `${pill(Math.floor(i.temperature.max) + "°C")}`
         description += `​**/**​`
@@ -57,7 +57,7 @@ module.exports = {
       e.footer.iconUrl = STATICS.weather
       if(data.result.location) e.footer.text = data.result.location //+ " • " + context.client.user.username
 
-      if(data.result.current.icon) e.thumbnail = { url: data.result.current.icon }
+      if(data.result.current.icon) e.thumbnail = { url: data.result.current.icon.url }
       if(data.result.current.image) e.image = { url: data.result.current.image }
 
       return editOrReply(context, e)
