@@ -1,7 +1,7 @@
 const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
-const { codeblock, icon, pill, stringwrap } = require('../../../labscore/utils/markdown');
+const { codeblock, icon, pill, stringwrap, smallIconPill } = require('../../../labscore/utils/markdown');
 
 const { isSupported, getCodeFromAny } = require('../../../labscore/utils/translate');
 const { googleTranslate } = require('../../../labscore/api');

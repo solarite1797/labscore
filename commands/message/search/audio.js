@@ -8,6 +8,7 @@ const superagent = require('superagent')
 const urlr = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/g
 
 const { Permissions } = require("detritus-client/lib/constants");
+const { icon } = require('../../../labscore/utils/markdown');
 
 module.exports = {
   name: 'audio',

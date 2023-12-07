@@ -2,7 +2,7 @@ const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
 const { getRecentImage } = require("../../../labscore/utils/attachment");
-const { codeblock, icon } = require('../../../labscore/utils/markdown');
+const { codeblock, icon, smallIconPill } = require('../../../labscore/utils/markdown');
 
 const superagent = require('superagent');
 
@@ -14,7 +14,7 @@ module.exports = {
   label: 'text',
   aliases: ['scan'],
   metadata: {
-    description: 'Generates a QR code. If no input is provided acts as a QR code scanner.',
+    description: `${smallIconPill("reply", "Supports Replies")}\n\nGenerates a QR code. If no input is provided acts as a QR code scanner.`,
     description_short: 'QR Code scanner/generator.',
     examples: ['qr big nutty'],
     category: 'utils',

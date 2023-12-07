@@ -4,7 +4,7 @@ const { emojipedia, emojiKitchen } = require("../../../labscore/api");
 
 const { EMOJIPEDIA_PLATFORM_TYPES, EMOJIPEDIA_PLATFORM_TYPE_ALIASES } = require("../../../labscore/constants");
 const { createEmbed } = require("../../../labscore/utils/embed");
-const { icon, pill, iconPill, highlight, timestamp } = require("../../../labscore/utils/markdown");
+const { icon, pill, iconPill, highlight, timestamp, smallIconPill } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 const { Components, Snowflake } = require("detritus-client/lib/utils");

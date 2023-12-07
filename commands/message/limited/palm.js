@@ -5,7 +5,7 @@ const { canUseLimitedTestCommands, isLimitedTestUser } = require('../../../labsc
 const { STATIC_ICONS } = require('../../../labscore/utils/statics');
 
 const superagent = require('superagent')
-const { iconPill, stringwrap } = require('../../../labscore/utils/markdown')
+const { iconPill, stringwrap, smallIconPill } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
 

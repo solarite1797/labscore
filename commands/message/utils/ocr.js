@@ -1,7 +1,7 @@
 const { googleVisionOcr } = require("../../../labscore/api");
 const { getRecentImage } = require("../../../labscore/utils/attachment");
 const { createEmbed } = require("../../../labscore/utils/embed");
-const { codeblock } = require("../../../labscore/utils/markdown");
+const { codeblock, smallIconPill } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 

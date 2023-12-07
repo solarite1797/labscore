@@ -4,7 +4,7 @@ const { STATICS } = require('../../../labscore/utils/statics')
 
 const { paginator } = require('../../../labscore/client');
 const { wolframAlpha } = require('../../../labscore/api');
-const { citation } = require('../../../labscore/utils/markdown');
+const { citation, smallIconPill } = require('../../../labscore/utils/markdown');
 
 const { Permissions } = require("detritus-client/lib/constants");
 
