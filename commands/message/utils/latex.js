@@ -3,6 +3,7 @@ const { createEmbed, page, formatPaginationEmbeds } = require("../../../labscore
 const { codeblock, pill, smallIconPill } = require("../../../labscore/utils/markdown");
 
 const { Permissions } = require("detritus-client/lib/constants");
+const { editOrReply } = require("../../../labscore/utils/message");
 
 const TEX_REGEX = /(\$.*?\$)/g
 const TEX_URL = `https://latex.codecogs.com/png.image?\\inline&space;\\huge&space;\\dpi{200}&space;\\color{white}`
@@ -29,6 +30,8 @@ module.exports = {
     }
 
     let texBlocks = content.match(TEX_REGEX);
+
+    if(!texBlocks) return editOrReply(context, createEmbed("warning", context, "No expressions found."))
 
     let pages = [];
     for(const t of texBlocks){
