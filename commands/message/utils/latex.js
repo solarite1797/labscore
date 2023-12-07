@@ -8,6 +8,10 @@ const { editOrReply } = require("../../../labscore/utils/message");
 const TEX_REGEX = /(\$.*?\$)/g
 const TEX_URL = `https://latex.codecogs.com/png.image?\\inline&space;\\huge&space;\\dpi{200}&space;\\color{white}`
 
+const superagent = require('superagent');
+const { STATIC_ICONS } = require("../../../labscore/utils/statics");
+const { COLORS } = require("../../../labscore/constants");
+
 module.exports = {
   name: 'latex',
   aliases: ['tex'],
@@ -27,6 +31,8 @@ module.exports = {
       let msg = await context.message.channel.fetchMessage(context.message.messageReference.messageId)
       if(msg.content && msg.content.length) content = msg.content
       if(msg.embeds?.length) for(const e of msg.embeds) if(e[1].description?.length) { content += '\n' + e[1].description; break; } 
+    } else {
+      if(!content.includes("$")) content = `$${content}$`
     }
 
     let texBlocks = content.match(TEX_REGEX);
@@ -37,12 +43,26 @@ module.exports = {
     for(const t of texBlocks){
       let description;
       if(args.content.includes('-i')) description = codeblock("tex", [t])
-      pages.push(page(createEmbed("default", context, {
-        description,
-        image: {
-          url: TEX_URL + encodeURIComponent(t.substr(1,t.length - 2))
-        }
-      })))
+      try{
+        await superagent.get(TEX_URL + encodeURIComponent(t.substr(1,t.length - 2)))
+        pages.push(page(createEmbed("default", context, {
+          description,
+          image: {
+            url: TEX_URL + encodeURIComponent(t.substr(1,t.length - 2))
+          }
+        })))
+      }catch(e){
+        console.log(e)
+        pages.push(page(createEmbed("default", context, {
+          description: codeblock("tex", [t]),
+          author: {
+            iconUrl: STATIC_ICONS.warning,
+            name: "Unable to render expression."
+          },
+          color: COLORS.warning
+        })))
+      }
+      
     }
 
     return await paginator.createPaginator({
