@@ -32,7 +32,7 @@ module.exports = {
       if(msg.content && msg.content.length) content = msg.content
       if(msg.embeds?.length) for(const e of msg.embeds) if(e[1].description?.length) { content += '\n' + e[1].description; break; } 
     } else {
-      if(!content.includes("$")) content = `$${content}$`
+      if(content.length && !content.includes("$")) content = `$${content}$`
     }
 
     let texBlocks = content.match(TEX_REGEX);
