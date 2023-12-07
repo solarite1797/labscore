@@ -15,7 +15,7 @@ module.exports = {
   label: 'text',
   aliases: ['tr'],
   metadata: {
-    description: 'Translates text. Supports automatic source language detection.',
+    description: `${smallIconPill("reply", "Supports Replies")}\n\nTranslates text. Supports automatic source language detection.`,
     description_short: 'Translate text.',
     examples: ['tr groß nussig -from de -to en'],
     category: 'utils',

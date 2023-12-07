@@ -10,7 +10,7 @@ const { Permissions } = require("detritus-client/lib/constants");
 module.exports = {
   name: 'ocr',
   metadata: {
-    description: 'Uses Optical Character Recognition to detect text in images.',
+    description: `${smallIconPill("reply", "Supports Replies")}\n\nUses Optical Character Recognition to detect text in images.`,
     description_short: 'Image text recognition.',
     category: 'utils',
     usage: 'ocr <attachment>'

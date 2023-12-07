@@ -13,7 +13,7 @@ module.exports = {
   label: 'to',
   aliases: ["octr"],
   metadata: {
-    description: 'Uses Optical Character Recognition to translate text in an image.',
+    description: `${smallIconPill("reply", "Supports Replies")}\n\nUses Optical Character Recognition to translate text in an image.`,
     description_short: 'Image text recognition + translation.',
     examples: ['ocrtr en -from pl'],
     category: 'utils',

@@ -14,7 +14,7 @@ module.exports = {
   label: 'text',
   aliases: ['palm2'],
   metadata: {
-    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nTalk to <:palm2:1163200685177839666> PaLM 2.`,
+    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n${smallIconPill("reply", "Supports Replies")}\n\nTalk to <:palm2:1163200685177839666> PaLM 2.`,
     description_short: 'Chat with PaLM 2.',
     examples: ['palm How many otter species are there?'],
     category: 'limited',

@@ -32,7 +32,7 @@ module.exports = {
   label: 'text',
   aliases: ['openai','gpt','chatgpt'],
   metadata: {
-    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nTalk to ChatGPT.`,
+    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n${smallIconPill("reply", "Supports Replies")}\n\nTalk to ChatGPT.`,
     description_short: 'Talk to ChatGPT.',
     examples: ['chat How many otter species are there?'],
     category: 'limited',

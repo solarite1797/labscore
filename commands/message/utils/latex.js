@@ -1,7 +1,6 @@
 const { paginator } = require("../../../labscore/client");
 const { createEmbed, page, formatPaginationEmbeds } = require("../../../labscore/utils/embed");
-const { codeblock } = require("../../../labscore/utils/markdown");
-const { editOrReply } = require("../../../labscore/utils/message");
+const { codeblock, pill, smallIconPill } = require("../../../labscore/utils/markdown");
 
 const { Permissions } = require("detritus-client/lib/constants");
 
@@ -13,10 +12,10 @@ module.exports = {
   aliases: ['tex'],
   label: 'content',
   metadata: {
-    description: 'Renders LaTeX expressions.\nReply to a message to render TeX from it.',
+    description: `${smallIconPill("reply", "Supports Replies")}\n\nRenders LaTeX expressions.\n\nAdding ${pill('-i')} will include the detected expression.`,
     description_short: 'LaTeX preview.',
     category: 'utils',
-    usage: 'latex <expression>'
+    usage: 'latex <expression> [-i]'
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.READ_MESSAGE_HISTORY, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {

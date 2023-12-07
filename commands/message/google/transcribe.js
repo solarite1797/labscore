@@ -4,7 +4,7 @@ const { editOrReply } = require('../../../labscore/utils/message')
 const { googleSpeechRecognition } = require('../../../labscore/api');
 
 const { STATICS } = require('../../../labscore/utils/statics');
-const { codeblock } = require('../../../labscore/utils/markdown');
+const { codeblock, icon } = require('../../../labscore/utils/markdown');
 
 const { Permissions } = require("detritus-client/lib/constants");
 
@@ -12,7 +12,7 @@ module.exports = {
   name: 'transcribe',
   aliases: ['tcr'],
   metadata: {
-    description: '__Replying__ to a voice message when using this command will transcribe the contents of the voice message.',
+    description: `${icon("reply")} __Replying__ to a voice message when using this command will transcribe the contents of the voice message.`,
     description_short: 'Discord voice message transcription',
     category: 'utils',
     usage: 'transcribe'

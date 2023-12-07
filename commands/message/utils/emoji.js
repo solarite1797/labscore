@@ -37,7 +37,7 @@ module.exports = {
   name: "emoji",
   aliases: ['e', 'emote', 'enlarge', 'em', 'emojimix'],
   metadata: {
-    description: 'Displays information about emoji. Supports regular emoji, discord emoji and stickers.\nAlso supports replies.\n\nUsing two emoji will mix them together.',
+    description: `${smallIconPill("reply", "Supports Replies")}\n\nDisplays information about emoji. Supports regular emoji, discord emoji and stickers.\nAlso supports replies.\n\nUsing two emoji will mix them together.`,
     description_short: 'Get emoji/sticker source images, mix two emoji together.',
     examples: ['e 😀', 'emojimix 🐱 🍞'],
     category: 'utils',
