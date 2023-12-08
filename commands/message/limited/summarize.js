@@ -44,7 +44,8 @@ module.exports = {
       return editOrReply(context, createEmbed("defaultNoFooter", context, {
         author: {
           iconUrl: STATIC_ICONS.ai_summary,
-          name: res.response.body.title || '​'
+          name: res.response.body.title || '​',
+          url: webUrl
         },
         description: '- ' + res.response.body.summaries.join('\n- '),
         footer: {
