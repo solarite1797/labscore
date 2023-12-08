@@ -23,7 +23,7 @@ module.exports = {
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => { 
     context.triggerTyping();
-    if(!args.invite) return editOrReply(context, { content: context.application.oauth2UrlFormat({ scope: 'bot applications.commands', permissions: 412317248576 }), embed:createEmbed("default", context, {
+    if(!args.invite) return editOrReply(context, createEmbed("default", context, {
       description: [
         '​',
         icon('brand') + ` You can invite ${context.client.user.username} with this ${iconLinkPill("link", context.application.oauth2UrlFormat({ scope: 'bot applications.commands', permissions: 412317248576 }), 'Invite Link', 'Discord Application Invite URL')}.`,
@@ -35,7 +35,7 @@ module.exports = {
       image: {
         url: STATIC_ASSETS.embed_invite_spacer
       }
-    })})
+    }))
     try{
       const inviteCode = args.invite.match(/(?:(?:https|http):\/\/)?(?:(?:discord.gg|(?:discord|discordapp)\.com\/invite)\/)?([A-z0-z-]{2,32})/)
       const invite = await context.client.rest.fetchInvite(inviteCode[1], {withCounts: true})
