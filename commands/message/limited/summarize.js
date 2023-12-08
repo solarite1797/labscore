@@ -13,11 +13,12 @@ const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9(
 
 module.exports = {
   name: 'summarize',
+  aliases: ['summary','tldr'],
   label: 'text',
   metadata: {
     description: `${iconPill("generative_ai", "LIMITED TESTING")}\n${smallIconPill("reply", "Supports Replies")}\n\nSummarize web pages and articles.`,
     description_short: 'Website summaries.',
-    examples: ['summarize'],
+    examples: ['tldr https://www.theverge.com/2023/11/17/23965185/discord-is-shutting-down-its-ai-chatbot-clyde'],
     category: 'limited',
     usage: 'summarize'
   },
