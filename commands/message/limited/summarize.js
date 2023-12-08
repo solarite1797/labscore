@@ -45,7 +45,7 @@ module.exports = {
         author: {
           iconUrl: STATIC_ICONS.ai_summary,
           name: res.response.body.title || '​',
-          url: webUrl
+          url: webUrl[0]
         },
         description: '- ' + res.response.body.summaries.join('\n- '),
         footer: {
