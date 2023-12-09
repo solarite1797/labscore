@@ -110,7 +110,7 @@ module.exports = {
           },
           description: description.join('\n'),
           footer: {
-            text: `${MODELS[model.toLowerCase()].name} • This information may be inaccurate or biased`
+            text: `${MODELS[model.toLowerCase()].name} • Generative AI is experimental. Response may be factually incorrect or biased.`
           }
         })],
         files

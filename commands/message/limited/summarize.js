@@ -1,15 +1,14 @@
 const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
-const superagent = require('superagent')
-const { codeblock, iconPill, smallIconPill } = require('../../../labscore/utils/markdown')
+const { iconPill, smallIconPill } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
 const { canUseLimitedTestCommands } = require('../../../labscore/utils/testing')
-const { STATICS, STATIC_ICONS } = require('../../../labscore/utils/statics');
+const { STATIC_ICONS } = require('../../../labscore/utils/statics');
 const { summarizeWebpage } = require('../../../labscore/api/obelisk');
 
-const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([^> ]*)/
 
 module.exports = {
   name: 'summarize',
@@ -45,7 +44,7 @@ module.exports = {
       return editOrReply(context, createEmbed("defaultNoFooter", context, {
         author: {
           iconUrl: STATIC_ICONS.ai_summary,
-          name: res.response.body.title || '​',
+          name: res.response.body.title || 'Key points from the page',
           url: webUrl[0]
         },
         description: '- ' + res.response.body.summaries.join('\n- '),

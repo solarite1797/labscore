@@ -39,7 +39,7 @@ module.exports = {
       return editOrReply(context, createEmbed("default", context, {
         description: smallIconPill("generative_ai", args.text) + '\n' + codeblock("ansi", [res.body.output.substr(0, 2020 - args.text.length)]),
         footer: {
-          text: `🗣🗣📢🔥🔥🔥🔥💯 • ${context.application.name}`,
+          text: `Generative AI is experimental. • ${context.application.name}`,
           iconUrl: STATICS.openai
         }
       }))

@@ -65,7 +65,7 @@ module.exports = {
           },
           description: description.join('\n'),
           footer: {
-            text: `Bard • This information may be inaccurate or biased`
+            text: `Bard • Generative AI is experimental. Response may be factually incorrect or biased.`
           }
         })],
         files
@@ -105,7 +105,7 @@ module.exports = {
                 },
                 description: description.join('\n'),
                 footer: {
-                  text: `Bard • This information may be inaccurate or biased`
+                  text: `Bard • Generative AI is experimental. Response may be factually incorrect or biased.`
                 }
               })
       
@@ -146,7 +146,7 @@ module.exports = {
           },
           description: description.join('\n'),
           footer: {
-            text: `Bard • This information may be inaccurate or biased`
+            text: `Bard • Generative AI is experimental. Response may be factually incorrect or biased.`
           }
         })
 
