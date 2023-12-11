@@ -40,6 +40,7 @@ module.exports = {
       await editOrReply(context, createEmbed("ai_custom", "Generating page summary...", STATIC_ICONS.ai_summary))
       
       let res = await summarizeWebpage(context, webUrl[0])
+      if(!res.response.body.summaries) return editOrReply(context, createEmbed("error", context, "Summary generation failed."))
 
       return editOrReply(context, createEmbed("defaultNoFooter", context, {
         author: {
