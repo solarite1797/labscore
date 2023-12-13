@@ -15,8 +15,8 @@ module.exports = {
   label: 'text',
   aliases: ['gv'],
   metadata: {
-    description: 'Gemini Vision.',
-    description_short: 'Pride overlay',
+    description: 'Run Gemini Vision on an Image with a custom prompt.',
+    description_short: 'Run Gemini Vision ',
     examples: ['gv Which show is this image from?'],
     category: 'limited',
     usage: 'gemini-vision <attachment> <prompt>'
@@ -27,7 +27,8 @@ module.exports = {
     if(!canUseLimitedTestCommands(context)) return;
     context.triggerTyping();
 
-    let image = await getRecentImage(context, 2)
+    // for the sake of privacy, make the context window one message
+    let image = await getRecentImage(context, 1)
     if (!image) return editOrReply(context, createEmbed("warning", context, "No images found. Reply if you want a specific image."))
 
     if(!args.text) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (text).`))
