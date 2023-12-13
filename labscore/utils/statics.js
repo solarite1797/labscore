@@ -161,8 +161,8 @@ const Statics = Object.freeze({
       revision: 0
     },
     ai_summary: {
-      file: "icons/core/ico_notice_summary.png",
-      revision: 0
+      file: "icons/flamingo/web_summary.png",
+      revision: 1
     },
     warning: {
       file: "icons/core/ico_notice_warning.png",
