@@ -40,6 +40,14 @@ async function request(path, type, headers, args, host) {
   throw new Error("unsupported, must either use GET or POST");
 }
 
+// GENERATIVEAI
+module.exports.bard = async function(context, input){
+  return await request(ObeliskApi.GOOGLE_BARD, "POST", {}, {
+    input
+  })
+}
+
+// FLAMINGO
 module.exports.summarizeWebpage = async function(context, url){
   return await request(ObeliskApi.SUMMARIZE_WEBPAGES, "POST", {}, {
     url

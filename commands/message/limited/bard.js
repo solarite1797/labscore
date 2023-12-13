@@ -9,6 +9,7 @@ const { iconPill, stringwrap } = require('../../../labscore/utils/markdown')
 
 const { Permissions, InteractionCallbackTypes } = require("detritus-client/lib/constants");
 const { Components } = require('detritus-client/lib/utils');
+const { bard } = require('../../../labscore/api/obelisk');
 
 module.exports = {
   name: 'bard',
@@ -33,27 +34,19 @@ module.exports = {
     try{
       await editOrReply(context, createEmbed("ai_custom", context, STATIC_ICONS.ai_bard))
 
-      let res = await superagent.post(`${process.env.AI_SERVER}/google/bard`)
-        .set({
-          Authorization: process.env.AI_SERVER_KEY
-        })
-        .query({
-          with_drafts: true
-        })
-        .send({
-          input
-        })
+      let res = await bard(context, input)
+      res = res.response
 
       let description = []
       let files = [];
       
-      if(!res.body.output) return editOrReply(context, createEmbed("error", context, `Bard returned an error. Try again later.`)) 
+      if(!res.body.drafts) return editOrReply(context, createEmbed("error", context, `Bard returned an error. Try again later.`)) 
 
-      if(res.body.output.length <= 4000) description.push(res.body.output)
+      if(res.body.drafts[0].length <= 4000) description.push(res.body.drafts[0])
       else {
         files.push({
           filename: `chat.${Date.now().toString(36)}.txt`,
-          value: Buffer.from(res.body.output)
+          value: Buffer.from(res.body.drafts[0])
         })
       }
 

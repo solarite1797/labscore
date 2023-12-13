@@ -6,6 +6,8 @@ const ObeliskHosts = Object.freeze({
 const ObeliskApi = Object.freeze({
   HOST: ObeliskHosts.prod,
 
+  GOOGLE_BARD: "/parrot/v1/google:bard",
+
   SUMMARIZE_WEBPAGES: "/flamingo/v1/web:summarize"
 })
 
