@@ -54,6 +54,7 @@ const Api = Object.freeze({
   UTILS_GARFIELD: '/utils/garfield',
   UTILS_INFERKIT: '/utils/inferkit',
   UTILS_MAPKIT: '/utils/mapkit',
+  UTILS_OTTER: '/utils/otter',
   UTILS_PERSPECTIVE: '/utils/perspective',
   UTILS_SCREENSHOT: '/utils/screenshot',
   UTILS_TEXTGENERATOR: '/utils/text-generator',

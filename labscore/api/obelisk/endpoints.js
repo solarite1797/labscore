@@ -7,6 +7,7 @@ const ObeliskApi = Object.freeze({
   HOST: ObeliskHosts.prod,
 
   GOOGLE_BARD: "/parrot/v1/google:bard",
+  GEMINI_PRO_VISION: "/parrot/v1/google:geminivision",
 
   SUMMARIZE_WEBPAGES: "/flamingo/v1/web:summarize"
 })

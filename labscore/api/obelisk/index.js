@@ -47,6 +47,13 @@ module.exports.bard = async function(context, input){
   })
 }
 
+module.exports.geminiVision = async function(context, input, url){
+  return await request(ObeliskApi.GOOGLE_BARD, "POST", {}, {
+    input,
+    url
+  })
+}
+
 // FLAMINGO
 module.exports.summarizeWebpage = async function(context, url){
   return await request(ObeliskApi.SUMMARIZE_WEBPAGES, "POST", {}, {

@@ -4,6 +4,7 @@ const { editOrReply } = require('../../../labscore/utils/message')
 const superagent = require('superagent');
 
 const { Permissions } = require("detritus-client/lib/constants");
+const { otter } = require('../../../labscore/api');
 
 module.exports = {
   name: 'otter',
@@ -17,16 +18,15 @@ module.exports = {
   run: async (context) => {
     await context.triggerTyping();
     try{
-      let res = await superagent.get(`https://otter.bruhmomentlol.repl.co/random`)
-        .set("User-Agent","labscore/2.0")
+      const ott = (await otter()).response.body
     
-      return await editOrReply(context, {
-        embeds: [ createEmbed("image", context, {
-          url: `otter.${res.headers["x-file-ext"]}`
-        })],
-        files: [{ filename: `otter.${res.headers["x-file-ext"]}`, value: res.body }]
-      })
+      return editOrReply(context, createEmbed("default", context, {
+        image: {
+          url: ott.url
+        }
+      }))
     }catch(e){
+      console.log(e)
       return editOrReply(context, createEmbed("error", context, `Unable to fetch otter.`))
     }
   }
