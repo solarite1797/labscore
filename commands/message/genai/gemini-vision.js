@@ -66,7 +66,7 @@ module.exports = {
           },
           description: description.join('\n'),
           footer: {
-            text: `Gemini Pro • Generative AI is experimental. Response may be factually incorrect or biased.`
+            text: `Generative AI is experimental • Data submitted to Gemini may be used by Google for training.`
           }
         })],
         files
