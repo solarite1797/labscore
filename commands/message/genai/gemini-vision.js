@@ -27,8 +27,8 @@ module.exports = {
     if(!canUseLimitedTestCommands(context)) return;
     context.triggerTyping();
 
-    let image = await getRecentImage(context, 50)
-    if (!image) return editOrReply(context, createEmbed("warning", context, "No images found."))
+    let image = await getRecentImage(context, 2)
+    if (!image) return editOrReply(context, createEmbed("warning", context, "No images found. Reply if you want a specific image."))
 
     if(!args.text) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (text).`))
 
