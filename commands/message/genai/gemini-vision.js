@@ -44,8 +44,6 @@ module.exports = {
       
       if(res.response.body.message) return editOrReply(context, createEmbed("error", context, e.response.body.message))
 
-      console.log(res.response.body)
-
       let output = res.response.body.gemini?.candidates[0]?.content?.parts[0]?.text
       if(!output) return editOrReply(context, createEmbed("error", context, `PaLM 2 returned an error. Try again later.`)) 
 
@@ -63,6 +61,9 @@ module.exports = {
           author: {
             name: stringwrap(input, 50, false),
             iconUrl: STATIC_ICONS.ai_gemini
+          },
+          thumbnail: {
+            url: image
           },
           description: description.join('\n'),
           footer: {
