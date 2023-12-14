@@ -8,6 +8,7 @@ const superagent = require('superagent')
 const { iconPill, stringwrap, smallIconPill } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
+const { chatgpt } = require('../../../labscore/api/obelisk');
 
 const MODELS = {
   "chatgpt": {
@@ -78,27 +79,23 @@ module.exports = {
     try{
       await editOrReply(context, createEmbed("ai", context, "Generating response..."))
 
-      let res = await superagent.post(`${process.env.AI_SERVER}/openai`)
-        .set({
-          Authorization: process.env.AI_SERVER_KEY
-        })
-        .send({
-          prompt,
-          input: [input],
-          temperature,
-          model: MODELS[model.toLowerCase()].id
-        })
+      let res;
+      if(model.toLowerCase() == "chatgpt"){
+        res = await chatgpt(context, prompt, input)
+      } else if (model.toLowerCase() == "gpt4"){
+        res = await chatgpt(context, prompt, input)
+      }
 
       let description = []
       let files = [];
       
-      if(!res.body.output) throw "Unable to generate response"
+      if(!res.response.body.output) throw "Unable to generate response"
       
-      if(res.body.output.length <= 4000) description.push(res.body.output)
+      if(res.response.body.output.length <= 4000) description.push(res.response.body.output)
       else {
         files.push({
           filename: `chat.${Date.now().toString(36)}.txt`,
-          value: Buffer.from(res.body.output)
+          value: Buffer.from(res.response.body.output)
         })
       }
 

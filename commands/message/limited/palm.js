@@ -8,6 +8,7 @@ const superagent = require('superagent')
 const { iconPill, stringwrap, smallIconPill } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
+const { palm2 } = require('../../../labscore/api/obelisk');
 
 module.exports = {
   name: 'palm',
@@ -56,17 +57,9 @@ module.exports = {
     try{
       await editOrReply(context, createEmbed("ai_custom", context, STATIC_ICONS.ai_palm_idle))
 
-      let res = await superagent.post(`${process.env.AI_SERVER}/google/palm2/chat`)
-        .set({
-          Authorization: process.env.AI_SERVER_KEY
-        })
-        .send({
-          prompt,
-          input: [input],
-          temperature,
-          model
-        })
-
+      let res = await palm2(context, prompt, input)
+      res = res.response;
+      
       let description = []
       let files = [];
       

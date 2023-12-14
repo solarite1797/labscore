@@ -9,6 +9,7 @@ const { iconPill, stringwrap } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
 const { getUser } = require('../../../labscore/utils/users');
+const { chatgpt } = require('../../../labscore/api/obelisk');
 
 const LOADING_QUIPS = [
   "Crunching the data, one byte at a time...",
@@ -86,16 +87,8 @@ Current time: ${new Date().toLocaleDateString('en-us', { weekday:"long", year:"n
 
       await editOrReply(context, e)
 
-      let res = await superagent.post(`${process.env.AI_SERVER}/openai`)
-        .set({
-          Authorization: process.env.AI_SERVER_KEY
-        })
-        .send({
-          prompt,
-          input: [input],
-          temperature: "0.75",
-          model: "CHATGPT"
-        })
+      let res = await chatgpt(context, prompt, input);
+      res = res.response;
 
       let description = []
       let files = [];
