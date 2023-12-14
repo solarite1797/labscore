@@ -1,35 +1,28 @@
-const { geminiVision } = require("../../../labscore/api/obelisk");
-const { getRecentImage } = require("../../../labscore/utils/attachment");
+const { gemini } = require("../../../labscore/api/obelisk");
 const { createEmbed } = require("../../../labscore/utils/embed");
 const { editOrReply } = require("../../../labscore/utils/message");
-const { getUser } = require("../../../labscore/utils/users");
 
 const { Permissions } = require("detritus-client/lib/constants");
 
-const superagent = require('superagent');
 const { STATIC_ICONS } = require("../../../labscore/utils/statics");
 const { stringwrap } = require("../../../labscore/utils/markdown");
 const { canUseLimitedTestCommands } = require("../../../labscore/utils/testing");
 module.exports = {
-  name: 'gemini-vision',
+  name: 'gemini',
   label: 'text',
-  aliases: ['gv'],
+  aliases: ['gem'],
   metadata: {
-    description: 'Run Gemini Vision on an Image with a custom prompt.',
-    description_short: 'Run Gemini Vision ',
-    examples: ['gv Which show is this image from?'],
+    description: 'Run Gemini Pro with a custom prompt.',
+    description_short: 'Gemini',
+    examples: ['gem why do they call it oven when you of in the cold food of out hot eat the food'],
     category: 'limited',
-    usage: 'gemini-vision <attachment> <prompt>'
+    usage: 'gemini <prompt>'
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     context.triggerTyping();
     if(!canUseLimitedTestCommands(context)) return;
     context.triggerTyping();
-
-    // for the sake of privacy, make the context window one message
-    let image = await getRecentImage(context, 1)
-    if (!image) return editOrReply(context, createEmbed("warning", context, "No images found. Reply if you want a specific image."))
 
     if(!args.text) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (text).`))
 
@@ -38,7 +31,7 @@ module.exports = {
     try{
       await editOrReply(context, createEmbed("ai_custom", context, STATIC_ICONS.ai_gemini))
 
-      let res = await geminiVision(context, input, image)
+      let res = await gemini(context, input)
 
       let description = []
       let files = [];
@@ -47,7 +40,6 @@ module.exports = {
 
       let output = res.response.body.gemini?.candidates[0]?.content?.parts[0]?.text
       if(!output) return editOrReply(context, createEmbed("error", context, `Gemini returned an error. Try again later.`)) 
-
 
       if(output.length <= 4000) description.push(output)
       else {
@@ -62,9 +54,6 @@ module.exports = {
           author: {
             name: stringwrap(input, 50, false),
             iconUrl: STATIC_ICONS.ai_gemini
-          },
-          thumbnail: {
-            url: image
           },
           description: description.join('\n'),
           footer: {

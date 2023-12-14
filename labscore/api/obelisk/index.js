@@ -47,6 +47,12 @@ module.exports.bard = async function(context, input){
   })
 }
 
+module.exports.gemini = async function(context, prompt){
+  return await request(ObeliskApi.GEMINI_PRO, "POST", {}, {
+    prompt
+  })
+}
+
 module.exports.geminiVision = async function(context, input, url){
   return await request(ObeliskApi.GEMINI_PRO_VISION, "POST", {}, {
     input,
