@@ -30,7 +30,7 @@ module.exports.timestamp = function(time, flag = "t"){
 }
 
 module.exports.stringwrap = function(content = "", length, newlines = true){
-  if(!newlines) content = content.replace(/\n/, '')
+  if(!newlines) content = content.replace(/\n/, ' ')
   if(content.length > length) return content.substr(0, length) + '...';
   return content;
 }
