@@ -53,7 +53,7 @@ module.exports = {
       if(!res.body.drafts || res.body.drafts?.length <= 1) return editOrReply(context, {
         embeds:[createEmbed("defaultNoFooter", context, {
           author: {
-            name: stringwrap(args.text, 50),
+            name: stringwrap(args.text, 50, false),
             iconUrl: STATIC_ICONS.ai_bard_idle
           },
           description: description.join('\n'),
