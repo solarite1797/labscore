@@ -5,14 +5,14 @@ const { editOrReply } = require("../../../labscore/utils/message");
 const { Permissions } = require("detritus-client/lib/constants");
 
 const { STATIC_ICONS } = require("../../../labscore/utils/statics");
-const { stringwrap } = require("../../../labscore/utils/markdown");
+const { stringwrap, iconPill, smallIconPill } = require("../../../labscore/utils/markdown");
 const { canUseLimitedTestCommands } = require("../../../labscore/utils/testing");
 module.exports = {
   name: 'gemini',
   label: 'text',
   aliases: ['gem'],
   metadata: {
-    description: 'Run Gemini Pro with a custom prompt.',
+    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n${smallIconPill("reply", "Supports Replies")}\n\nRun Gemini Pro with a custom prompt.`,
     description_short: 'Gemini',
     examples: ['gem why do they call it oven when you of in the cold food of out hot eat the food'],
     category: 'limited',

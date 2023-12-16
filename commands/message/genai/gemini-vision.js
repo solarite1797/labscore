@@ -8,14 +8,14 @@ const { Permissions } = require("detritus-client/lib/constants");
 
 const superagent = require('superagent');
 const { STATIC_ICONS } = require("../../../labscore/utils/statics");
-const { stringwrap } = require("../../../labscore/utils/markdown");
+const { stringwrap, iconPill, smallIconPill } = require("../../../labscore/utils/markdown");
 const { canUseLimitedTestCommands } = require("../../../labscore/utils/testing");
 module.exports = {
   name: 'gemini-vision',
   label: 'text',
   aliases: ['gv'],
   metadata: {
-    description: 'Run Gemini Vision on an Image with a custom prompt.',
+    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n${smallIconPill("reply", "Supports Replies")}\n\nRun Gemini Vision on an Image with a custom prompt.`,
     description_short: 'Run Gemini Vision ',
     examples: ['gv Which show is this image from?'],
     category: 'limited',
