@@ -40,6 +40,48 @@ async function request(path, type, headers, args, host) {
   throw new Error("unsupported, must either use GET or POST");
 }
 
+// GENERATIVEAI
+module.exports.bard = async function(context, input){
+  return await request(ObeliskApi.GOOGLE_BARD, "POST", {}, {
+    input
+  })
+}
+
+module.exports.gemini = async function(context, prompt){
+  return await request(ObeliskApi.GOOGLE_GEMINI_PRO, "POST", {}, {
+    prompt
+  })
+}
+
+module.exports.geminiVision = async function(context, input, url){
+  return await request(ObeliskApi.GOOGLE_GEMINI_PRO_VISION, "POST", {}, {
+    input,
+    url
+  })
+}
+
+module.exports.palm2 = async function(context, prompt, input){
+  return await request(ObeliskApi.GOOGLE_PALM2, "POST", {}, {
+    prompt,
+    input
+  })
+}
+
+module.exports.chatgpt = async function(context, prompt, input){
+  return await request(ObeliskApi.OPENAI_CHATGPT, "POST", {}, {
+    prompt,
+    input
+  })
+}
+
+module.exports.gpt4 = async function(context, prompt, input){
+  return await request(ObeliskApi.OPENAI_GPT4, "POST", {}, {
+    prompt,
+    input
+  })
+}
+
+// FLAMINGO
 module.exports.summarizeWebpage = async function(context, url){
   return await request(ObeliskApi.SUMMARIZE_WEBPAGES, "POST", {}, {
     url

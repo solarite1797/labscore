@@ -304,7 +304,7 @@ module.exports.emojipedia = async function(context, emoji){
   })
 }
 
-module.exports.garfield = async function(context, emoji){
+module.exports.garfield = async function(context,){
   return await request(Api.UTILS_GARFIELD, "GET", {}, {})
 }
 
@@ -312,6 +312,10 @@ module.exports.inferkit = async function(context, input){
   return await request(Api.UTILS_INFERKIT, "GET", {}, {
     input: input
   })
+}
+
+module.exports.otter = async function(context){
+  return await request(Api.UTILS_OTTER, "GET", {}, {})
 }
 
 module.exports.perspective = async function(context, content = []){

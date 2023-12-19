@@ -6,7 +6,8 @@ const { codeblock, iconPill, smallIconPill } = require('../../../labscore/utils/
 
 const { Permissions } = require("detritus-client/lib/constants");
 const { canUseLimitedTestCommands } = require('../../../labscore/utils/testing')
-const { STATICS } = require('../../../labscore/utils/statics')
+const { STATICS } = require('../../../labscore/utils/statics');
+const { chatgpt } = require('../../../labscore/api/obelisk');
 
 module.exports = {
   name: 'disstrack',
@@ -24,18 +25,11 @@ module.exports = {
     context.triggerTyping();
     if(!args.text) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (text).`))
     try{
-      await editOrReply(context, createEmbed("ai", context, "Generating response..."))
+      await editOrReply(context, createEmbed("ai", context, "Spitting bars..."))
       
-      let res = await superagent.post(`${process.env.AI_SERVER}/openai`)
-        .set({
-          Authorization: process.env.AI_SERVER_KEY
-        })
-        .send({
-          prompt: "Write a disstrack about the subject the user supplies. The disstrack should have at least two verses and a chorus.",
-          input: [args.text],
-          temperature: 0.6,
-          model: "CHATGPT"
-        })
+      let res = await chatgpt(context, "Write a disstrack about the subject the user supplies. The disstrack should have at least one verse and a chorus.", args.text);
+      res = res.response;
+
       return editOrReply(context, createEmbed("default", context, {
         description: smallIconPill("generative_ai", args.text) + '\n' + codeblock("ansi", [res.body.output.substr(0, 2020 - args.text.length)]),
         footer: {
