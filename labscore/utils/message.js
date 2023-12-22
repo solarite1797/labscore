@@ -8,7 +8,8 @@ module.exports.editOrReply = function(context, message, disableReference = false
   // Disable mentions
   if(!message.allowedMentions) message.allowedMentions = {parse: [], repliedUser: false}
 
-  message.nonce = Math.floor(Math.random() * 9999 + 1000)
+  // you can figure out what this does on your own time
+  //message.nonce = Math.floor(Math.random() * 9999 + 1000)
 
   // Handle responses for interaction context
   if(context.editOrRespond){
