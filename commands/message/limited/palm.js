@@ -81,7 +81,7 @@ module.exports = {
           },
           description: description.join('\n'),
           footer: {
-            text: `PaLM 2 • Generative AI is experimental. Response may be factually incorrect or biased.`
+            text: `PaLM 2 • Generative AI is experimental. Response may be factually wrong or completely made up.`
           }
         })],
         files

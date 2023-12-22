@@ -50,7 +50,7 @@ module.exports = {
         },
         description: '- ' + res.response.body.summaries.join('\n- '),
         footer: {
-          text: "Generative AI is experimental. Response may be factually incorrect or biased."
+          text: "Generative AI is experimental. Response may be factually wrong or completely made up."
         }
       }))
     }catch(e){
