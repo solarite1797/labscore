@@ -45,7 +45,7 @@ module.exports = {
     } catch (e) {
       console.log(e)
       if(e.response?.body?.status && e.response.body.status == 2) return editOrReply(context, createEmbed("warning", context, e.response.body.message))
-      return editOrReply(context, createEmbed("error", context, `Unable to transcribe audio.`))
+      return editOrReply(context, createEmbed("error", context, `Unable to transcribe audio (too long?).`))
     }
   },
 };
