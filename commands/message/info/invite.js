@@ -26,7 +26,7 @@ module.exports = {
     if(!args.invite) return editOrReply(context, createEmbed("default", context, {
       description: [
         '​',
-        icon('brand') + ` You can invite ${context.client.user.username} with this ${iconLinkPill("link", context.application.oauth2UrlFormat({ scope: 'bot applications.commands', permissions: 412317248576 }), 'Invite Link', 'Discord Application Invite URL')}.`,
+        icon('brand') + ` You can invite ${context.client.user.username} with this ${iconLinkPill("link", context.application.oauth2UrlFormat({ scope: 'bot applications.commands', permissions: 412317248576 }).replace("ptb.discordapp.com","discord.com"), 'Invite Link', 'Discord Application Invite URL')}.`,
         '',
         icon('robot') + ` Need help? Join our ${iconLinkPill("discord", DISCORD_INVITES.support, 'Support Server', "Click to join")}.`,
         '',
