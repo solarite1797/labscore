@@ -35,7 +35,7 @@ module.exports = {
       const recog = await googleSpeechRecognition(context, msg.attachments.first().url)
 
       return editOrReply(context, createEmbed("default", context, {
-        description: codeblock("ansi", [ recog.response.body.transcription ]),
+        description: codeblock("md", [ recog.response.body.transcription_with_speakers ]),
         footer: {
           iconUrl: STATICS.google,
           text: `Google Cloud • Confidence: ${(recog.response.body.confidence* 100).toFixed(1)}% • ${context.application.name}`
