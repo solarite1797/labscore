@@ -9,6 +9,7 @@ const Api = Object.freeze({
 
   GOOGLE_PERSPECTIVE: '/google/perspective/analyze',
   GOOGLE_SPEECH_RECOGNIZE: '/google/speech/recognize',
+  GOOGLE_SPEECH_RECOGNIZE_LABELS: '/google/speech/multirecognize',
   GOOGLE_TRANSLATE: '/google/translate/text',
   GOOGLE_VISION_COLORS: '/google/vision/colors',
   GOOGLE_VISION_FACES: '/google/vision/faces',

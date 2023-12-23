@@ -54,6 +54,12 @@ module.exports.googleSpeechRecognition = async function(context, url){
   })
 }
 
+module.exports.googleSpeechRecognitionWithLabels = async function(context, url){
+  return await request(Api.GOOGLE_SPEECH_RECOGNIZE_LABELS, "GET", {}, {
+    url
+  })
+}
+
 module.exports.googleTranslate = async function(context, text, to, from){
   return await request(Api.GOOGLE_TRANSLATE, "GET", {}, {
     text: text,
