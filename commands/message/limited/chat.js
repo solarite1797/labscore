@@ -8,7 +8,7 @@ const superagent = require('superagent')
 const { iconPill, stringwrap, smallIconPill } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
-const { chatgpt } = require('../../../labscore/api/obelisk');
+const { chatgpt, gpt4 } = require('../../../labscore/api/obelisk');
 
 const MODELS = {
   "chatgpt": {
@@ -83,7 +83,7 @@ module.exports = {
       if(model.toLowerCase() == "chatgpt"){
         res = await chatgpt(context, prompt, input)
       } else if (model.toLowerCase() == "gpt4"){
-        res = await chatgpt(context, prompt, input)
+        res = await gpt4(context, prompt, input)
       }
 
       let description = []
