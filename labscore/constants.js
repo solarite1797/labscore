@@ -549,8 +549,8 @@ module.exports.DICTIONARY_LANGUAGES = Object.freeze({
   nl: "Dutch",
   no: "Norwegian",
   pl: "Polish",
-  "pt-br": "Portuguese",
-  "pt-pt": "Portuguese",
+  "pt-br": "Portuguese (Brazil)",
+  "pt-pt": "Portuguese (Portugal)",
   pt: "Portuguese",
   ro: "Romanian",
   ru: "Russian",
@@ -571,7 +571,7 @@ module.exports.DICTIONARY_LANGUAGES = Object.freeze({
 // work lmk on discord @bignutty and i'll add it (if reasonable)
 // same goes for emoji below
 module.exports.TRANSLATE_LANGUAGE_ALIASES = Object.freeze({
-  "jp": "ja"
+  "jp": "ja",
 })
 
 module.exports.TRANSLATE_LANGUAGE_MAPPINGS = Object.freeze({
@@ -664,6 +664,8 @@ module.exports.TRANSLATE_LANGUAGE_MAPPINGS = Object.freeze({
   "fa": "🇮🇷",
   "pl": "🇵🇱",
   "pt": "🇵🇹",
+  "pt-pt": "🇵🇹",
+  "pt-br": "🇧🇷",
   "ro": "🇷🇴",
   "ru": "🇷🇺",
   "sm": "🇼🇸",
@@ -798,7 +800,8 @@ module.exports.TRANSLATE_LANGUAGES = Object.freeze({
   "ps": "Pashto",
   "fa": "Persian",
   "pl": "Polish",
-  "pt": "Portuguese (Portugal, Brazil)",
+  "pt": "Portuguese",
+  "pt-br": "Brazilian Portuguese",
   "pa": "Punjabi",
   "qu": "Quechua",
   "ro": "Romanian",

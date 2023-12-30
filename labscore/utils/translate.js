@@ -15,7 +15,9 @@ function getCode(desiredLang) {
         return false;
     }
 
-    return TRANSLATE_LANGUAGES[key].toLowerCase() === desiredLang;
+    if(TRANSLATE_LANGUAGES[key].toLowerCase() === desiredLang) return true;
+    if(TRANSLATE_LANGUAGES[key].toLowerCase().startsWith(desiredLang)) return true;
+    return false;
   });
 
   keys.push(Object.keys(TRANSLATE_LANGUAGE_MAPPINGS).filter(function (key) {
@@ -23,7 +25,9 @@ function getCode(desiredLang) {
         return false;
     }
 
-    return TRANSLATE_LANGUAGE_MAPPINGS[key].toLowerCase() === desiredLang;
+    if(TRANSLATE_LANGUAGE_MAPPINGS[key].toLowerCase() === desiredLang) return true;
+    if(TRANSLATE_LANGUAGE_MAPPINGS[key].toLowerCase().startsWith(desiredLang)) return true;
+    return false;
   }));
 
   return keys[0] || false;
@@ -33,7 +37,7 @@ module.exports.getCodeFromAny = function (prompt) {
   if(TRANSLATE_LANGUAGE_ALIASES[prompt.toLowerCase()]) prompt = TRANSLATE_LANGUAGE_ALIASES[prompt.toLowerCase()]
   if(TRANSLATE_LANGUAGES[prompt.toLowerCase()]) return prompt.toLowerCase()
   let languages = [];
-  for(const i of Object.keys(TRANSLATE_LANGUAGES)) if(!languages.includes(i) && TRANSLATE_LANGUAGES[i].toLowerCase() == prompt.toLowerCase()) languages.push(i)
+  for(const i of Object.keys(TRANSLATE_LANGUAGES)) if(!languages.includes(i) && (TRANSLATE_LANGUAGES[i].toLowerCase() == prompt.toLowerCase() || TRANSLATE_LANGUAGES[i].toLowerCase().startsWith(prompt.toLowerCase()))) languages.push(i)
   for(const i of Object.keys(TRANSLATE_LANGUAGE_MAPPINGS)) if(!languages.includes(i) && TRANSLATE_LANGUAGE_MAPPINGS[i].toLowerCase() == prompt.toLowerCase()) languages.push(i)
   return languages[0];
 };
