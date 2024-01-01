@@ -43,7 +43,7 @@ module.exports = {
   name: 'lyrics',
   label: 'query',
   metadata: {
-    description: 'Searches for song lyrics on Genius.',
+    description: 'Searches for song lyrics.',
     description_short: 'Search song lyrics',
     examples: ['lyrics desert bloom man'],
     category: 'search',
