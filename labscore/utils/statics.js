@@ -137,11 +137,11 @@ const Statics = Object.freeze({
       revision: 0
     },
     ai_bard: {
-      file: "icons/core/ico_notice_bard_spark.gif",
+      file: "icons/core/ico_bard_loading.gif",
       revision: 0
     },
     ai_bard_idle: {
-      file: "icons/core/ico_notice_bard_idle.gif",
+      file: "icons/core/ico_bard_idle.gif",
       revision: 0
     },
     ai_clyde: {
