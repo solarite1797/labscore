@@ -8,7 +8,7 @@ const { canUseLimitedTestCommands } = require('../../../labscore/utils/testing')
 const { STATIC_ICONS } = require('../../../labscore/utils/statics');
 const { summarizeWebpage } = require('../../../labscore/api/obelisk');
 
-const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([^> ]*)/
+const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([^> \n]*)/
 
 module.exports = {
   name: 'summarize',
