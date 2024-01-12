@@ -1,7 +1,6 @@
 const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
-const { canUseLimitedTestCommands, isLimitedTestUser } = require('../../../labscore/utils/testing')
 const { STATIC_ICONS } = require('../../../labscore/utils/statics');
 
 const superagent = require('superagent')
@@ -9,6 +8,7 @@ const { iconPill, stringwrap, smallIconPill } = require('../../../labscore/utils
 
 const { Permissions } = require("detritus-client/lib/constants");
 const { palm2 } = require('../../../labscore/api/obelisk');
+const { hasFeature } = require('../../../labscore/utils/testing');
 
 module.exports = {
   name: 'palm',
@@ -27,7 +27,7 @@ module.exports = {
   ],
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.ATTACH_FILES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
-    if(!canUseLimitedTestCommands(context)) return;
+    if(!await hasFeature(context, "ai/palm")) return;
 
     context.triggerTyping();
     if(!args.text) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (text).`))

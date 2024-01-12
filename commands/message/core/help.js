@@ -7,7 +7,6 @@ const { paginator } = require('../../../labscore/client');
 const { editOrReply } = require('../../../labscore/utils/message');
 
 const { Permissions } = require("detritus-client/lib/constants");
-const { canUseLimitedTestCommands } = require('../../../labscore/utils/testing');
 
 function createHelpPage(context, title, contents, descriptions) {
   return page(createEmbed("default", context, {
@@ -109,7 +108,7 @@ module.exports = {
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
-    if (canUseLimitedTestCommands(context)) categories["limited"] = `${iconPill("stars", "Limited Test Commands")}`;
+    if(await hasFeature(context, "core/help")) categories["limited"] = `${iconPill("stars", "Limited Test Commands")}`;
     else if (categories["limited"]) delete categories["limited"]
 
     if (args.command) {

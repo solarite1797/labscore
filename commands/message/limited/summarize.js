@@ -4,9 +4,9 @@ const { editOrReply } = require('../../../labscore/utils/message')
 const { iconPill, smallIconPill } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
-const { canUseLimitedTestCommands } = require('../../../labscore/utils/testing')
 const { STATIC_ICONS } = require('../../../labscore/utils/statics');
 const { summarizeWebpage } = require('../../../labscore/api/obelisk');
+const { hasFeature } = require('../../../labscore/utils/testing');
 
 const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([^> \n]*)/
 
@@ -23,7 +23,7 @@ module.exports = {
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
-    if(!canUseLimitedTestCommands(context)) return;
+    if(!await hasFeature(context, "flamingo/summary")) return;
     context.triggerTyping();
 
     let content = args.text;

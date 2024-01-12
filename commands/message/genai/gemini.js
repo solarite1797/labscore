@@ -6,7 +6,7 @@ const { Permissions } = require("detritus-client/lib/constants");
 
 const { STATIC_ICONS } = require("../../../labscore/utils/statics");
 const { stringwrap, iconPill, smallIconPill } = require("../../../labscore/utils/markdown");
-const { canUseLimitedTestCommands } = require("../../../labscore/utils/testing");
+const { hasFeature } = require("../../../labscore/utils/testing");
 module.exports = {
   name: 'gemini',
   label: 'text',
@@ -20,8 +20,7 @@ module.exports = {
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
-    context.triggerTyping();
-    if(!canUseLimitedTestCommands(context)) return;
+    if(!await hasFeature(context, "ai/gemini/text")) return;
     context.triggerTyping();
 
     if(!args.text) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (text).`))
