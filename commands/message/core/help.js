@@ -7,6 +7,7 @@ const { paginator } = require('../../../labscore/client');
 const { editOrReply } = require('../../../labscore/utils/message');
 
 const { Permissions } = require("detritus-client/lib/constants");
+const { hasFeature } = require('../../../labscore/utils/testing');
 
 function createHelpPage(context, title, contents, descriptions) {
   return page(createEmbed("default", context, {
