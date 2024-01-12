@@ -15,7 +15,7 @@ function validateGroup(groups = [], featureId){
 
 // Fetches the testing configuration from the cdn
 async function getTestConfig(){
-  //if(!process.env.TESTING_CONFIG_URL) throw "Missing TESTING_CONFIG_URL in environment";
+  if(!process.env.TESTING_CONFIG_URL) throw "Missing TESTING_CONFIG_URL in environment";
 
   try{
     let config = await superagent.get(process.env.TESTING_CONFIG_URL)
