@@ -10,17 +10,31 @@ const { STATIC_ICONS } = require("../../../labscore/utils/statics");
 const { iconPill, stringwrap } = require("../../../labscore/utils/markdown");
 const { hasFeature } = require("../../../labscore/utils/testing");
 
+const IMAGE_STYLES = [
+  "flower",
+  "mineral",
+  "art",
+  "characters",
+  "terrain",
+  "curious",
+  "dreamscapes",
+  "translucent"
+]
+
 module.exports = {
-  name: 'aiwallpaper',
+  name: 'wallpaper',
   label: 'text',
-  aliases: ['wallpaper'],
+  aliases: ['aiwp'],
   metadata: {
-    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nCreate Wallpapers`,
+    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nCreate Wallpapers\n\nAvailable styles: \`${IMAGE_STYLES.join(', ')}\``,
     description_short: 'Create Wallpapers',
     examples: ['aiwp northern lights -style art'],
     category: 'limited',
     usage: 'aiwallpaper <prompt>'
   },
+  args: [
+    { name: 'style', default: 'translucent', required: false, help: "Image Style." },
+  ],
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     if(!await hasFeature(context, "ai/wallpapers")) return;
@@ -30,10 +44,12 @@ module.exports = {
 
     let input = args.text;
 
+    if(!IMAGE_STYLES.includes(args.style.toLowerCase())) return editOrReply(context, createEmbed("warning", context, `Invalid Parameter (style).`))
+
     try{
       await editOrReply(context, createEmbed("ai", context, "Generating Image..."))
 
-      let res = await aiWallpaper(context, args.text, "translucent");
+      let res = await aiWallpaper(context, args.text, args.style.toLowerCase());
       let imgName = `lcwp.${Date.now().toString(36)}.jpeg`;
       
       return editOrReply(context, {
