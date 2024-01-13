@@ -21,7 +21,6 @@ function validateNumber(input, low, high){
 
 module.exports = {
   name: 'art',
-  aliases: ['wallpaper'],
   metadata: {
     description: 'Creates colorful generative art using JetBrains LIMB.',
     description_short: 'AI wallpaper generation',

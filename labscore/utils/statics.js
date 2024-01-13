@@ -164,6 +164,10 @@ const Statics = Object.freeze({
       file: "icons/flamingo/web_summary.png",
       revision: 1
     },
+    ai_image: {
+      file: "icons/flamingo/image_generation.png",
+      revision: 2
+    },
     warning: {
       file: "icons/core/ico_notice_warning.png",
       revision: 3
@@ -216,6 +220,7 @@ module.exports.STATIC_ICONS = Object.freeze({
   ai_gemini: staticAsset(Statics.icons.ai_gemini),
   ai_palm_idle: staticAsset(Statics.icons.ai_palm_idle),
   ai_summary: staticAsset(Statics.icons.ai_summary),
+  ai_image: staticAsset(Statics.icons.ai_image),
   warning: staticAsset(Statics.icons.warning)
 })
 
