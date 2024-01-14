@@ -5,7 +5,7 @@ const { PERMISSIONS_TEXT, DEFAULT_BOT_NAME, DEFAULT_PREFIXES } = require('./cons
 const Paginator = require('./paginator').PaginatorCluster
 
 const cluster = new ClusterClient("", {
-  cache: {messages: {expire: 60 * 60 * 1000}},
+  cache: {messages: {expire: 30 * 60 * 1000}},
   gateway: {
     identifyProperties: {
       $browser: 'Discord Android',

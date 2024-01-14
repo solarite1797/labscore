@@ -75,27 +75,7 @@ module.exports = {
           })
         });
       
-      return editOrReply(context, {embeds, files})
-      
-      
-      return editOrReply(context, {
-        embeds:[createEmbed("defaultNoFooter", context, {
-          author: {
-            iconUrl: STATIC_ICONS.ai_image,
-            name: stringwrap(args.text, 50, false),
-          },
-          image: {
-            url: `attachment://${imgName}`
-          },
-          footer: {
-            text: `Generative AI is experimental • Use AI Images responsibly.`
-          }
-        })],
-        files: [{
-          filename: imgName,
-          value: res.response.body
-        }]
-      })
+      return editOrReply(context, {embeds, files});
     } catch(e){
       console.log(e)
       if(e.response?.body?.message) return editOrReply(context, createEmbed("error", context, e.response.body.message))
