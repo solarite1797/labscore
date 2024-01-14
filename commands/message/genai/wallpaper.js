@@ -54,7 +54,7 @@ module.exports = {
       // Construct Embeds
       let files = [];
       let embeds = res.response.body.images.map((i)=>{
-        let imgName = `lcwp.${Date.now().toString(36)}.jpeg`;
+        let imgName = `lcwp.${(Date.now() + Math.random()).toString(36)}.jpeg`;
 
         files.push({
           filename: imgName,
