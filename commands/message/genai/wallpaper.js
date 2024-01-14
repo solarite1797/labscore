@@ -50,7 +50,33 @@ module.exports = {
       await editOrReply(context, createEmbed("ai", context, "Generating Image..."))
 
       let res = await aiWallpaper(context, args.text, args.style.toLowerCase());
-      let imgName = `lcwp.${Date.now().toString(36)}.jpeg`;
+
+      // Construct Embeds
+      let files = [];
+      let embeds = res.response.body.images.map((i)=>{
+        let imgName = `lcwp.${Date.now().toString(36)}.jpeg`;
+
+        files.push({
+          filename: imgName,
+          value: Buffer.from(i, 'base64')
+        })
+        return createEmbed("defaultNoFooter", context, {
+            url: "https://bignutty.gitlab.io",
+            author: {
+              iconUrl: STATIC_ICONS.ai_image,
+              name: stringwrap(args.text, 50, false),
+            },
+            image: {
+              url: `attachment://${imgName}`
+            },
+            footer: {
+              text: `Generative AI is experimental • Use AI Images responsibly.`
+            }
+          })
+        });
+      
+      return editOrReply(context, {embeds, files})
+      
       
       return editOrReply(context, {
         embeds:[createEmbed("defaultNoFooter", context, {
