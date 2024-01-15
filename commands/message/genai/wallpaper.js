@@ -47,7 +47,12 @@ module.exports = {
     if(!IMAGE_STYLES.includes(args.style.toLowerCase())) return editOrReply(context, createEmbed("warning", context, `Invalid Parameter (style).`))
 
     try{
-      await editOrReply(context, createEmbed("ai", context, "Generating Image..."))
+      await editOrReply(context, createEmbed("defaultNoFooter", context, {
+        author: {
+          iconUrl: STATIC_ICONS.ai_image_processing,
+          name: "Generating images..."
+        }
+      }))
 
       let res = await aiWallpaper(context, args.text, args.style.toLowerCase());
 
