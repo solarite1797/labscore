@@ -39,11 +39,6 @@ module.exports = {
     category: 'mod',
     usage: 'perspective <prompt>'
   },
-  ratelimit: {
-    type: 'guild',
-    limit: 1,
-    duration: 5000
-  },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     await context.triggerTyping();
