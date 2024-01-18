@@ -45,15 +45,22 @@ module.exports = {
 
     try {
       let msg = '';
+      let author = {};
       if (context.message.messageReference) {
         msg = await context.message.channel.fetchMessage(context.message.messageReference.messageId)
         args.input = msg.content
-        msg = `${icon("robot")} <@${msg.author.id}> (${msg.author.id})\n${codeblock("ansi", [stringwrap(msg.content, 200)])}\n`
+        author = {
+          name: msg.author.username,
+          iconUrl: msg.author.avatarUrl + '?size=256',
+          url: "https://discord.com/users/" + msg.author.id
+        }
+        msg = `${codeblock("ansi", [stringwrap(msg.content, 200)])}\n`
       }
 
       let perspectiveApi = await perspective(context, [args.input])
 
       return await editOrReply(context, createEmbed("default", context, {
+        author,
         description: `${msg}${iconPill("agreements", "Scores")} ${codeblock("ansi", formatPerspectiveScores(perspectiveApi.response.body))}`,
         footer: {
           iconUrl: STATICS.perspectiveapi,
