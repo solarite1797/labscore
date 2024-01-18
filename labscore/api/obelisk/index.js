@@ -95,3 +95,11 @@ module.exports.aiWallpaper = async function(context, prompt, style){
     style
   })
 }
+
+// PEACOCK
+module.exports.webshot = async function(context, url, allowAdultContent = false){
+  return await request(ObeliskApi.WEBSHOT, "POST", {}, {
+    url,
+    allow_adult: allowAdultContent
+  })
+}

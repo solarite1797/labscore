@@ -1,10 +1,10 @@
-const { screenshot } = require("../../../labscore/api");
 const { createEmbed } = require("../../../labscore/utils/embed");
 const { editOrReply } = require("../../../labscore/utils/message");
 
 const superagent = require('superagent')
 
 const { Permissions } = require("detritus-client/lib/constants");
+const { webshot } = require("../../../labscore/api/obelisk");
 
 async function processJob(jobUrl) {
   let job = await superagent.get(jobUrl)
@@ -28,12 +28,12 @@ module.exports = {
   run: async (context, args) => {
     if (!args.url) return editOrReply(context, createEmbed("warning", context, "No url supplied."))
 
-    let response = await editOrReply(context, createEmbed("loading", context, `Creating website screenshot...`))
+    await editOrReply(context, createEmbed("loading", context, `Creating website screenshot...`))
 
     try {
       const t = Date.now();
 
-      let ss = await screenshot(context, args.url, context.channel.nsfw)
+      let ss = await webshot(context, args.url, context.channel.nsfw)
 
       if (ss.response.body.status && ss.response.body.status !== 3) {
         if (ss.response.body.image) return await editOrReply(context,
@@ -45,28 +45,17 @@ module.exports = {
         return await editOrReply(context, createEmbed("error", context, "Unable to create screenshot."))
       }
 
-      let job = await processJob(ss.response.body.job)
-
-      if (job.status) {
-        if (!job.image) job = await processJob(ss.response.body.job)
-        if (job.image) return await editOrReply(context, createEmbed("image", context, {
-          url: job.image,
-          time: ((Date.now() - t) / 1000).toFixed(2)
-        }))
-        return await editOrReply(context, createEmbed("error", context, "Unable to create screenshot."))
-      }
-
       return await editOrReply(context, {
         embeds: [createEmbed("image", context, {
           url: "screenshot.png",
           time: ((Date.now() - t) / 1000).toFixed(2)
         })],
-        files: [{ filename: "screenshot.png", value: job }]
+        files: [{ filename: "screenshot.png", value: ss.response.body }]
       })
     } catch (e) {
       console.log(e)
       return await editOrReply(context, createEmbed("image", context, {
-        url: "https://bignutty.gitlab.io/webstorage4/v2/assets/screenshot/screenshot_error.png"
+        url: "https://bignutty.gitlab.io/webstorage4/v2/assets/screenshot/brand-update-2024/scr_unavailable.png"
       }))
     }
   }
