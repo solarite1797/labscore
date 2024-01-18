@@ -2,7 +2,7 @@ const { perspective } = require("../../../labscore/api");
 const { format } = require("../../../labscore/utils/ansi");
 const { createEmbed } = require("../../../labscore/utils/embed");
 
-const { icon, codeblock, iconPill } = require("../../../labscore/utils/markdown");
+const { icon, codeblock, iconPill, stringwrap } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 
@@ -48,7 +48,7 @@ module.exports = {
       if (context.message.messageReference) {
         msg = await context.message.channel.fetchMessage(context.message.messageReference.messageId)
         args.input = msg.content
-        msg = `${icon("robot")} <@${msg.author.id}> (${msg.author.id})\n${codeblock("ansi", [msg.content])}\n`
+        msg = `${icon("robot")} <@${msg.author.id}> (${msg.author.id})\n${codeblock("ansi", [stringwrap(msg.content, 200)])}\n`
       }
 
       let perspectiveApi = await perspective(context, [args.input])
