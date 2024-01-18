@@ -3,7 +3,7 @@ const { perspective } = require("../../../labscore/api");
 const { format } = require("../../../labscore/utils/ansi");
 const { createEmbed } = require("../../../labscore/utils/embed");
 
-const { icon, codeblock, iconPill, smallPill } = require("../../../labscore/utils/markdown");
+const { icon, codeblock, iconPill, smallPill, stringwrap } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 
@@ -43,7 +43,7 @@ function renderPerspectiveAnalysis(payload, input, type){
 function perspectiveAnalysisEmbed(context, payload, input, type){
   let score = payload.scores[type];
   return createEmbed("default", context, {
-    description: `${iconPill("agreements", `${type.substr(0, 1).toUpperCase()}${type.substr(1, type.length).toLowerCase().replace(/_/g, ' ')}`)} ${smallPill(`${score.toString().substr(2, 2)}.${score.toString().substr(3, 1)}%`)} ${codeblock("ansi", [renderPerspectiveAnalysis(payload,input,type)])}`,
+    description: `${iconPill("agreements", `${type.substr(0, 1).toUpperCase()}${type.substr(1, type.length).toLowerCase().replace(/_/g, ' ')}`)} ${smallPill(`${score.toString().substr(2, 2)}.${score.toString().substr(3, 1)}%`)} ${codeblock("ansi", [stringwrap(renderPerspectiveAnalysis(payload,input,type), 2000)])}`,
     footer: {
       iconUrl: STATICS.perspectiveapi,
       text: `Perspective • ${context.application.name}`
