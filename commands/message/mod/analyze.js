@@ -43,7 +43,8 @@ function renderPerspectiveAnalysis(payload, input, type){
 function perspectiveAnalysisEmbed(context, payload, input, type){
   let score = payload.scores[type];
   return createEmbed("default", context, {
-    description: `${iconPill("agreements", `${type.substr(0, 1).toUpperCase()}${type.substr(1, type.length).toLowerCase().replace(/_/g, ' ')}`)} ${smallPill(`${score.toString().substr(2, 2)}.${score.toString().substr(3, 1)}%`)} ${codeblock("ansi", [stringwrap(renderPerspectiveAnalysis(payload,input,type), 2000)])}`,
+    // the 1000 chars length limit is stupid, blame discord
+    description: `${iconPill("agreements", `${type.substr(0, 1).toUpperCase()}${type.substr(1, type.length).toLowerCase().replace(/_/g, ' ')}`)} ${smallPill(`${score.toString().substr(2, 2)}.${score.toString().substr(3, 1)}%`)} ${codeblock("ansi", [stringwrap(renderPerspectiveAnalysis(payload,input,type), 1000)])}`,
     footer: {
       iconUrl: STATICS.perspectiveapi,
       text: `Perspective • ${context.application.name}`
