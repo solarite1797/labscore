@@ -12,7 +12,7 @@ const superagent = require('superagent')
 module.exports = {
   description: 'Use AI to rewrite your messages.',
   name: 'rewrite',
-  guildIds: [process.env.TESTING_SERVER_IDS.split(';')[0]],
+  guildIds: ["409840884713127956"],
   options: [
     {
       name: 'message',
