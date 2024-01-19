@@ -21,7 +21,7 @@ module.exports.codeblock = function(type, content = ""){
 
 module.exports.link = function(url, masked, tooltip = ""){
   if(tooltip.length) tooltip = ` '${tooltip}'`
-  if(masked) return `[${masked}](${url}${tooltip})`
+  if(masked) return `[${masked}](<${url}>${tooltip})`
   return url
 }
 
