@@ -14,6 +14,7 @@ const ObeliskApi = Object.freeze({
   OPENAI_CHATGPT: "/parrot/v1/openai:chatgpt",
   OPENAI_GPT4: "/parrot/v1/openai:gpt4",
 
+  WEB_ASK: "/flamingo/v1/web:ask",
   SUMMARIZE_WEBPAGES: "/flamingo/v1/web:summarize",
   
   AI_WALLPAPER: "/robin/v1/wallpaper:generate",

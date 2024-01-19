@@ -82,6 +82,13 @@ module.exports.gpt4 = async function(context, prompt, input){
 }
 
 // FLAMINGO
+module.exports.webAsk = async function(context, url, prompt){
+  return await request(ObeliskApi.WEB_ASK, "POST", {}, {
+    url,
+    prompt
+  })
+}
+
 module.exports.summarizeWebpage = async function(context, url){
   return await request(ObeliskApi.SUMMARIZE_WEBPAGES, "POST", {}, {
     url
