@@ -31,7 +31,11 @@ module.exports = {
       let msg = await context.message.channel.fetchMessage(context.message.messageReference.messageId);
 
       if(msg.content && msg.content.length) content = msg.content
-      else if(msg.embeds?.length) for(const e of msg.embeds) if(e[1].description?.length) { content = e[1].description; break; } 
+      else if(msg.embeds?.length) for(const e of msg.embeds){
+        if(e[1].description?.length) content = e[1].description;
+        if(e[1].author?.url) content = e[1].author?.url;
+        if(e[1].url) content = e[1].url
+      } 
     }
 
     let webUrl = content.match(URL_REGEX)
