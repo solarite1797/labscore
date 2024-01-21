@@ -23,7 +23,7 @@ module.exports = {
       const t = Date.now()
 
       // Call server to query update
-      await superagent.post(`${process.env.PB_MANAGER_HOST}_pbs/DeployPbService`)
+      await superagent.post(`${process.env.PB_MANAGER_HOST}_pbs/v1/DeployPbService`)
         .set("Authorization", process.env.PB_MANAGER_KEY)
 
       return await editOrReply(context, createEmbed("success", context, "Deployment queried at manager. Shutting down."))

@@ -23,7 +23,7 @@ module.exports = {
       const t = Date.now()
 
       // Call server to query update
-      await superagent.post(`${process.env.PB_MANAGER_HOST}_pbs/UpdatePbService`)
+      await superagent.post(`${process.env.PB_MANAGER_HOST}_pbs/v1/UpdatePbService`)
         .set("Authorization", process.env.PB_MANAGER_KEY)
 
       return await editOrReply(context, createEmbed("success", context, "Update queried at manager"))
