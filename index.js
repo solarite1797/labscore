@@ -9,7 +9,7 @@ const token = process.env.token;
 // Get the correct path for each environment type
 let client = `../${__dirname}/labscore/client.js`
 if(process.env.environment == "local") client = `./labscore/client.js`
-if(process.env.environment == "prodnew") client = `./labscore/labscore/client.js`;
+if(process.env.environment.toLowerCase() == "prod") client = `./labscore/labscore/client.js`;
 
 const SHARDS = process.env.SHARDS || 2;
 const SHARDS_PER_CLUSTER = process.env.SHARDS_PER_CLUSTER_OVERRIDE || 2;
@@ -36,7 +36,7 @@ const manager = new ClusterManager(client, token, {
   await manager.run();
   console.log(`v2 | ready. took ${(Date.now() - time) / 1000}.`)
   
-  if(process.env.environment == "prodnew"){
+  if(process.env.environment.toLowerCase() == "prod"){
     let liveDeploy = await superagent.get(`${process.env.PB_MANAGER_HOST}_pbs/v1/GetPbServiceId`)
     if(process.env.HOSTNAME !== liveDeploy.body.d){
       console.log(`[${process.env.HOSTNAME}] invalid deployment session`)
