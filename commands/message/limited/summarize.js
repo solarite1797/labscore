@@ -1,7 +1,7 @@
 const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
-const { iconPill, smallIconPill } = require('../../../labscore/utils/markdown')
+const { iconPill, smallIconPill, citation } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
 const { STATIC_ICONS } = require('../../../labscore/utils/statics');
@@ -46,15 +46,19 @@ module.exports = {
       let res = await summarizeWebpage(context, webUrl[0])
       if(!res.response.body.summaries) return editOrReply(context, createEmbed("error", context, "Summary generation failed."))
 
+      let summaries = [];
+      if(res.response.body.summary_type == 0) summaries = res.response.body.summaries
+      else if (res.response.body.summary_type == 1) summaries = res.response.body.summaries.map((s, i)=>s.content + citation(i + 1, s.reference, 'Reference'))
+      
       return editOrReply(context, createEmbed("defaultNoFooter", context, {
         author: {
           iconUrl: STATIC_ICONS.ai_summary,
           name: res.response.body.title || 'Key points from the page',
           url: webUrl[0]
         },
-        description: '- ' + res.response.body.summaries.join('\n- '),
+        description: '- ' + summaries.join('\n- '),
         footer: {
-          text: "Generative AI is experimental. Response may be factually wrong or completely made up."
+          text: "Generative AI is experimental. Response may be factually incorrect or biased."
         }
       }))
     }catch(e){
