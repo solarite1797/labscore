@@ -9,17 +9,9 @@ module.exports = class BasePaginator extends EventEmitter {
     this.commandMessage = data.commandMessage || null;
     this.pages = data.pages;
     this.index = 0;
-    this.targetUser = data.targetUser || this.message?.author?.id || data.context?.user?.id;
-    
-    this.waitingForPage = null;
+    this.targetUser = data.targetUser || this.message.author.id;
 
-    this.editOrReply = data.context.editOrReply?.bind(data.context);
-
-    // Support application command context
-    if(data.context.editOrRespond) {
-      this.editOrRespond = data.context.editOrRespond.bind(data.context)
-      this.editOrReply = (d) => this.editOrRespond(d)
-    }
+    this.editOrReply = data.context.editOrReply.bind(data.context);
   }
 
   static asMessage(ctx) {
