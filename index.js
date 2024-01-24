@@ -7,7 +7,7 @@ const time = Date.now();
 const token = process.env.token;
 
 // Get the correct path for each environment type
-let client = `../${__dirname}/labscore/client.js`
+let client = `./labscore/labscore/client.js`;
 if(process.env.environment == "local") client = `./labscore/client.js`
 if(["production","prod","prodnew"].includes(process.env.environment.toLowerCase())) client = `./labscore/labscore/client.js`;
 
