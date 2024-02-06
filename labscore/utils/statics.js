@@ -56,7 +56,7 @@ const Statics = Object.freeze({
     },
     labscore: {
       file: "brands/labscore.png",
-      revision: 0
+      revision: 1
     },
     makesweet: {
       file: "brands/makesweet.png",
