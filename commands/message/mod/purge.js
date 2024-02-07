@@ -36,7 +36,7 @@ module.exports = {
     let deleteIds = []
     messages.forEach(message => {
       if(args.filter.length >= 1){
-        if(message.canDelete){
+        if(message.canDelete && (Date.now() - new Date(message.timestamp)) <= 1209000000){
           if(args.case == false){
             if(message.content.toLowerCase().includes(args.filter.toLowerCase())){
               deleteIds.push(message.id)
@@ -48,7 +48,7 @@ module.exports = {
           }
         }
       } else {
-        if(message.canDelete){
+        if(message.canDelete && (Date.now() - new Date(message.timestamp)) <= 1209000000){
           deleteIds.push(message.id)
         }
       }
