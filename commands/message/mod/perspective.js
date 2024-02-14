@@ -2,7 +2,7 @@ const { perspective } = require("../../../labscore/api");
 const { format } = require("../../../labscore/utils/ansi");
 const { createEmbed } = require("../../../labscore/utils/embed");
 
-const { icon, codeblock, iconPill, stringwrap } = require("../../../labscore/utils/markdown");
+const { icon, codeblock, iconPill, stringwrap, link } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 
@@ -61,7 +61,7 @@ module.exports = {
 
       return await editOrReply(context, createEmbed("default", context, {
         author,
-        description: `${msg}${iconPill("agreements", "Scores")} ${codeblock("ansi", formatPerspectiveScores(perspectiveApi.response.body))}`,
+        description: `${msg}${iconPill("agreements", "Scores")} *${link("https://developers.perspectiveapi.com/s/about-the-api-attributes-and-languages", "What do these mean?", "Check out the detection details.")}* ${codeblock("ansi", formatPerspectiveScores(perspectiveApi.response.body))}`,
         footer: {
           iconUrl: STATICS.perspectiveapi,
           text: `Perspective • ${context.application.name}`
