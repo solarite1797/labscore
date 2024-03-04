@@ -11,7 +11,7 @@ module.exports.DEFAULT_BOT_NAME = 'labsCore'
 module.exports.DEFAULT_PREFIXES = ['lc.', 'ic.', 'pb.']
 
 module.exports.PRIVACY_POLICY_SECTIONS = [
-  '### Summary\n- We do not store or collect information about our users or their servers.\n- We do share data with third parties that isn\'t strictly necessary to operate certain functionality.',
+  '### Summary\n- We do not store or collect information about our users or their servers.\n- We share certain data with third parties that is strictly necessary to operate certain functionality.',
   '### The information we collect\nWe use technology to log unexpected issues that may occur when interacting with our application. These logs are only shared with the developers of the application and not accessible to the public. Logged information includes:\n- Your username, server and channel\n- The command you executed, as well as its arguments (excluding images)',
   'Images modified via our proprietary api are directly uploaded to Discord and never permanently stored anywhere other than the requested channel by us.\n- The only exception to this is the art command, wallpapers generated via art will be publicly shared in the support server for anyone to view.)',
   '### Third Parties\nWe use a variety of third party products and services to operate certain functionality of our application. Information shared with third parties is strictly limited to information necessary to provide the functionality (command arguments).\nWe do not offer any functionality that shares details about users, a channel or a server with third parties and their services.'
