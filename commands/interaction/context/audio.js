@@ -1,5 +1,5 @@
 const { Constants } = require('detritus-client');
-const { InteractionCallbackTypes, ApplicationCommandTypes, MessageFlags } = Constants;
+const { InteractionCallbackTypes, ApplicationCommandTypes } = Constants;
 
 const { createEmbed } = require('../../../labscore/utils/embed')
 
@@ -13,7 +13,7 @@ module.exports = {
   type: ApplicationCommandTypes.MESSAGE,
   run: async (context, args) => {
     try{
-      await context.respond({data: { flags: MessageFlags.EPHEMERAL }, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE})
+      await context.respond({data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE})
 
       const { message } = args;
 
@@ -35,18 +35,17 @@ module.exports = {
                 text: `powered by song.link • ${context.application.name}`
               }
             })
-          ], components: btns, flags: MessageFlags.EPHEMERAL })
+          ], components: btns })
         }catch(e){
-          return context.editOrRespond({ embeds: [createEmbed("warning", context, "No results found.")], flags: MessageFlags.EPHEMERAL })
+          return context.editOrRespond({ embeds: [createEmbed("warning", context, "No results found.")] })
         }
       } else {
-        return context.editOrRespond({ embeds: [createEmbed("warning", context, "No urls found.")], flags: MessageFlags.EPHEMERAL })
+        return context.editOrRespond({ embeds: [createEmbed("warning", context, "No urls found.")] })
       }
     }catch(e){
       console.log(e)
       await context.editOrRespond({
-        embeds: [createEmbed("error", context, "Unable to look up song url.")],
-        flags: MessageFlags.EPHEMERAL
+        embeds: [createEmbed("error", context, "Unable to look up song url.")]
       })
     }
   },
