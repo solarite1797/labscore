@@ -153,7 +153,7 @@ module.exports = class Paginator {
       if (!(l instanceof InteractionPaginator)) continue;
       if (!l.commandMessage) continue;
 
-      if (l.isCommandMessage(data.context.message.id)) {
+      if (data.context.message?.id && l.isCommandMessage(data.context.message.id)) {
         listener = l
       }
     }

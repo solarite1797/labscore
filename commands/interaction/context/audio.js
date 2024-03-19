@@ -11,6 +11,14 @@ const urlr = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.
 module.exports = {
   name: 'Music Platforms',
   type: ApplicationCommandTypes.MESSAGE,
+  contexts: [
+    0,
+    1,
+    2
+  ],
+  integrationTypes: [
+    1
+  ],
   run: async (context, args) => {
     try{
       await context.respond({data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE})

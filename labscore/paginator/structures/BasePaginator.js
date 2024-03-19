@@ -9,9 +9,16 @@ module.exports = class BasePaginator extends EventEmitter {
     this.commandMessage = data.commandMessage || null;
     this.pages = data.pages;
     this.index = 0;
-    this.targetUser = data.targetUser || this.message.author.id;
 
-    this.editOrReply = data.context.editOrReply.bind(data.context);
+    this.targetUser = data.targetUser || this.message?.author?.id || data.context?.user?.id;
+
+    this.isInteractionPaginator = false;
+    this.editOrReply;
+    if(data.context.editOrReply) this.editOrReply = data.context.editOrReply.bind(data.context);
+    if(data.context.editOrRespond){
+      this.editOrReply = data.context.editOrRespond.bind(data.context);
+      this.isInteractionPaginator = true;
+    }
   }
 
   static asMessage(ctx) {
@@ -39,12 +46,13 @@ module.exports = class BasePaginator extends EventEmitter {
   }
 
   async update(data) {
+    if(this.isInteractionPaginator) return;
     if (this.isShared) {
       for (const m of this.commandMessage.values()) {
         if(!m.deleted) await m.edit(data);
       }
     } else if (this.commandMessage) {
-      if(!this.commandMessage.deleted) this.commandMessage.edit(data);
+      if(!this.commandMessage.deleted) this.commandMessage.edit(data).catch((e)=>{});
     }
   }
 

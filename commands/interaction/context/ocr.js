@@ -11,9 +11,17 @@ const { STATICS } = require('../../../labscore/utils/statics');
 module.exports = {
   name: 'OCR',
   type: ApplicationCommandTypes.MESSAGE,
+  contexts: [
+    0,
+    1,
+    2
+  ],
+  integrationTypes: [
+    1
+  ],
   run: async (context, args) => {
     try{
-      await context.respond({data: { flags: MessageFlags.EPHEMERAL }, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE})
+      await context.respond({data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE})
 
       const { message } = args;
 
@@ -23,11 +31,11 @@ module.exports = {
       } else {
         delete attachment;
       }
-      if(!attachment) return context.editOrRespond({ embeds: [createEmbed("warning", context, "No images found.")], flags: MessageFlags.EPHEMERAL })
+      if(!attachment) return context.editOrRespond({ embeds: [createEmbed("warning", context, "No images found.")] })
 
       let ocr = await googleVisionOcr(context, attachment)
 
-      if(ocr.response.body.status == 1) return context.editOrRespond({ embeds: [createEmbed("warning", context, ocr.response.body.text)], flags: MessageFlags.EPHEMERAL })
+      if(ocr.response.body.status == 1) return context.editOrRespond({ embeds: [createEmbed("warning", context, ocr.response.body.text)] })
 
       await context.editOrRespond({
         embeds: [createEmbed("default", context, {
@@ -39,8 +47,7 @@ module.exports = {
             iconUrl: STATICS.google,
             text: `Google Cloud Vision • ${context.application.name} • Took ${ocr.timings}s`
           }
-        })],
-        flags: MessageFlags.EPHEMERAL
+        })]
       })
     }catch(e){
       console.log(e)
