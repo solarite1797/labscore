@@ -81,7 +81,7 @@ module.exports = {
 
       let tagline = ''
       tagline += `\n${icon("clock")} Created ${timestamp(Snowflake.timestamp(matches[0].id), "f")}`
-      if(context.guild.emojis.find((e)=>e.id == matches[0].id)) tagline += `\n${icon("home")} This emoji is from ${bold(context.guild.name)}`
+      if(context.guild.emojis.find((e)=>e.id == matches[0].id)) tagline += `\n${icon("home")} This custom emoji is from ${bold(context.guild.name)}`
 
 
       return editOrReply(context, createEmbed("default", context, {
