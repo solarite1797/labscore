@@ -7,7 +7,7 @@ const { editOrReply } = require('../../../../labscore/utils/message');
 
 module.exports = {
   description: 'Get someones avatar.',
-  name: 'avatar2',
+  name: 'avatar',
   contexts: [
     0,
     1,
