@@ -38,7 +38,7 @@ module.exports = {
   
         return editOrReply(context, {
           embeds: [createEmbed("default", context, {
-            description: codeblock("md", [ recog.response.body.transcription_with_speakers ]),
+            description: codeblock("md", [ recog.response.body.transcription_with_speakers.substr(0,3900) ]),
             footer: {
               iconUrl: STATICS.google,
               text: `Google Cloud • Confidence: ${(recog.response.body.confidence* 100).toFixed(1)}% • ${context.application.name}`

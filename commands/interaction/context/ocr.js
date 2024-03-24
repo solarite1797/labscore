@@ -42,7 +42,7 @@ module.exports = {
           thumbnail: {
             url: attachment
           },
-          description: codeblock("ansi", ["​" + ocr.response.body.text]),
+          description: codeblock("ansi", ["​" + ocr.response.body.text.substr(0,3900)]),
           footer: {
             iconUrl: STATICS.google,
             text: `Google Cloud Vision • ${context.application.name} • Took ${ocr.timings}s`

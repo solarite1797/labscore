@@ -25,14 +25,14 @@ module.exports.maintower = async function (packages, type){
   }
 }
 
-module.exports.basecamp = async function (log){
+module.exports.basecamp = async function (log, content = ""){
   try{
     let res = await superagent.post(MAINTOWER_BASE_URL + 'basecamp')
       .set({
         "Authorization": process.env.API_KEY,
         "x-labscore-client": "labscore/2.0"
       })
-      .send({log})
+      .send({log, content})
     return;
   }catch(e){
     console.log(e)
