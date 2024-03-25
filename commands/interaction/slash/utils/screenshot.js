@@ -32,7 +32,7 @@ module.exports = {
     try {
       const t = Date.now();
 
-      let ss = await webshot(context, args.url, context.channel.nsfw)
+      let ss = await webshot(context, args.url, false) // nsfw sites are always blocked
 
       if (ss.response.body.status && ss.response.body.status !== 3) {
         if (ss.response.body.image) return await editOrReply(context,
