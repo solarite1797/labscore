@@ -49,12 +49,6 @@ module.exports = {
       description: 'Emoji to enlarge. Use two built-in emoji to mix them.',
       type: ApplicationCommandOptionTypes.TEXT,
       required: true
-    },
-    {
-      name: 'type',
-      description: '(For built-in emoji) Emoji platform (twitter, apple, etc).',
-      type: ApplicationCommandOptionTypes.TEXT,
-      required: false
     }
   ],
   run: async (context, args) => {
@@ -114,11 +108,6 @@ module.exports = {
       // Regular Emoji Handling
       if(emoji.length == 0) return await editOrReply(context, createEmbed("warning", context, "You need to specify an emoji to enlarge."))
 
-      if(!args.type) args.type = "twitter";
-      args.type = args.type.toLowerCase()
-
-      if(!EMOJIPEDIA_PLATFORM_TYPES.includes(args.type) && EMOJIPEDIA_PLATFORM_TYPE_ALIASES[args.type]) args.type = EMOJIPEDIA_PLATFORM_TYPE_ALIASES[args.type]
-
       let res;
       try{
         res = await emojipedia(context, emoji[0])
@@ -128,30 +117,22 @@ module.exports = {
         return await editOrReply(context, createEmbed("error", context, `No emoji data available for ${emoji[0]}.`))
       }
 
-      if(!res.data.platforms[args.type]){
-        let embed = createEmbed("error", context, "No emoji image available for platform '" + args.type + "'.")
-        embed.footer = {
-          text: "Available platforms: " + Object.keys(res.data.platforms).join(', ').substr(0, 2000)
-        }
-        return await editOrReply(context, embed)
-      }
-
       // Use the high-res emojipedia icon, if available
       let ico = `https://abs.twimg.com/emoji/v2/72x72/${toCodePoint(emoji[0])}.png`
-      if(!res.data.platforms["twitter"]) ico = res.data.platforms[args.type].images[0].src
-      else ico = res.data.platforms["twitter"].images[0].src
+      ico = res.data.platforms["twitter"].images[0].src
 
-      const platformEmoji = res.data.platforms[args.type]
+      const DEFAULT_PLATFORM = "twitter"
+      let platformEmoji = res.data.platforms["twitter"]
       
       if(platformEmoji.images.length == 1) return editOrReply(context, createEmbed("default", context, {
         author: {
           iconUrl: ico,
-          name: `${res.data.name} • ${res.data.platforms[args.type].images[0].version}`,
+          name: `${res.data.name} • ${res.data.platforms[DEFAULT_PLATFORM].images[0].version}`,
           url: res.data.link
         },
         description: res.data.codes.map((c)=>pill(c)).join(' '),
         image: {
-          url: res.data.platforms[args.type].images[0].src
+          url: res.data.platforms[DEFAULT_PLATFORM].images[0].src
         },
         footer: {
           iconUrl: STATICS.emojipedia,
@@ -159,20 +140,53 @@ module.exports = {
         }
       }))
 
-      let currentView ;
+      let currentView;
+      let currentPlatform = "twitter";
+      let currentRevision = "";
+
       const components = new Components({
         timeout: 100000,
         run: async (ctx) => {
           if (ctx.userId !== context.userId) return await ctx.respond(InteractionCallbackTypes.DEFERRED_UPDATE_MESSAGE);
           
-          const emojiAsset = platformEmoji.images.filter((p)=>{
-            return p.id == ctx.data.values[0]
-          })
-          
           // this sucks but works, ensures the newly selected option stays selected
-          for (let i = 0; i < components.components[0].components[0].options.length; i++) {
-            components.components[0].components[0].options[i].default = (components.components[0].components[0].options[i].value == ctx.data.values[0])
+          // update 25/03/24 - it sucks even more now
+          console.log(ctx.data)
+          
+        
+          if(ctx.data.customId == "emoji-type"){
+            currentPlatform = ctx.data.values[0];
+            currentRevision = res.data.platforms[currentPlatform].images[0].id
+
+            for (let i = 0; i < components.components[0].components[0].options.length; i++) {
+              components.components[0].components[0].options[i].default = (components.components[0].components[0].options[i].value == currentPlatform)
+            }
+            
+            let newVersionOptions = res.data.platforms[currentPlatform].images.map((r) => {
+              return {
+                label: r.version,
+                value: r.id,
+                default: (r.id == res.data.platforms[currentPlatform].images[0].id)
+              }
+            })
+
+            components.components[1].components[0].options = newVersionOptions
+
+            console.log("new type is " + currentPlatform + " with version " + currentRevision)
+          } else if(ctx.data.customId == "emoji-version"){
+
+            for (let i = 0; i < components.components[1].components[0].options.length; i++) {
+              components.components[1].components[0].options[i].default = (components.components[1].components[0].options[i].value == ctx.data.values[0])
+            }
+            currentRevision = ctx.data.values[0];
+            console.log("new version is " + currentRevision);
           }
+
+          console.log("getting asset for " + currentPlatform + " ver " + currentRevision);
+          const emojiAsset = res.data.platforms[currentPlatform].images.filter((p)=>{
+            return p.id == currentRevision
+          })
+          console.log("got asset: " + emojiAsset)
 
           currentView = createEmbed("default", context, {
             author: {
@@ -189,40 +203,53 @@ module.exports = {
               text: `Emojipedia • ${context.application.name}`
             }
           })
+
+          console.log("acknowledging for plat " + currentPlatform + " and ver " + currentRevision)
           await ctx.editOrRespond({embeds: [currentView], components})
+          console.log("acknowledged")
         },
       });
 
-      let selectOptions = res.data.platforms[args.type].images.map((r) => {
+      let selectOptions = res.data.platforms[currentPlatform].images.map((r) => {
         return {
           label: r.version,
           value: r.id,
-          default: (r.id == res.data.platforms[args.type].images[0].id)
+          default: (r.id == res.data.platforms[DEFAULT_PLATFORM].images[0].id)
         }
       })
 
+      currentRevision = res.data.platforms[DEFAULT_PLATFORM].images[0].id
+      
+      let selectTypeOptions = Object.keys(res.data.platforms).map((r) => {
+        let pl = res.data.platforms[r]
+        return {
+          label: pl.name,
+          value: r,
+          default: (r == "twitter")
+        }
+      })
+
+      components.addSelectMenu({
+        placeholder: "Select platform type",
+        customId: "emoji-type",
+        options: selectTypeOptions
+      })
+      
       components.addSelectMenu({
         placeholder: "Select emoji revision",
         customId: "emoji-version",
         options: selectOptions
       })
 
-      setTimeout(()=>{
-        editOrReply(context, {
-          embeds:[currentView],
-          components:[]
-        })
-      }, 100000)
-
       currentView = createEmbed("default", context, {
         author: {
           iconUrl: ico,
-          name: `${res.data.name} • ${res.data.platforms[args.type].images[0].version}`,
+          name: `${res.data.name} • ${res.data.platforms[DEFAULT_PLATFORM].images[0].version}`,
           url: res.data.link
         },
         description: res.data.codes.map((c)=>pill(c)).join(' '),
         image: {
-          url: res.data.platforms[args.type].images[0].src
+          url: res.data.platforms[DEFAULT_PLATFORM].images[0].src
         },
         footer: {
           iconUrl: STATICS.emojipedia,
