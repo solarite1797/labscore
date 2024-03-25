@@ -99,7 +99,7 @@ module.exports = {
         })
 
         components.clear();
-        for(const e of newView.data.metadata.similar.splice(0, 5)){
+        if(newView.data.metadata.similar) for(const e of newView.data.metadata.similar.splice(0, 5)){
           components.addButton({
             customId: e,
             emoji: e,
@@ -107,17 +107,26 @@ module.exports = {
           })
         }
 
+        if(!newView.data.metadata.similar) return await ctx.editOrRespond({embeds: [currentView]})
+
         await ctx.editOrRespond({embeds: [currentView], components})
       }
     })
 
-    for(const e of res.data.metadata.similar.splice(0, 5)){
+    if(res.data.metadata.similar) for(const e of res.data.metadata.similar.splice(0, 5)){
       components.addButton({
         customId: e,
         emoji: e,
         style: MessageComponentButtonStyles.SECONDARY
       })
     }
+
+    setTimeout(()=>{
+      editOrReply(context, {
+        embeds:[currentView],
+        components:[]
+      })
+    }, 100000)
 
     // Use the high-res emojipedia icon, if available
     let ico = `https://abs.twimg.com/emoji/v2/72x72/${toCodePoint(emoji[0])}.png`
@@ -138,6 +147,8 @@ module.exports = {
         text: `Emojipedia • ${context.application.name}`
       }
     })
+
+    if(!res.data.metadata.similar) return await editOrReply(context, currentView)
 
     return editOrReply(context, {
       embeds: [currentView],
