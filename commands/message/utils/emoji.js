@@ -178,8 +178,6 @@ module.exports = {
           
           // this sucks but works, ensures the newly selected option stays selected
           // update 25/03/24 - it sucks even more now
-          console.log(ctx.data)
-          
         
           if(ctx.data.customId == "emoji-type"){
             currentPlatform = ctx.data.values[0];
@@ -199,21 +197,16 @@ module.exports = {
 
             components.components[1].components[0].options = newVersionOptions
 
-            console.log("new type is " + currentPlatform + " with version " + currentRevision)
           } else if(ctx.data.customId == "emoji-version"){
-
             for (let i = 0; i < components.components[1].components[0].options.length; i++) {
               components.components[1].components[0].options[i].default = (components.components[1].components[0].options[i].value == ctx.data.values[0])
             }
             currentRevision = ctx.data.values[0];
-            console.log("new version is " + currentRevision);
           }
 
-          console.log("getting asset for " + currentPlatform + " ver " + currentRevision);
           const emojiAsset = res.data.platforms[currentPlatform].images.filter((p)=>{
             return p.id == currentRevision
           })
-          console.log("got asset: " + emojiAsset)
 
           currentView = createEmbed("default", context, {
             author: {
@@ -231,9 +224,7 @@ module.exports = {
             }
           })
 
-          console.log("acknowledging for plat " + currentPlatform + " and ver " + currentRevision)
           await ctx.editOrRespond({embeds: [currentView], components})
-          console.log("acknowledged")
         },
       });
 

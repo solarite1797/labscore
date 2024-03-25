@@ -306,7 +306,8 @@ module.exports.dictionary = async function(context, query, language){
 
 module.exports.emojipedia = async function(context, emoji){
   return await request(Api.UTILS_EMOJIPEDIA, "GET", {}, {
-    emoji: emoji
+    emoji: emoji,
+    with_metadata: ""
   })
 }
 
