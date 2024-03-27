@@ -211,7 +211,7 @@ module.exports = {
 
       currentRevision = res.data.platforms[DEFAULT_PLATFORM].images[0].id
       
-      let selectTypeOptions = Object.keys(res.data.platforms).map((r) => {
+      let selectTypeOptions = Object.keys(res.data.platforms).splice(0, 25).map((r) => {
         let pl = res.data.platforms[r]
         return {
           label: pl.name,
