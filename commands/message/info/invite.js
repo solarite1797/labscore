@@ -1,7 +1,7 @@
 const { DISCORD_INVITES, OPEN_SOURCE_REPOSITORY_URL } = require("../../../labscore/constants");
 const { createEmbed, formatPaginationEmbeds, page } = require("../../../labscore/utils/embed");
 const { guildFeaturesField } = require("../../../labscore/utils/fields");
-const { icon, highlight, timestamp, iconPill, iconLinkPill } = require("../../../labscore/utils/markdown");
+const { icon, highlight, timestamp, iconPill, iconLinkPill, link } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { STATIC_ASSETS } = require("../../../labscore/utils/statics");
 
@@ -23,19 +23,22 @@ module.exports = {
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => { 
     context.triggerTyping();
-    if(!args.invite) return editOrReply(context, createEmbed("default", context, {
-      description: [
-        '​',
-        icon('brand') + ` You can invite ${context.client.user.username} with this ${iconLinkPill("link", context.application.oauth2UrlFormat({ scope: 'bot applications.commands', permissions: 412317248576 }).replace("ptb.discordapp.com","discord.com"), 'Invite Link', 'Discord Application Invite URL')}.`,
-        '',
-        icon('robot') + ` Need help? Join our ${iconLinkPill("discord", DISCORD_INVITES.support, 'Support Server', "Click to join")}.`,
-        '',
-        iconLinkPill('gitlab', OPEN_SOURCE_REPOSITORY_URL, 'Source Code'),
-      ].join('\n'),
-      image: {
-        url: STATIC_ASSETS.embed_invite_spacer
-      }
-    }))
+    if(!args.invite) return editOrReply(context, {
+      content: link("https://canary.discord.com/application-directory/" + context.client.user.id + " ", "⠀", "App Directory Invite", true) + " " + link(DISCORD_INVITES.invite + " ", "⠀", "Support Server Invite", true),
+      embeds: [createEmbed("default", context, {
+        description: [
+          '​',
+          icon('brand') + ` You can invite ${context.client.user.username} with this ${iconLinkPill("link", context.application.oauth2UrlFormat({ scope: 'bot applications.commands', permissions: 412317248576 }).replace("ptb.discordapp.com","discord.com"), 'Invite Link', 'Discord Application Invite URL')}.`,
+          '',
+          icon('robot') + ` Need help? Join our ${iconLinkPill("discord", DISCORD_INVITES.support, 'Support Server', "Click to join")}.`,
+          '',
+          iconLinkPill('gitlab', OPEN_SOURCE_REPOSITORY_URL, 'Source Code'),
+        ].join('\n'),
+        image: {
+          url: STATIC_ASSETS.embed_invite_spacer
+        }
+      })
+    ]})
     try{
       const inviteCode = args.invite.match(/(?:(?:https|http):\/\/)?(?:(?:discord.gg|(?:discord|discordapp)\.com\/invite)\/)?([A-z0-z-]{2,32})/)
       const invite = await context.client.rest.fetchInvite(inviteCode[1], {withCounts: true})

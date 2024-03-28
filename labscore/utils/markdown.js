@@ -19,9 +19,10 @@ module.exports.codeblock = function(type, content = ""){
   return "```" + type + "\n" + content.join('\n').replace(/\`/g, '`​') + "\n```"
 }
 
-module.exports.link = function(url, masked, tooltip = ""){
+module.exports.link = function(url, masked, tooltip = "", embed = false){
   if(tooltip.length) tooltip = ` '${tooltip}'`
-  if(masked) return `[${masked}](<${url}>${tooltip})`
+  if(masked && !embed) return `[${masked}](<${url}>${tooltip})`
+  if(masked && embed) return `[${masked}](${url}${tooltip})`
   return url
 }
 
