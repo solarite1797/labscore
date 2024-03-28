@@ -24,14 +24,12 @@ module.exports = {
   run: async (context, args) => { 
     context.triggerTyping();
     if(!args.invite) return editOrReply(context, {
-      content: link("https://canary.discord.com/application-directory/" + context.client.user.id + " ", "⠀", "App Directory Invite", true) + " " + link(DISCORD_INVITES.invite + " ", "⠀", "Support Server Invite", true),
+      content: link("https://canary.discord.com/application-directory/" + context.client.user.id + " ", "⠀", "App Directory Invite", true) + " " + link(DISCORD_INVITES.invite + " ", "⠀", "labsCore Support Server", true),
       embeds: [createEmbed("default", context, {
         description: [
-          '​',
-          icon('brand') + ` You can invite ${context.client.user.username} with this ${iconLinkPill("link", context.application.oauth2UrlFormat({ scope: 'bot applications.commands', permissions: 412317248576 }).replace("ptb.discordapp.com","discord.com"), 'Invite Link', 'Discord Application Invite URL')}.`,
-          '',
-          icon('robot') + ` Need help? Join our ${iconLinkPill("discord", DISCORD_INVITES.support, 'Support Server', "Click to join")}.`,
-          '',
+          "⠀",
+          iconLinkPill("link", context.application.oauth2UrlFormat().replace("ptb.discordapp.com","discord.com"), 'Invite Link (Enable User Commands)', 'Discord Application Invite URL'),
+          iconLinkPill("robot", DISCORD_INVITES.support, 'Support Server', 'labsCore Support Server'),
           iconLinkPill('gitlab', OPEN_SOURCE_REPOSITORY_URL, 'Source Code'),
         ].join('\n'),
         image: {
