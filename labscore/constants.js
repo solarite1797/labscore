@@ -1,7 +1,8 @@
 module.exports.DISCORD_INVITES = Object.freeze({
   support: "https://discord.gg/8c4p6xcjru",
   privacy: "https://discord.gg/sQs8FhcTGh",
-  invite: "https://discord.gg/cHd28DrM7f"
+  invite: "https://discord.gg/cHd28DrM7f",
+  help: "https://discord.gg/xQNBB3WFne"
 })
 
 module.exports.DEFAULT_BOT_NAME = 'labsCore'

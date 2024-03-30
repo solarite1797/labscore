@@ -10,11 +10,15 @@ const { Permissions } = require("detritus-client/lib/constants");
 const { hasFeature } = require('../../../labscore/utils/testing');
 
 function createHelpPage(context, title, contents, descriptions) {
-  return page(createEmbed("default", context, {
-    description: `${title}\n\n` +
-      renderCommandList(contents, descriptions) +
-      `\n\n${icon("question")} Use ${smallPill(`${DEFAULT_PREFIXES[0]}help <command>`)} to view more information about a command.`
-  }))
+  return {
+    content: link(DISCORD_INVITES.help + " ", "⠀", "labsCore Support Server", true),
+    embeds: [createEmbed("default", context, {
+      description: `${title}\n\n` +
+        renderCommandList(contents, descriptions) +
+        `\n\n${icon("question")} Use ${smallPill(`${DEFAULT_PREFIXES[0]}help <command>`)} to view more information about a command.`
+      })
+    ]
+  }
 }
 
 function renderCommandList(commands, descriptions, limit) {
@@ -82,7 +86,10 @@ function createCommandPage(context, prefix, command) {
       inline: false
     })
   }
-  return page(cPage);
+  return {
+    content: link(DISCORD_INVITES.help + " ", "⠀", "labsCore Support Server", true),
+    embeds: [cPage]
+  };
 }
 
 // These categories will be displayed to users, add them in the correct order
@@ -146,9 +153,11 @@ module.exports = {
 
           let cmds = results.map((m) => { return m.name })
           let dscs = results.map((m) => { return m.metadata.description_short })
-          pages.push(page(createEmbed("default", context, {
+          pages.push({
+            content: link(DISCORD_INVITES.invite + " ", "⠀", "labsCore Support Server", true),
+            embeds: [createEmbed("default", context, {
             description: `Check the pages for full command details.\n\n` + renderCommandList(cmds, dscs, 15) + `\n\n${icon("question")} Need help with something else? Contact us via our ${link(DISCORD_INVITES.support, "Support Server")}.`
-          })))
+          })]})
 
           // Generate command detail pages
           for (const c of results) {
