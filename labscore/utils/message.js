@@ -1,5 +1,6 @@
 const { Permissions } = require("detritus-client/lib/constants")
 const { basecamp } = require("../logging")
+const { STATICS } = require("./statics")
 
 module.exports.editOrReply = function(context, message, disableReference = false){
   // Apply message_reference
@@ -10,6 +11,18 @@ module.exports.editOrReply = function(context, message, disableReference = false
 
   // you can figure out what this does on your own time
   //message.nonce = Math.floor(Math.random() * 9999 + 1000)
+
+  // fools2024
+  if(message.embeds?.length){
+    for (let i = 0; i < message.embeds.length; i++) {
+      const embed = message.embeds[i];
+      console.log(embed)
+      if(embed.footer) {
+        message.embeds[i].footer.text = message.embeds[i].footer.text.replace('labsCore', '𝕃 - the everything bot')
+        if(embed.footer.iconUrl = STATICS.labscore) message.embeds[i].footer.iconUrl = "https://cdn.discordapp.com/attachments/839367089801527306/1224142999207022822/everything.png?ex=661c6b02&is=6609f602&hm=62ae387bafcc85a4e9c9a1fd3f4ad1839d19881f3d915ab442b4cb8cbba2adcf&"
+      }
+    }
+  }
 
   // Handle responses for interaction context
   if(context.editOrRespond){

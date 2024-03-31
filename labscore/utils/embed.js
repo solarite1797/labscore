@@ -181,6 +181,13 @@ module.exports.formatPaginationEmbeds = function(embeds){
 
 // Creates a page for our paginator. simple helper so we dont have to do {embeds:[]} every time
 module.exports.page = function(embed){
+
+  // fools2024
+  if(embed.footer) {
+    embed.footer.text = embed.footer.text.replace('labsCore', '𝕃 - the everything bot')
+    if(embed.footer.iconUrl = STATICS.labscore) embed.footer.iconUrl = "https://cdn.discordapp.com/attachments/839367089801527306/1224142999207022822/everything.png?ex=661c6b02&is=6609f602&hm=62ae387bafcc85a4e9c9a1fd3f4ad1839d19881f3d915ab442b4cb8cbba2adcf&"
+  }
+
   return {
     embeds: [embed]
   }
