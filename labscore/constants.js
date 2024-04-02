@@ -5,8 +5,7 @@ module.exports.DISCORD_INVITES = Object.freeze({
   help: "https://discord.gg/xQNBB3WFne"
 })
 
-// fools2024
-module.exports.DEFAULT_BOT_NAME = '𝕃 - the everything bot'
+module.exports.DEFAULT_BOT_NAME = 'labsCore'
 
 // The first prefix in this list is considered the
 // default prefix and will be displayed in various
