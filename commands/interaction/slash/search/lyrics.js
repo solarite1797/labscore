@@ -71,7 +71,7 @@ module.exports = {
       for(const f of search.body.lyrics.split('\n\n')){
         fields.push({
           name: '​',
-          value: f,
+          value: f.substr(0,1024),
           inline: false
         })
       }
