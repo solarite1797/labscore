@@ -35,9 +35,13 @@ module.exports = {
       const g = context.guild
       // Guild Card
       let guildCard = createEmbed("default", context, {
-        description: `${icon("home")} **${g.name}** ${highlight(`(${g.id})`)}\n\n${icon("calendar")} **Created at: **${timestamp(g.createdAt, "f")}\n${icon("user_shield")} **Roles: **${g.roles.length}`,
+        description: `${icon("home")} **${g.name}** ${highlight(`(${g.id})`)}\n\n${icon("calendar")} **Created at: **${timestamp(g.createdAt, "f")}\n${icon("user_shield")} **Roles: **${g.roles.length}\n${icon("user_multiple")} **Member Count: **${context.guild.memberCount}`,
         fields: []
       })
+
+      if(context.guild.premiumSubscriptionCount >= 1) {
+        description += `\n${icon("boost")} **Server Boosts: **${context.guild.premiumSubscriptionCount} (Level ${context.message.guild.premiumTier})`
+      }
 
       if(g.iconUrl){
         guildCard.thumbnail = {
