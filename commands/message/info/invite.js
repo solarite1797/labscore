@@ -47,7 +47,7 @@ module.exports = {
       let gDesc = ""
       if(g.description) gDesc = g.description + "\n\n"
       let inviteCard = createEmbed("default", context, {
-        description: `${icon("link")} **https://discord.gg/${inviteCode[1]}**\n\n​${icon("home")} **${g.name}** ${highlight(`(${g.id})`)}\n${gDesc}${icon("calendar")} **Created at: **${timestamp(g.createdAt, "f")}\n\n${iconPill("user_multiple", invite.approximateMemberCount.toLocaleString())} ​ ​ ​ ​ ​ ${iconPill("status_online", invite.approximatePresenceCount.toLocaleString())}​ ​ ​ ${iconPill("status_offline", (invite.approximateMemberCount - invite.approximatePresenceCount).toLocaleString())}`,
+        description: `${icon("link")} **https://discord.gg/${inviteCode[1]}**\n\n​${icon("home")} **${g.name}** ${highlight(`(${g.id})`)}\n${iconPill("user_multiple", invite.approximateMemberCount.toLocaleString())} ​ ​ ​ ​ ​ ${iconPill("status_online", invite.approximatePresenceCount.toLocaleString())}​ ​ ​ ${iconPill("status_offline", (invite.approximateMemberCount - invite.approximatePresenceCount).toLocaleString())}\n\n${gDesc}${icon("calendar")} **Created at: **${timestamp(g.createdAt, "f")}\n`,
         fields: []
       })
 
@@ -75,11 +75,11 @@ module.exports = {
         let i = 0;
         let ic = Math.ceil(featureCards.length / 2);
         
-        if(ic == 1) featureCards[0].name = `${icon("list")} Guild Features`
+        if(ic == 1) featureCards[0].name = `${icon("list")} Server Features`
         while(featureCards.length >= 1){
           i++;
           const sub = featureCards.splice(0, 2)
-          sub[0].name = `${icon("list")} Guild Features (${i}/${ic})`
+          sub[0].name = `${icon("list")} Server Features (${i}/${ic})`
 
           pages.push(page(JSON.parse(JSON.stringify(Object.assign({ ...inviteCard }, { fields: sub })))))
         }

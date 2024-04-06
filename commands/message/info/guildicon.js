@@ -10,7 +10,7 @@ module.exports = {
     description: 'Displays the server icon.',
     description_short: 'Server icon',
     category: 'info',
-    usage: 'guildicon'
+    usage: 'servericon'
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context) => {

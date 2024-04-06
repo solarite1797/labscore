@@ -62,10 +62,10 @@ module.exports = {
 
       // Guild Container
       if(m){
-        userCard.fields[0].value = userCard.fields[0].value + `\n**Joined Guild: **${timestamp(m.joinedAt, "f")}`
+        userCard.fields[0].value = userCard.fields[0].value + `\n**Joined Server: **${timestamp(m.joinedAt, "f")}`
         let guildFields = []
         
-        if(m.isOwner) guildFields.push(`**Server Owner**`)
+        if(m.isOwner) guildFields.push(`${icon("user_king")} **Server Owner**`)
         if(m.roles.length >= 1) guildFields.push(`**Roles: ** ${m.roles.length}/${context.guild.roles.length}`)
         if(m.premiumSince) guildFields.push(`**Boosting since: ** ${timestamp(m.premiumSince, 'f')}`)
         userCard.fields.push({
