@@ -1,6 +1,6 @@
 const { createEmbed, page, formatPaginationEmbeds } = require("../../../labscore/utils/embed");
 const { guildFeaturesField } = require("../../../labscore/utils/fields");
-const { icon, highlight, timestamp, codeblock } = require("../../../labscore/utils/markdown");
+const { icon, highlight, timestamp, codeblock, iconPill } = require("../../../labscore/utils/markdown");
 const { editOrReply } = require("../../../labscore/utils/message");
 
 const { paginator } = require('../../../labscore/client');
@@ -34,22 +34,25 @@ module.exports = {
 
       const g = context.guild
       // Guild Card
+
+      // Header Pills
+      let pills = []
+      pills.push(iconPill("user_multiple", context.guild.memberCount))
+      if(g.premiumSubscriptionCount >= 1) pills.push(iconPill("boost", g.premiumSubscriptionCount))
+      if(g.roles.length >= 2) pills.push(iconPill("user_shield", `${g.roles.length} Roles`))
+      pills.push(`${icon("user_king")} <@${g.owner.id}>`)
+      if(emojis.length >= 1) pills.push(iconPill("emoji", emojis.length))
+
       let guildCard = createEmbed("default", context, {
-        description: `${icon("home")} **${g.name}** ${highlight(`(${g.id})`)}\n\n${icon("calendar")} **Created at: **${timestamp(g.createdAt, "f")}\n${icon("user_shield")} **Roles: **${g.roles.length}\n${icon("user_multiple")} **Member Count: **${context.guild.memberCount}`,
+        description: `${icon("home")} **${g.name}** ${highlight(`(${g.id})`)}\n${pills.join('   ')}\n\n${icon("calendar")} **Server created** ${timestamp(g.createdAt, "f")}`,
         fields: []
       })
-
-      if(context.guild.premiumSubscriptionCount >= 1) {
-        guildCard.description += `\n${icon("boost")} **Server Boosts: **${context.guild.premiumSubscriptionCount} (Level ${context.message.guild.premiumTier})`
-      }
 
       if(g.iconUrl){
         guildCard.thumbnail = {
           url: g.iconUrl + `?size=4096`
         }
       }
-
-      if(g.owner) guildCard.description += `\n\n<:lc_guild_owner:674652779406426122> **Server Owner: **<@${g.owner.id}>`
 
       // Channel Container
       let lines = [];
@@ -67,18 +70,6 @@ module.exports = {
         name: `${icon("channel")} Channels`,
         value: codeblock("py", lines),
         inline: true
-      })
-      
-      // Emoji Container
-      guildCard.fields.push({
-        name: `${icon("emoji")} Emoji`,
-        value: codeblock("py", [
-          `Regular   ${emojis.length - animojis}`,
-          `Animated  ${animojis}`,
-          ``,
-          `Total     ${emojis.length}`,
-        ]),
-        inline: false
       })
 
       if(g.banner){

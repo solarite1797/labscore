@@ -103,6 +103,7 @@ module.exports.ICONS = Object.freeze({
 
   "user": "<:ico_user:1165257795407466607>",
   "user_card": "<:ico_user_card:1165257796720275540>",
+  "user_king": "<:ico_user_king:1226151423339663360>",
   "user_multiple": "<:ico_user_multiple:1165257798934876181>",
   "user_profile": "<:ico_user_profile:1165257800751001721>",
   "user_shield": "<:ico_user_shield:1165257802277728256>",
