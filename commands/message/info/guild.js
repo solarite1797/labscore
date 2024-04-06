@@ -30,11 +30,12 @@ module.exports = {
       const textChannels = channels.filter((channel) => channel.isGuildText).length;
       const voiceChannels = channels.filter((channel) => channel.isGuildVoice).length;
       const stageChannels = channels.filter((channel) => channel.isGuildStageVoice).length;
+      const forumChannels = channels.filter((channel) => channel.isGuildForumChannel).length;
 
       const g = context.guild
       // Guild Card
       let guildCard = createEmbed("default", context, {
-        description: `${icon("home")} **${g.name}** ${highlight(`(${g.id})`)}\n\n${icon("calendar")} **Created at: **${timestamp(g.createdAt, "f")}`,
+        description: `${icon("home")} **${g.name}** ${highlight(`(${g.id})`)}\n\n${icon("calendar")} **Created at: **${timestamp(g.createdAt, "f")}\n${icon("user_shield")} **Roles: **${g.roles.length}`,
         fields: []
       })
 
@@ -47,17 +48,20 @@ module.exports = {
       if(g.owner) guildCard.description += `\n\n<:lc_guild_owner:674652779406426122> **Server Owner: **<@${g.owner.id}>`
 
       // Channel Container
+      let lines = [];
+      if(textChannels >= 1)     lines.push(`Text Channels          ${textChannels}`)
+      if(forumChannels >= 1)    lines.push(`Forum Channels         ${forumChannels}`)
+      if(newsChannels >= 1)     lines.push(`Announcement Channels  ${newsChannels}`)
+      if(voiceChannels >= 1)    lines.push(`Voice Channels         ${voiceChannels}`)
+      if(stageChannels >= 1)    lines.push(`Stage Channels         ${stageChannels}`)
+      if(categoryChannels >= 1) lines.push(`Categories             ${categoryChannels}`)
+
+      lines.push("")
+      lines.push(`Total                  ${channels.length}`)
+      
       guildCard.fields.push({
         name: `${icon("channel")} Channels`,
-        value: codeblock("py", [
-          `Text Channels          ${textChannels}`,
-          `Voice Channels         ${voiceChannels}`,
-          `Stage Channels         ${stageChannels}`,
-          `Announcement Channels  ${newsChannels}`,
-          `Categories             ${categoryChannels}`,
-          ``,
-          `Total                  ${channels.length}`,
-        ]),
+        value: codeblock("py", lines),
         inline: true
       })
       
@@ -70,7 +74,7 @@ module.exports = {
           ``,
           `Total     ${emojis.length}`,
         ]),
-        inline: true
+        inline: false
       })
 
       if(g.banner){
@@ -97,7 +101,7 @@ module.exports = {
           const sub = featureCards.splice(0, 2)
           sub[0].name = `${icon("list")} Guild Features (${i}/${ic})`
 
-          pages.push(page(JSON.parse(JSON.stringify(Object.assign({ ...guildCard }, { fields: sub })))))
+          pages.push(page(JSON.parse(JSON.stringify(Object.assign({ ...guildCard }, { fields: [...guildCard.fields, ...sub] })))))
         }
 
         await paginator.createPaginator({
