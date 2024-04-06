@@ -40,7 +40,7 @@ module.exports = {
       pills.push(iconPill("user_multiple", context.guild.memberCount))
       if(g.premiumSubscriptionCount >= 1) pills.push(iconPill("boost", g.premiumSubscriptionCount))
       if(g.roles.length >= 2) pills.push(iconPill("user_shield", `${g.roles.length} Roles`))
-      pills.push(`${icon("user_king")} <@${g.owner.id}>`)
+      if(g.owner.id) pills.push(`${icon("user_king")} <@${g.owner.id}>`)
       if(emojis.length >= 1) pills.push(iconPill("emoji", emojis.length))
 
       let guildCard = createEmbed("default", context, {
