@@ -40,7 +40,7 @@ module.exports = {
       })
 
       if(context.guild.premiumSubscriptionCount >= 1) {
-        description += `\n${icon("boost")} **Server Boosts: **${context.guild.premiumSubscriptionCount} (Level ${context.message.guild.premiumTier})`
+        guildCard.description += `\n${icon("boost")} **Server Boosts: **${context.guild.premiumSubscriptionCount} (Level ${context.message.guild.premiumTier})`
       }
 
       if(g.iconUrl){
