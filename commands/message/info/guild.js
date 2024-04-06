@@ -69,7 +69,7 @@ module.exports = {
       guildCard.fields.push({
         name: `${icon("channel")} Channels`,
         value: codeblock("py", lines),
-        inline: true
+        inline: false
       })
 
       if(g.banner){
