@@ -21,7 +21,6 @@ module.exports = {
   run: async (context) => {
     try{
       const emojis = context.message.guild.emojis
-      const animojis = emojis.filter(emoji => emoji.animated).length
   
       const channels = context.message.guild.channels
       
@@ -40,8 +39,9 @@ module.exports = {
       pills.push(iconPill("user_multiple", context.guild.memberCount))
       if(g.premiumSubscriptionCount >= 1) pills.push(iconPill("boost", g.premiumSubscriptionCount))
       if(g.roles.length >= 2) pills.push(iconPill("user_shield", `${g.roles.length} Roles`))
-      if(g.owner) pills.push(`${icon("user_king")} <@${g.owner.id}>`)
       if(emojis.length >= 1) pills.push(iconPill("emoji", emojis.length))
+      if(channels.length >= 1) pills.push(iconPill("channel", g.channels.length))
+      if(g.owner) pills.push(`${icon("user_king")} <@${g.owner.id}>`)
 
       let guildCard = createEmbed("default", context, {
         description: `${icon("home")} **${g.name}** ${highlight(`(${g.id})`)}\n${pills.join('   ')}\n\n${icon("calendar")} **Server created** ${timestamp(g.createdAt, "f")}`,
@@ -62,9 +62,6 @@ module.exports = {
       if(voiceChannels >= 1)    lines.push(`Voice Channels         ${voiceChannels}`)
       if(stageChannels >= 1)    lines.push(`Stage Channels         ${stageChannels}`)
       if(categoryChannels >= 1) lines.push(`Categories             ${categoryChannels}`)
-
-      lines.push("")
-      lines.push(`Total                  ${channels.length}`)
       
       guildCard.fields.push({
         name: `${icon("channel")} Channels`,
