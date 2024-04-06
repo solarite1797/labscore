@@ -1,4 +1,4 @@
-const { GUILD_FEATURES } = require("../constants");
+const { GUILD_FEATURES, GUILD_FEATURE_ICONS_REDESIGN } = require("../constants");
 
 module.exports.guildFeaturesField = function(g){
   let featureCards = []
@@ -8,7 +8,7 @@ module.exports.guildFeaturesField = function(g){
   for(const feat of g.features.toArray()){
     if(GUILD_FEATURES[feat]){
       let n = feat.replace(/_/g, ' ').toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
-      if(GUILD_FEATURES[feat].name) n = GUILD_FEATURES[feat].name
+      if(GUILD_FEATURES[feat].label) n = GUILD_FEATURES[feat].label
       
       fN.push(n);
       fD[n] = GUILD_FEATURES[feat].icon;
@@ -23,8 +23,10 @@ module.exports.guildFeaturesField = function(g){
     let ft = []
     for(const f of sfN){
       let ic = fD[f]
-      if(!fD[f]) ic = `<:UNKNOWN:878298902971965520>`
-      ft.push(`${ic} ${f.split('_').map((i)=>i.substring(0, 1).toUpperCase() + i.substring(1,i.length).toLowerCase()).join(' ')}`)
+      if(!fD[f]) ic = GUILD_FEATURE_ICONS_REDESIGN.CircleQuestionIcon
+
+                    // Clean up icon to save on characters
+      ft.push(`${ic.replace(/:[a-z1-9_]*:/, ':i:')} ${f.split('_').map((i)=>i.substring(0, 1).toUpperCase() + i.substring(1,i.length).toLowerCase()).join(' ')}`)
     }
     featureCards.push({
       name: `​`,

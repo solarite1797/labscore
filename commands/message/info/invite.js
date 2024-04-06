@@ -59,7 +59,11 @@ module.exports = {
 
       if(g.splash){
         inviteCard.image = {
-          url: `https://cdn.discordapp.com/splashes/${g.id}/${g.splash}.png?size=4096`
+          url: g.splashUrl + "?size=4096"
+        }
+      } else if(g.banner){ // if no splash exists, check the banner
+        inviteCard.image = {
+          url: g.bannerUrl + "?size=4096"
         }
       }
 

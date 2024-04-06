@@ -75,11 +75,11 @@ module.exports = {
 
       if(g.banner){
         guildCard.image = {
-          url: `https://cdn.discordapp.com/banners/${g.id}/${g.banner}.png?size=4096`
+          url: g.bannerUrl + "?size=4096"
         }
       } else if(g.splash){
         guildCard.image = {
-          url: `https://cdn.discordapp.com/splashes/${g.id}/${g.banner}.png?size=4096`
+          url: g.splashUrl + "?size=4096"
         }
       }
 
