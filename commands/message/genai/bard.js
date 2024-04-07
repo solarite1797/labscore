@@ -111,7 +111,7 @@ module.exports = {
         })
 
         let draftOptions = [];
-        for (let i = 0; i <= res.body.drafts.length; i++) {
+        for (let i = 0; i < res.body.drafts.length; i++) {
           draftOptions.push({
             label: `Draft ${i + 1}: ​ ${stringwrap(res.body.drafts[i], 50, false)}`,
             value: "draft-" + (i),
