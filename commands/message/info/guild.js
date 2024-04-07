@@ -36,15 +36,22 @@ module.exports = {
 
       // Header Pills
       let pills = []
-      pills.push(iconPill("user_multiple", context.guild.memberCount))
-      if(g.premiumSubscriptionCount >= 1) pills.push(iconPill("boost", g.premiumSubscriptionCount))
+      pills.push(iconPill("user_multiple", context.guild.memberCount + " Members"))
+      if(g.premiumSubscriptionCount >= 1) pills.push(iconPill("boost", g.premiumSubscriptionCount + " Boosts"))
       if(g.roles.length >= 2) pills.push(iconPill("user_shield", `${g.roles.length} Roles`))
-      if(emojis.length >= 1) pills.push(iconPill("emoji", emojis.length))
-      if(channels.length >= 1) pills.push(iconPill("channel", g.channels.length))
+      if(emojis.length >= 1) pills.push(iconPill("emoji", emojis.length + " Emoji"))
+      if(channels.length >= 1) pills.push(iconPill("channel", g.channels.length + " Channels"))
       if(g.owner) pills.push(`${icon("user_king")} <@${g.owner.id}>`)
 
+      let pillDisplay = ""
+      for (let i = 0; i < pills.length; i++) {
+        const element = pills[i];
+        pillDisplay += element;
+        if(!((i+1)%3)) pillDisplay += "\n"
+      }
+
       let guildCard = createEmbed("default", context, {
-        description: `${icon("home")} **${g.name}** ${highlight(`(${g.id})`)}\n${pills.join('   ')}\n\n${icon("calendar")} **Server created** ${timestamp(g.createdAt, "f")}`,
+        description: `${icon("home")} **${g.name}** ${highlight(`(${g.id})`)}\n${pillDisplay}\n\n${icon("calendar")} **Server created** ${timestamp(g.createdAt, "f")}`,
         fields: []
       })
 
