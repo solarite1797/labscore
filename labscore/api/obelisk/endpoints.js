@@ -20,6 +20,7 @@ const ObeliskApi = Object.freeze({
   AI_WALLPAPER: "/robin/v1/wallpaper:generate",
   
   WEBSHOT: "/peacock/v1/screenshot",
+  TRANSCRIBE: "/peacock/v1/transcribe",
 })
 
 module.exports = {

@@ -1,7 +1,7 @@
 const { Constants } = require('detritus-client');
 const { InteractionCallbackTypes, ApplicationCommandTypes, MessageFlags } = Constants;
 
-const {  googleSpeechRecognitionWithLabels } = require('../../../labscore/api');
+const { transcribeWithSpeakerLabelsObelisk } = require('../../../labscore/api/obelisk');
 
 const { createEmbed } = require('../../../labscore/utils/embed');
 const { codeblock } = require('../../../labscore/utils/markdown');
@@ -34,7 +34,7 @@ module.exports = {
           flags: MessageFlags.EPHEMERAL
         })
         
-        const recog = await googleSpeechRecognitionWithLabels(context, message.attachments.first().url)
+        const recog = await transcribeWithSpeakerLabelsObelisk(context, message.attachments.first().url)
   
         return editOrReply(context, {
           embeds: [createEmbed("default", context, {

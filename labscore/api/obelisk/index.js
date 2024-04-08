@@ -110,3 +110,9 @@ module.exports.webshot = async function(context, url, allowAdultContent = false)
     allow_adult: allowAdultContent
   })
 }
+
+module.exports.transcribeWithSpeakerLabelsObelisk = async function(context, url){
+  return await request(ObeliskApi.TRANSCRIBE, "POST", {}, {
+    url
+  })
+}
