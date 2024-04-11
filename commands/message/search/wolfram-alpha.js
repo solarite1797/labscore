@@ -3,7 +3,7 @@ const { editOrReply } = require('../../../labscore/utils/message')
 const { STATICS } = require('../../../labscore/utils/statics')
 
 const { paginator } = require('../../../labscore/client');
-const { wolframAlpha } = require('../../../labscore/api');
+const { wolframQuery } = require('../../../labscore/api/obelisk');
 const { citation, smallIconPill } = require('../../../labscore/utils/markdown');
 
 const { Permissions } = require("detritus-client/lib/constants");
@@ -62,7 +62,7 @@ module.exports = {
 
     if (!args.query) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (query).`))
     try {
-      let search = await wolframAlpha(context, args.query)
+      let search = await wolframQuery(context, args.query)
       search = search.response
 
       if (search.body.status == 1) return editOrReply(context, createEmbed("warning", context, search.body.message))

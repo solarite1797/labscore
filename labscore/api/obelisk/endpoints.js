@@ -21,6 +21,8 @@ const ObeliskApi = Object.freeze({
   
   WEBSHOT: "/peacock/v1/screenshot",
   TRANSCRIBE: "/peacock/v1/transcribe",
+
+  WOLFRAM_QUERY: "/wolfram/v1/wolframalpha:query",
 })
 
 module.exports = {

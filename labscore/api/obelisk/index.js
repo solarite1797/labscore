@@ -116,3 +116,9 @@ module.exports.transcribeWithSpeakerLabelsObelisk = async function(context, url)
     url
   })
 }
+
+module.exports.wolframQuery = async function(context, query){
+  return await request(ObeliskApi.WOLFRAM_QUERY, "POST", {}, {
+    q: query
+  })
+}
