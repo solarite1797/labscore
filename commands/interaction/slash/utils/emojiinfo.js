@@ -85,7 +85,7 @@ module.exports = {
         currentView = createEmbed("default", context, {
           author: {
             iconUrl: ico,
-            name: `${newView.data.name} • Unicode ${newView.data.metadata.version.unicode}`,
+            name: `${newView.data.name} • Emoji ${newView.data.metadata.version.emoji}`,
             url: newView.data.link
           },
           description: newView.data.codes.map((c)=>pill(c)).join(' ') + "\n\n" + newView.data.metadata.description,
