@@ -57,11 +57,16 @@ const interactionClient = new InteractionCommandClient(cluster, {
   useClusterClient: true
 })
 
-const { maintower, basecamp } = require('./logging');
+const { maintower, basecamp, ingest } = require('./logging');
 const { icon, highlight } = require('./utils/markdown');
 const { editOrReply } = require('./utils/message');
 
 const { createEmbed } = require('./utils/embed');
+const superagent = require('superagent');
+
+// Analytics
+commandClient.on('commandRan', ({ context, command }) => { if(!command.metadata.use_custom_ingest) ingest(command.name, "slash_command_ran")} )
+interactionClient.on('commandRan', ({ context, command }) => { if(!command.metadata.use_custom_ingest) ingest(command.name, "slash_command_ran")} )
 
 // Handle missing permission errors
 commandClient.on('commandPermissionsFailClient', ({context, permissions}) => {

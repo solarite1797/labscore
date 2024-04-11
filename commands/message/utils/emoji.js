@@ -9,6 +9,7 @@ const { editOrReply } = require("../../../labscore/utils/message");
 const { STATICS } = require("../../../labscore/utils/statics");
 const { Components, Snowflake } = require("detritus-client/lib/utils");
 const { bold } = require("detritus-client/lib/utils/markup");
+const { ingest } = require("../../../labscore/logging");
 
 const onlyEmoji = require('emoji-aware').onlyEmoji;
 
@@ -41,7 +42,8 @@ module.exports = {
     description_short: 'Get emoji/sticker source images, mix two emoji together.',
     examples: ['e 😀', 'emojimix 🐱 🍞'],
     category: 'utils',
-    usage: 'emoji <emoji> [<emoji to mix>]'
+    usage: 'emoji <emoji> [<emoji to mix>]',
+    use_custom_ingest: true
   },
   args: [
     {name: 'type', default: 'twitter', type: 'string', help: `Emoji platform type`}
@@ -57,6 +59,7 @@ module.exports = {
     
     // Stickers
     if(msg.stickerItems.length){
+      ingest("emoji_sticker", "command_ran");
       let s = msg.stickerItems.first()
       if(s.formatType == 3) return editOrReply(context, createEmbed("default", context, {
           description: `${iconPill("sticker", s.name)} ${highlight(`(${s.id})`)}\nhttps://cdn.discordapp.com/stickers/${s.id}.json`,
@@ -76,6 +79,7 @@ module.exports = {
     );
     embeds = []
     if (matches.length) {
+      ingest("emoji_enlarge", "command_ran");
       let form = '.png'
       if(matches[0].animated) form = '.gif'
 
@@ -102,6 +106,7 @@ module.exports = {
       // Emoji Mixing
       if(emoji.length >= 2){
         try{
+          ingest("emoji_emojikitchen", "command_ran");
           let em = await emojiKitchen(emoji)
           if(!em.body.results[0]){
             for(const em of emoji){
@@ -120,6 +125,7 @@ module.exports = {
         }
       }
 
+      ingest("emoji_enlarge", "command_ran");
       // Regular Emoji Handling
       if(emoji.length == 0) return await editOrReply(context, createEmbed("warning", context, "You need to specify an emoji to enlarge."))
 

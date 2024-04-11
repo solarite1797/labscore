@@ -39,3 +39,13 @@ module.exports.basecamp = async function (log, content = ""){
     throw "Basecamp request failed."
   }
 }
+
+module.exports.ingest = async function (event, type = "generic"){
+  try{
+    let r = await superagent.get(`${process.env.INGEST_SERVICE_HOST}/d/${type}/${event}`)
+      .set("x-ingest-client", process.env.INGEST_SERVICE_CLIENT)
+  }catch(e){
+    console.log(e)
+    console.log("ingest failed")
+  }
+}

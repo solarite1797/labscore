@@ -8,6 +8,7 @@ const { icon, pill, iconPill, highlight, timestamp } = require("../../../../labs
 const { editOrReply } = require("../../../../labscore/utils/message");
 const { STATICS } = require("../../../../labscore/utils/statics");
 const { Components, Snowflake } = require("detritus-client/lib/utils");
+const { ingest } = require("../../../../labscore/logging");
 
 const onlyEmoji = require('emoji-aware').onlyEmoji;
 
@@ -34,6 +35,9 @@ function toCodePoint(unicodeSurrogates, sep) {
 module.exports = {
   name: 'emoji',
   description: 'Turn emoji into images. Supports both built-in and custom emoji.',
+  metadata: {
+    use_custom_ingest: true
+  },
   contexts: [
     0,
     1,
@@ -59,6 +63,7 @@ module.exports = {
     );
     embeds = []
     if (matches.length) {
+      ingest("emoji_enlarge", "slash_command_ran");
       let form = '.png'
       if(matches[0].animated) form = '.gif'
 
@@ -83,6 +88,7 @@ module.exports = {
 
       // Emoji Mixing
       if(emoji.length >= 2){
+        ingest("emoji_emojikitchen", "slash_command_ran");
         try{
           let em = await emojiKitchen(emoji)
           if(!em.body.results[0]){
@@ -105,6 +111,7 @@ module.exports = {
       }
 
       // Regular Emoji Handling
+      ingest("emoji_enlarge", "slash_command_ran");
       if(emoji.length == 0) return await editOrReply(context, createEmbed("warning", context, "You need to specify an emoji to enlarge."))
 
       let res;
