@@ -65,7 +65,7 @@ const { createEmbed } = require('./utils/embed');
 const superagent = require('superagent');
 
 // Analytics
-commandClient.on('commandRan', ({ context, command }) => { if(!command.metadata.use_custom_ingest) ingest(command.name, "slash_command_ran")} )
+commandClient.on('commandRan', ({ context, command }) => { if(!command.metadata.use_custom_ingest) ingest(command.name, "command_ran")} )
 interactionClient.on('commandRan', ({ context, command }) => { if(!command.metadata.use_custom_ingest) ingest(command.name, "slash_command_ran")} )
 
 // Handle missing permission errors
