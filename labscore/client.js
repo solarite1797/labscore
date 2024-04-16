@@ -159,6 +159,7 @@ commandClient.on('commandRunError', async ({context, error}) => {
     await commandClient.run()
   
     await interactionClient.addMultipleIn('../commands/interaction/context');
+    await interactionClient.addMultipleIn('../commands/interaction/user');
     await interactionClient.addMultipleIn('../commands/interaction/slash');
     await interactionClient.run();
   } catch(e){
