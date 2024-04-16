@@ -1,4 +1,5 @@
 const { Utils, Constants } = require("detritus-client");
+const { codeblock } = require("../../../labscore/utils/markdown");
 
 const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
 
@@ -49,7 +50,7 @@ module.exports = {
     }
     const max = 1990 - language.length;
     if (!args.noreply) {
-      const reply =  ["```" + language, String(message).slice(0, max), "```"].join("\n")
+      const reply = codeblock(language, [String(message).slice(0, max)])
       return context.editOrReply(
          reply
       );
