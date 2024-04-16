@@ -47,7 +47,7 @@ module.exports = {
       for (let i = 0; i < pills.length; i++) {
         const element = pills[i];
         pillDisplay += element;
-        if(!((i+1)%3)) pillDisplay += "\n"
+        if(!((i+1)%2)) pillDisplay += "\n"
       }
 
       let guildCard = createEmbed("default", context, {
