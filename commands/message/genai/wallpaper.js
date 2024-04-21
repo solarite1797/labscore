@@ -1,4 +1,4 @@
-const { geminiVision, aiWallpaper, imagen } = require("../../../labscore/api/obelisk");
+const { geminiVision, aiWallpaper, imagen, wallpaper } = require("../../../labscore/api/obelisk");
 const { getRecentImage } = require("../../../labscore/utils/attachment");
 const { createEmbed } = require("../../../labscore/utils/embed");
 const { editOrReply } = require("../../../labscore/utils/message");
@@ -11,23 +11,26 @@ const { iconPill, stringwrap } = require("../../../labscore/utils/markdown");
 const { hasFeature } = require("../../../labscore/utils/testing");
 
 module.exports = {
-  name: 'imagen',
+  name: 'wallpaper',
   label: 'text',
-  aliases: ['aiimg'],
+  aliases: ['aiwp'],
   metadata: {
-    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nGenerate images with Imagen 2`,
-    description_short: 'Create Images with Imagen',
-    examples: ['imagen a painting of northern lights'],
+    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nGenerate AI Wallpapers`,
+    description_short: 'Create Wallpapers',
+    examples: ['wallpaper a painting of northern lights, in the bauhaus style -format square'],
     category: 'limited',
-    usage: 'imagen <prompt>'
+    usage: 'wallpaper <prompt> [-format <square|wide>]'
   },
+  args: [
+    { name: 'format', default: 'wide', required: false, help: "Image style (wide, square)." }
+  ],
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
-    if(!await hasFeature(context, "ai/imagen")) return;
+    if(!await hasFeature(context, "ai/wallpapers")) return;
     context.triggerTyping();
 
     if(!args.text) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (prompt).`))
-
+    if(!["wide","square"].includes(args.format.toLowerCase())) return editOrReply(context, createEmbed("warning", context, `Invalid Parameter (format).`))
     try{
       await editOrReply(context, createEmbed("defaultNoFooter", context, {
         author: {
@@ -36,7 +39,7 @@ module.exports = {
         }
       }))
 
-      let res = await imagen(context, args.text);
+      let res = await wallpaper(context, args.text, args.format.toLowerCase());
 
       // Construct Embeds
       let files = [];

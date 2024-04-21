@@ -17,7 +17,8 @@ const ObeliskApi = Object.freeze({
   WEB_ASK: "/flamingo/v1/web:ask",
   SUMMARIZE_WEBPAGES: "/flamingo/v1/web:summarize",
   
-  AI_WALLPAPER: "/robin/v1/wallpaper:generate",
+  GENERATE_IMAGEN: "/robin/v1/generate:imagen",
+  GENERATE_WALLPAPER: "/robin/v1/generate:wallpaper",
   
   WEBSHOT: "/peacock/v1/screenshot",
   TRANSCRIBE: "/peacock/v1/transcribe",
