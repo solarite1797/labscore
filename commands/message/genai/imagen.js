@@ -11,27 +11,22 @@ const { iconPill, stringwrap } = require("../../../labscore/utils/markdown");
 const { hasFeature } = require("../../../labscore/utils/testing");
 
 module.exports = {
-  name: 'wallpaper',
+  name: 'imagen',
   label: 'text',
-  aliases: ['aiwp'],
+  aliases: ['aiimg'],
   metadata: {
-    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nCreate Wallpapers`,
+    description: `${iconPill("generative_ai", "LIMITED TESTING")}\n\nGenerate images with Imagen 2`,
     description_short: 'Create Wallpapers',
-    examples: ['aiwp northern lights'],
+    examples: ['imagen a painting of northern lights'],
     category: 'limited',
-    usage: 'aiwallpaper <prompt>'
+    usage: 'imagen <prompt>'
   },
-  args: [
-    { name: 'style', default: 'translucent', required: false, help: "Image Style." },
-  ],
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
     if(!await hasFeature(context, "ai/wallpapers")) return;
     context.triggerTyping();
 
     if(!args.text) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (prompt).`))
-
-    let input = args.text;
 
     try{
       await editOrReply(context, createEmbed("defaultNoFooter", context, {
@@ -46,7 +41,7 @@ module.exports = {
       // Construct Embeds
       let files = [];
       let embeds = res.response.body.images.map((i)=>{
-        let imgName = `lcwp.${(Date.now() + Math.random()).toString(36)}.jpeg`;
+        let imgName = `lcigen.${(Date.now() + Math.random()).toString(36)}.jpeg`;
 
         files.push({
           filename: imgName,
