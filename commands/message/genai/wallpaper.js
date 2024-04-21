@@ -1,12 +1,10 @@
-const { geminiVision, aiWallpaper, imagen, wallpaper } = require("../../../labscore/api/obelisk");
-const { getRecentImage } = require("../../../labscore/utils/attachment");
+const { wallpaper } = require("../../../labscore/api/obelisk");
 const { createEmbed } = require("../../../labscore/utils/embed");
 const { editOrReply } = require("../../../labscore/utils/message");
-const { getUser } = require("../../../labscore/utils/users");
 
 const { Permissions } = require("detritus-client/lib/constants");
 
-const { STATIC_ICONS } = require("../../../labscore/utils/statics");
+const { STATIC_ICONS, STATIC_ASSETS } = require("../../../labscore/utils/statics");
 const { iconPill, stringwrap } = require("../../../labscore/utils/markdown");
 const { hasFeature } = require("../../../labscore/utils/testing");
 
@@ -32,12 +30,19 @@ module.exports = {
     if(!args.text) return editOrReply(context, createEmbed("warning", context, `Missing Parameter (prompt).`))
     if(!["wide","square"].includes(args.format.toLowerCase())) return editOrReply(context, createEmbed("warning", context, `Invalid Parameter (format).`))
     try{
-      await editOrReply(context, createEmbed("defaultNoFooter", context, {
+      let load = createEmbed("defaultNoFooter", context, {
+        url: "https://bignutty.gitlab.io",
         author: {
           iconUrl: STATIC_ICONS.ai_image_processing,
           name: "Generating images..."
+        },
+        image: {
+          url: STATIC_ASSETS.image_loading
         }
-      }))
+      })
+      let loadingEmbeds = [load, load, load, load]
+        
+      await editOrReply(context, {embeds: loadingEmbeds});
 
       let res = await wallpaper(context, args.text, args.format.toLowerCase());
 

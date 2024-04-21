@@ -8,6 +8,10 @@ const Statics = Object.freeze({
       file: "loading/05_chat_loading.7y2ji893rho0.gif",
       revision: 0
     },
+    image_loading: {
+      file: "loading/image_loading_splash.2elegsql1j8k.png",
+      revision: 1
+    },
     embed_invite_spacer: {
       file: "misc/embed-spacer-botinvite.png",
       revision: 0
@@ -231,5 +235,6 @@ module.exports.STATIC_ICONS = Object.freeze({
 
 module.exports.STATIC_ASSETS = Object.freeze({
   chat_loading: staticAsset(Statics.assets.chat_loading),
+  image_loading: staticAsset(Statics.assets.image_loading),
   embed_invite_spacer: staticAsset(Statics.assets.embed_invite_spacer)
 })
