@@ -96,10 +96,9 @@ module.exports.summarizeWebpage = async function(context, url){
 }
 
 // ROBIN
-module.exports.aiWallpaper = async function(context, prompt, style){
+module.exports.aiWallpaper = async function(context, prompt){
   return await request(ObeliskApi.AI_WALLPAPER, "POST", {}, {
-    prompt,
-    style
+    prompt
   })
 }
 
