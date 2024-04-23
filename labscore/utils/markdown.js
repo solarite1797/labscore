@@ -21,8 +21,8 @@ module.exports.codeblock = function(type, content = ""){
 
 module.exports.link = function(url, masked, tooltip = "", embed = false){
   if(tooltip.length) tooltip = ` '${tooltip}'`
-  if(masked && !embed) return `[${masked}](<${url}>${tooltip})`
-  if(masked && embed) return `[${masked}](${url}${tooltip})`
+  if(masked && !embed) return `[${masked}](<${url.replace(/\)/g, '\\)')}>${tooltip})`
+  if(masked && embed) return `[${masked}](${url.replace(/\)/g, '\\)')}${tooltip})`
   return url
 }
 
@@ -61,12 +61,12 @@ module.exports.smallIconPill = function(icon, content = ""){
 module.exports.iconLinkPill = function(icon, url, content = "", tooltip = ""){
   if(!ICONS[icon]) icon = "question"
   if(tooltip.length) tooltip = ` '${tooltip}'`
-  if(content) return `${ICONS[icon].replace(/:[a-z1-9_]*:/, ':i:')} [**\` ${content.toString().replace(/\`/g, 'ˋ')}  \`**](${url}${tooltip})`
+  if(content) return `${ICONS[icon].replace(/:[a-z1-9_]*:/, ':i:')} [**\` ${content.toString().replace(/\`/g, 'ˋ')}  \`**](${url.replace(/\)/g, '\\)')}${tooltip})`
   return url
 }
 module.exports.linkPill = function(url, content = "", tooltip = ""){
   if(tooltip.length) tooltip = ` '${tooltip}'`
-  if(content) return `[**\` ${content.toString().replace(/\`/g, 'ˋ')}  \`**](${url}${tooltip})`
+  if(content) return `[**\` ${content.toString().replace(/\`/g, 'ˋ')}  \`**](${url.replace(/\)/g, '\\)')}${tooltip})`
   return url
 }
 
