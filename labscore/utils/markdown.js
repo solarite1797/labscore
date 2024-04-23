@@ -64,6 +64,7 @@ module.exports.iconLinkPill = function(icon, url, content = "", tooltip = ""){
   if(content) return `${ICONS[icon].replace(/:[a-z1-9_]*:/, ':i:')} [**\` ${content.toString().replace(/\`/g, 'ˋ')}  \`**](${url.replace(/\)/g, '\\)')}${tooltip})`
   return url
 }
+
 module.exports.linkPill = function(url, content = "", tooltip = ""){
   if(tooltip.length) tooltip = ` '${tooltip}'`
   if(content) return `[**\` ${content.toString().replace(/\`/g, 'ˋ')}  \`**](${url.replace(/\)/g, '\\)')}${tooltip})`
@@ -79,7 +80,7 @@ module.exports.citation = function(number = 1, url, tooltip = ""){
       if(tooltip.endsWith(' ')) tooltip = tooltip.substr(0, tooltip.length - 1)
       tooltip = ` '${tooltip.replace(/["*]/g, '')}'`
     }
-    return `[⁽${formatted}⁾](${url}${tooltip})`
+    return `[⁽${formatted}⁾](${url.replace(/\)/g, '\\)')}${tooltip})`
   }
   return `⁽${formatted}⁾`
 }
