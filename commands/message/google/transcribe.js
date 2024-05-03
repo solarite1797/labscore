@@ -35,7 +35,7 @@ module.exports = {
       const recog = await transcribeWithSpeakerLabelsObelisk(context, msg.attachments.first().url)
 
       return editOrReply(context, createEmbed("default", context, {
-        description: codeblock("md", [ recog.response.body.transcription_with_speakers ]),
+        description: codeblock("md", [ recog.response.body.transcription ]),
         footer: {
           iconUrl: STATICS.google,
           text: `Google Cloud • Confidence: ${(recog.response.body.confidence* 100).toFixed(1)}% • ${context.application.name}`
