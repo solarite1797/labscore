@@ -22,7 +22,7 @@ module.exports = {
   ],
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.MANAGE_MESSAGES, Permissions.READ_MESSAGE_HISTORY],
   permissions: [Permissions.MANAGE_MESSAGES],
-  onPermissionsFail: (context) => editOrReply(`${icon("failiure_simple")} ${context.message.author.mention}, you are lacking the permission \`Manage Messages\`.`),
+  onPermissionsFail: (context) => editOrReply(context, {content: `${icon("failiure_simple")} ${context.message.author.mention}, you are lacking the permission \`Manage Messages\`.`}),
   ratelimit: {
     type: 'guild',
     limit: 1,
@@ -31,10 +31,10 @@ module.exports = {
   permissionsClient: [Permissions.MANAGE_MESSAGES],
   run: async (context, args) => {
     await context.triggerTyping();
-    if(isNaN(parseInt(args.amount))) return editOrReply(createEmbed("warning", context, "Invalid Amount"))
+    if(isNaN(parseInt(args.amount))) return editOrReply(context, createEmbed("warning", context, "Invalid Amount"))
     
     if(args.amount >= 51 || args.amount <= 0){
-      return editOrReply(`${icon("failiure_simple")} ${context.message.author.mention}, Invalid amount (1-50).`);
+      return editOrReply(context, { content: `${icon("failiure_simple")} ${context.message.author.mention}, Invalid amount (1-50).`});
     }
     const messages = await context.message.channel.fetchMessages({limit: args.amount});
     let deleteIds = []
@@ -59,21 +59,21 @@ module.exports = {
     })
 
     if(deleteIds.length == 0){
-      return editOrReply(`${icon("failiure_simple")} No messages found.`);
+      return editOrReply(context, {content:`${icon("failiure_simple")} No messages found.`});
     }
     if(deleteIds.length == 1){
       try{
         await context.client.rest.deleteMessage(context.channel.id, deleteIds[0])
-        return editOrReply(`${icon("success_simple")} Removed \`1\` message.`);
+        return editOrReply(context, { content: `${icon("success_simple")} Removed \`1\` message.`});
       }catch(e){
-        await editOrReply(`${icon("failiure_simple")} Something went wrong while attempting to remove \`1\` message.`);
+        await editOrReply(context, { content: `${icon("failiure_simple")} Something went wrong while attempting to remove \`1\` message.`});
       }
     } else {
       try{
         await context.client.rest.bulkDeleteMessages(context.channel.id, deleteIds)
-        return editOrReply(`${icon("success_simple")} Removed \`${deleteIds.length}\` messages.`);
+        return editOrReply(context, {content: `${icon("success_simple")} Removed \`${deleteIds.length}\` messages.`});
       }catch(e){
-        await editOrReply(`${icon("failiure_simple")} Something went wrong while attempting to remove \`${deleteIds.length}\` messages.`);
+        await editOrReply(context, {content:`${icon("failiure_simple")} Something went wrong while attempting to remove \`${deleteIds.length}\` messages.`});
       }
     }
   }
