@@ -1,5 +1,6 @@
 const { Permissions } = require("detritus-client/lib/constants");
 
+const { createEmbed } = require("../../../labscore/utils/embed");
 const { icon } = require("../../../labscore/utils/markdown");
 
 // TODO: copy pasted from v1, rework this eventually
@@ -29,6 +30,8 @@ module.exports = {
   permissionsClient: [Permissions.MANAGE_MESSAGES],
   run: async (context, args) => {
     await context.triggerTyping();
+    if(isNaN(parseInt(args.amount))) return editOrReply(createEmbed("warning", context, "Invalid Amount"))
+    
     if(args.amount >= 51 || args.amount <= 0){
       return context.editOrReply(`${icon("failiure_simple")} ${context.message.author.mention}, Invalid amount (1-50).`);
     }
