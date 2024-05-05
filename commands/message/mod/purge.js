@@ -1,6 +1,7 @@
 const { Permissions } = require("detritus-client/lib/constants");
 
 const { createEmbed } = require("../../../labscore/utils/embed");
+const { editOrReply } = require("../../../labscore/utils/message");
 const { icon } = require("../../../labscore/utils/markdown");
 
 // TODO: copy pasted from v1, rework this eventually
@@ -21,7 +22,7 @@ module.exports = {
   ],
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.MANAGE_MESSAGES, Permissions.READ_MESSAGE_HISTORY],
   permissions: [Permissions.MANAGE_MESSAGES],
-  onPermissionsFail: (context) => context.editOrReply(`${icon("failiure_simple")} ${context.message.author.mention}, you are lacking the permission \`Manage Messages\`.`),
+  onPermissionsFail: (context) => editOrReply(`${icon("failiure_simple")} ${context.message.author.mention}, you are lacking the permission \`Manage Messages\`.`),
   ratelimit: {
     type: 'guild',
     limit: 1,
@@ -33,7 +34,7 @@ module.exports = {
     if(isNaN(parseInt(args.amount))) return editOrReply(createEmbed("warning", context, "Invalid Amount"))
     
     if(args.amount >= 51 || args.amount <= 0){
-      return context.editOrReply(`${icon("failiure_simple")} ${context.message.author.mention}, Invalid amount (1-50).`);
+      return editOrReply(`${icon("failiure_simple")} ${context.message.author.mention}, Invalid amount (1-50).`);
     }
     const messages = await context.message.channel.fetchMessages({limit: args.amount});
     let deleteIds = []
@@ -58,21 +59,21 @@ module.exports = {
     })
 
     if(deleteIds.length == 0){
-      return context.editOrReply(`${icon("failiure_simple")} No messages found.`);
+      return editOrReply(`${icon("failiure_simple")} No messages found.`);
     }
     if(deleteIds.length == 1){
       try{
         await context.client.rest.deleteMessage(context.channel.id, deleteIds[0])
-        return context.editOrReply(`${icon("success_simple")} Removed \`1\` message.`);
+        return editOrReply(`${icon("success_simple")} Removed \`1\` message.`);
       }catch(e){
-        await context.editOrReply(`${icon("failiure_simple")} Something went wrong while attempting to remove \`1\` message.`);
+        await editOrReply(`${icon("failiure_simple")} Something went wrong while attempting to remove \`1\` message.`);
       }
     } else {
       try{
         await context.client.rest.bulkDeleteMessages(context.channel.id, deleteIds)
-        return context.editOrReply(`${icon("success_simple")} Removed \`${deleteIds.length}\` messages.`);
+        return editOrReply(`${icon("success_simple")} Removed \`${deleteIds.length}\` messages.`);
       }catch(e){
-        await context.editOrReply(`${icon("failiure_simple")} Something went wrong while attempting to remove \`${deleteIds.length}\` messages.`);
+        await editOrReply(`${icon("failiure_simple")} Something went wrong while attempting to remove \`${deleteIds.length}\` messages.`);
       }
     }
   }
