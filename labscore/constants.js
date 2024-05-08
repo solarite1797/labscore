@@ -54,7 +54,7 @@ module.exports.BADGE_ICONS = Object.freeze({
 })
 
 module.exports.ICONS = Object.freeze({
-  "brand": "<:ico_brand:1170410186062712872>",
+  "brand": "<:ico_brand:1237843729880977459>",
 
   "home": "<:ico_home:1165257185488551976>",
   "image": "<:ico_image:1165257188235825274>",
