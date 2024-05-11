@@ -104,7 +104,7 @@ const Statics = Object.freeze({
     },
     weather: {
       file: "brands/weather.png",
-      revision: 2
+      revision: 3
     },
     wikihow: {
       file: "brands/wikihow.png",
