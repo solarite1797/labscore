@@ -8,7 +8,7 @@ const { iconPill, stringwrap } = require('../../../labscore/utils/markdown')
 
 const { Permissions, InteractionCallbackTypes } = require("detritus-client/lib/constants");
 const { Components } = require('detritus-client/lib/utils');
-const { bard } = require('../../../labscore/api/obelisk');
+const { LlmPrivateBard } = require('../../../labscore/api/obelisk');
 const { hasFeature } = require('../../../labscore/utils/testing');
 
 module.exports = {
@@ -34,23 +34,23 @@ module.exports = {
     try{
       await editOrReply(context, createEmbed("ai_custom", context, STATIC_ICONS.ai_bard))
 
-      let res = await bard(context, input)
+      let res = await LlmPrivateBard(context, input)
       res = res.response
 
       let description = []
       let files = [];
       
-      if(!res.body.drafts) return editOrReply(context, createEmbed("error", context, `Bard returned an error. Try again later.`)) 
+      if(!res.body.candidates) return editOrReply(context, createEmbed("error", context, `Bard returned an error. Try again later.`)) 
 
-      if(res.body.drafts[0].length <= 4000) description.push(res.body.drafts[0])
+      if(res.body.candidates[0].length <= 4000) description.push(res.body.candidates[0])
       else {
         files.push({
           filename: `chat.${Date.now().toString(36)}.txt`,
-          value: Buffer.from(res.body.drafts[0])
+          value: Buffer.from(res.body.candidates[0])
         })
       }
 
-      if(!res.body.drafts || res.body.drafts?.length <= 1) return editOrReply(context, {
+      if(!res.body.candidates || res.body.candidates?.length <= 1) return editOrReply(context, {
         embeds:[createEmbed("defaultNoFooter", context, {
           author: {
             name: stringwrap(args.text, 50, false),
@@ -78,7 +78,7 @@ module.exports = {
                 components.components[0].components[0].options[i].default = (components.components[0].components[0].options[i].value == ctx.data.values[0])
               }
             
-              draft = res.body.drafts[parseInt(ctx.data.values[0].replace('draft-', ''))]
+              draft = res.body.candidates[parseInt(ctx.data.values[0].replace('draft-', ''))]
 
               description = []
               files = [];
@@ -111,9 +111,9 @@ module.exports = {
         })
 
         let draftOptions = [];
-        for (let i = 0; i < res.body.drafts.length; i++) {
+        for (let i = 0; i < res.body.candidates.length; i++) {
           draftOptions.push({
-            label: `Draft ${i + 1}: ​ ${stringwrap(res.body.drafts[i], 50, false)}`,
+            label: `Draft ${i + 1}: ​ ${stringwrap(res.body.candidates[i], 50, false)}`,
             value: "draft-" + (i),
             default: false
           })
@@ -153,7 +153,7 @@ module.exports = {
       if(e.response?.body?.message) return editOrReply(context, createEmbed("warning", context, e.response.body.message))
       
       console.log(e)
-      return editOrReply(context, createEmbed("error", context, `Unable to generate text.`))
+      return editOrReply(context, createEmbed("error", context, `Unable to generate response.`))
     }
   }
 };

@@ -6,6 +6,10 @@ const ObeliskHosts = Object.freeze({
 const ObeliskApi = Object.freeze({
   HOST: ObeliskHosts.prod,
 
+  // monolith2
+  LLM_PRIVATE_BARD: "/llm/v1/_private:bard",
+  LLM_MODELS_GENERATE: "/llm/v1/generate",
+
   GOOGLE_BARD: "/parrot/v1/google:bard",
   GOOGLE_GEMINI_PRO: "/parrot/v1/google:gemini",
   GOOGLE_GEMINI_PRO_VISION: "/parrot/v1/google:geminiVision",

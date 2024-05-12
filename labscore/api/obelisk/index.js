@@ -8,8 +8,7 @@ async function request(path, type, headers, args, host) {
   if(host) url = host + path
 
   // apply default headers
-  if(!headers["Authorization"]) headers["Authorization"] = process.env.OBELISK_API_KEY
-  if(!headers["x-obelisk-client"]) headers["x-obelisk-client"] = process.env.OBELISK_CLIENT_ID || "labscore-production-001"
+  if(!headers["Authorization"]) headers["Authorization"] = process.env.MONOLITH_API_KEY
 
   if (type === "GET") {
     if(!args){
@@ -38,6 +37,23 @@ async function request(path, type, headers, args, host) {
     };
   }
   throw new Error("unsupported, must either use GET or POST");
+}
+
+// monolith2
+module.exports.LlmPrivateBard = async function(context, prompt){
+  return await request(ObeliskApi.LLM_PRIVATE_BARD, "POST", {}, {
+    prompt
+  })
+}
+
+module.exports.LlmModelsGenerate = async function(context, model, prompt, harmLevel = "BLOCK_NONE"){
+  return await request(ObeliskApi.LLM_PRIVATE_BARD, "POST", {}, {
+    user_prompt: prompt,
+    model: model,
+    safety_config: {
+      default_safety_threshold: harmLevel
+    }
+  })
 }
 
 // GENERATIVEAI
