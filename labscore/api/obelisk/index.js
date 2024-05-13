@@ -56,6 +56,14 @@ module.exports.LlmModelsGenerate = async function(context, model, prompt, harmLe
   })
 }
 
+module.exports.GenerativeImagesModelsImagen = async function(context, prompt){
+  return await request(ObeliskApi.GENERATIVEIMAGES_MODELS_IMAGEN, "POST", {}, {
+    image_prompt: prompt
+  })
+}
+
+
+
 // GENERATIVEAI
 module.exports.bard = async function(context, input){
   return await request(ObeliskApi.GOOGLE_BARD, "POST", {}, {

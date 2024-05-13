@@ -10,6 +10,8 @@ const ObeliskApi = Object.freeze({
   LLM_PRIVATE_BARD: "/llm/v1/_private:bard",
   LLM_MODELS_GENERATE: "/llm/v1/generate",
 
+  GENERATIVEIMAGES_MODELS_IMAGEN: "/generativeimages/v1/models/imagen",
+
   GOOGLE_BARD: "/parrot/v1/google:bard",
   GOOGLE_GEMINI_PRO: "/parrot/v1/google:gemini",
   GOOGLE_GEMINI_PRO_VISION: "/parrot/v1/google:geminiVision",

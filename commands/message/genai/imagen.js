@@ -1,4 +1,4 @@
-const { imagen } = require("../../../labscore/api/obelisk");
+const { GenerativeImagesModelsImagen } = require("../../../labscore/api/obelisk");
 const { createEmbed } = require("../../../labscore/utils/embed");
 const { editOrReply } = require("../../../labscore/utils/message");
 
@@ -41,7 +41,7 @@ module.exports = {
         
       await editOrReply(context, {embeds: loadingEmbeds});
 
-      let res = await imagen(context, args.text);
+      let res = await GenerativeImagesModelsImagen(context, args.text);
 
       // Construct Embeds
       let files = [];
