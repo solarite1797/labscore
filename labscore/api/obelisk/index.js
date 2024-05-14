@@ -47,7 +47,7 @@ module.exports.LlmPrivateBard = async function(context, prompt){
 }
 
 module.exports.LlmModelsGenerate = async function(context, model, prompt, harmLevel = "BLOCK_NONE"){
-  return await request(ObeliskApi.LLM_PRIVATE_BARD, "POST", {}, {
+  return await request(ObeliskApi.LLM_MODELS_GENERATE, "POST", {}, {
     user_prompt: prompt,
     model: model,
     safety_config: {
