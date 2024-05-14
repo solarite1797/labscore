@@ -1,4 +1,4 @@
-const { gemini } = require("../../../labscore/api/obelisk");
+const { gemini, LlmModelsGenerate } = require("../../../labscore/api/obelisk");
 const { createEmbed } = require("../../../labscore/utils/embed");
 const { editOrReply } = require("../../../labscore/utils/message");
 
@@ -30,7 +30,7 @@ module.exports = {
     try{
       await editOrReply(context, createEmbed("ai_custom", context, STATIC_ICONS.ai_gemini))
 
-      let res = await gemini(context, input)
+      let res = await LlmModelsGenerate(context, "gemini-1.5-pro", input, "BLOCK_NONE")
 
       let description = []
       let files = [];
