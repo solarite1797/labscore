@@ -37,7 +37,7 @@ module.exports = {
       
       if(res.response.body.message) return editOrReply(context, createEmbed("error", context, e.response.body.message))
 
-      let output = res.response.body.gemini?.candidates[0]?.content?.parts[0]?.text
+      let output = res.response.body.candidates[0]?.output
       if(!output) return editOrReply(context, createEmbed("error", context, `Gemini returned an error. Try again later.`)) 
 
       if(output.length <= 4000) description.push(output)
