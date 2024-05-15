@@ -141,12 +141,12 @@ const Statics = Object.freeze({
       revision: 0
     },
     ai_bard: {
-      file: "icons/core/ico_bard_loading.gif",
-      revision: 0
+      file: "_gemini/gspark_processing.zk25zt28.gif",
+      revision: 1
     },
     ai_bard_idle: {
-      file: "icons/core/ico_bard_idle.gif",
-      revision: 0
+      file: "_gemini/gspark_idle.10dm7yti7.gif",
+      revision: 1
     },
     ai_clyde: {
       file: "brands/_clyde/clyde_generating.gif",
