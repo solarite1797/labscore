@@ -41,7 +41,7 @@ module.exports = {
       let description = []
       let files = [];
       
-      if(!res.body.candidates) return editOrReply(context, createEmbed("error", context, `Bard returned an error. Try again later.`)) 
+      if(!res.body.candidates) return editOrReply(context, createEmbed("error", context, `Gemini returned an error. Try again later.`)) 
 
       if(res.body.candidates[0].length <= 4000) description.push(res.body.candidates[0])
       else {
@@ -99,7 +99,7 @@ module.exports = {
                 },
                 description: description.join('\n'),
                 footer: {
-                  text: `Bard • Generative AI is experimental. Response may be factually wrong or completely made up.`
+                  text: `Gemini • Gemini may display inaccurate info, so double-check its responses.`
                 }
               })
       
@@ -140,7 +140,7 @@ module.exports = {
           },
           description: description.join('\n'),
           footer: {
-            text: `Bard • Generative AI is experimental. Response may be factually wrong or completely made up.`
+            text: `Gemini • Gemini may display inaccurate info, so double-check its responses.`
           }
         })
 
