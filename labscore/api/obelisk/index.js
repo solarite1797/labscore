@@ -62,7 +62,11 @@ module.exports.GenerativeImagesModelsImagen = async function(context, prompt){
   })
 }
 
-
+module.exports.WolframQueryCompute = async function(context, query){
+  return await request(ObeliskApi.WOLFRAM_QUERY_COMPUTE, "POST", {}, {
+    query
+  })
+}
 
 // GENERATIVEAI
 module.exports.bard = async function(context, input){
@@ -144,11 +148,5 @@ module.exports.webshot = async function(context, url, allowAdultContent = false)
 module.exports.transcribeWithSpeakerLabelsObelisk = async function(context, url){
   return await request(ObeliskApi.TRANSCRIBE, "POST", {}, {
     url
-  })
-}
-
-module.exports.wolframQuery = async function(context, query){
-  return await request(ObeliskApi.WOLFRAM_QUERY, "POST", {}, {
-    q: query
   })
 }
