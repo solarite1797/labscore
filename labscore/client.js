@@ -50,7 +50,27 @@ const commandClient = new CommandClient(cluster, {
   ratelimits: [
     {duration: 60000, limit: 50, type: 'guild'},
     {duration: 5000, limit: 5, type: 'channel'},
-  ]
+  ],
+  onCommandCheck: async (context, command) => {
+    /*
+      I don't know why, I don't know since when - but timeouts apply to bots now.
+      This code checks if the bot is currently timed out, preventing any and all
+      commands from being executed.
+    */
+   
+    // Only apply filters below to a GUILD context.
+    if(!context.guild) return true;
+
+    let b = context.guild.members.get(context.client.user.id);
+    // Bot member is not cached for whatever reason, fetch it.
+    if(b === undefined) b = await context.guild.fetchMember(context.client.user.id);
+
+    // Bot is timed out. Do not run anything until no longer timed out.
+    if(b.communicationDisabledUntil !== null) return false;
+
+    // Command should be fine to run.
+    return true;
+  }
 });
 
 const interactionClient = new InteractionCommandClient(cluster, {
