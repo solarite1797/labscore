@@ -57,7 +57,7 @@ const commandClient = new CommandClient(cluster, {
       This code checks if the bot is currently timed out, preventing any and all
       commands from being executed.
     */
-   
+
     // Only apply filters below to a GUILD context.
     if(!context.guild) return true;
 
@@ -65,8 +65,13 @@ const commandClient = new CommandClient(cluster, {
     // Bot member is not cached for whatever reason, fetch it.
     if(b === undefined) b = await context.guild.fetchMember(context.client.user.id);
 
-    // Bot is timed out. Do not run anything until no longer timed out.
-    if(b.communicationDisabledUntil !== null) return false;
+    // Bot is (potentially) timed out.
+    if(b.communicationDisabledUntil !== null){
+      // Timeout is active. This additional check is necessary,
+      // as our cache does not appear to update when the bots
+      // timeout expires.
+      if((b.communicationDisabledUntilUnix - Date.now()) >= 1) return false;
+    }
 
     // Command should be fine to run.
     return true;
