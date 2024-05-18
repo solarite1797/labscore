@@ -5,7 +5,7 @@ const { iconPill, smallIconPill, citation } = require('../../../labscore/utils/m
 
 const { Permissions } = require("detritus-client/lib/constants");
 const { STATIC_ICONS } = require('../../../labscore/utils/statics');
-const { summarizeWebpage } = require('../../../labscore/api/obelisk');
+const { SparkWebSummarize } = require('../../../labscore/api/obelisk');
 const { hasFeature } = require('../../../labscore/utils/testing');
 
 const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([^> \n]*)/
@@ -43,17 +43,15 @@ module.exports = {
     try{
       await editOrReply(context, createEmbed("ai_custom", "Generating page summary...", STATIC_ICONS.ai_summary))
       
-      let res = await summarizeWebpage(context, webUrl[0])
+      let res = await SparkWebSummarize(context, webUrl[0])
       if(!res.response.body.summaries) return editOrReply(context, createEmbed("error", context, "Summary generation failed."))
 
-      let summaries = [];
-      if(res.response.body.summary_type == 0) summaries = res.response.body.summaries
-      else if (res.response.body.summary_type == 1) summaries = res.response.body.summaries.map((s, i)=>s.content + citation(i + 1, s.reference, 'Reference'))
+      let summaries = res.response.body.summaries.map((m)=>m.split('\n')[0]);
       
       return editOrReply(context, createEmbed("defaultNoFooter", context, {
         author: {
           iconUrl: STATIC_ICONS.ai_summary,
-          name: res.response.body.title || 'Key points from the page',
+          name: 'Key points about the page',
           url: webUrl[0]
         },
         description: '- ' + summaries.join('\n- '),

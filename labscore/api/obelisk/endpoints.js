@@ -12,6 +12,8 @@ const ObeliskApi = Object.freeze({
 
   GENERATIVEIMAGES_MODELS_IMAGEN: "/generativeimages/v1/models/imagen",
   
+  SPARK_WEB_SUMMARIZE: "/spark-pa/v1/web:summarize",
+
   WOLFRAM_QUERY_COMPUTE: "/wolfram/v1/query:compute",
 
   GOOGLE_BARD: "/parrot/v1/google:bard",

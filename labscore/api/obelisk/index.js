@@ -62,6 +62,12 @@ module.exports.GenerativeImagesModelsImagen = async function(context, prompt){
   })
 }
 
+module.exports.SparkWebSummarize = async function(context, url){
+  return await request(ObeliskApi.SPARK_WEB_SUMMARIZE, "POST", {}, {
+    url
+  })
+}
+
 module.exports.WolframQueryCompute = async function(context, query){
   return await request(ObeliskApi.WOLFRAM_QUERY_COMPUTE, "POST", {}, {
     query
