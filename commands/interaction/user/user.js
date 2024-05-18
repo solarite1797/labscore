@@ -25,7 +25,7 @@ module.exports = {
 
       const { user, member } = args;
   
-      let u = user;
+      let u = await context.client.rest.fetchUser(user.id);;
       let m = member;
   
       let botTag = ''

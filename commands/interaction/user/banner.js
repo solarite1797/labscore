@@ -5,7 +5,7 @@ const { createEmbed } = require('../../../labscore/utils/embed');
 const { editOrReply } = require('../../../labscore/utils/message');
 
 module.exports = {
-  name: 'View User Avatar',
+  name: 'View User Banner',
   type: ApplicationCommandTypes.USER,
   contexts: [
     0,
@@ -19,9 +19,12 @@ module.exports = {
     try{
       await context.respond({ data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE })
 
+      let u = await context.client.rest.fetchUser(args.user.id);
+      if(!u.bannerUrl) return editOrReply(context, createEmbed("warning", context, "User doesn't have a banner set."));
+
       return editOrReply(context, createEmbed("default", context, {
         image: {
-          url: args.user.avatarUrl + '?size=4096'
+          url: u.bannerUrl + '?size=4096'
         }
       }))
     }catch(e){
