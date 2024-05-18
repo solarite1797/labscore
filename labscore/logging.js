@@ -27,7 +27,7 @@ module.exports.maintower = async function (packages, type){
 
 module.exports.basecamp = async function (log, content = ""){
   // This begins the list of errors that i simply cannot fix. thank you discord.
-  if(content.includes(`"code": 200000`)) return;
+  if(content?.includes(`"code": 200000`)) return;
   try{
     let res = await superagent.post(MAINTOWER_BASE_URL + 'basecamp')
       .set({
