@@ -135,12 +135,19 @@ module.exports = {
 
       let res;
       try{
-        res = await emojipedia(context, emoji[0])
+        console.log(toCodePoint(emoji[0]))
+        res = await emojipedia(context, emoji[0], toCodePoint(emoji[0]))
         res = res.response.body
       }catch(e){
         return await editOrReply(context, createEmbed("error", context, `No emoji data available for ${emoji[0]}.`))
       }
 
+      if(args.type == "twitter"){
+        if(!context.message.content.includes("-type")){
+          if(!res.data.platforms["twitter"]) args.type = Object.keys(res.data.platforms)[0]
+          else args.type = "twitter"
+        }
+      }
       if(!res.data.platforms[args.type]){
         let embed = createEmbed("error", context, "No emoji image available for platform '" + args.type + "'.")
         embed.footer = {

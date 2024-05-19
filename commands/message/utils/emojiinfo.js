@@ -11,6 +11,7 @@ const { Components, Snowflake } = require("detritus-client/lib/utils");
 const { bold } = require("detritus-client/lib/utils/markup");
 
 const onlyEmoji = require('emoji-aware').onlyEmoji;
+const ecache = require('./emoji.json')
 
 function toCodePoint(unicodeSurrogates, sep) {
   var
@@ -82,15 +83,22 @@ module.exports = {
         ico = newView.data.platforms["twitter"].images[0].src
         if(!newView.data.platforms["twitter"]) ico = Object.values(newView.data.platforms)[0].images[0].src
 
+        let previewImage;
+        if(!newView.data.platforms["twitter"]){
+          newView.data.platforms[Object.keys(newView.data.platforms)[0]].images[0].src
+        } else {
+          previewImage = newView.data.platforms["twitter"].images[0].src
+        }
+
         currentView = createEmbed("default", context, {
           author: {
             iconUrl: ico,
-            name: `${newView.data.name} • Emoji ${newView.data.metadata.version.emoji}`,
+            name: `${newView.data.name} `,
             url: newView.data.link
           },
           description: newView.data.codes.map((c)=>pill(c)).join(' ') + "\n\n" + newView.data.metadata.description,
           image: {
-            url: newView.data.platforms["twitter"].images[0].src
+            url: previewImage
           },
           footer: {
             iconUrl: STATICS.emojipedia,
@@ -98,8 +106,13 @@ module.exports = {
           }
         })
 
+        if(newView.data.metadata.version?.emoji){
+          currentView.author.name += `• Emoji ${newView.data.metadata.version.emoji}`
+        }
+
         components.clear();
         if(newView.data.metadata.similar) for(const e of newView.data.metadata.similar.splice(0, 5)){
+          if(!ecache.includes(e)) continue;
           components.addButton({
             customId: e,
             emoji: e,
@@ -114,6 +127,7 @@ module.exports = {
     })
 
     if(res.data.metadata.similar) for(const e of res.data.metadata.similar.splice(0, 5)){
+      if(!ecache.includes(e)) continue;
       components.addButton({
         customId: e,
         emoji: e,
@@ -132,21 +146,32 @@ module.exports = {
     let ico = `https://abs.twimg.com/emoji/v2/72x72/${toCodePoint(emoji[0])}.png`
     if(!res.data.platforms["twitter"]) ico = Object.values(res.data.platforms)[0].images[0].src
 
+    let iPreviewImage;
+    if(!res.data.platforms["twitter"]){
+      iPreviewImage = res.data.platforms[Object.keys(res.data.platforms)[0]].images[0].src
+    } else {
+      iPreviewImage = res.data.platforms["twitter"].images[0].src
+    }
+
     currentView = createEmbed("default", context, {
       author: {
         iconUrl: ico,
-        name: `${res.data.name} • Unicode ${res.data.metadata.version.unicode}`,
+        name: `${res.data.name} `,
         url: res.data.link
       },
       description: res.data.codes.map((c)=>pill(c)).join(' ') + "\n\n" + res.data.metadata.description,
       image: {
-        url: res.data.platforms["twitter"].images[0].src
+        url: iPreviewImage
       },
       footer: {
         iconUrl: STATICS.emojipedia,
         text: `Emojipedia • ${context.application.name}`
       }
     })
+
+    if(res.data.metadata.version?.emoji){
+      currentView.author.name += `• Emoji ${res.data.metadata.version.emoji}`
+    }
 
     if(!res.data.metadata.similar) return await editOrReply(context, currentView)
 

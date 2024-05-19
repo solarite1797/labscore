@@ -304,10 +304,11 @@ module.exports.dictionary = async function(context, query, language){
   })
 }
 
-module.exports.emojipedia = async function(context, emoji){
+module.exports.emojipedia = async function(context, emoji, codepoint = undefined){
   return await request(Api.UTILS_EMOJIPEDIA, "GET", {}, {
     emoji: emoji,
-    with_metadata: ""
+    with_metadata: "",
+    codepoint
   })
 }
 
