@@ -24,7 +24,7 @@ module.exports = {
   run: async (context, args) => { 
     context.triggerTyping();
     if(!args.invite) return editOrReply(context, {
-      content: link("https://canary.discord.com/application-directory/" + context.client.user.id + " ", "⠀", "App Directory Invite", true) + " " + link(DISCORD_INVITES.invite + " ", "⠀", "labsCore Support Server", true),
+      content: link("https://canary.discord.com/application-directory/" + context.client.user.id + " ", "󠄴", "App Directory Invite", true) + link(DISCORD_INVITES.invite + " ", "󠄴", "labsCore Support Server", true),
       embeds: [createEmbed("default", context, {
         description: [
           "⠀",
