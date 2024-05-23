@@ -48,17 +48,21 @@ module.exports = {
 
       let summaries = res.response.body.summaries.map((m)=>m.split('\n')[0]);
       
-      return editOrReply(context, createEmbed("defaultNoFooter", context, {
+      let responseEmbed = createEmbed("defaultNoFooter", context, {
         author: {
           iconUrl: STATIC_ICONS.ai_summary,
-          name: 'Key points about the page',
+          name: res.response.body.page_metadata?.title || 'Key points about the page',
           url: webUrl[0]
         },
         description: '- ' + summaries.join('\n- '),
         footer: {
           text: "Generative AI is experimental. Response may be factually incorrect or biased."
         }
-      }))
+      });
+
+      if(res.response.body.page_metadata.thumbnail) responseEmbed.thumbnail = { url: res.response.body.page_metadata.thumbnail }
+      
+      return editOrReply(context, responseEmbed)
     }catch(e){
       console.log(e)
       return editOrReply(context, createEmbed("error", context, e.response.body.error.message))
