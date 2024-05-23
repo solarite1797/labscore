@@ -1,14 +1,14 @@
 const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
-const { iconPill, smallIconPill, citation } = require('../../../labscore/utils/markdown')
+const { iconPill, smallIconPill } = require('../../../labscore/utils/markdown')
 
 const { Permissions } = require("detritus-client/lib/constants");
 const { STATIC_ICONS } = require('../../../labscore/utils/statics');
 const { SparkWebSummarize } = require('../../../labscore/api/obelisk');
 const { hasFeature } = require('../../../labscore/utils/testing');
 
-const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([^> \n]*)/
+const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([^> \n]*)/
 
 module.exports = {
   name: 'summarize',

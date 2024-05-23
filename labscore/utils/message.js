@@ -1,6 +1,5 @@
-const { Permissions, InteractionCallbackTypes, MessageFlags } = require("detritus-client/lib/constants")
+const { Permissions } = require("detritus-client/lib/constants")
 const { basecamp } = require("../logging")
-const { STATICS } = require("./statics")
 const { createEmbed } = require("./embed")
 
 module.exports.editOrReply = function(context, message, disableReference = false){
@@ -24,7 +23,7 @@ module.exports.editOrReply = function(context, message, disableReference = false
         This is the awesome solution to this problem, that isn't
         actually very awesome and actually sucks a lot.
       */
-      if(e.code == 200000){
+      if(e.code === 200000){
         try{
           let embedResponse = createEmbed("error", context, "Response was filtered by AutoMod.")
           embedResponse.description = `Try running the command somewhere else or ask server admins for help.`
