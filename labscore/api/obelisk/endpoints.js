@@ -11,7 +11,9 @@ const ObeliskApi = Object.freeze({
   LLM_MODELS_GENERATE: "/llm/v1/generate",
 
   GENERATIVEIMAGES_MODELS_IMAGEN: "/generativeimages/v1/models/imagen",
-  
+
+  WEBUTILS_WEBPAGE_SCREENSHOT: "/webutils/v1/webpage:screenshot",
+
   SPARK_WEB_SUMMARIZE: "/spark-pa/v1/web:summarize",
 
   WOLFRAM_QUERY_COMPUTE: "/wolfram/v1/query:compute",

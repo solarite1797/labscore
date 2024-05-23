@@ -62,6 +62,13 @@ module.exports.GenerativeImagesModelsImagen = async function(context, prompt){
   })
 }
 
+module.exports.WebUtilsWebPageScreenshot = async function(context, url, allow_adult){
+  return await request(ObeliskApi.WEBUTILS_WEBPAGE_SCREENSHOT, "POST", {}, {
+    url,
+    allow_adult
+  })
+}
+
 module.exports.SparkWebSummarize = async function(context, url){
   return await request(ObeliskApi.SPARK_WEB_SUMMARIZE, "POST", {}, {
     url

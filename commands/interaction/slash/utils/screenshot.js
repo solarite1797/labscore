@@ -1,7 +1,7 @@
 const { createEmbed } = require("../../../../labscore/utils/embed");
 const { editOrReply } = require("../../../../labscore/utils/message");
 
-const { webshot } = require("../../../../labscore/api/obelisk");
+const { WebUtilsWebPageScreenshot} = require("../../../../labscore/api/obelisk");
 
 const { ApplicationCommandOptionTypes, InteractionCallbackTypes } = require('detritus-client/lib/constants');
 
@@ -32,28 +32,26 @@ module.exports = {
     try {
       const t = Date.now();
 
-      let ss = await webshot(context, args.url, false) // nsfw sites are always blocked
+      let ss = await WebUtilsWebPageScreenshot(context, args.url, false) // nsfw sites are always blocked
 
-      if (ss.response.body.status && ss.response.body.status !== 3) {
-        if (ss.response.body.image) return await editOrReply(context,
+      if (ss.response.body.error) return await editOrReply(context,
           createEmbed("image", context, {
-            url: ss.response.body.image,
+            url: ss.response.body.error.image_url,
             time: ((Date.now() - t) / 1000).toFixed(2)
           })
         )
-        return await editOrReply(context, createEmbed("error", context, "Unable to create screenshot."))
-      }
+
 
       return await editOrReply(context, {
         embeds: [createEmbed("image", context, {
           url: "screenshot.png",
           time: ((Date.now() - t) / 1000).toFixed(2)
         })],
-        files: [{ filename: "screenshot.png", value: ss.response.body }]
+        files: [{ filename: "screenshot.png", value: Buffer.from(ss.response.body.image, 'base64') }]
       })
     } catch (e) {
       console.log(e)
-      return await editOrReply(context, createEmbed("image", context, {
+      return editOrReply(context, createEmbed("image", context, {
         url: "https://bignutty.gitlab.io/webstorage4/v2/assets/screenshot/brand-update-2024/scr_unavailable.png"
       }))
     }
