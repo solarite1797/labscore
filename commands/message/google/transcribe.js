@@ -1,7 +1,7 @@
 const { createEmbed } = require('../../../labscore/utils/embed')
 const { editOrReply } = require('../../../labscore/utils/message')
 
-const { transcribeWithSpeakerLabelsObelisk } = require('../../../labscore/api/obelisk');
+const { AudioTranscribe} = require('../../../labscore/api/obelisk');
 
 const { STATICS } = require('../../../labscore/utils/statics');
 const { codeblock, icon } = require('../../../labscore/utils/markdown');
@@ -32,19 +32,19 @@ module.exports = {
       if(!msg.attachments.first()) return editOrReply(context, createEmbed("warning", context, "No voice message found."))
       if(!msg.attachments.first().url.split('?')[0].endsWith('voice-message.ogg')) return editOrReply(context, createEmbed("warning", context, "No voice message found."))
       
-      const recog = await transcribeWithSpeakerLabelsObelisk(context, msg.attachments.first().url)
+      const recog = await AudioTranscribe(context, msg.attachments.first().url)
 
       return editOrReply(context, createEmbed("default", context, {
-        description: codeblock("md", [ recog.response.body.transcription ]),
+        description: codeblock("md", [ recog.response.body.transcript ]),
         footer: {
           iconUrl: STATICS.google,
-          text: `Google Cloud • Confidence: ${(recog.response.body.confidence* 100).toFixed(1)}% • ${context.application.name}`
+          text: `Google Speech to Text • ${context.application.name}`
         }
       }))
       
     } catch (e) {
       console.log(e)
-      if(e.response?.body?.status && e.response.body.status == 2) return editOrReply(context, createEmbed("warning", context, e.response.body.message))
+      if(e.response?.body?.error) return editOrReply(context, createEmbed("warning", context, e.response.body.error.message))
       return editOrReply(context, createEmbed("error", context, `Unable to transcribe audio (too long?).`))
     }
   },

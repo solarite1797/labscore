@@ -7,6 +7,8 @@ const ObeliskApi = Object.freeze({
   HOST: ObeliskHosts.prod,
 
   // monolith2
+  AUDIO_TRANSCRIBE: "/audio/v1/transcribe",
+
   LLM_PRIVATE_BARD: "/llm/v1/_private:bard",
   LLM_MODELS_GENERATE: "/llm/v1/generate",
 

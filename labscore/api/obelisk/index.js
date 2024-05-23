@@ -40,6 +40,13 @@ async function request(path, type, headers, args, host) {
 }
 
 // monolith2
+module.exports.AudioTranscribe = async function(context, url){
+  return await request(ObeliskApi.AUDIO_TRANSCRIBE, "POST", {}, {
+    url,
+    type: "VOICE_MESSAGE"
+  })
+}
+
 module.exports.LlmPrivateBard = async function(context, prompt){
   return await request(ObeliskApi.LLM_PRIVATE_BARD, "POST", {}, {
     prompt

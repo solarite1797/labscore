@@ -1,7 +1,7 @@
 const { Constants } = require('detritus-client');
 const { InteractionCallbackTypes, ApplicationCommandTypes, MessageFlags } = Constants;
 
-const { transcribeWithSpeakerLabelsObelisk } = require('../../../labscore/api/obelisk');
+const { AudioTranscribe} = require('../../../labscore/api/obelisk');
 
 const { createEmbed } = require('../../../labscore/utils/embed');
 const { codeblock } = require('../../../labscore/utils/markdown');
@@ -34,26 +34,20 @@ module.exports = {
           flags: MessageFlags.EPHEMERAL
         })
         
-        const recog = await transcribeWithSpeakerLabelsObelisk(context, message.attachments.first().url)
+        const recog = await AudioTranscribe(context, message.attachments.first().url)
   
         return editOrReply(context, {
           embeds: [createEmbed("default", context, {
-            description: codeblock("md", [ recog.response.body.transcription.substr(0,3900) ]),
+            description: codeblock("md", [ recog.response.body.transcript.substr(0,3900) ]),
             footer: {
               iconUrl: STATICS.google,
-              text: `Google Cloud • Confidence: ${(recog.response.body.confidence* 100).toFixed(1)}% • ${context.application.name}`
+              text: `Google Speech to Text • ${context.application.name}`
             }
           })],
           flags: MessageFlags.EPHEMERAL
         })
         
       } catch (e) {
-        console.log(e)
-        if(e.response?.body?.status && e.response.body.status == 2) return editOrReply(context, {
-          embeds: [createEmbed("warning", context, e.response.body.message)],
-          flags: MessageFlags.EPHEMERAL
-        })
-
         return editOrReply(context, {
           embeds: [createEmbed("error", context, "Unable to transcribe message.")],
           flags: MessageFlags.EPHEMERAL
