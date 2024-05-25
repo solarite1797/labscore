@@ -142,7 +142,7 @@ const Statics = Object.freeze({
     },
     ai_bard: {
       file: "_gemini/sparkle_loading.1vyhrt70l.gif",
-      revision: 1
+      revision: 2
     },
     ai_bard_idle: {
       file: "_gemini/sparkle_idle.f69fp0vrp.gif",
