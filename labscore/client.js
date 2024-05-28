@@ -121,7 +121,7 @@ commandClient.on('commandDelete', async ({context, reply}) => {
   if(context.message?.deleted) return reply.delete();
 
   let hasPrefix = false;
-  for(const p of commandPrefixes) if(context.message.content.startsWith(p)) hasPrefix = true;
+  for(const p of commandPrefixes) if(context.message.content.toLowerCase().startsWith(p)) hasPrefix = true;
   if(context.message.content.startsWith(context.client.user.mention)) hasPrefix = true;
   
   if(!reply.deleted && !hasPrefix) reply.delete();
