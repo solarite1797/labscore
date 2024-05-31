@@ -11,7 +11,6 @@ const { Components, Snowflake } = require("detritus-client/lib/utils");
 const { bold } = require("detritus-client/lib/utils/markup");
 
 const onlyEmoji = require('emoji-aware').onlyEmoji;
-const ecache = require('./emoji.json')
 
 function toCodePoint(unicodeSurrogates, sep) {
   var
@@ -112,7 +111,6 @@ module.exports = {
 
         components.clear();
         if(newView.data.metadata.similar) for(const e of newView.data.metadata.similar.splice(0, 5)){
-          if(!ecache.includes(e)) continue;
           components.addButton({
             customId: e,
             emoji: e,
@@ -127,7 +125,6 @@ module.exports = {
     })
 
     if(res.data.metadata.similar) for(const e of res.data.metadata.similar.splice(0, 5)){
-      if(!ecache.includes(e)) continue;
       components.addButton({
         customId: e,
         emoji: e,

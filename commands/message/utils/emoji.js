@@ -135,7 +135,6 @@ module.exports = {
 
       let res;
       try{
-        console.log(toCodePoint(emoji[0]))
         res = await emojipedia(context, emoji[0], toCodePoint(emoji[0]))
         res = res.response.body
       }catch(e){
