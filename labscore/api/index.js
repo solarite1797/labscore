@@ -223,6 +223,12 @@ module.exports.retroWave = async function(context, background = 5, textStyle= 4,
   })
 }
 
+module.exports.prideborder = async function(context, url){
+  return await request(Api.IMAGE_INHOUSE_PRIDE, "GET", {}, {
+    url: url
+  })
+}
+
 module.exports.deepdream = async function(context, url){
   return await request(Api.IMAGE_DEEPDREAM, "GET", {}, {
     url: url

@@ -18,6 +18,8 @@ const Api = Object.freeze({
   GOOGLE_VISION_SAFETY_LABELS: '/google/vision/safety',
   GOOGLE_VISION_WEBDETECTION: '/google/vision/webdetection',
 
+  IMAGE_INHOUSE_PRIDE: '/image/inhouse/pride',
+
   IMAGE_DEEPDREAM: '/image/deepai/deepdream',
   IMAGE_IMAGEEDITOR: '/image/deepai/imageedit',
   IMAGE_SUPERRESOLUTION: '/image/deepai/superresolution',

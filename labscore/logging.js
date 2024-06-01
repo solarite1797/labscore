@@ -42,7 +42,7 @@ module.exports.basecamp = async function (log, content = ""){
 
 module.exports.ingest = async function (event, type = "generic"){
   try{
-    let r = await superagent.get(`${process.env.INGEST_SERVICE_HOST}/d/${type}/${event}`)
+    let r = await superagent.get(`${process.env.INGEST_SERVICE_HOST}/d/${type}/${encodeURIComponent(event)}`)
       .set("x-ingest-client", process.env.INGEST_SERVICE_CLIENT)
   }catch(e){
     console.log(e)

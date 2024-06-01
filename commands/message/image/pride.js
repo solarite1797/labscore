@@ -1,10 +1,10 @@
+const { prideborder } = require("../../../labscore/api");
 const { createEmbed } = require("../../../labscore/utils/embed");
 const { editOrReply } = require("../../../labscore/utils/message");
 const { getUser } = require("../../../labscore/utils/users");
 
 const { Permissions } = require("detritus-client/lib/constants");
 
-const superagent = require('superagent')
 module.exports = {
   name: 'pride',
   label: 'user',
@@ -25,19 +25,13 @@ module.exports = {
 
     const avatar = u.user.avatarUrl + '?size=512'
     try{
-      let pride = await superagent.get(`https://labscore.vercel.app/v2/image/pridev2`)
-        .set({
-          "x-labscore-auth": process.env.LEGACY_API_KEY
-        })
-        .query({
-          url: avatar
-        })
+      let pride = await prideborder(context, avatar)
       
       return editOrReply(context, {
         embeds: [createEmbed("image", context, {
           url: "pride.png"
         })],
-        files: [{ filename: "pride.png", value: pride.body }]
+        files: [{ filename: "pride.png", value: pride.response.body }]
       })
     }catch(e){
       console.log(e)
