@@ -60,7 +60,7 @@ module.exports = {
         }
       });
 
-      if(res.response.body.page_metadata.thumbnail) responseEmbed.thumbnail = { url: res.response.body.page_metadata.thumbnail }
+      if(res.response.body.page_metadata?.thumbnail) responseEmbed.thumbnail = { url: res.response.body.page_metadata.thumbnail }
       
       return editOrReply(context, responseEmbed)
     }catch(e){
