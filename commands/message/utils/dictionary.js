@@ -90,8 +90,8 @@ module.exports = {
         pages: formatPaginationEmbeds(pages)
       });
     }catch(e){
-      console.log(e)
       if(e.response?.body?.status && e.response.body.status == 2) return editOrReply(context, createEmbed("warning", context, e.response.body.message))
+      console.log(e)
       return editOrReply(context, createEmbed("error", context, `Unable to perform dictionary lookup.`))
     }
   },

@@ -96,7 +96,6 @@ module.exports = {
               try{
                 await emojiKitchen([em])
               }catch(e){
-                console.log(e)
                 return editOrReply(context, createEmbed("warning", context, `Unsupported Emoji (${em})`))
               }
             }
@@ -105,7 +104,6 @@ module.exports = {
           }
           return editOrReply(context, createEmbed("image", context, { url: em.body.results[0].url }))
         }catch(e){
-          console.log(e)
           return editOrReply(context, createEmbed("error", context, "Unable to mix emoji."))
         }
       }
@@ -119,7 +117,6 @@ module.exports = {
         res = await emojipedia(context, emoji[0])
         res = res.response.body
       }catch(e){
-        console.log(e)
         return await editOrReply(context, createEmbed("error", context, `No emoji data available for ${emoji[0]}.`))
       }
 

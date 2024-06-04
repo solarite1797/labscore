@@ -83,7 +83,6 @@ module.exports = {
       }))
       
     }catch(e){
-      console.log(e)
       return editOrReply(context, createEmbed("error", context, `Unable to scan qr codes.`))
     }
   }

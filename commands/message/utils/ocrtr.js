@@ -64,8 +64,8 @@ module.exports = {
         }
       }))
     }catch(e){
-      console.log(e)
       if(e.response?.body?.status && e.response.body.status == 2) return editOrReply(context, createEmbed("error", context, `Unable to translate text.`))
+      console.log(e)
       return editOrReply(context, createEmbed("error", context, `Something went wrong.`))
     }
   }

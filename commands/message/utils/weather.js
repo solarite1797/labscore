@@ -62,7 +62,6 @@ module.exports = {
 
       return editOrReply(context, e)
     }catch(e){
-      console.log(e)
       return editOrReply(context, createEmbed("warning", context, `No weather data available for given location.`))
     }
   },

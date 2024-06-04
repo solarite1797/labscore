@@ -52,7 +52,6 @@ module.exports = {
           }
         })))
       }catch(e){
-        console.log(e)
         pages.push(page(createEmbed("default", context, {
           description: codeblock("tex", [t]),
           author: {
