@@ -1,13 +1,16 @@
 // TODO: remake this eventually, copy pasted it from v1 cause lazy
 
+const { codeblock } = require("../../../labscore/utils/markdown");
+const { editOrReply } = require("../../../labscore/utils/message");
+
 module.exports = {
   name: "reload",
   aliases: ["rl"],
   metadata: {
-    description: 'Reloads commands on all shards.',
-    description_short: 'Bot reload',
+    description: 'Reloads commands on all shards. Add `-s` to also re-register interaction commands.',
+    description_short: 'Reload Commands',
     category: 'dev',
-    usage: 'reload'
+    usage: 'reload [-s]'
   },
   onBefore: context => context.user.isClientOwner,
   onCancel: ()=>{},
@@ -15,23 +18,47 @@ module.exports = {
     await context.triggerTyping();
     const time = Date.now();
     console.log(`v2 | command refresh requested @ ${Date.now()} by ${context.user.username}${context.user.discriminator} (${context.user.id})`)
-    const data = await context.manager.broadcastEval(async (cluster) => {
-      let shards = 0
+    let includeSlash = false;
+    if(context.message.content.includes("-s")){
+      includeSlash = true;
+    }
+    let data;
+    if(includeSlash) data = await context.manager.broadcastEval(async (cluster) => {
+      if (cluster.interactionCommandClient && includeSlash){
+        const interactionClient = cluster.interactionCommandClient;
+        interactionClient.clear();
+        
+        // Directories specific to the interaction client
+        await interactionClient.addMultipleIn('../commands/interaction/context', {subdirectories: true});
+        await interactionClient.addMultipleIn('../commands/interaction/user', {subdirectories: true});
+        await interactionClient.addMultipleIn('../commands/interaction/slash', {subdirectories: true});
+        
+        await interactionClient.checkAndUploadCommands();
+      }
       if (cluster.commandClient) {
         const commandClient = cluster.commandClient;
         commandClient.clear();
+
         await commandClient.addMultipleIn('../commands/message/', {subdirectories: true});
-        shards = cluster.shards.length
       }
-      return shards;
+      return cluster.shards.length;
+    });
+    else data =  await context.manager.broadcastEval(async (cluster) => {
+      if (cluster.commandClient) {
+        const commandClient = cluster.commandClient;
+        commandClient.clear();
+
+        await commandClient.addMultipleIn('../commands/message/', {subdirectories: true});
+      }
+      return cluster.shards.length;
     });
     let refreshed = data.map((e)=>{return parseInt(e)}).reduce((a, b) => {return a + b}, 0)
     let diff = Date.now();
     if (diff < time) diff.setDate(diff.getDate() + 1);
     diff = diff - time;
     if(`${refreshed}` == "NaN"){
-      return context.editOrReply(`Failed to reload all commands after \`${diff}ms\`.`)
+      return editOrReply(context, `Failed to reload all commands after **\`${diff}ms\`**.\n` + codeblock("js",[`${data[0].stack}`]))
     }
-    return context.editOrReply(` Reloaded commands on \`${refreshed}/${context.manager.cluster.shardCount}\` shards in \`${diff}ms\`.`)
+    return editOrReply(context, `Reloaded commands on \`${refreshed}/${context.manager.cluster.shardCount}\` shards in **\`${diff}ms\`**.`)
   }
 };
