@@ -18,13 +18,9 @@ module.exports = {
     await context.triggerTyping();
     const time = Date.now();
     console.log(`v2 | command refresh requested @ ${Date.now()} by ${context.user.username}${context.user.discriminator} (${context.user.id})`)
-    let includeSlash = false;
-    if(context.message.content.includes("-s")){
-      includeSlash = true;
-    }
     let data;
-    if(includeSlash) data = await context.manager.broadcastEval(async (cluster) => {
-      if (cluster.interactionCommandClient && includeSlash){
+    if(context.message.content.includes("-s")) data = await context.manager.broadcastEval(async (cluster) => {
+      if (cluster.interactionCommandClient){
         const interactionClient = cluster.interactionCommandClient;
         interactionClient.clear();
         
