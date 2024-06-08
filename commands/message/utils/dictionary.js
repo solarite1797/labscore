@@ -51,11 +51,11 @@ function createDictionaryPage(context, result, index, language){
 }
 
 module.exports = {
-  name: 'define',
+  name: 'dictionary',
   label: 'query',
-  aliases: ['dictionary', 'dict'],
+  aliases: ['define', 'dict'],
   metadata: {
-    description: 'Returns dictionary definitions for words.',
+    description: 'Looks up words and teminology in a dictionary.',
     description_short: 'Dictionary word definitions.',
     examples: ['dictionary Gehen -lang de'],
     category: 'utils',
