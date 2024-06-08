@@ -1,10 +1,11 @@
-const { Utils, Constants } = require("detritus-client");
-const { codeblock } = require("../../../labscore/utils/markdown");
+const { codeblock } = require("#utils/markdown");
+
+const { Utils } = require("detritus-client");
+const { DiscordRegexNames } = require("detritus-client/lib/constants");
 
 const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
 
-// TODO: remake this eventually, copy pasted it from v1 cause lazy
-
+// TODO: remake this eventually
 module.exports = {
   label: "code",
   name: "dev",
@@ -25,7 +26,7 @@ module.exports = {
   run: async (context, args) => {
     await context.triggerTyping();
     const { matches } = Utils.regex(
-      Constants.DiscordRegexNames.TEXT_CODEBLOCK,
+      DiscordRegexNames.TEXT_CODEBLOCK,
       args.code
     );
     if (matches.length) {

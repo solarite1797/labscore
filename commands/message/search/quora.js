@@ -1,14 +1,14 @@
-const { createEmbed, formatPaginationEmbeds, page } = require('../../../labscore/utils/embed')
-const { link, pill } = require('../../../labscore/utils/markdown')
-const { editOrReply } = require('../../../labscore/utils/message')
-const { STATICS } = require('../../../labscore/utils/statics')
+const { quora, quoraResult } = require('#api');
+const { paginator } = require('#client');
 
-const { paginator } = require('../../../labscore/client');
-const { quora, quoraResult } = require('../../../labscore/api');
-const { InteractionCallbackTypes } = require('detritus-client/lib/constants');
+const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed')
+const { link, pill } = require('#utils/markdown')
+const { editOrReply } = require('#utils/message')
+const { STATICS } = require('#utils/statics')
+
+// TODO: Turn this into a general purpose permissions constant
+const { Permissions, InteractionCallbackTypes } = require("detritus-client/lib/constants");
 const { Components } = require('detritus-client/lib/utils');
-
-const { Permissions } = require("detritus-client/lib/constants");
 
 function createQuoraAnswerPage(context, question, answer) {
   let tags = question.tags.map((t) => {

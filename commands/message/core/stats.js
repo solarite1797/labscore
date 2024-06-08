@@ -1,13 +1,14 @@
-const { highlight, iconPill, iconLinkPill } = require('../../../labscore/utils/markdown')
-const { createEmbed } = require('../../../labscore/utils/embed')
+const { OPEN_SOURCE_REPOSITORY_URL } = require('#constants');
 
-const { editOrReply } = require('../../../labscore/utils/message');
+const { createEmbed } = require('#utils/embed');
+const { highlight, iconPill, iconLinkPill } = require('#utils/markdown');
+const { editOrReply } = require('#utils/message');
 
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
-const { OPEN_SOURCE_REPOSITORY_URL } = require('../../../labscore/constants');
 
+// TODO: Move this into utils
 function format(seconds){
-
   function pad(s){
     return (s < 10 ? '0' : '') + s;
   }

@@ -1,11 +1,11 @@
-const { createEmbed } = require('../../../labscore/utils/embed')
-const { editOrReply } = require('../../../labscore/utils/message')
+const { AudioTranscribe } = require('#obelisk');
 
-const { AudioTranscribe} = require('../../../labscore/api/obelisk');
+const { createEmbed } = require('#utils/embed')
+const { codeblock, icon } = require('#utils/markdown');
+const { editOrReply } = require('#utils/message')
+const { STATICS } = require('#utils/statics');
 
-const { STATICS } = require('../../../labscore/utils/statics');
-const { codeblock, icon } = require('../../../labscore/utils/markdown');
-
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
 
 module.exports = {

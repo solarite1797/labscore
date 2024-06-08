@@ -1,14 +1,13 @@
-const { Constants } = require('detritus-client');
-const { InteractionCallbackTypes, ApplicationCommandTypes, MessageFlags } = Constants;
+const { googleVisionOcr, googleTranslate } = require('#api');
+const { TRANSLATE_LANGUAGE_MAPPINGS, TRANSLATE_LANGUAGES } = require('#constants');
 
-const { googleVisionOcr, googleTranslate } = require('../../../labscore/api');
-const { getMessageAttachment, validateAttachment } = require('../../../labscore/utils/attachment');
+const { getMessageAttachment, validateAttachment } = require('#utils/attachment');
+const { createEmbed } = require('#utils/embed');
+const { editOrReply } = require('#utils/message');
+const { codeblock, icon, pill } = require('#utils/markdown');
+const { STATICS } = require('#utils/statics');
 
-const { createEmbed } = require('../../../labscore/utils/embed');
-const { codeblock, icon, pill } = require('../../../labscore/utils/markdown');
-const { STATICS } = require('../../../labscore/utils/statics');
-const { editOrReply } = require('../../../labscore/utils/message');
-const { TRANSLATE_LANGUAGE_MAPPINGS, TRANSLATE_LANGUAGES } = require('../../../labscore/constants');
+const { InteractionCallbackTypes, ApplicationCommandTypes, MessageFlags } = require("detritus-client/lib/constants");
 
 module.exports = {
   name: 'OCR Translate',

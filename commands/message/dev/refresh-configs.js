@@ -1,6 +1,6 @@
-const { createEmbed } = require("../../../labscore/utils/embed");
-const { editOrReply } = require("../../../labscore/utils/message");
-const { getTestConfig } = require("../../../labscore/utils/testing");
+const { createEmbed } = require("#utils/embed");
+const { editOrReply } = require("#utils/message");
+const { getTestConfig } = require("#utils/testing");
 
 module.exports = {
   name: "refresh-configs",

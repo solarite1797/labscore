@@ -1,8 +1,7 @@
-//https://resources.jetbrains.com/cai/eidos_231/goland/999.png
+const { createEmbed } = require('#utils/embed')
+const { editOrReply } = require('#utils/message')
 
-const { createEmbed } = require('../../../labscore/utils/embed')
-const { editOrReply } = require('../../../labscore/utils/message')
-
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
 
 const APPS = [

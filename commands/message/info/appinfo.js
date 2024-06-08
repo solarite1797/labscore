@@ -1,10 +1,11 @@
-const { createEmbed } = require("../../../labscore/utils/embed");
-const { editOrReply } = require("../../../labscore/utils/message");
-const { icon, highlight, link, stringwrap } = require('../../../labscore/utils/markdown');
+const { createEmbed } = require("#utils/embed");
+const { icon, highlight, link, stringwrap } = require('#utils/markdown');
+const { editOrReply } = require("#utils/message");
+
+// TODO: Turn this into a general purpose permissions constant
+const { Permissions } = require("detritus-client/lib/constants");
 
 const superagent = require('superagent');
-
-const { Permissions } = require("detritus-client/lib/constants");
 
 const applicationFlags = {
   EMBEDDED_RELEASED: 1,

@@ -1,10 +1,12 @@
-const { googleVisionLabels } = require("../../../labscore/api");
-const { getRecentImage } = require("../../../labscore/utils/attachment");
-const { createEmbed } = require("../../../labscore/utils/embed");
-const { pill, smallPill } = require("../../../labscore/utils/markdown");
-const { editOrReply } = require("../../../labscore/utils/message");
-const { STATICS } = require("../../../labscore/utils/statics");
+const { googleVisionLabels } = require("#api");
 
+const { getRecentImage } = require("#utils/attachment");
+const { createEmbed } = require("#utils/embed");
+const { pill, smallPill } = require("#utils/markdown");
+const { editOrReply } = require("#utils/message");
+const { STATICS } = require("#utils/statics");
+
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
 
 module.exports = {

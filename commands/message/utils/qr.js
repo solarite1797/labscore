@@ -1,13 +1,13 @@
-const { createEmbed } = require('../../../labscore/utils/embed')
-const { editOrReply } = require('../../../labscore/utils/message')
+const { getRecentImage } = require("#utils/attachment");
+const { createEmbed } = require('#utils/embed')
+const { editOrReply } = require('#utils/message')
+const { codeblock, icon, smallIconPill } = require('#utils/markdown');
+const { STATICS } = require('#utils/statics');
 
-const { getRecentImage } = require("../../../labscore/utils/attachment");
-const { codeblock, icon, smallIconPill } = require('../../../labscore/utils/markdown');
+// TODO: Turn this into a general purpose permissions constant
+const { Permissions } = require("detritus-client/lib/constants");
 
 const superagent = require('superagent');
-
-const { Permissions } = require("detritus-client/lib/constants");
-const { STATICS } = require('../../../labscore/utils/statics');
 
 module.exports = {
   name: 'qr',

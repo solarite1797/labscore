@@ -1,12 +1,11 @@
-const { Constants } = require('detritus-client');
-const { InteractionCallbackTypes, ApplicationCommandTypes, MessageFlags } = Constants;
+const { AudioTranscribe } = require('#obelisk');
 
-const { AudioTranscribe} = require('../../../labscore/api/obelisk');
+const { createEmbed } = require('#utils/embed');
+const { editOrReply } = require('#utils/message');
+const { codeblock } = require('#utils/markdown');
+const { STATICS } = require('#utils/statics');
 
-const { createEmbed } = require('../../../labscore/utils/embed');
-const { codeblock } = require('../../../labscore/utils/markdown');
-const { STATICS } = require('../../../labscore/utils/statics');
-const { editOrReply } = require('../../../labscore/utils/message');
+const { InteractionCallbackTypes, ApplicationCommandTypes, MessageFlags } = require("detritus-client/lib/constants");;
 
 module.exports = {
   name: 'Transcribe Voice Message',

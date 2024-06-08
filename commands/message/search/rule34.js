@@ -1,10 +1,11 @@
-const { createEmbed, formatPaginationEmbeds, page } = require('../../../labscore/utils/embed')
-const { pill } = require('../../../labscore/utils/markdown')
-const { editOrReply } = require('../../../labscore/utils/message')
+const { rule34 } = require('#api');
+const { paginator } = require('#client');
 
-const { paginator } = require('../../../labscore/client');
-const { rule34 } = require('../../../labscore/api');
+const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed')
+const { pill } = require('#utils/markdown')
+const { editOrReply } = require('#utils/message')
 
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
 
 function createRule34Page(context, result) {

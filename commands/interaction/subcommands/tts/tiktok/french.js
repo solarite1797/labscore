@@ -1,11 +1,10 @@
-const { Constants } = require('detritus-client');
-const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = Constants;
+const { tiktok } = require('#api');
+const { TIKTOK_VOICES_FRENCH } = require('#constants');
 
-const { tiktok } = require('../../../../../labscore/api');
+const { createEmbed } = require('#utils/embed');
+const { icon, highlight } = require('#utils/markdown');
 
-const { createEmbed } = require('../../../../../labscore/utils/embed');
-const { icon, highlight } = require('../../../../../labscore/utils/markdown');
-const { TIKTOK_VOICES_FRENCH } = require('../../../../../labscore/constants');
+const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = require('detritus-client/lib/constants');
 
 let voices = []
 for(const k of Object.keys(TIKTOK_VOICES_FRENCH)) voices.unshift({

@@ -1,8 +1,7 @@
-// TODO: remake this eventually, copy pasted it from v1 cause lazy
+const { codeblock } = require("#utils/markdown");
+const { editOrReply } = require("#utils/message");
 
-const { codeblock } = require("../../../labscore/utils/markdown");
-const { editOrReply } = require("../../../labscore/utils/message");
-
+// TODO: remake this eventually
 module.exports = {
   name: "reload",
   aliases: ["rl"],
@@ -17,7 +16,7 @@ module.exports = {
   run: async (context) => {
     await context.triggerTyping();
     const time = Date.now();
-    console.log(`v2 | command refresh requested @ ${Date.now()} by ${context.user.username}${context.user.discriminator} (${context.user.id})`)
+    console.log(`[${process.env.HOSTNAME}] refreshing all commands @ ${Date.now()} by ${context.user.username}${context.user.discriminator} (${context.user.id})`)
     let data;
     if(context.message.content.includes("-s")) data = await context.manager.broadcastEval(async (cluster) => {
       if (cluster.interactionCommandClient){

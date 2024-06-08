@@ -1,10 +1,9 @@
-const { Constants } = require('detritus-client');
-const { InteractionCallbackTypes, ApplicationCommandTypes } = Constants;
+const { renderMusicButtons } = require('#utils/buttons');
+const { createEmbed } = require('#utils/embed')
 
-const { createEmbed } = require('../../../labscore/utils/embed')
+const { InteractionCallbackTypes, ApplicationCommandTypes } = require("detritus-client/lib/constants");;
 
 const superagent = require('superagent')
-const { renderMusicButtons } = require('../../../labscore/utils/buttons');
 
 const urlr = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/g
 

@@ -1,12 +1,12 @@
-const { createEmbed, formatPaginationEmbeds, page } = require('../../../../labscore/utils/embed')
-const { editOrReply } = require('../../../../labscore/utils/message')
-const { STATICS } = require('../../../../labscore/utils/statics')
+const { lyrics } = require('#api');
+const { paginator } = require('#client');
 
-const { lyrics } = require('../../../../labscore/api');
-const { paginator } = require('../../../../labscore/client');
+const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed')
+const { smallIconPill } = require('#utils/markdown');
+const { editOrReply } = require('#utils/message')
+const { STATICS } = require('#utils/statics')
 
 const { ApplicationCommandOptionTypes, InteractionCallbackTypes } = require('detritus-client/lib/constants');
-const { smallIconPill } = require('../../../../labscore/utils/markdown');
 
 const META_FIELDS = {
   "Album": "stat_videos",

@@ -1,14 +1,13 @@
-const { createEmbed, formatPaginationEmbeds, page } = require('../../../../labscore/utils/embed')
-const { link, iconPill, smallPill } = require('../../../../labscore/utils/markdown')
-const { editOrReply } = require('../../../../labscore/utils/message')
-const { STATICS } = require('../../../../labscore/utils/statics')
+const { youtube } = require('#api');
+const { paginator } = require('#client');
+const { YOUTUBE_CATEGORIES } = require('#constants');
 
-const { paginator } = require('../../../../labscore/client');
-const { youtube } = require('../../../../labscore/api');
+const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed')
+const { link, iconPill } = require('#utils/markdown')
+const { editOrReply } = require('#utils/message')
+const { STATICS } = require('#utils/statics')
 
-const { Permissions } = require("detritus-client/lib/constants");
-const { YOUTUBE_CATEGORIES } = require('../../../../labscore/constants');
-
+// TODO: Move this to a numbers utility
 // https://www.html-code-generator.com/javascript/shorten-long-numbers
 const intToString = num => {
   num = num.toString().replace(/[^0-9.]/g, '');

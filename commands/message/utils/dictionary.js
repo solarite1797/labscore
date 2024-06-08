@@ -1,13 +1,14 @@
-const { createEmbed, formatPaginationEmbeds, page } = require('../../../labscore/utils/embed')
-const { link, iconPill, smallPill, icon, iconLinkPill, pill } = require('../../../labscore/utils/markdown')
-const { editOrReply } = require('../../../labscore/utils/message')
+const { dictionary } = require('#api');
+const { paginator } = require('#client');
+const { TRANSLATE_LANGUAGE_MAPPINGS, DICTIONARY_LANGUAGES } = require('#constants');
 
-const { paginator } = require('../../../labscore/client');
-const { dictionary } = require('../../../labscore/api');
+const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed')
+const { link, iconPill, smallPill, icon, iconLinkPill, pill } = require('#utils/markdown')
+const { editOrReply } = require('#utils/message')
+const { dictionaryGetCodeFromAny } = require('#utils/translate');
 
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
-const { dictionaryGetCodeFromAny } = require('../../../labscore/utils/translate');
-const { TRANSLATE_LANGUAGE_MAPPINGS, DICTIONARY_LANGUAGES } = require('../../../labscore/constants');
 
 const LABELS = {
   "offensive": `${iconPill("warning", "Offensive")}`

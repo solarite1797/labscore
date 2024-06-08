@@ -1,8 +1,9 @@
-const { createEmbed } = require('../../../../labscore/utils/embed')
-const { editOrReply } = require('../../../../labscore/utils/message')
+const { otter } = require('#api');
+
+const { createEmbed } = require('#utils/embed')
+const { editOrReply } = require('#utils/message')
 
 const { InteractionCallbackTypes } = require("detritus-client/lib/constants");
-const { otter } = require('../../../../labscore/api');
 
 module.exports = {
   description: 'Shows a random otter picture.',

@@ -1,10 +1,11 @@
-const { createEmbed, formatPaginationEmbeds, page } = require('../../../../labscore/utils/embed')
-const { editOrReply } = require('../../../../labscore/utils/message')
+const { paginator } = require('#client');
 
-const { paginator } = require('../../../../labscore/client');
-const superagent = require('superagent')
+const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed')
+const { editOrReply } = require('#utils/message')
 
 const { ApplicationCommandOptionTypes, InteractionCallbackTypes } = require('detritus-client/lib/constants');
+
+const superagent = require('superagent')
 
 module.exports = {
   name: 'xkcd',

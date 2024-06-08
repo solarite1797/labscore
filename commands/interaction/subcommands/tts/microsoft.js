@@ -1,11 +1,10 @@
-const { Constants } = require('detritus-client');
-const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = Constants;
+const { sapi4 } = require('#api');
+const { MICROSOFT_VOICES, MICROSOFT_VOICE_CONFIG } = require('#constants');
 
-const { sapi4 } = require('../../../../labscore/api');
-const { MICROSOFT_VOICES, MICROSOFT_VOICE_CONFIG } = require('../../../../labscore/constants');
+const { createEmbed } = require('#utils/embed');
+const { icon, highlight } = require('#utils/markdown');
 
-const { createEmbed } = require('../../../../labscore/utils/embed');
-const { icon, highlight } = require('../../../../labscore/utils/markdown');
+const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = require('detritus-client/lib/constants');
 
 module.exports = {
   description: 'Text to Speech with microsoft voices',

@@ -1,12 +1,13 @@
-const { DISCORD_INVITES, OPEN_SOURCE_REPOSITORY_URL } = require("../../../labscore/constants");
-const { createEmbed, formatPaginationEmbeds, page } = require("../../../labscore/utils/embed");
-const { guildFeaturesField } = require("../../../labscore/utils/fields");
-const { icon, highlight, timestamp, iconPill, iconLinkPill, link } = require("../../../labscore/utils/markdown");
-const { editOrReply } = require("../../../labscore/utils/message");
-const { STATIC_ASSETS } = require("../../../labscore/utils/statics");
+const { paginator } = require('#client');
+const { DISCORD_INVITES, OPEN_SOURCE_REPOSITORY_URL } = require("#constants");
 
-const { paginator } = require('../../../labscore/client');
+const { createEmbed, formatPaginationEmbeds, page } = require("#utils/embed");
+const { guildFeaturesField } = require("#utils/fields");
+const { icon, highlight, timestamp, iconPill, iconLinkPill, link } = require("#utils/markdown");
+const { editOrReply } = require("#utils/message");
+const { STATIC_ASSETS } = require("#utils/statics");
 
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
 
 module.exports = {

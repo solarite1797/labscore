@@ -1,11 +1,12 @@
-const { createEmbed, formatPaginationEmbeds, page } = require('../../../labscore/utils/embed')
-const { editOrReply } = require('../../../labscore/utils/message')
-const { STATICS } = require('../../../labscore/utils/statics')
+const { paginator } = require('#client');
+const { WolframQueryCompute } = require('#obelisk');
 
-const { paginator } = require('../../../labscore/client');
-const { wolframQuery, WolframQueryCompute } = require('../../../labscore/api/obelisk');
-const { citation, smallIconPill } = require('../../../labscore/utils/markdown');
+const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed')
+const { citation, smallIconPill } = require('#utils/markdown');
+const { editOrReply } = require('#utils/message')
+const { STATICS } = require('#utils/statics')
 
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
 
 function createWolframPage(context, pod, query, sources) {

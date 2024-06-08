@@ -1,11 +1,12 @@
-const { perspective } = require("../../../labscore/api");
-const { format } = require("../../../labscore/utils/ansi");
-const { createEmbed } = require("../../../labscore/utils/embed");
+const { perspective } = require("#api");
 
-const { icon, codeblock, iconPill, stringwrap, link } = require("../../../labscore/utils/markdown");
-const { editOrReply } = require("../../../labscore/utils/message");
-const { STATICS } = require("../../../labscore/utils/statics");
+const { format } = require("#utils/ansi");
+const { createEmbed } = require("#utils/embed");
+const { codeblock, iconPill, stringwrap, link } = require("#utils/markdown");
+const { editOrReply } = require("#utils/message");
+const { STATICS } = require("#utils/statics");
 
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
 
 function getPerspectiveColor(score) {

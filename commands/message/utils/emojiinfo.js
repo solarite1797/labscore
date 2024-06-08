@@ -1,14 +1,13 @@
-const { Constants, Utils } = require("detritus-client");
-const { Permissions, InteractionCallbackTypes, MessageComponentButtonStyles } = require("detritus-client/lib/constants");
-const { emojipedia, emojiKitchen } = require("../../../labscore/api");
+const { emojipedia } = require("#api");
 
-const { EMOJIPEDIA_PLATFORM_TYPES, EMOJIPEDIA_PLATFORM_TYPE_ALIASES } = require("../../../labscore/constants");
-const { createEmbed } = require("../../../labscore/utils/embed");
-const { icon, pill, iconPill, highlight, timestamp, smallIconPill } = require("../../../labscore/utils/markdown");
-const { editOrReply } = require("../../../labscore/utils/message");
-const { STATICS } = require("../../../labscore/utils/statics");
-const { Components, Snowflake } = require("detritus-client/lib/utils");
-const { bold } = require("detritus-client/lib/utils/markup");
+const { createEmbed } = require("#utils/embed");
+const { pill, smallIconPill } = require("#utils/markdown");
+const { editOrReply } = require("#utils/message");
+const { STATICS } = require("#utils/statics");
+
+// TODO: Turn this into a general purpose permissions constant
+const { Permissions, InteractionCallbackTypes, MessageComponentButtonStyles } = require("detritus-client/lib/constants");
+const { Components } = require("detritus-client/lib/utils");
 
 const onlyEmoji = require('emoji-aware').onlyEmoji;
 

@@ -1,15 +1,14 @@
 const { ClusterManager } = require('detritus-client');
-const { basecamp } = require('./labscore/logging');
 const superagent = require('superagent')
 
-const time = Date.now();
+const { basecamp } = require('#logging');
 
+const time = Date.now();
 const token = process.env.token;
 
 // Get the correct path for each environment type
 let client = `./labscore/labscore/client.js`;
-if(process.env.environment === "local") client = `./labscore/client.js`
-if(["production","prod","prodnew"].includes(process.env.environment.toLowerCase())) client = `./labscore/labscore/client.js`;
+if(process.env.environment === "local") client = `./labscore/client.js`;
 
 const SHARDS = process.env.SHARDS || 2;
 const SHARDS_PER_CLUSTER = process.env.SHARDS_PER_CLUSTER_OVERRIDE || 2;
@@ -20,7 +19,7 @@ const manager = new ClusterManager(client, token, {
 });
 
 (async () => {
-  console.log(`v2 | starting v2.`)
+  console.log(`[${process.env.HOSTNAME}] launching bot`)
 
   // Logging
   manager.on("clusterProcess", ({ clusterProcess }) => {
@@ -34,8 +33,11 @@ const manager = new ClusterManager(client, token, {
   })
   
   await manager.run();
-  console.log(`v2 | ready. took ${(Date.now() - time) / 1000}.`)
+  console.log(`[${process.env.HOSTNAME}] bot ready. took ${(Date.now() - time) / 1000}.`)
   
+  // This is kind of a hack.
+  // Our current deployment system has a tendency to launch the bot twice, this "ensures" that
+  // incorrect instances close again. This should *probably* just be moved to dirigent instead.
   if(process.env.environment.toLowerCase() === "prod"){
     let liveDeploy = await superagent.get(`${process.env.PB_MANAGER_HOST}_pbs/v1/GetPbServiceId`)
     if(process.env.HOSTNAME !== liveDeploy.body.d){

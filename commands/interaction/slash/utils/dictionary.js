@@ -1,12 +1,12 @@
-const { createEmbed, formatPaginationEmbeds, page } = require('../../../../labscore/utils/embed')
-const { link, iconPill, smallPill, icon, iconLinkPill, pill } = require('../../../../labscore/utils/markdown')
-const { editOrReply } = require('../../../../labscore/utils/message')
+const { dictionary } = require('#api');
+const { paginator } = require('#client');
+const { TRANSLATE_LANGUAGE_MAPPINGS, DICTIONARY_LANGUAGES } = require('#constants');
 
-const { paginator } = require('../../../../labscore/client');
-const { dictionary } = require('../../../../labscore/api');
+const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed')
+const { link, iconPill, smallPill, icon, iconLinkPill, pill } = require('#utils/markdown')
+const { editOrReply } = require('#utils/message')
 
 const { ApplicationCommandOptionTypes, InteractionCallbackTypes } = require('detritus-client/lib/constants');
-const { TRANSLATE_LANGUAGE_MAPPINGS, DICTIONARY_LANGUAGES } = require('../../../../labscore/constants');
 
 const LABELS = {
   "offensive": `${iconPill("warning", "Offensive")}`

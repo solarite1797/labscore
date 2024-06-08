@@ -1,12 +1,14 @@
-const { gemini, LlmModelsGenerate } = require("../../../labscore/api/obelisk");
-const { createEmbed } = require("../../../labscore/utils/embed");
-const { editOrReply } = require("../../../labscore/utils/message");
+const { LlmModelsGenerate } = require("#obelisk");
 
+const { createEmbed } = require("#utils/embed");
+const { stringwrap, iconPill, smallIconPill } = require("#utils/markdown");
+const { editOrReply } = require("#utils/message");
+const { STATIC_ICONS } = require("#utils/statics");
+const { hasFeature } = require("#utils/testing");
+
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
 
-const { STATIC_ICONS } = require("../../../labscore/utils/statics");
-const { stringwrap, iconPill, smallIconPill } = require("../../../labscore/utils/markdown");
-const { hasFeature } = require("../../../labscore/utils/testing");
 module.exports = {
   name: 'gemini-pro',
   label: 'text',

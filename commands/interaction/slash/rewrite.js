@@ -1,11 +1,9 @@
-const { Constants } = require('detritus-client');
-const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = Constants;
+const { REWRITE_STYLES } = require('#constants');
 
-const { REWRITE_STYLES } = require('../../../labscore/constants');
+const { createEmbed } = require('#utils/embed');
+const { iconPill, codeblock } = require('#utils/markdown');
 
-const { createEmbed } = require('../../../labscore/utils/embed');
-const { iconPill, codeblock } = require('../../../labscore/utils/markdown');
-const { MessageFlags } = require('detritus-client/lib/constants');
+const { InteractionCallbackTypes, ApplicationCommandOptionTypes, MessageFlags } = require('detritus-client/lib/constants');
 
 const superagent = require('superagent')
 

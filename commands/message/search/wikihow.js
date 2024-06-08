@@ -1,10 +1,11 @@
-const { createEmbed, formatPaginationEmbeds, page } = require('../../../labscore/utils/embed')
-const { editOrReply } = require('../../../labscore/utils/message')
-const { STATICS } = require('../../../labscore/utils/statics')
+const { wikihow } = require('#api');
+const { paginator } = require('#client');
 
-const { paginator } = require('../../../labscore/client');
-const { wikihow } = require('../../../labscore/api');
+const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed')
+const { editOrReply } = require('#utils/message')
+const { STATICS } = require('#utils/statics')
 
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
 
 function createWikiHowPage(context, result){

@@ -1,9 +1,9 @@
-const { prideborder } = require("../../../labscore/api");
-const { createEmbed } = require("../../../labscore/utils/embed");
-const { editOrReply } = require("../../../labscore/utils/message");
+const { prideborder } = require("#api");
 
-const { Constants } = require('detritus-client');
-const { InteractionCallbackTypes, ApplicationCommandTypes } = Constants;
+const { createEmbed } = require("#utils/embed");
+const { editOrReply } = require("#utils/message");
+
+const { InteractionCallbackTypes, ApplicationCommandTypes } = require('detritus-client/lib/constants');
 
 module.exports = {
   name: 'Create Pride Avatar 🌈',

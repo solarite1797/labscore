@@ -1,14 +1,14 @@
+const { REXTESTER_LANGUAGES, COLORS, REXTESTER_COMPILER_ARGS } = require("#constants");
 
+const { createEmbed } = require("#utils/embed");
+const { codeblock, highlight } = require("#utils/markdown");
+const { editOrReply } = require("#utils/message");
+
+// TODO: Turn this into a general purpose permissions constant
 const { DiscordRegexNames, Permissions } = require("detritus-client/lib/constants");
 const { Utils } = require("detritus-client");
 
-const { REXTESTER_LANGUAGES, COLORS, REXTESTER_COMPILER_ARGS } = require("../../../labscore/constants");
-
 const superagent = require('superagent')
-
-const { createEmbed } = require("../../../labscore/utils/embed");
-const { codeblock, highlight } = require("../../../labscore/utils/markdown");
-const { editOrReply } = require("../../../labscore/utils/message");
 
 module.exports = {
   label: 'code',

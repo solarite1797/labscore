@@ -1,11 +1,13 @@
+
+const { createEmbed } = require("#utils/embed");
+const { editOrReply } = require("#utils/message");
+const { icon } = require("#utils/markdown");
+
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
 
-const { createEmbed } = require("../../../labscore/utils/embed");
-const { editOrReply } = require("../../../labscore/utils/message");
-const { icon } = require("../../../labscore/utils/markdown");
-
-// TODO: copy pasted from v1, rework this eventually
-
+// TODO: rework this eventually
+// -> filter by user
 module.exports = {
   label: "filter",
   name: "purge",

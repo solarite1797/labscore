@@ -1,12 +1,11 @@
-const { Constants } = require('detritus-client');
-const { InteractionCallbackTypes, ApplicationCommandTypes, MessageFlags } = Constants;
+const { googleVisionOcr } = require('#api');
 
-const { googleVisionOcr } = require('../../../labscore/api');
-const { getMessageAttachment, validateAttachment } = require('../../../labscore/utils/attachment');
+const { getMessageAttachment, validateAttachment } = require('#utils/attachment');
+const { createEmbed } = require('#utils/embed');
+const { codeblock } = require('#utils/markdown');
+const { STATICS } = require('#utils/statics');
 
-const { createEmbed } = require('../../../labscore/utils/embed');
-const { codeblock } = require('../../../labscore/utils/markdown');
-const { STATICS } = require('../../../labscore/utils/statics');
+const { InteractionCallbackTypes, ApplicationCommandTypes, MessageFlags } = require("detritus-client/lib/constants");
 
 module.exports = {
   name: 'OCR',

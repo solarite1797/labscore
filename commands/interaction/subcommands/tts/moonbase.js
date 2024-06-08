@@ -1,10 +1,9 @@
-const { Constants } = require('detritus-client');
-const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = Constants;
+const { moonbase } = require('#api');
 
-const { moonbase } = require('../../../../labscore/api');
+const { createEmbed } = require('#utils/embed');
+const { icon, highlight } = require('#utils/markdown');
 
-const { createEmbed } = require('../../../../labscore/utils/embed');
-const { icon, highlight } = require('../../../../labscore/utils/markdown');
+const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = require('detritus-client/lib/constants');
 
 module.exports = {
   description: 'Moonbase Alpha text to speech voices',

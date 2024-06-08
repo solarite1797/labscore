@@ -1,12 +1,12 @@
-const { createEmbed } = require("../../../../labscore/utils/embed");
-const { editOrReply } = require("../../../../labscore/utils/message");
+const { getRecentImage } = require("#utils/attachment");
+const { createEmbed } = require("#utils/embed");
+const { editOrReply } = require("#utils/message");
+const { STATICS } = require("#utils/statics");
 
-const { getRecentImage } = require("../../../../labscore/utils/attachment");
+// TODO: Turn this into a general purpose permissions constant
+const { Permissions } = require("detritus-client/lib/constants");
 
 const { heartLocket } = require("../../../../service/makesweet");
-const { STATICS } = require("../../../../labscore/utils/statics");
-
-const { Permissions } = require("detritus-client/lib/constants");
 
 module.exports = {
   name: 'heartlocket',

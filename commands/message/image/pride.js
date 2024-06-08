@@ -1,8 +1,10 @@
-const { prideborder } = require("../../../labscore/api");
-const { createEmbed } = require("../../../labscore/utils/embed");
-const { editOrReply } = require("../../../labscore/utils/message");
-const { getUser } = require("../../../labscore/utils/users");
+const { prideborder } = require("#api");
 
+const { createEmbed } = require("#utils/embed");
+const { editOrReply } = require("#utils/message");
+const { getUser } = require("#utils/users");
+
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
 
 module.exports = {

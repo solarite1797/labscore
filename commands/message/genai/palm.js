@@ -1,14 +1,13 @@
-const { createEmbed } = require('../../../labscore/utils/embed')
-const { editOrReply } = require('../../../labscore/utils/message')
+const { palm2 } = require('#obelisk');
 
-const { STATIC_ICONS } = require('../../../labscore/utils/statics');
+const { createEmbed } = require('#utils/embed')
+const { editOrReply } = require('#utils/message')
+const { iconPill, stringwrap, smallIconPill } = require('#utils/markdown')
+const { STATIC_ICONS } = require('#utils/statics');
+const { hasFeature } = require('#utils/testing');
 
-const superagent = require('superagent')
-const { iconPill, stringwrap, smallIconPill } = require('../../../labscore/utils/markdown')
-
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
-const { palm2 } = require('../../../labscore/api/obelisk');
-const { hasFeature } = require('../../../labscore/utils/testing');
 
 module.exports = {
   name: 'palm',

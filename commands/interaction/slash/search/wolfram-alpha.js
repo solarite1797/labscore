@@ -1,10 +1,10 @@
-const { createEmbed, formatPaginationEmbeds, page } = require('../../../../labscore/utils/embed')
-const { editOrReply } = require('../../../../labscore/utils/message')
-const { STATICS } = require('../../../../labscore/utils/statics')
+const { wolframAlpha } = require('#api');
+const { paginator } = require('#client');
 
-const { paginator } = require('../../../../labscore/client');
-const { wolframAlpha } = require('../../../../labscore/api');
-const { citation } = require('../../../../labscore/utils/markdown');
+const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed')
+const { citation } = require('#utils/markdown');
+const { editOrReply } = require('#utils/message')
+const { STATICS } = require('#utils/statics')
 
 const { ApplicationCommandOptionTypes, InteractionCallbackTypes } = require('detritus-client/lib/constants');
 

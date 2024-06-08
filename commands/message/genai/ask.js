@@ -1,13 +1,15 @@
-const { createEmbed } = require('../../../labscore/utils/embed')
-const { editOrReply } = require('../../../labscore/utils/message')
+const { webAsk } = require('#obelisk');
 
-const { iconPill, smallIconPill } = require('../../../labscore/utils/markdown')
+const { createEmbed } = require('#utils/embed')
+const { iconPill, smallIconPill } = require('#utils/markdown')
+const { editOrReply } = require('#utils/message')
+const { STATIC_ICONS } = require('#utils/statics');
+const { hasFeature } = require('#utils/testing');
 
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
-const { STATIC_ICONS } = require('../../../labscore/utils/statics');
-const { webAsk } = require('../../../labscore/api/obelisk');
-const { hasFeature } = require('../../../labscore/utils/testing');
 
+// TODO: general purpose constant?
 const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([^> \n]*)/
 
 module.exports = {

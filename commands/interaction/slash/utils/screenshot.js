@@ -1,7 +1,7 @@
-const { createEmbed } = require("../../../../labscore/utils/embed");
-const { editOrReply } = require("../../../../labscore/utils/message");
+const { WebUtilsWebPageScreenshot} = require("#obelisk");
 
-const { WebUtilsWebPageScreenshot} = require("../../../../labscore/api/obelisk");
+const { createEmbed } = require("#utils/embed");
+const { editOrReply } = require("#utils/message");
 
 const { ApplicationCommandOptionTypes, InteractionCallbackTypes } = require('detritus-client/lib/constants');
 

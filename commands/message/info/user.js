@@ -1,13 +1,12 @@
-const { BADGE_ICONS } = require("../../../labscore/constants");
-const { createEmbed } = require("../../../labscore/utils/embed");
-const { icon, highlight, timestamp, smallIconPill, smallPill } = require("../../../labscore/utils/markdown");
-const { editOrReply } = require("../../../labscore/utils/message");
-const { getUser, renderBadges } = require("../../../labscore/utils/users");
+const { BADGE_ICONS } = require("#constants");
 
-const { Constants } = require('detritus-client')
-const { UserFlags } = Constants
+const { createEmbed } = require("#utils/embed");
+const { icon, highlight, timestamp, smallIconPill, smallPill } = require("#utils/markdown");
+const { editOrReply } = require("#utils/message");
+const { getUser, renderBadges } = require("#utils/users");
 
-const { Permissions } = require("detritus-client/lib/constants");
+// TODO: Turn this into a general purpose permissions constant
+const { UserFlags, Permissions } = require("detritus-client/lib/constants");
 
 module.exports = {
   name: 'user',

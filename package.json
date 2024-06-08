@@ -19,6 +19,11 @@
     "superagent": "^7.1.1"
   },
   "imports": {
-    "#api": "./labscore/api/index.js"
+    "#api": "./labscore/api/index.js",
+    "#client": "./labscore/client.js",
+    "#constants": "./labscore/constants.js",
+    "#logging": "./labscore/logging.js",
+    "#obelisk": "./labscore/api/obelisk/index.js",
+    "#utils/*": "./labscore/utils/*.js"
   }
 }

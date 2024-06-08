@@ -1,16 +1,18 @@
-const { paginator } = require("../../../labscore/client");
-const { createEmbed, page, formatPaginationEmbeds } = require("../../../labscore/utils/embed");
-const { codeblock, pill, smallIconPill } = require("../../../labscore/utils/markdown");
+const { paginator } = require("#client");
+const { COLORS } = require("#constants");
 
+const { createEmbed, page, formatPaginationEmbeds } = require("#utils/embed");
+const { codeblock, pill, smallIconPill } = require("#utils/markdown");
+const { editOrReply } = require("#utils/message");
+const { STATIC_ICONS } = require("#utils/statics");
+
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
-const { editOrReply } = require("../../../labscore/utils/message");
+
+const superagent = require('superagent');
 
 const TEX_REGEX = /(\$.*?\$)/g
 const TEX_URL = `https://latex.codecogs.com/png.image?\\inline&space;\\huge&space;\\dpi{200}&space;\\color{white}`
-
-const superagent = require('superagent');
-const { STATIC_ICONS } = require("../../../labscore/utils/statics");
-const { COLORS } = require("../../../labscore/constants");
 
 module.exports = {
   name: 'latex',

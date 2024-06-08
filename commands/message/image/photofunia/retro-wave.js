@@ -1,9 +1,10 @@
-const { createEmbed } = require('../../../../labscore/utils/embed')
-const { editOrReply } = require('../../../../labscore/utils/message')
-const { STATICS } = require('../../../../labscore/utils/statics')
+const { retroWave } = require('#api')
 
-const { retroWave } = require('../../../../labscore/api')
+const { createEmbed } = require('#utils/embed')
+const { editOrReply } = require('#utils/message')
+const { STATICS } = require('#utils/statics')
 
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
 
 module.exports = {

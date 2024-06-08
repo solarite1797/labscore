@@ -1,14 +1,15 @@
-const { createEmbed } = require('../../../labscore/utils/embed')
-const { editOrReply } = require('../../../labscore/utils/message')
+const { renderMusicButtons } = require('#utils/buttons');
+const { createEmbed } = require('#utils/embed')
+const { icon } = require('#utils/markdown');
+const { editOrReply } = require('#utils/message')
 
-const { renderMusicButtons } = require('../../../labscore/utils/buttons');
+// TODO: Turn this into a general purpose permissions constant
+const { Permissions } = require("detritus-client/lib/constants");
 
 const superagent = require('superagent')
 
+// TODO: make this a constant, or add a URL util
 const urlr = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/g
-
-const { Permissions } = require("detritus-client/lib/constants");
-const { icon } = require('../../../labscore/utils/markdown');
 
 module.exports = {
   name: 'audio',

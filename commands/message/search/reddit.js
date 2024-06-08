@@ -1,11 +1,12 @@
-const { createEmbed, formatPaginationEmbeds, page } = require('../../../labscore/utils/embed')
-const { link, icon, iconPill } = require('../../../labscore/utils/markdown')
-const { editOrReply } = require('../../../labscore/utils/message')
-const { STATICS } = require('../../../labscore/utils/statics')
+const { reddit } = require('#api');
+const { paginator } = require('#client');
 
-const { paginator } = require('../../../labscore/client');
-const { reddit } = require('../../../labscore/api');
+const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed')
+const { link, icon, iconPill } = require('#utils/markdown')
+const { editOrReply } = require('#utils/message')
+const { STATICS } = require('#utils/statics')
 
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
 
 function createRedditPage(context, result) {

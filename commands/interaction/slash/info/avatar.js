@@ -1,9 +1,7 @@
-const { Constants } = require('detritus-client');
-const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = Constants;
+const { createEmbed } = require('#utils/embed');
+const { editOrReply } = require('#utils/message');
 
-const { createEmbed } = require('../../../../labscore/utils/embed');
-
-const { editOrReply } = require('../../../../labscore/utils/message');
+const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = require("detritus-client/lib/constants");
 
 module.exports = {
   description: 'Get someones avatar.',

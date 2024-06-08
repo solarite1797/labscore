@@ -1,15 +1,17 @@
-const { Constants, Utils } = require("detritus-client");
-const { Permissions, InteractionCallbackTypes } = require("detritus-client/lib/constants");
-const { emojipedia, emojiKitchen } = require("../../../labscore/api");
+const { emojipedia, emojiKitchen } = require("#api");
+const { EMOJIPEDIA_PLATFORM_TYPES, EMOJIPEDIA_PLATFORM_TYPE_ALIASES } = require("#constants");
+const { ingest } = require("#logging");
 
-const { EMOJIPEDIA_PLATFORM_TYPES, EMOJIPEDIA_PLATFORM_TYPE_ALIASES } = require("../../../labscore/constants");
-const { createEmbed } = require("../../../labscore/utils/embed");
-const { icon, pill, iconPill, highlight, timestamp, smallIconPill } = require("../../../labscore/utils/markdown");
-const { editOrReply } = require("../../../labscore/utils/message");
-const { STATICS } = require("../../../labscore/utils/statics");
+const { createEmbed } = require("#utils/embed");
+const { icon, pill, iconPill, highlight, timestamp, smallIconPill } = require("#utils/markdown");
+const { editOrReply } = require("#utils/message");
+const { STATICS } = require("#utils/statics");
+
+const { Utils } = require("detritus-client");
 const { Components, Snowflake } = require("detritus-client/lib/utils");
+// TODO: Turn this into a general purpose permissions constant
+const { Permissions, InteractionCallbackTypes, DiscordRegexNames } = require("detritus-client/lib/constants");
 const { bold } = require("detritus-client/lib/utils/markup");
-const { ingest } = require("../../../labscore/logging");
 
 const onlyEmoji = require('emoji-aware').onlyEmoji;
 
@@ -74,7 +76,7 @@ module.exports = {
     }
 
     const { matches } = Utils.regex(
-      Constants.DiscordRegexNames.EMOJI,
+      DiscordRegexNames.EMOJI,
       args.emoji
     );
     embeds = []

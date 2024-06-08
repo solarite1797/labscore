@@ -1,13 +1,13 @@
-const { codeblock, icon, link, pill, smallPill, iconPill, stringwrap } = require('../../../labscore/utils/markdown')
-const { createEmbed, formatPaginationEmbeds, page } = require('../../../labscore/utils/embed')
+const { paginator } = require('#client');
+const { DISCORD_INVITES, DEFAULT_PREFIXES } = require('#constants');
 
-const { DISCORD_INVITES, DEFAULT_PREFIXES } = require('../../../labscore/constants')
+const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed')
+const { codeblock, icon, link, pill, smallPill, iconPill, stringwrap } = require('#utils/markdown')
+const { editOrReply } = require('#utils/message');
+const { hasFeature } = require('#utils/testing');
 
-const { paginator } = require('../../../labscore/client');
-const { editOrReply } = require('../../../labscore/utils/message');
-
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
-const { hasFeature } = require('../../../labscore/utils/testing');
 
 function createHelpPage(context, title, contents, descriptions) {
   return page(createEmbed("default", context, {

@@ -1,7 +1,7 @@
-const { Constants, ClusterClient, CommandClient, InteractionCommandClient } = require('detritus-client');
+const { ClusterClient, CommandClient, InteractionCommandClient } = require('detritus-client');
 const { ActivityTypes, PresenceStatuses, GatewayIntents, Permissions, ClientEvents } = require('detritus-client/lib/constants');
 
-const { PERMISSIONS_TEXT, DEFAULT_BOT_NAME, DEFAULT_PREFIXES } = require('./constants');
+const { PERMISSIONS_TEXT, DEFAULT_BOT_NAME, DEFAULT_PREFIXES } = require('#constants');
 const Paginator = require('./paginator').PaginatorCluster
 
 const cluster = new ClusterClient("", {
@@ -82,12 +82,11 @@ const interactionClient = new InteractionCommandClient(cluster, {
   useClusterClient: true
 })
 
-const { maintower, basecamp, ingest } = require('./logging');
-const { icon, highlight } = require('./utils/markdown');
-const { editOrReply } = require('./utils/message');
+const { maintower, basecamp, ingest } = require('#logging');
 
-const { createEmbed } = require('./utils/embed');
-const superagent = require('superagent');
+const { createEmbed } = require('#utils/embed');
+const { icon, highlight } = require('#utils/markdown');
+const { editOrReply } = require('#utils/message');
 
 // Analytics
 commandClient.on('commandRan', ({ context, command }) => { if(!command.metadata.use_custom_ingest) ingest(command.name, "command_ran")} )

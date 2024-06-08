@@ -1,11 +1,10 @@
-const { Constants } = require('detritus-client');
-const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = Constants;
+const { imtranslator } = require('#api');
+const { IMTRANSLATOR_VOICES } = require('#constants');
 
-const { imtranslator } = require('../../../../labscore/api');
-const { IMTRANSLATOR_VOICES } = require('../../../../labscore/constants');
+const { createEmbed } = require('#utils/embed');
+const { icon, highlight } = require('#utils/markdown');
 
-const { createEmbed } = require('../../../../labscore/utils/embed');
-const { icon, highlight } = require('../../../../labscore/utils/markdown');
+const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = require('detritus-client/lib/constants');
 
 module.exports = {
   description: 'Text to Speech with imtranslator voices',

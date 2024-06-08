@@ -1,13 +1,14 @@
-const { createEmbed, formatPaginationEmbeds, page } = require('../../../labscore/utils/embed')
-const { editOrReply } = require('../../../labscore/utils/message')
-const { STATICS } = require('../../../labscore/utils/statics')
+const { reverseImageSearch } = require('#api');
+const { paginator } = require('#client');
 
-const { paginator } = require('../../../labscore/client');
-const { reverseImageSearch } = require('../../../labscore/api');
+const { getMessageAttachment, validateAttachment } = require('#utils/attachment');
+const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed')
+const { editOrReply } = require('#utils/message')
+const { STATICS } = require('#utils/statics')
 
 const { InteractionCallbackTypes, ApplicationCommandTypes } = require("detritus-client/lib/constants");
-const { getMessageAttachment, validateAttachment } = require('../../../labscore/utils/attachment');
 
+// TODO: create a favicon() util
 function createReverseImageSearchResultPage(context, result, source) {
   let res = page(
     createEmbed("default", context, {

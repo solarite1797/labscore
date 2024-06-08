@@ -1,8 +1,10 @@
-const { icon, timestamp, link, iconLinkPill } = require('../../../labscore/utils/markdown')
-const { createEmbed } = require('../../../labscore/utils/embed')
-const { editOrReply } = require('../../../labscore/utils/message');
-const { PRIVACY_POLICY_LAST_UPDATE, PRIVACY_POLICY_SECTIONS, DISCORD_INVITES, COLORS, PRIVACY_POLICY_PREVIOUS_REVISION } = require('../../../labscore/constants');
+const { PRIVACY_POLICY_LAST_UPDATE, PRIVACY_POLICY_SECTIONS, DISCORD_INVITES, COLORS, PRIVACY_POLICY_PREVIOUS_REVISION } = require('#constants');
 
+const { createEmbed } = require('#utils/embed');
+const { icon, timestamp, link, iconLinkPill } = require('#utils/markdown');
+const { editOrReply } = require('#utils/message');
+
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
 
 module.exports = {

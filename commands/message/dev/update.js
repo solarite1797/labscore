@@ -1,5 +1,5 @@
-const { createEmbed } = require('../../../labscore/utils/embed')
-const { editOrReply } = require('../../../labscore/utils/message')
+const { createEmbed } = require('#utils/embed')
+const { editOrReply } = require('#utils/message')
 
 const superagent = require('superagent')
 

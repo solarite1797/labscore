@@ -1,5 +1,6 @@
 const { prideborder } = require("#api");
-const { editOrReply } = require("../../../labscore/utils/message");
+
+const { editOrReply } = require("#utils/message");
 
 module.exports = {
   label: "text",

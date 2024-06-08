@@ -1,12 +1,11 @@
-const { Constants } = require('detritus-client');
-const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = Constants;
+const { BADGE_ICONS } = require('#constants');
 
-const { createEmbed } = require('../../../../labscore/utils/embed');
-const { smallIconPill, highlight, smallPill, icon, timestamp } = require('../../../../labscore/utils/markdown');
-const { renderBadges } = require('../../../../labscore/utils/users');
-const { BADGE_ICONS } = require('../../../../labscore/constants');
-const { editOrReply } = require('../../../../labscore/utils/message');
-const { UserFlags } = require('detritus-client/lib/constants');
+const { createEmbed } = require('#utils/embed');
+const { smallIconPill, highlight, smallPill, icon, timestamp } = require('#utils/markdown');
+const { editOrReply } = require('#utils/message');
+const { renderBadges } = require('#utils/users');
+
+const { InteractionCallbackTypes, ApplicationCommandOptionTypes, UserFlags } = require("detritus-client/lib/constants");
 
 module.exports = {
   description: 'Displays information about a user',

@@ -1,10 +1,11 @@
-const { createEmbed } = require("../../../labscore/utils/embed");
-const { editOrReply } = require("../../../labscore/utils/message");
+const { createEmbed } = require("#utils/embed");
+const { editOrReply } = require("#utils/message");
+const { STATICS } = require("#utils/statics");
+
+// TODO: Turn this into a general purpose permissions constant
+const { Permissions } = require("detritus-client/lib/constants");
 
 const superagent = require('superagent');
-
-const { Permissions } = require("detritus-client/lib/constants");
-const { STATICS } = require("../../../labscore/utils/statics");
 
 module.exports = {
   name: 'craiyon',

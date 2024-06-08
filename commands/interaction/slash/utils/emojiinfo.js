@@ -1,11 +1,12 @@
-const { InteractionCallbackTypes, MessageComponentButtonStyles, ApplicationCommandOptionTypes } = require("detritus-client/lib/constants");
-const { emojipedia } = require("../../../../labscore/api");
+const { emojipedia } = require("#api");
 
-const { createEmbed } = require("../../../../labscore/utils/embed");
-const { pill } = require("../../../../labscore/utils/markdown");
-const { editOrReply } = require("../../../../labscore/utils/message");
-const { STATICS } = require("../../../../labscore/utils/statics");
+const { createEmbed } = require("#utils/embed");
+const { pill } = require("#utils/markdown");
+const { editOrReply } = require("#utils/message");
+const { STATICS } = require("#utils/statics");
+
 const { Components } = require("detritus-client/lib/utils");
+const { InteractionCallbackTypes, MessageComponentButtonStyles, ApplicationCommandOptionTypes } = require("detritus-client/lib/constants");
 
 const onlyEmoji = require('emoji-aware').onlyEmoji;
 

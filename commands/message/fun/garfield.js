@@ -1,9 +1,10 @@
+const { garfield } = require('#api');
 
-const { garfield } = require('../../../labscore/api');
-const { createEmbed } = require('../../../labscore/utils/embed');
-const { timestamp } = require('../../../labscore/utils/markdown');
-const { editOrReply } = require('../../../labscore/utils/message')
+const { createEmbed } = require('#utils/embed');
+const { timestamp } = require('#utils/markdown');
+const { editOrReply } = require('#utils/message')
 
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
 
 const FUNNY_CAT_EMOJI = [

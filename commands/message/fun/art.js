@@ -1,11 +1,13 @@
-const { createEmbed } = require('../../../labscore/utils/embed')
-const { editOrReply } = require('../../../labscore/utils/message')
+const { DEFAULT_PREFIXES } = require('#constants');
+
+const { createEmbed } = require('#utils/embed')
+const { codeblock } = require('#utils/markdown');
+const { editOrReply } = require('#utils/message')
+
+// TODO: Turn this into a general purpose permissions constant
+const { Permissions } = require("detritus-client/lib/constants");
 
 const superagent = require('superagent');
-const { codeblock } = require('../../../labscore/utils/markdown');
-
-const { Permissions } = require("detritus-client/lib/constants");
-const { DEFAULT_PREFIXES } = require('../../../labscore/constants');
 
 const SIZES = Object.freeze({
   "wallpaper": { x: 1920, y: 1200},

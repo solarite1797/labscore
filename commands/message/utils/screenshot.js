@@ -1,17 +1,10 @@
-const { createEmbed } = require("../../../labscore/utils/embed");
-const { editOrReply } = require("../../../labscore/utils/message");
+const { WebUtilsWebPageScreenshot} = require("#obelisk");
 
-const superagent = require('superagent')
+const { createEmbed } = require("#utils/embed");
+const { editOrReply } = require("#utils/message");
 
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
-const { WebUtilsWebPageScreenshot} = require("../../../labscore/api/obelisk");
-
-async function processJob(jobUrl) {
-  let job = await superagent.get(jobUrl)
-    .set('User-Agent', 'labscore/1.0')
-
-  return job.body;
-}
 
 module.exports = {
   label: "url",

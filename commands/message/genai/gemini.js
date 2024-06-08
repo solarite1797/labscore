@@ -1,15 +1,14 @@
-const { createEmbed } = require('../../../labscore/utils/embed')
-const { editOrReply } = require('../../../labscore/utils/message')
+const { LlmPrivateBard } = require('#obelisk');
 
-const { STATIC_ICONS } = require('../../../labscore/utils/statics');
+const { createEmbed } = require('#utils/embed')
+const { iconPill, stringwrap } = require('#utils/markdown')
+const { editOrReply } = require('#utils/message')
+const { STATIC_ICONS } = require('#utils/statics');
+const { hasFeature } = require('#utils/testing');
 
-const superagent = require('superagent')
-const { iconPill, stringwrap } = require('../../../labscore/utils/markdown')
-
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions, InteractionCallbackTypes } = require("detritus-client/lib/constants");
 const { Components } = require('detritus-client/lib/utils');
-const { LlmPrivateBard } = require('../../../labscore/api/obelisk');
-const { hasFeature } = require('../../../labscore/utils/testing');
 
 module.exports = {
   name: 'gemini',

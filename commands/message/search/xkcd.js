@@ -1,11 +1,14 @@
-const { createEmbed, formatPaginationEmbeds, page } = require('../../../labscore/utils/embed')
-const { editOrReply } = require('../../../labscore/utils/message')
+const { paginator } = require('#client');
 
-const { paginator } = require('../../../labscore/client');
-const superagent = require('superagent')
+const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed')
+const { editOrReply } = require('#utils/message')
 
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
 
+const superagent = require('superagent')
+
+// TODO: create a favicon() util
 module.exports = {
   name: 'xkcd',
   label: 'query',

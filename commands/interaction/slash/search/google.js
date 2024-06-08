@@ -1,13 +1,14 @@
-const { createEmbed, formatPaginationEmbeds, page } = require('../../../../labscore/utils/embed')
-const { link, citation } = require('../../../../labscore/utils/markdown')
-const { editOrReply } = require('../../../../labscore/utils/message')
-const { STATICS } = require('../../../../labscore/utils/statics')
+const { google } = require('#api');
+const { paginator } = require('#client');
 
-const { paginator } = require('../../../../labscore/client');
-const { google } = require('../../../../labscore/api');
+const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed')
+const { link, citation } = require('#utils/markdown')
+const { editOrReply } = require('#utils/message')
+const { STATICS } = require('#utils/statics')
 
 const { ApplicationCommandOptionTypes, InteractionCallbackTypes } = require('detritus-client/lib/constants');
 
+// TODO: create a favicon() util
 function createSearchResultPage(context, result){
   let res;
   switch(result.type){

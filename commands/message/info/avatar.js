@@ -1,9 +1,10 @@
-const { createEmbed, page } = require("../../../labscore/utils/embed");
-const { editOrReply } = require("../../../labscore/utils/message");
-const { getMember, getUser } = require("../../../labscore/utils/users");
+const { paginator } = require('#client');
 
-const { paginator } = require('../../../labscore/client');
+const { createEmbed, page } = require("#utils/embed");
+const { editOrReply } = require("#utils/message");
+const { getUser } = require("#utils/users");
 
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
 
 module.exports = {

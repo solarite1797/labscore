@@ -1,12 +1,13 @@
+const { paginator } = require('#client');
 
-const { createEmbed, formatPaginationEmbeds, page } = require('../../../labscore/utils/embed')
-const { editOrReply } = require('../../../labscore/utils/message')
-const { STATICS } = require('../../../labscore/utils/statics')
+const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed')
+const { editOrReply } = require('#utils/message')
+const { STATICS } = require('#utils/statics')
 
-const { paginator } = require('../../../labscore/client');
-const superagent = require('superagent')
-
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
+
+const superagent = require('superagent');
 
 module.exports = {
   name: 'wikipedia',

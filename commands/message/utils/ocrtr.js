@@ -1,13 +1,16 @@
-const { googleVisionOcr, googleTranslate } = require("../../../labscore/api");
-const { TRANSLATE_LANGUAGES, TRANSLATE_LANGUAGE_MAPPINGS } = require("../../../labscore/constants");
-const { getRecentImage } = require("../../../labscore/utils/attachment");
-const { createEmbed } = require("../../../labscore/utils/embed");
-const { codeblock, icon, pill, limitedString, smallIconPill } = require("../../../labscore/utils/markdown");
-const { editOrReply } = require("../../../labscore/utils/message");
-const { STATICS } = require("../../../labscore/utils/statics");
-const { isSupported, getCodeFromAny } = require("../../../labscore/utils/translate");
+const { googleVisionOcr, googleTranslate } = require("#api");
+const { TRANSLATE_LANGUAGES, TRANSLATE_LANGUAGE_MAPPINGS } = require("#constants");
 
+const { getRecentImage } = require("#utils/attachment");
+const { createEmbed } = require("#utils/embed");
+const { codeblock, icon, pill, limitedString, smallIconPill } = require("#utils/markdown");
+const { editOrReply } = require("#utils/message");
+const { STATICS } = require("#utils/statics");
+const { isSupported, getCodeFromAny } = require('#utils/translate');
+
+// TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
+
 module.exports = {
   name: 'ocrtr',
   label: 'to',

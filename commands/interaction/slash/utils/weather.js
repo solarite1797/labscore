@@ -1,11 +1,11 @@
-const { createEmbed } = require('../../../../labscore/utils/embed')
-const { editOrReply } = require('../../../../labscore/utils/message')
+const { darksky } = require('#api');
 
-const { darksky } = require('../../../../labscore/api');
-const { pill, iconPill, smallPill, weatherIcon, timestamp } = require('../../../../labscore/utils/markdown');
+const { createEmbed } = require('#utils/embed');
+const { pill, iconPill, smallPill, weatherIcon, timestamp } = require('#utils/markdown');
+const { editOrReply } = require('#utils/message');
+const { STATICS } = require('#utils/statics');
 
 const { ApplicationCommandOptionTypes, InteractionCallbackTypes } = require('detritus-client/lib/constants');
-const { STATICS } = require('../../../../labscore/utils/statics');
 
 module.exports = {
   name: 'weather',
