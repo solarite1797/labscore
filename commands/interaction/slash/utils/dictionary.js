@@ -50,7 +50,7 @@ function createDictionaryPage(context, result, index, language){
 
 module.exports = {
   name: 'dictionary',
-  description: 'Look up the definition of a word or term in a dictionary.',
+  description: 'Define a word from the dictionary.',
   contexts: [
     0,
     1,
