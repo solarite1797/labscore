@@ -1,6 +1,7 @@
 const { emojipedia, emojiKitchen } = require("#api");
 
 const { createEmbed } = require("#utils/embed");
+const { acknowledge } = require("#utils/interactions");
 const { icon, pill, iconPill, highlight, timestamp } = require("#utils/markdown");
 const { editOrReply } = require("#utils/message");
 const { STATICS } = require("#utils/statics");
@@ -8,7 +9,7 @@ const { STATICS } = require("#utils/statics");
 const { ingest } = require("#logging");
 
 const { Utils } = require("detritus-client");
-const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = require("detritus-client/lib/constants");
+const { InteractionCallbackTypes, ApplicationCommandOptionTypes, DiscordRegexNames } = require("detritus-client/lib/constants");
 const { Components, Snowflake } = require("detritus-client/lib/utils");
 
 const onlyEmoji = require('emoji-aware').onlyEmoji;
@@ -53,13 +54,20 @@ module.exports = {
       description: 'Emoji to enlarge. Use two built-in emoji to mix them.',
       type: ApplicationCommandOptionTypes.TEXT,
       required: true
+    },
+    {
+      name: 'incognito',
+      description: 'Makes the response only visible to you.',
+      type: ApplicationCommandOptionTypes.BOOLEAN,
+      required: false,
+      default: false
     }
   ],
   run: async (context, args) => {
-    await context.respond({data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE})
+    await acknowledge(context, args.incognito);
 
     const { matches } = Utils.regex(
-      Constants.DiscordRegexNames.EMOJI,
+      DiscordRegexNames.EMOJI,
       args.emoji
     );
     embeds = []

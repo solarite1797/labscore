@@ -1,9 +1,10 @@
 const { moonbase } = require('#api');
 
 const { createEmbed } = require('#utils/embed');
+const { acknowledge } = require('#utils/interactions');
 const { icon, highlight } = require('#utils/markdown');
 
-const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = require('detritus-client/lib/constants');
+const { ApplicationCommandOptionTypes } = require('detritus-client/lib/constants');
 
 module.exports = {
   description: 'Moonbase Alpha text to speech voices',
@@ -16,12 +17,18 @@ module.exports = {
       type: ApplicationCommandOptionTypes.STRING,
       required: true,
       maxLength: 1024
+    },
+    {
+      name: 'incognito',
+      description: 'Makes the response only visible to you.',
+      type: ApplicationCommandOptionTypes.BOOLEAN,
+      required: false,
+      default: false
     }
   ],
   run: async (context, args) => {
+    await acknowledge(context, args.incognito);
     try {
-      await context.respond({ data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE })
-
       let audio = await moonbase(context, args.text, args.voice)
 
       await context.editOrRespond({

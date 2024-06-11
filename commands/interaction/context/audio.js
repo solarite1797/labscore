@@ -1,7 +1,8 @@
 const { renderMusicButtons } = require('#utils/buttons');
-const { createEmbed } = require('#utils/embed')
+const { createEmbed } = require('#utils/embed');
+const { acknowledge } = require('#utils/interactions');
 
-const { InteractionCallbackTypes, ApplicationCommandTypes } = require("detritus-client/lib/constants");;
+const { ApplicationCommandTypes } = require("detritus-client/lib/constants");;
 
 const superagent = require('superagent')
 
@@ -20,7 +21,7 @@ module.exports = {
   ],
   run: async (context, args) => {
     try{
-      await context.respond({data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE})
+      await acknowledge(context);
 
       const { message } = args;
 

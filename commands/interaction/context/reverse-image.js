@@ -2,11 +2,12 @@ const { reverseImageSearch } = require('#api');
 const { paginator } = require('#client');
 
 const { getMessageAttachment, validateAttachment } = require('#utils/attachment');
-const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed')
+const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed');
+const { acknowledge } = require('#utils/interactions');
 const { editOrReply } = require('#utils/message')
 const { STATICS } = require('#utils/statics')
 
-const { InteractionCallbackTypes, ApplicationCommandTypes } = require("detritus-client/lib/constants");
+const { ApplicationCommandTypes } = require("detritus-client/lib/constants");
 
 // TODO: create a favicon() util
 function createReverseImageSearchResultPage(context, result, source) {
@@ -45,7 +46,7 @@ module.exports = {
   ],
   run: async (context, args) => {
     try{
-      await context.respond({data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE})
+      await acknowledge(context);
 
       const { message } = args;
 

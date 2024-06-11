@@ -2,9 +2,10 @@ const { imtranslator } = require('#api');
 const { IMTRANSLATOR_VOICES } = require('#constants');
 
 const { createEmbed } = require('#utils/embed');
+const { acknowledge } = require('#utils/interactions');
 const { icon, highlight } = require('#utils/markdown');
 
-const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = require('detritus-client/lib/constants');
+const { ApplicationCommandOptionTypes } = require('detritus-client/lib/constants');
 
 module.exports = {
   description: 'Text to Speech with imtranslator voices',
@@ -23,12 +24,19 @@ module.exports = {
       type: ApplicationCommandOptionTypes.STRING,
       required: true,
       maxLength: 256
+    },
+    {
+      name: 'incognito',
+      description: 'Makes the response only visible to you.',
+      type: ApplicationCommandOptionTypes.BOOLEAN,
+      required: false,
+      default: false
     }
   ],
   run: async (context, args) => {
+    await acknowledge(context, args.incognito);
     try{
       let s = Date.now()
-      await context.respond({data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE})
       let audio = await imtranslator(context, args.text, args.voice)
       let diff = (Date.now() - s)
       await context.editOrRespond({

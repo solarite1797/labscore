@@ -1,11 +1,12 @@
 const { darksky } = require('#api');
 
 const { createEmbed } = require('#utils/embed');
+const { acknowledge } = require('#utils/interactions');
 const { pill, iconPill, smallPill, weatherIcon, timestamp } = require('#utils/markdown');
 const { editOrReply } = require('#utils/message');
 const { STATICS } = require('#utils/statics');
 
-const { ApplicationCommandOptionTypes, InteractionCallbackTypes } = require('detritus-client/lib/constants');
+const { ApplicationCommandOptionTypes } = require('detritus-client/lib/constants');
 
 module.exports = {
   name: 'weather',
@@ -24,10 +25,17 @@ module.exports = {
       description: 'City or place to check.',
       type: ApplicationCommandOptionTypes.TEXT,
       required: true
+    },
+    {
+      name: 'incognito',
+      description: 'Makes the response only visible to you.',
+      type: ApplicationCommandOptionTypes.BOOLEAN,
+      required: false,
+      default: false
     }
   ],
   run: async (context, args) => {
-    await context.respond({data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE})
+    await acknowledge(context, args.incognito);
 
     try{
       let data = await darksky(context, args.location)

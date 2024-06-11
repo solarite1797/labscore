@@ -3,11 +3,12 @@ const { TRANSLATE_LANGUAGE_MAPPINGS, TRANSLATE_LANGUAGES } = require('#constants
 
 const { getMessageAttachment, validateAttachment } = require('#utils/attachment');
 const { createEmbed } = require('#utils/embed');
+const { acknowledge } = require('#utils/interactions');
 const { editOrReply } = require('#utils/message');
 const { codeblock, icon, pill } = require('#utils/markdown');
 const { STATICS } = require('#utils/statics');
 
-const { InteractionCallbackTypes, ApplicationCommandTypes, MessageFlags } = require("detritus-client/lib/constants");
+const { ApplicationCommandTypes, MessageFlags } = require("detritus-client/lib/constants");
 
 module.exports = {
   name: 'OCR Translate',
@@ -21,8 +22,8 @@ module.exports = {
     1
   ],
   run: async (context, args) => {
+    await acknowledge(context);
     try{
-      await context.respond({data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE})
 
       const { message } = args;
 

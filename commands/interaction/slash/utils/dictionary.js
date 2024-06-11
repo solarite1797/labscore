@@ -2,11 +2,12 @@ const { dictionary } = require('#api');
 const { paginator } = require('#client');
 const { TRANSLATE_LANGUAGE_MAPPINGS, DICTIONARY_LANGUAGES } = require('#constants');
 
-const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed')
+const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed');
+const { acknowledge } = require('#utils/interactions');
 const { link, iconPill, smallPill, icon, iconLinkPill, pill } = require('#utils/markdown')
 const { editOrReply } = require('#utils/message')
 
-const { ApplicationCommandOptionTypes, InteractionCallbackTypes } = require('detritus-client/lib/constants');
+const { ApplicationCommandOptionTypes } = require('detritus-client/lib/constants');
 
 const LABELS = {
   "offensive": `${iconPill("warning", "Offensive")}`
@@ -65,10 +66,17 @@ module.exports = {
       description: 'Term to look up.',
       type: ApplicationCommandOptionTypes.TEXT,
       required: true
+    },
+    {
+      name: 'incognito',
+      description: 'Makes the response only visible to you.',
+      type: ApplicationCommandOptionTypes.BOOLEAN,
+      required: false,
+      default: false
     }
   ],
   run: async (context, args) => {
-    await context.respond({data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE})
+    await acknowledge(context, args.incognito);
 
     try{
       let search = await dictionary(context, args.term, "en")

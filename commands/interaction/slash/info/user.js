@@ -1,11 +1,12 @@
 const { BADGE_ICONS } = require('#constants');
 
 const { createEmbed } = require('#utils/embed');
+const { acknowledge } = require('#utils/interactions');
 const { smallIconPill, highlight, smallPill, icon, timestamp } = require('#utils/markdown');
 const { editOrReply } = require('#utils/message');
 const { renderBadges } = require('#utils/users');
 
-const { InteractionCallbackTypes, ApplicationCommandOptionTypes, UserFlags } = require("detritus-client/lib/constants");
+const { ApplicationCommandOptionTypes, UserFlags } = require("detritus-client/lib/constants");
 
 module.exports = {
   description: 'Displays information about a user',
@@ -24,12 +25,19 @@ module.exports = {
       description: 'The User.',
       type: ApplicationCommandOptionTypes.USER,
       required: false
+    },
+    {
+      name: 'incognito',
+      description: 'Makes the response only visible to you.',
+      type: ApplicationCommandOptionTypes.BOOLEAN,
+      required: false,
+      default: false
     }
   ],
   run: async (context, args) => {
-    try{
-      await context.respond({data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE})
+    await acknowledge(context, args.incognito);
 
+    try{
       const { user, member } = args;
     
       let u = user;

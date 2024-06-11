@@ -2,9 +2,10 @@ const { tiktok } = require('#api');
 const { TIKTOK_VOICES_KOREAN } = require('#constants');
 
 const { createEmbed } = require('#utils/embed');
+const { acknowledge } = require('#utils/interactions');
 const { icon, highlight } = require('#utils/markdown');
 
-const { InteractionCallbackTypes, ApplicationCommandOptionTypes } = require('detritus-client/lib/constants');
+const { ApplicationCommandOptionTypes } = require('detritus-client/lib/constants');
 
 let voices = []
 for(const k of Object.keys(TIKTOK_VOICES_KOREAN)) voices.unshift({
@@ -28,12 +29,19 @@ module.exports = {
       description: 'Voice to use',
       choices: voices,
       required: true
+    },
+    {
+      name: 'incognito',
+      description: 'Makes the response only visible to you.',
+      type: ApplicationCommandOptionTypes.BOOLEAN,
+      required: false,
+      default: false
     }
   ],
   run: async (context, args) => {
+    await acknowledge(context, args.incognito);
+    
     try {
-      await context.respond({ data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE })
-
       if(args.text.length >= 101) return await context.editOrRespond({
         embeds: [createEmbed("warning", context, "Text too long (must be 100 or shorter).")]
       })

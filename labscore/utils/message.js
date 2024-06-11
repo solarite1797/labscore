@@ -1,4 +1,4 @@
-const { Permissions } = require("detritus-client/lib/constants")
+const { Permissions, MessageFlags } = require("detritus-client/lib/constants")
 const { basecamp } = require("../logging")
 const { createEmbed } = require("./embed")
 
@@ -9,6 +9,15 @@ module.exports.editOrReply = function(context, message, disableReference = false
   if(!message.message_reference && !disableReference) message.reference = true
   // Disable mentions
   if(!message.allowedMentions) message.allowedMentions = {parse: [], repliedUser: false}
+
+  let flags = 0;
+  
+  // Special labsCore context clues for the command.
+  // Currently only used to identify incognito requests
+  // on user slash commands.
+  if(context._meta){
+    if(context._meta.isIncognito) flags = MessageFlags.EPHEMERAL
+  }
 
   // you can figure out what this does on your own time
   message.nonce = Math.floor(Math.random() * 9999 + 1000)
@@ -32,7 +41,8 @@ module.exports.editOrReply = function(context, message, disableReference = false
             allowedMentions: { parse: [], repliedUser: false },
             embeds: [
               embedResponse
-            ]
+            ],
+            flags
           })
         }catch(e){
           /*

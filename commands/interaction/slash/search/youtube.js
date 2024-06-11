@@ -2,10 +2,13 @@ const { youtube } = require('#api');
 const { paginator } = require('#client');
 const { YOUTUBE_CATEGORIES } = require('#constants');
 
-const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed')
+const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed');
+const { acknowledge } = require('#utils/interactions');
 const { link, iconPill } = require('#utils/markdown')
 const { editOrReply } = require('#utils/message')
 const { STATICS } = require('#utils/statics')
+
+const { ApplicationCommandOptionTypes } = require('detritus-client/lib/constants');
 
 // TODO: Move this to a numbers utility
 // https://www.html-code-generator.com/javascript/shorten-long-numbers
@@ -106,8 +109,6 @@ function createYoutubePage(context, result){
   return res;
 }
 
-const { ApplicationCommandOptionTypes, InteractionCallbackTypes } = require('detritus-client/lib/constants');
-
 module.exports = {
   name: 'youtube',
   description: 'Search for videos on YouTube.',
@@ -126,8 +127,12 @@ module.exports = {
       type: ApplicationCommandOptionTypes.STRING,
       required: true
     },
-    {name: 'type', default: 'all', type: 'string', help: `Video Category`},
-  
+    {
+      name: 'type',
+      default: 'all',
+      type: 'string',
+      help: `Video Category`
+    },
     {
       name: 'type',
       description: 'Type of videos to search.',
@@ -166,10 +171,17 @@ module.exports = {
           name: "News"
         },
       ]
+    },
+    {
+      name: 'incognito',
+      description: 'Makes the response only visible to you.',
+      type: ApplicationCommandOptionTypes.BOOLEAN,
+      required: false,
+      default: false
     }
   ],
   run: async (context, args) => {
-    await context.respond({data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE})
+    await acknowledge(context, args.incognito);
     
     try{
       if(!args.type) args.type="all"

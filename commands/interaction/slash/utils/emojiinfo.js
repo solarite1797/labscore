@@ -7,6 +7,7 @@ const { STATICS } = require("#utils/statics");
 
 const { Components } = require("detritus-client/lib/utils");
 const { InteractionCallbackTypes, MessageComponentButtonStyles, ApplicationCommandOptionTypes } = require("detritus-client/lib/constants");
+const { acknowledge } = require("#utils/interactions");
 
 const onlyEmoji = require('emoji-aware').onlyEmoji;
 
@@ -48,10 +49,17 @@ module.exports = {
       description: 'Emoji to enlarge. Use two built-in emoji to mix them.',
       type: ApplicationCommandOptionTypes.TEXT,
       required: true
+    },
+    {
+      name: 'incognito',
+      description: 'Makes the response only visible to you.',
+      type: ApplicationCommandOptionTypes.BOOLEAN,
+      required: false,
+      default: false
     }
   ],
   run: async (context, args) => {
-    await context.respond({data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE})
+    await acknowledge(context, args.incognito);
     
     const emoji = onlyEmoji(args.emoji)
     if(!emoji){

@@ -1,12 +1,13 @@
 const { lyrics } = require('#api');
 const { paginator } = require('#client');
 
-const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed')
+const { createEmbed, formatPaginationEmbeds, page } = require('#utils/embed');
+const { acknowledge } = require('#utils/interactions');
 const { smallIconPill } = require('#utils/markdown');
 const { editOrReply } = require('#utils/message')
 const { STATICS } = require('#utils/statics')
 
-const { ApplicationCommandOptionTypes, InteractionCallbackTypes } = require('detritus-client/lib/constants');
+const { ApplicationCommandOptionTypes } = require('detritus-client/lib/constants');
 
 const META_FIELDS = {
   "Album": "stat_videos",
@@ -56,10 +57,17 @@ module.exports = {
       description: 'Song name or partial lyrics.',
       type: ApplicationCommandOptionTypes.TEXT,
       required: true
+    },
+    {
+      name: 'incognito',
+      description: 'Makes the response only visible to you.',
+      type: ApplicationCommandOptionTypes.BOOLEAN,
+      required: false,
+      default: false
     }
   ],
   run: async (context, args) => {
-    await context.respond({data: {}, type: InteractionCallbackTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE})
+    await acknowledge(context, args.incognito);
     
     try{
       let search = await lyrics(context, args.query)
