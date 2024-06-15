@@ -30,13 +30,18 @@ module.exports = {
     await context.triggerTyping();
 
     let content = args.text;
+
+    // TODO: Turn this into a reply helper
     if(context.message.messageReference) {
       let msg = await context.message.channel.fetchMessage(context.message.messageReference.messageId);
       if(msg.content && msg.content.length) content = msg.content
       if(msg.embeds?.length) for(const e of msg.embeds) if(e[1].description?.length) { content += '\n' + e[1].description; break; } 
 
-      // Translate using direct language input
-      if(args.text) args.to = args.text;
+      // Controls ctx-based translations
+      if(args.text.length >= 1 && getCodeFromAny(args.text)) args.to = args.text;
+      else if(args.text.length >= 1) content = args.text;
+
+      console.log(args)
     }
 
     if(!content.length) return editOrReply(context, createEmbed("warning", context, "No text supplied."))
