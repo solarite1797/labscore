@@ -163,23 +163,6 @@ module.exports = {
       else ico = res.data.platforms["twitter"].images[0].src
 
       const DEFAULT_PLATFORM = args.type
-      let platformEmoji = res.data.platforms[DEFAULT_PLATFORM]
-      
-      if(platformEmoji.images.length == 1) return editOrReply(context, createEmbed("default", context, {
-        author: {
-          iconUrl: ico,
-          name: `${res.data.name} • ${res.data.platforms[DEFAULT_PLATFORM].images[0].version}`,
-          url: res.data.link
-        },
-        description: res.data.codes.map((c)=>pill(c)).join(' '),
-        image: {
-          url: res.data.platforms[DEFAULT_PLATFORM].images[0].src
-        },
-        footer: {
-          iconUrl: STATICS.emojipedia,
-          text: `Emojipedia • ${context.application.name}`
-        }
-      }))
 
       let currentView;
       let currentPlatform = args.type;
@@ -196,6 +179,12 @@ module.exports = {
           if(ctx.data.customId == "emoji-type"){
             currentPlatform = ctx.data.values[0];
             currentRevision = res.data.platforms[currentPlatform].images[0].id
+
+            // Ensure the select is disabled if we only have sprites for one platform
+            components.components[0].components[0].disabled = (res.data.platforms.length == 1)
+            
+            // Disable options select if only one sprite is available
+            components.components[1].components[0].disabled = (res.data.platforms[currentPlatform].images.length == 1)
 
             for (let i = 0; i < components.components[0].components[0].options.length; i++) {
               components.components[0].components[0].options[i].default = (components.components[0].components[0].options[i].value == currentPlatform)
@@ -214,7 +203,11 @@ module.exports = {
           } else if(ctx.data.customId == "emoji-version"){
             for (let i = 0; i < components.components[1].components[0].options.length; i++) {
               components.components[1].components[0].options[i].default = (components.components[1].components[0].options[i].value == ctx.data.values[0])
+              components.components[1].components[0].options[i].default = (components.components[1].components[0].options[i].value == ctx.data.values[0])
             }
+            
+            // Disable options select if only one sprite is available
+            components.components[1].components[0].disabled = (res.data.platforms[currentPlatform].images.length == 1)
             currentRevision = ctx.data.values[0];
           }
 
@@ -264,13 +257,15 @@ module.exports = {
       components.addSelectMenu({
         placeholder: "Select platform type",
         customId: "emoji-type",
-        options: selectTypeOptions
+        options: selectTypeOptions,
+        disabled: (res.data.platforms.length === 1)
       })
       
       components.addSelectMenu({
         placeholder: "Select emoji revision",
         customId: "emoji-version",
-        options: selectOptions
+        options: selectOptions,
+        disabled: (res.data.platforms[DEFAULT_PLATFORM].images.length === 1)
       })
 
       setTimeout(()=>{
