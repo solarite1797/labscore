@@ -9,8 +9,20 @@ const { STATICS } = require('#utils/statics')
 
 const { ApplicationCommandOptionTypes } = require('detritus-client/lib/constants');
 
+function renderFooter(context, doodle){
+  if(doodle.label) return {
+    iconUrl: doodle.super_g,
+    text: `${doodle.label} • Google`
+  }
+  
+  return {
+    iconUrl: STATICS.google,
+    text: `Google • ${context.application.name}`
+  }
+}
+
 // TODO: create a favicon() util
-function createSearchResultPage(context, result){
+function createSearchResultPage(context, result, doodle){
   let res;
   switch(result.type){
     case 1: // Search Result Entry
@@ -21,10 +33,7 @@ function createSearchResultPage(context, result){
             url: result.url
           },
           description: result.content,
-          footer: {
-            iconUrl: STATICS.google,
-            text: `Google • ${context.application.name}`
-          }
+          footer: renderFooter(context, doodle)
         }))
 
       if(result.thumbnail) res.embeds[0].thumbnail = { url: result.thumbnail };
@@ -34,10 +43,7 @@ function createSearchResultPage(context, result){
       if(result.card.url) header = link(result.card.url, result.card.title)
       res = page(createEmbed("default", context, {
           description: `**${header}**\n`,
-          footer: {
-            iconUrl: STATICS.google,
-            text: `Google Knowledge Graph • ${context.application.name}`
-          }
+          footer: renderFooter(context, doodle)
         }))
 
       if(result.card.image) res.embeds[0].thumbnail = { url: result.card.image };
@@ -92,7 +98,7 @@ module.exports = {
 
       let pages = []
       for(const res of search.body.results){
-        pages.push(createSearchResultPage(context, res))
+        pages.push(createSearchResultPage(context, res, search.body.doodle))
       }
 
       if(!pages.length) return editOrReply(context, createEmbed("warning", context, `No results found.`))
