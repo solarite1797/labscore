@@ -666,6 +666,7 @@ module.exports.TRANSLATE_LANGUAGE_MAPPINGS = Object.freeze({
   "ha": "🇳🇬",
   "haw": "",
   "he": "🇮🇱",
+  "iw": "🇮🇱",
   "hi": "🇮🇳",
   "hmn": "",
   "hu": "🇭🇺",
@@ -799,6 +800,7 @@ module.exports.TRANSLATE_LANGUAGES = Object.freeze({
   "ha": "Hausa",
   "haw": "Hawaiian",
   "he": "Hebrew",
+  "iw": "Hebrew",
   "hi": "Hindi",
   "hmn": "Hmong",
   "hu": "Hungarian",
@@ -1055,3 +1057,6 @@ module.exports.YOUTUBE_CATEGORIES = {
   "shorts": "42",
   "shows": "43"
 }
+
+// Special character that allows for fully hidden masked links on all (supported) platforms.
+module.exports.HIDDEN_MASKED_LINK_CHARACTER = "󠄴";
