@@ -20,107 +20,107 @@ const Statics = Object.freeze({
   brands: {
     anthropic: {
       file: "brands/anthropic.png",
-      revision: 0
+      revision: 1
     },
     applemaps: {
       file: "brands/applemaps.png",
-      revision: 1
+      revision: 2
     },
     bard: {
       file: "brands/bard.png",
-      revision: 0
+      revision: 1
     },
     bing: {
       file: "brands/bing.png",
-      revision: 0
+      revision: 1
     },
     chatgpt: {
       file: "brands/chatgpt.png",
-      revision: 0
+      revision: 1
     },
     emojipedia: {
       file: "brands/emojipedia.png",
-      revision: 2
+      revision: 3
     },
     genius: {
       file: "brands/genius.png",
-      revision: 0
+      revision: 1
     },
     google: {
       file: "brands/google.png",
-      revision: 0
+      revision: 2
     },
     inferkit: {
       file: "brands/inferkit.png",
-      revision: 0
+      revision: 1
     },
     inspirobot: {
       file: "brands/inspirobot.png",
-      revision: 0
+      revision: 1
     },
     labscore: {
       file: "brands/labscore.png",
-      revision: 1
+      revision: 2
     },
     makesweet: {
       file: "brands/makesweet.png",
-      revision: 0
+      revision: 1
     },
     musixmatch: {
       file: "brands/musixmatch.png",
-      revision: 0
+      revision: 1
     },
     openai: {
       file: "brands/openai.png",
-      revision: 0
+      revision: 1
     },
     openweathermap: {
       file: "brands/openweathermap.png",
-      revision: 0
+      revision: 1
     },
     perspectiveapi: {
       file: "brands/perspectiveapi.png",
-      revision: 0
+      revision: 1
     },
     photofunia: {
       file: "brands/photofunia.png",
-      revision: 1
+      revision: 2
     },
     quora: {
       file: "brands/quora.png",
-      revision: 1
+      revision: 2
     },
     reddit: {
       file: "brands/reddit.png",
-      revision: 0
+      revision: 1
     },
     tineye: {
       file: "brands/tineye.png",
-      revision: 1
+      revision: 2
     },
     urbandictionary: {
       file: "brands/urbandictionary.png",
-      revision: 2
+      revision: 3
     },
     weather: {
       file: "brands/weather.png",
-      revision: 3
+      revision: 4
     },
     wikihow: {
       file: "brands/wikihow.png",
-      revision: 1
+      revision: 2
     },
     wikipedia: {
       file: "brands/wikipedia.png",
-      revision: 1
+      revision: 2
     },
     wolframalpha: {
       file: "brands/wolframalpha.png",
-      revision: 2
+      revision: 3
     },
     youtube: {
       file: "brands/youtube.png",
-      revision: 2
+      revision: 3
     }
   },
   icons: {
