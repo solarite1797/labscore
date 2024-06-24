@@ -80,7 +80,7 @@ const Statics = Object.freeze({
     },
     perspectiveapi: {
       file: "brands/perspectiveapi.png",
-      revision: 1
+      revision: 2
     },
     photofunia: {
       file: "brands/photofunia.png",
@@ -88,11 +88,11 @@ const Statics = Object.freeze({
     },
     quora: {
       file: "brands/quora.png",
-      revision: 2
+      revision: 3
     },
     reddit: {
       file: "brands/reddit.png",
-      revision: 1
+      revision: 2
     },
     tineye: {
       file: "brands/tineye.png",
@@ -116,11 +116,11 @@ const Statics = Object.freeze({
     },
     wolframalpha: {
       file: "brands/wolframalpha.png",
-      revision: 3
+      revision: 4
     },
     youtube: {
       file: "brands/youtube.png",
-      revision: 3
+      revision: 4
     }
   },
   icons: {
