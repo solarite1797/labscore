@@ -1,5 +1,6 @@
 const EventEmitter = require("eventemitter3");
 const { Context } = require("detritus-client/lib/command");
+const { editOrReply } = require("#utils/message");
 
 module.exports = class BasePaginator extends EventEmitter {
   constructor(client, data) {
@@ -10,13 +11,15 @@ module.exports = class BasePaginator extends EventEmitter {
     this.pages = data.pages;
     this.index = 0;
 
+    this.context = data.context;
+    
     this.targetUser = data.targetUser || this.message?.author?.id || data.context?.user?.id;
 
     this.isInteractionPaginator = false;
     this.editOrReply;
-    if(data.context.editOrReply) this.editOrReply = data.context.editOrReply.bind(data.context);
+    if(data.context.editOrReply) this.editOrReply = editOrReply.bind(data.context);
     if(data.context.editOrRespond){
-      this.editOrReply = data.context.editOrRespond.bind(data.context);
+      this.editOrReply = editOrReply.bind(data.context);
       this.isInteractionPaginator = true;
     }
   }
@@ -65,7 +68,7 @@ module.exports = class BasePaginator extends EventEmitter {
     if(!msg.message_reference) msg.reference = true
     if(!msg.allowedMentions) msg.allowedMentions = {parse: [], repliedUser: false}
 
-    return this.commandMessage = await this.editOrReply(msg);
+    return this.commandMessage = await this.editOrReply(this.context, msg);
   }
 
   async previous() {

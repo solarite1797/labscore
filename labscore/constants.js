@@ -34,7 +34,8 @@ module.exports.COLORS = Object.freeze({
   warning: 16426522,
   embed: 2829617,
   brand: 6809687,
-  nsfw: 15549056
+  nsfw: 15549056,
+  incognito: 10057726,
 })
 
 module.exports.BADGE_ICONS = Object.freeze({
