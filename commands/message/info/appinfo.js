@@ -61,11 +61,17 @@ module.exports = {
     try{
       application = await superagent.get(`https://discord.com/api/v9/applications/${id}/rpc`)
       application = application.body
-      assets = await superagent.get(`https://discord.com/api/oauth2/applications/${id}/assets`)
-      assets = assets.body
     }catch(e){
       return editOrReply(context, createEmbed("warning", context, "Invalid Application"))
     }
+    
+    try{
+      assets = await superagent.get(`https://discord.com/api/oauth2/applications/${id}/assets`)
+      assets = assets.body
+    }catch(e){
+      // :)
+    }
+
     let embed = createEmbed("default", context, {
       description: `${icon("robot")} **${application.name}** ${highlight(`(${application.id})`)}\n${application.description}`,
       fields: []
