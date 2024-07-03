@@ -33,11 +33,8 @@ module.exports.editOrReply = function(context, message, disableReference = false
   message.flags = flags;
 
   // Handle responses for interaction context
-  console.log("responding" + Date.now() + " (flags " + flags + ")")
-  console.log(context._meta)
   if(context.editOrRespond){
     if(context._meta?.replacementMessageId){
-      console.log("responding via hack")
       return context.editMessage(context._meta.replacementMessageId, message).catch((e)=>{
         basecamp(`<:ico_w3:1086624963047460874>\`[${process.env.HOSTNAME}]\` **\` SHARD_MESSAGE_ERROR  \`** \`[Shard ${context.client.shardId}]\` Command \`${context.command.name}\` failed to respond: @ \`${Date.now()}\`\nGuild: \`${context.guild?.id}\`\nChannel: \`${context.channel?.id}\`\nUser: \`${context.user?.id}\`\`\`\`js\n${e}\`\`\``, message)
       });
