@@ -8,7 +8,9 @@ const { COLORS } = require("#constants")
  */
 const BLOCK_REASONS = {
   20016: "Slowmode",
-  200000: "AutoMod"
+  200000: "AutoMod",
+  // TODO: Handle permissions properly, this works as a "hack" for now.
+  50013: "Missing Permissions"
 }
 
 module.exports.editOrReply = function(context, message, disableReference = false){
@@ -27,9 +29,7 @@ module.exports.editOrReply = function(context, message, disableReference = false
   if(context._meta){
     if(context._meta.isIncognito) flags = MessageFlags.EPHEMERAL
   }
-
-  // you can figure out what this does on your own time
-  message.nonce = Math.floor(Math.random() * 9999 + 1000)
+  
   message.flags = flags;
 
   // Handle responses for interaction context
