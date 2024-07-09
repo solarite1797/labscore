@@ -9,16 +9,16 @@ const { icon, link } = require("./markdown")
  */
 const BLOCK_REASONS = {
   20016: {
-    message: "the channels slowmode settings",
+    message: "the channel's slowmode settings",
     support_article: 360016150952
   },
   200000: {
-    message: "the servers AutoMod setup",
+    message: "the server's AutoMod setup",
     support_article: 4421269296535
   },
   // TODO: Handle permissions properly, this works as a "hack" for now.
   50013: {
-    message: "the channels permission setup",
+    message: "the channel's permission setup",
     support_article: 10543994968087
   }
 }
