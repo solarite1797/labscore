@@ -2,15 +2,25 @@ const { Permissions, MessageFlags } = require("detritus-client/lib/constants")
 const { basecamp } = require("../logging")
 const { createEmbed } = require("./embed")
 const { COLORS } = require("#constants")
+const { icon, link } = require("./markdown")
 
 /**
  * These will force the command to become "incognito".
  */
 const BLOCK_REASONS = {
-  20016: "Slowmode",
-  200000: "AutoMod",
+  20016: {
+    message: "the channels slowmode settings",
+    support_article: 360016150952
+  },
+  200000: {
+    message: "the servers AutoMod setup",
+    support_article: 4421269296535
+  },
   // TODO: Handle permissions properly, this works as a "hack" for now.
-  50013: "Missing Permissions"
+  50013: {
+    message: "the channels permission setup",
+    support_article: 10543994968087
+  }
 }
 
 module.exports.editOrReply = function(context, message, disableReference = false){
@@ -49,11 +59,16 @@ module.exports.editOrReply = function(context, message, disableReference = false
         message.flags = MessageFlags.EPHEMERAL
 
         // Create a notice
-        if(message.embeds && message.embeds.length <= 4){
-          message.embeds.unshift({
-            description: `<:incognito:1250198171859161199> ​  ​  This response has been made incognito due to ${BLOCK_REASONS[errorData.code]}.`,
-            color: COLORS.incognito
-          })
+        if(message.content){
+          if(message.embeds && message.embeds.length <= 4){
+            message.embeds.unshift({
+              description: `<:incognito:1250198171859161199> ​  ​  This response has been made incognito due to ${BLOCK_REASONS[errorData.code].message}.`,
+              color: COLORS.incognito
+            })
+          }
+        } else {
+          // Uses new subtext formatting to look more "native"
+          message.content = `-# ${icon("flask_mini")} This response has been made incognito due to ${BLOCK_REASONS[errorData.code].message} • ${link("https://support.discord.com/hc/en-us/articles/" + BLOCK_REASONS[errorData.code].support_article, "Learn More", "Support Article")}`
         }
 
         let replacementMessage = await context.createMessage(message);

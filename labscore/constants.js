@@ -56,6 +56,7 @@ module.exports.BADGE_ICONS = Object.freeze({
 
 module.exports.ICONS = Object.freeze({
   "brand": "<:ico_brand:1237843729880977459>",
+  "flask_mini": "<:ico_flask_mini:1260342544600928286>",
 
   "home": "<:ico_home:1165257185488551976>",
   "image": "<:ico_image:1165257188235825274>",
