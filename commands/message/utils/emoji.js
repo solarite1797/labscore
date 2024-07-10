@@ -143,12 +143,15 @@ module.exports = {
         return await editOrReply(context, createEmbed("error", context, `No emoji data available for ${emoji[0]}.`))
       }
 
+      if(res.data.platforms.length === 0) return await editOrReply(createEmbed("error", context, "No images available for this emoji."));
+
       if(args.type == "twitter"){
         if(!context.message.content.includes("-type")){
           if(!res.data.platforms["twitter"]) args.type = Object.keys(res.data.platforms)[0]
           else args.type = "twitter"
         }
       }
+
       if(!res.data.platforms[args.type]){
         let embed = createEmbed("error", context, "No emoji image available for platform '" + args.type + "'.")
         embed.footer = {
