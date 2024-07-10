@@ -129,7 +129,7 @@ module.exports = {
         return await editOrReply(context, createEmbed("error", context, `No emoji data available for ${emoji[0]}.`))
       }
 
-      if(res.data.platforms.length === 0) return await editOrReply(createEmbed("error", context, "No images available for this emoji."));
+      if(Object.keys(res.data.platforms).length === 0) return await editOrReply(createEmbed("error", context, "No images available for this emoji."));
 
       // Use the high-res emojipedia icon, if available
       let ico = `https://abs.twimg.com/emoji/v2/72x72/${toCodePoint(emoji[0])}.png`
