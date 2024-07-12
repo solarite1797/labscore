@@ -4,7 +4,7 @@ const { createEmbed } = require("#utils/embed");
 const { acknowledge } = require("#utils/interactions");
 const { icon, pill, iconPill, highlight, timestamp } = require("#utils/markdown");
 const { editOrReply } = require("#utils/message");
-const { STATICS } = require("#utils/statics");
+const { STATICS, STATIC_ASSETS } = require("#utils/statics");
 
 const { ingest } = require("#logging");
 
@@ -146,7 +146,7 @@ module.exports = {
         },
         description: res.data.codes.map((c)=>pill(c)).join(' '),
         image: {
-          url: res.data.platforms[DEFAULT_PLATFORM].images[0].src
+          url: res.data.platforms[DEFAULT_PLATFORM].images[0].src || STATIC_ASSETS.emoji_placeholder
         },
         footer: {
           iconUrl: STATICS.emojipedia,
@@ -204,7 +204,7 @@ module.exports = {
             },
             description: res.data.codes.map((c)=>pill(c)).join(' '),
             image: {
-              url: emojiAsset[0].src
+              url: emojiAsset[0].src || STATIC_ASSETS.emoji_placeholder
             },
             footer: {
               iconUrl: STATICS.emojipedia,
@@ -255,7 +255,7 @@ module.exports = {
         },
         description: res.data.codes.map((c)=>pill(c)).join(' '),
         image: {
-          url: res.data.platforms[DEFAULT_PLATFORM].images[0].src
+          url: res.data.platforms[DEFAULT_PLATFORM].images[0].src || STATIC_ASSETS.emoji_placeholder
         },
         footer: {
           iconUrl: STATICS.emojipedia,

@@ -3,7 +3,7 @@ const { emojipedia } = require("#api");
 const { createEmbed } = require("#utils/embed");
 const { pill } = require("#utils/markdown");
 const { editOrReply } = require("#utils/message");
-const { STATICS } = require("#utils/statics");
+const { STATICS, STATIC_ASSETS } = require("#utils/statics");
 
 const { Components } = require("detritus-client/lib/utils");
 const { InteractionCallbackTypes, MessageComponentButtonStyles, ApplicationCommandOptionTypes } = require("detritus-client/lib/constants");
@@ -33,7 +33,7 @@ function toCodePoint(unicodeSurrogates, sep) {
 
 
 module.exports = {
-  name: 'emoji-info',
+  name: 'emojipedia',
   description: 'Shows detailed information about an emoji.',
   contexts: [
     0,
@@ -46,7 +46,7 @@ module.exports = {
   options: [
     {
       name: 'emoji',
-      description: 'Emoji to enlarge. Use two built-in emoji to mix them.',
+      description: 'Emoji to look up.',
       type: ApplicationCommandOptionTypes.TEXT,
       required: true
     },
@@ -99,7 +99,7 @@ module.exports = {
           },
           description: newView.data.codes.map((c)=>pill(c)).join(' ') + "\n\n" + newView.data.metadata.description,
           image: {
-            url: newView.data.platforms["twitter"].images[0].src
+            url: newView.data.platforms["twitter"].images[0].src || STATIC_ASSETS.emoji_placeholder
           },
           footer: {
             iconUrl: STATICS.emojipedia,
@@ -139,7 +139,14 @@ module.exports = {
 
     // Use the high-res emojipedia icon, if available
     let ico = `https://abs.twimg.com/emoji/v2/72x72/${toCodePoint(emoji[0])}.png`
-    if(!res.data.platforms["twitter"]) ico = Object.values(res.data.platforms)[0].images[0].src
+    if(!res.data.platforms["twitter"] && Object.values(res.data.platforms)[0]) ico = Object.values(res.data.platforms)[0].images[0].src
+
+    let iPreviewImage;
+    if(!res.data.platforms["twitter"] && Object.values(res.data.platforms)[0]){
+      iPreviewImage = res.data.platforms[Object.keys(res.data.platforms)[0]].images[0].src
+    } else if(res.data.platforms["twitter"]){
+      iPreviewImage = res.data.platforms["twitter"].images[0].src
+    }
 
     currentView = createEmbed("default", context, {
       author: {
@@ -149,7 +156,7 @@ module.exports = {
       },
       description: res.data.codes.map((c)=>pill(c)).join(' ') + "\n\n" + res.data.metadata.description,
       image: {
-        url: res.data.platforms["twitter"].images[0].src
+        url: iPreviewImage || STATIC_ASSETS.emoji_placeholder
       },
       footer: {
         iconUrl: STATICS.emojipedia,

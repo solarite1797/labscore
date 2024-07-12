@@ -16,6 +16,10 @@ const Statics = Object.freeze({
       file: "misc/embed-spacer-botinvite.png",
       revision: 0
     },
+    emoji_placeholder: {
+      file: "misc/emoji-placeholder.png",
+      revision: 0
+    },
   },
   brands: {
     anthropic: {
@@ -236,5 +240,6 @@ module.exports.STATIC_ICONS = Object.freeze({
 module.exports.STATIC_ASSETS = Object.freeze({
   chat_loading: staticAsset(Statics.assets.chat_loading),
   image_loading: staticAsset(Statics.assets.image_loading),
-  embed_invite_spacer: staticAsset(Statics.assets.embed_invite_spacer)
+  embed_invite_spacer: staticAsset(Statics.assets.embed_invite_spacer),
+  emoji_placeholder: staticAsset(Statics.assets.emoji_placeholder)
 })

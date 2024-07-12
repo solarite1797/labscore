@@ -3,7 +3,7 @@ const { emojipedia } = require("#api");
 const { createEmbed } = require("#utils/embed");
 const { pill, smallIconPill } = require("#utils/markdown");
 const { editOrReply } = require("#utils/message");
-const { STATICS } = require("#utils/statics");
+const { STATICS, STATIC_ASSETS } = require("#utils/statics");
 
 // TODO: Turn this into a general purpose permissions constant
 const { Permissions, InteractionCallbackTypes, MessageComponentButtonStyles } = require("detritus-client/lib/constants");
@@ -33,8 +33,8 @@ function toCodePoint(unicodeSurrogates, sep) {
 
 module.exports = {
   label: "emoji",
-  name: "emojiinfo",
-  aliases: ['ei'],
+  name: "emojipedia",
+  aliases: ["emojiinfo", "ei"],
   metadata: {
     description: `${smallIconPill("reply", "Supports Replies")}\n\nDisplays more detailed information about emoji. Only supports unicode emoji.`,
     description_short: 'Detailed information about an emoji.',
@@ -78,8 +78,8 @@ module.exports = {
         let newView = await emojipedia(context, ctx.data.customId)
         newView = newView.response.body
 
-        ico = newView.data.platforms["twitter"].images[0].src
-        if(!newView.data.platforms["twitter"]) ico = Object.values(newView.data.platforms)[0].images[0].src
+        ico = `https://abs.twimg.com/emoji/v2/72x72/${toCodePoint(emoji[0])}.png`
+        if(!newView.data.platforms["twitter"] && Object.values(newView.data.platforms)[0]) ico = Object.values(newView.data.platforms)[0].images[0].src
 
         let previewImage;
         if(!newView.data.platforms["twitter"]){
@@ -96,7 +96,7 @@ module.exports = {
           },
           description: newView.data.codes.map((c)=>pill(c)).join(' ') + "\n\n" + newView.data.metadata.description,
           image: {
-            url: previewImage
+            url: previewImage || STATIC_ASSETS.emoji_placeholder
           },
           footer: {
             iconUrl: STATICS.emojipedia,
@@ -140,12 +140,12 @@ module.exports = {
 
     // Use the high-res emojipedia icon, if available
     let ico = `https://abs.twimg.com/emoji/v2/72x72/${toCodePoint(emoji[0])}.png`
-    if(!res.data.platforms["twitter"]) ico = Object.values(res.data.platforms)[0].images[0].src
+    if(!res.data.platforms["twitter"] && Object.values(res.data.platforms)[0]) ico = Object.values(res.data.platforms)[0].images[0].src
 
     let iPreviewImage;
-    if(!res.data.platforms["twitter"]){
+    if(!res.data.platforms["twitter"] && Object.values(res.data.platforms)[0]){
       iPreviewImage = res.data.platforms[Object.keys(res.data.platforms)[0]].images[0].src
-    } else {
+    } else if(res.data.platforms["twitter"]){
       iPreviewImage = res.data.platforms["twitter"].images[0].src
     }
 
@@ -157,7 +157,7 @@ module.exports = {
       },
       description: res.data.codes.map((c)=>pill(c)).join(' ') + "\n\n" + res.data.metadata.description,
       image: {
-        url: iPreviewImage
+        url: iPreviewImage || STATIC_ASSETS.emoji_placeholder
       },
       footer: {
         iconUrl: STATICS.emojipedia,
