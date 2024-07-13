@@ -641,8 +641,6 @@ module.exports.TRANSLATE_LANGUAGE_MAPPINGS = Object.freeze({
   "bg": "🇧🇬",
   "ca": "",
   "ceb": "🇵🇭",
-  "zh-CN": "",
-  "zh-TW": "",
   "co": "",
   "hr": "🇭🇷",
   "cs": "🇨🇿",
