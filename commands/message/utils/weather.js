@@ -42,7 +42,7 @@ module.exports = {
       if(data.result.warnings.length >= 1){
         description += `\n`
         for(const w of data.result.warnings){
-          description += `\n${icon("warning")} **${w.label}**\n-# ${w.source} • ${link(w.url, "More about this alert", "Learn more about this alert")}`
+          description += `\n${icon("warning")} **${w.label}**\n-# ${w.source} • ${link(w.url, "Learn More", "Learn more about this alert")}`
         }
       }
 
