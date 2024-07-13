@@ -2,7 +2,7 @@ const { darksky } = require('#api');
 
 const { createEmbed } = require('#utils/embed');
 const { acknowledge } = require('#utils/interactions');
-const { pill, iconPill, smallPill, weatherIcon, timestamp } = require('#utils/markdown');
+const { pill, iconPill, smallPill, weatherIcon, timestamp, icon, link} = require('#utils/markdown');
 const { editOrReply } = require('#utils/message');
 const { STATICS } = require('#utils/statics');
 
@@ -52,14 +52,22 @@ module.exports = {
       
       description += `\n\n${iconPill("sun", "Sunrise")} ${timestamp(data.result.current.sun.sunrise, "t")} ​ ​ ${iconPill("moon", "Sunset")} ${timestamp(data.result.current.sun.sunset, "t")}`
 
+      // Render weather alerts
+      if(data.result.warnings.length >= 1){
+        description += `\n`
+        for(const w of data.result.warnings){
+          description += `\n${icon("warning")} **${w.label}**\n-# ${w.source} • ${link(w.url, "More about this alert", "Learn more about this alert")}`
+        }
+      }
+
       // Render Forecasts
       description += `\n`
       for(const i of data.result.forecast){
         description += `\n${pill(i.day)} ​ ​ ${weatherIcon(i.icon)}`
-        if(Math.floor(i.temperature.max).toString().length == 1) description += `${pill(Math.floor(i.temperature.max) + "°C ")}`
+        if(Math.floor(i.temperature.max).toString().length === 1) description += `${pill(Math.floor(i.temperature.max) + "°C ")}`
         else description += `${pill(Math.floor(i.temperature.max) + "°C")}`
         description += `​**/**​`
-        if(Math.floor(i.temperature.min).toString().length == 1) description += `${smallPill(Math.floor(i.temperature.min) + "°C ")}`
+        if(Math.floor(i.temperature.min).toString().length === 1) description += `${smallPill(Math.floor(i.temperature.min) + "°C ")}`
         else description += `${smallPill(Math.floor(i.temperature.min) + "°C")}`
       }
       
