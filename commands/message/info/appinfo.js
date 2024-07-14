@@ -64,7 +64,6 @@ module.exports = {
       application = await superagent.get(`${Routes.URL}/api/v9/applications/${id}/rpc`)
       application = application.body
     }catch(e){
-      console.log(e)
       return editOrReply(context, createEmbed("warning", context, "Invalid Application"))
     }
 
