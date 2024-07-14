@@ -137,8 +137,8 @@ module.exports = {
       else currentPlatform = "twitter"
 
       // Use the high-res emojipedia icon, if available
-      let ico = `https://abs.twimg.com/emoji/v2/72x72/${toCodePoint(emoji[0])}.png`
-      if(res.data.platforms[currentPlatform]) ico = res.data.platforms[currentPlatform].images[0].src
+      let ico = `https://raw.githubusercontent.com/jdecked/twemoji/main/assets/72x72/${toCodePoint(emoji[0])}.png`
+      if(res.data.platforms["twitter"]) ico = res.data.platforms["twitter"].images[0].src
 
       const DEFAULT_PLATFORM = currentPlatform
 

@@ -138,8 +138,8 @@ module.exports = {
     }, 100000)
 
     // Use the high-res emojipedia icon, if available
-    let ico = `https://abs.twimg.com/emoji/v2/72x72/${toCodePoint(emoji[0])}.png`
-    if(!res.data.platforms["twitter"] && Object.values(res.data.platforms)[0]) ico = Object.values(res.data.platforms)[0].images[0].src
+    let ico = `https://raw.githubusercontent.com/jdecked/twemoji/main/assets/72x72/${toCodePoint(emoji[0])}.png`
+    if(res.data.platforms["twitter"]) ico = res.data.platforms["twitter"].images[0].src
 
     let iPreviewImage;
     if(!res.data.platforms["twitter"] && Object.values(res.data.platforms)[0]){
