@@ -37,7 +37,8 @@ module.exports = {
     description_short: 'Search on Google Images',
     examples: ['image Eurasian Small Clawed Otter'],
     category: 'search',
-    usage: 'image <query>'
+    usage: 'image <query>',
+    slashCommand: "image"
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
