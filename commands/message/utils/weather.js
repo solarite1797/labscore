@@ -41,9 +41,9 @@ module.exports = {
 
       // Render weather alerts
       if(data.result.warnings.length >= 1){
-        description += `\n`
-        for(const w of data.result.warnings){
-          description += `\n${icon("warning")} **${w.label}**\n-# ${w.source} • ${link(w.url, "Learn More", "Learn more about this alert")}`
+        for(const w of data.result.warnings.splice(0, 2)){
+          if(description.includes(w.label)) continue;
+          description += `\n\n${icon("warning")} **${w.label}**\n-# ${w.source} • ${link(w.url, "Learn More", "Learn more about this alert")}`
         }
       }
 
