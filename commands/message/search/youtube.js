@@ -117,7 +117,8 @@ module.exports = {
     description_short: `Search YouTube videos, channels and playlists.`,
     examples: ['youtube otter live cam'],
     category: 'search',
-    usage: 'youtube <query> [-type <category>]'
+    usage: 'youtube <query> [-type <category>]',
+    slashCommand: "youtube"
   },
   args: [
     {name: 'type', default: 'all', type: 'string', help: `Video Category`}

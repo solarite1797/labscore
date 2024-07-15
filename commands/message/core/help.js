@@ -38,7 +38,7 @@ function renderCommandList(commands, descriptions, limit) {
   return render.join('\n')
 }
 
-function createCommandPage(context, prefix, command) {
+function createCommandPage(context, prefix, command, slashCommands) {
   alias = ' ​ '
   if (command.aliases.length >= 1) {
     for (const al of command.aliases) alias += smallPill(al)
@@ -63,9 +63,31 @@ function createCommandPage(context, prefix, command) {
   }
 
   let cPage = createEmbed("default", context, {
-    description: `${icon("slash")}  ${smallPill(command.name)}\n${alias}${explicit}\n${command.metadata.description}\n\n${args.join('\n\n')}`,
+    description: `${icon("slash")}  ${smallPill(command.name)}\n${alias}${explicit}\n${command.metadata.description}`,
     fields: []
   })
+
+  if(args.length >= 1) cPage.description += `\n\n${args.join('\n\n')}`;
+
+  // Adds the slash command hint, if available
+  if(command.metadata.slashCommand){
+    let cmd = slashCommands.filter((c)=>c.name === command.metadata.slashCommand);
+    if(cmd.length >= 1) {
+      switch(cmd[0].type){
+        case 1:
+          cPage.description += `\n\n${icon("slash")} Available via **Slash Commands**.\n-# ${icon("subtext_lightbulb")}  Click on </${cmd[0].name}:${cmd[0].ids.first()}> to try it out! • ${link(context.application.oauth2UrlFormat().replace("ptb.discordapp.com","discord.com"), `Add ${context.client.user.username}`, `Add ${context.client.user.username} to use this command anywhere.`)}`
+          break;
+        case 2:
+          cPage.description += `\n\n${icon("slash")} Available via **Context Menu Commands**\n-# ${icon("subtext_lightbulb")}  Right-Click on someone's avatar! • ${link(context.application.oauth2UrlFormat().replace("ptb.discordapp.com","discord.com"), `Add ${context.client.user.username}`, `Add ${context.client.user.username} to use this command anywhere.`)}`
+          break;
+        case 3:
+          cPage.description += `\n\n${icon("slash")} Available via **User Context Commands**.\n-# ${icon("subtext_lightbulb")}  Right-Click on any message! • ${link(context.application.oauth2UrlFormat().replace("ptb.discordapp.com","discord.com"), `Add ${context.client.user.username}`, `Add ${context.client.user.username} to use this command anywhere.`)}`
+          break;
+        default:
+          break;
+      }
+    }
+  }
 
   // TODO: maybe try building a little parser that highlights things via ansi
   if (command.metadata.usage) cPage.fields.push({
@@ -153,7 +175,7 @@ module.exports = {
 
           // Generate command detail pages
           for (const c of results) {
-            pages.push(createCommandPage(context, prefix, c))
+            pages.push(createCommandPage(context, prefix, c, context.interactionCommandClient.commands))
           }
 
           await paginator.createPaginator({
@@ -162,7 +184,7 @@ module.exports = {
           });
           return;
         } else {
-          return editOrReply(context, createCommandPage(context, prefix, results[0]))
+          return editOrReply(context, createCommandPage(context, prefix, results[0], context.interactionCommandClient.commands))
         }
       } catch (e) {
         console.log(e)

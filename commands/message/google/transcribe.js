@@ -15,7 +15,8 @@ module.exports = {
     description: `${icon("reply")} __Replying__ to a voice message when using this command will transcribe the contents of the voice message.`,
     description_short: 'Discord voice message transcription',
     category: 'utils',
-    usage: 'transcribe'
+    usage: 'transcribe',
+    slashCommand: "Transcribe Voice Message"
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY, Permissions.READ_MESSAGE_HISTORY],
   run: async (context) => {

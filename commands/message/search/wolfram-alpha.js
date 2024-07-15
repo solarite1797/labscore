@@ -49,7 +49,8 @@ module.exports = {
     description_short: 'Compute via Wolfram|Alpha',
     examples: ['wa x^2+5x+6=0', 'wa 5€ to $', 'wa 5\'11 to cm'],
     category: 'search',
-    usage: 'wolframalpha <query>'
+    usage: 'wolframalpha <query>',
+    slashCommand: "wolframalpha"
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {

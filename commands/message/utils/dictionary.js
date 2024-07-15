@@ -57,9 +57,10 @@ module.exports = {
   metadata: {
     description: 'Looks up words and teminology in a dictionary.',
     description_short: 'Dictionary word definitions.',
-    examples: ['dictionary Gehen -lang de'],
+    examples: ['define Gehen -lang de'],
     category: 'utils',
-    usage: 'define <query> [-lang <language>]'
+    usage: 'dictionary <query> [-lang <language>]',
+    slashCommand: "dictionary"
   },
   args: [
     {name: 'lang', default: 'en', type: 'language', help: "Language to define in"},

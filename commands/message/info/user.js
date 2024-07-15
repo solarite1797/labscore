@@ -17,7 +17,8 @@ module.exports = {
     description_short: 'Information about discord users',
     examples: ['user labsCore'],
     category: 'info',
-    usage: 'user [<user>]'
+    usage: 'user [<user>]',
+    slashCommand: 'user'
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => { 

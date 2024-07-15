@@ -17,7 +17,8 @@ module.exports = {
     description_short: 'Local weather information',
     examples: ['weather Otter, Germany'],
     category: 'utils',
-    usage: 'weather <location>'
+    usage: 'weather <location>',
+    slashCommand: "weather"
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {

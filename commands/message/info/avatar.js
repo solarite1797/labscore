@@ -16,7 +16,8 @@ module.exports = {
     description_short: 'Get discord user avatars',
     examples: ['avatar labsCore'],
     category: 'info',
-    usage: 'avatar [<user>]'
+    usage: 'avatar [<user>]',
+    slashCommmand: 'avatar'
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {

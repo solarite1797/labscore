@@ -45,7 +45,8 @@ module.exports = {
     examples: ['e 😀', 'emojimix 🐱 🍞'],
     category: 'utils',
     usage: 'emoji <emoji> [<emoji to mix>]',
-    use_custom_ingest: true
+    use_custom_ingest: true,
+    slashCommand: "emoji"
   },
   args: [
     {name: 'type', default: 'twitter', type: 'string', help: `Emoji platform type`}

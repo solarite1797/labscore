@@ -20,7 +20,8 @@ module.exports = {
     description_short: 'Image text recognition + translation.',
     examples: ['ocrtr en -from pl'],
     category: 'utils',
-    usage: 'ocrtr <language> [-from <origin language>]'
+    usage: 'ocrtr <language> [-from <origin language>]',
+    slashCommand: "OCR Translate"
   },
   args: [
     {name: 'from', default: 'auto', type: 'string', help: "Language to translate from"}

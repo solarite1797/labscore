@@ -15,7 +15,8 @@ module.exports = {
     description: `${smallIconPill("reply", "Supports Replies")}\n\nUses Optical Character Recognition to detect text in images.`,
     description_short: 'Image text recognition.',
     category: 'utils',
-    usage: 'ocr <attachment>'
+    usage: 'ocr <attachment>',
+    slashCommand: "OCR"
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.READ_MESSAGE_HISTORY, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context) => {

@@ -40,7 +40,8 @@ module.exports = {
     description: 'Performs a reverse-image-search.',
     description_short: 'Reverse image search',
     category: 'search',
-    usage: 'reverse <image>'
+    usage: 'reverse <image>',
+    slashCommand: "Reverse Image Search"
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context) => {

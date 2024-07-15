@@ -40,7 +40,8 @@ module.exports = {
     description_short: 'Detailed information about an emoji.',
     examples: ['ei 😀'],
     category: 'utils',
-    usage: 'emojiinfo <emoji>'
+    usage: 'emojipedia <emoji>',
+    slashCommand: "emojipedia"
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.READ_MESSAGE_HISTORY, Permissions.USE_EXTERNAL_EMOJIS],
   run: async (context, args) => {

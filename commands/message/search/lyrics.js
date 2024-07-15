@@ -48,7 +48,8 @@ module.exports = {
     description_short: 'Search song lyrics',
     examples: ['lyrics desert bloom man'],
     category: 'search',
-    usage: 'lyrics <query>'
+    usage: 'lyrics <query>',
+    slashCommand: "lyics"
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {

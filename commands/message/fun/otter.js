@@ -12,7 +12,8 @@ module.exports = {
     description: 'Displays a random image containing otters.',
     description_short: 'Otter images',
     category: 'fun',
-    usage: `otter`
+    usage: `otter`,
+    slashCommand: "otter"
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.ATTACH_FILES, Permissions.READ_MESSAGE_HISTORY],
   run: async (context) => {
