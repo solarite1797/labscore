@@ -75,13 +75,13 @@ function createCommandPage(context, prefix, command, slashCommands) {
     if(cmd.length >= 1) {
       switch(cmd[0].type){
         case 1:
-          cPage.description += `\n\n${icon("slash")} Available via **Slash Commands**.\n-# ${icon("subtext_lightbulb")}  Click on </${cmd[0].name}:${cmd[0].ids.first()}> to try it out! • ${link(context.application.oauth2UrlFormat().replace("ptb.discordapp.com","discord.com"), `Add ${context.client.user.username}`, `Add ${context.client.user.username} to use this command anywhere.`)}`
+          cPage.description += `\n\n${icon("slash")} Available via **Slash Commands**.\n-# ${icon("subtext_lightbulb")}  Click on </${cmd[0].name}:${cmd[0].ids.first()}> to try it out! ${link(context.application.oauth2UrlFormat().replace("ptb.discordapp.com","discord.com"), `Add ${context.client.user.username}`, `Add ${context.client.user.username} to use this command anywhere.`)}`
           break;
         case 2:
-          cPage.description += `\n\n${icon("slash")} Available via **Context Menu Commands**\n-# ${icon("subtext_lightbulb")}  Right-Click on someone's avatar! • ${link(context.application.oauth2UrlFormat().replace("ptb.discordapp.com","discord.com"), `Add ${context.client.user.username}`, `Add ${context.client.user.username} to use this command anywhere.`)}`
+          cPage.description += `\n\n${icon("slash")} Available via **Context Menu Commands**\n-# ${icon("subtext_lightbulb")}  Right-Click on someone's avatar! ${link(context.application.oauth2UrlFormat().replace("ptb.discordapp.com","discord.com"), `Add ${context.client.user.username}`, `Add ${context.client.user.username} to use this command anywhere.`)}`
           break;
         case 3:
-          cPage.description += `\n\n${icon("slash")} Available via **User Context Commands**.\n-# ${icon("subtext_lightbulb")}  Right-Click on any message! • ${link(context.application.oauth2UrlFormat().replace("ptb.discordapp.com","discord.com"), `Add ${context.client.user.username}`, `Add ${context.client.user.username} to use this command anywhere.`)}`
+          cPage.description += `\n\n${icon("slash")} Available via **User Context Commands**.\n-# ${icon("subtext_lightbulb")}  Right-Click on any message! ${link(context.application.oauth2UrlFormat().replace("ptb.discordapp.com","discord.com"), `Add ${context.client.user.username}`, `Add ${context.client.user.username} to use this command anywhere.`)}`
           break;
         default:
           break;
