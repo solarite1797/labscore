@@ -103,6 +103,7 @@ module.exports = {
       })
 
       components.addSelectMenu({
+        defaultValues: [],
         placeholder: "Select filter type",
         customId: "filter-type",
         options: selectOptions

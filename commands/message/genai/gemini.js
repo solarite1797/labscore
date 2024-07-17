@@ -120,6 +120,7 @@ module.exports = {
         }
   
         components.addSelectMenu({
+          defaultValues: [],
           placeholder: "View other drafts",
           customId: "bard-drafts",
           options: draftOptions

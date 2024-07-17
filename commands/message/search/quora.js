@@ -104,6 +104,7 @@ async function quoraPaginator(context, pages, refMappings, currentRef) {
       })
 
       components.addSelectMenu({
+        defaultValues: [],
         placeholder: "Select a question.",
         customId: "quora-select",
         options: selectOptions

@@ -258,6 +258,7 @@ module.exports = {
       })
 
       components.addSelectMenu({
+        defaultValues: [],
         placeholder: "Select platform type",
         customId: "emoji-type",
         options: selectTypeOptions,
@@ -265,6 +266,7 @@ module.exports = {
       })
       
       components.addSelectMenu({
+        defaultValues: [],
         placeholder: "Select emoji revision",
         customId: "emoji-version",
         options: selectOptions,
