@@ -2,7 +2,7 @@ const { darksky } = require('#api');
 const { paginator } = require('#client');
 
 const { createEmbed, page } = require('#utils/embed')
-const { pill, iconPill, smallPill, weatherIcon, timestamp, icon, link} = require('#utils/markdown');
+const { pill, iconPill, smallPill, weatherIcon, timestamp, icon, link, stringwrap} = require('#utils/markdown');
 const { editOrReply } = require('#utils/message')
 const { STATICS } = require('#utils/statics');
 
@@ -114,6 +114,7 @@ module.exports = {
         }]
       });
     }catch(e){
+      console.log(e)
       return editOrReply(context, createEmbed("warning", context, `No weather data available for given location.`))
     }
   }
