@@ -11,12 +11,11 @@
   "author": "bignutty",
   "license": "ISC",
   "dependencies": {
-    "detritus-client": "^0.17.0-beta.16",
-    "dotenv": "^16.0.1",
+    "detritus-client": "^0.17.0-beta.29",
+    "dotenv": "^16.4.5",
     "emoji-aware": "^3.1.0",
     "eventemitter3": "^4.0.7",
-    "express": "^4.18.1",
-    "superagent": "^7.1.1"
+    "superagent": "^7.1.6"
   },
   "imports": {
     "#api": "./labscore/api/index.js",
