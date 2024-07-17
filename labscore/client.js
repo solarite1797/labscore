@@ -129,6 +129,17 @@ commandClient.on('commandDelete', async ({context, reply}) => {
 
 commandClient.on('commandRunError', async ({context, error}) => {
   try{
+    // No service configured
+    if(!process.env.MAINTOWER_URL){
+      console.log(error);
+
+      await editOrReply(context, {
+        content: `${icon("cross")} Something went wrong while attempting to run this command. (check console)`
+      })
+      
+      return;
+    }
+
     // Log the error via our maintower service
     let packages = {
       data: {},
@@ -162,6 +173,17 @@ commandClient.on('commandRunError', async ({context, error}) => {
 
 interactionClient.on('commandRunError', async ({context, error}) => {
   try{
+    // No service configured
+    if(!process.env.MAINTOWER_URL){
+      console.error(error ? error.stack || error.message : error);
+  
+      await editOrReply(context, {
+        content: `${icon("cross")} Something went wrong while attempting to run this command. (check console)`
+      })
+      
+      return;
+    }
+
     // Log the error via our maintower service
     let packages = {
       data: {},
@@ -197,6 +219,9 @@ interactionClient.on('commandRunError', async ({context, error}) => {
 
   // Logging
   cluster.on(ClientEvents.REST_RESPONSE, async ({response, restRequest, shard}) => {
+    // No service configured
+    if(!process.env.MAINTOWER_URL) return;
+
     const route = response.request.route;
     if (route) {
       if (!response.ok) {
@@ -209,6 +234,7 @@ interactionClient.on('commandRunError', async ({context, error}) => {
   });
 
   cluster.on(ClientEvents.WARN, async ({error}) => {
+    if(!process.env.MAINTOWER_URL) { console.warn(error); return; }
     await basecamp(`<:ico_w2:1086624961025810485>\`[${process.env.HOSTNAME}]\` **\` CLUSTER_WARNING  \`**  Cluster ${cluster.manager.clusterId} reported warning @ \`${Date.now()}\`:\n\`\`\`${error}\`\`\``)
   });
 

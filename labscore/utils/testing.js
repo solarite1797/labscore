@@ -36,6 +36,8 @@ async function getTestConfig(){
 }
 
 async function hasFeature(context, feature){
+  if(!process.env.TESTING_CONFIG_URL) { console.warn("Test service config URL is missing, test features will be disabled."); return false; };
+
   // We need to load the test config first
   if(TESTING_REVISION == "-1") await getTestConfig();
 

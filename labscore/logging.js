@@ -1,11 +1,12 @@
 const superagent = require('superagent')
 
-const MAINTOWER_BASE_URL = `https://labscore-v2.vercel.app/maintower/`
+const MAINTOWER_BASE_URL = process.env.MAINTOWER_URL
 
 let maintowerClient = "1fepg2wdk-prod"
 if(process.env.MAINTOWER_OVERRIDE) maintowerClient = process.env.MAINTOWER_OVERRIDE
 
 module.exports.maintower = async function (packages, type){
+  if(!MAINTOWER_BASE_URL) { console.warn("No maintower url configured."); return; } 
   try{
     let res = await superagent.post(MAINTOWER_BASE_URL + 'invoke')
       .set({
@@ -26,6 +27,7 @@ module.exports.maintower = async function (packages, type){
 }
 
 module.exports.basecamp = async function (log, content = ""){
+  if(!MAINTOWER_BASE_URL) { console.warn("No maintower url configured."); return; }
   try{
     let res = await superagent.post(MAINTOWER_BASE_URL + 'basecamp')
       .set({
@@ -41,6 +43,7 @@ module.exports.basecamp = async function (log, content = ""){
 }
 
 module.exports.ingest = async function (event, type = "generic"){
+  if(!process.env.INGEST_SERVICE_HOST) return console.warn("No ingest service host configured.")
   try{
     let r = await superagent.get(`${process.env.INGEST_SERVICE_HOST}/d/${type}/${encodeURIComponent(event)}`)
       .set("x-ingest-client", process.env.INGEST_SERVICE_CLIENT)
