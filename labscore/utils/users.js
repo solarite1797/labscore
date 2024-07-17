@@ -60,7 +60,7 @@ const BADGE_TYPES = Object.freeze({
   "hypesquad": {
     description: "HypeSquad Events",
     link: "https://discord.com/hypesquad",
-    icon: BADGE_ICONS.hypesquad
+    icon: BADGE_ICONS.hypesquad_events
   },
   "hypesquad_house_1": {
     description: "HypeSquad Bravery",
@@ -105,23 +105,23 @@ const BADGE_TYPES = Object.freeze({
 })
 
 const BADGES = Object.freeze({
-  [UserFlags.STAFF]: 'staff',
-  [UserFlags.PARTNER]: 'partner',
-  [UserFlags.DISCORD_CERTIFIED_MODERATOR]: 'certified_moderator',
-  [UserFlags.HYPESQUAD]: 'hypesquad',
-  [UserFlags.HYPESQUAD_ONLINE_HOUSE_1]: 'hypesquad_house_1',
-  [UserFlags.HYPESQUAD_ONLINE_HOUSE_2]: 'hypesquad_house_2',
-  [UserFlags.HYPESQUAD_ONLINE_HOUSE_3]: 'hypesquad_house_3',
-  [UserFlags.BUG_HUNTER_LEVEL_1]: 'bug_hunter_level_1',
-  [UserFlags.BUG_HUNTER_LEVEL_2]: 'bug_hunter_level_2',
-  [1<<22]: 'active_developer',
-  [UserFlags.VERIFIED_DEVELOPER]: 'verified_developer',
-  [UserFlags.PREMIUM_EARLY_SUPPORTER]: 'early_supporter',
+  "staff": UserFlags.STAFF,
+  "partner": UserFlags.PARTNER,
+  "certified_moderator": UserFlags.DISCORD_CERTIFIED_MODERATOR,
+  "hypesquad": UserFlags.HYPESQUAD,
+  "hypesquad_house_1": UserFlags.HYPESQUAD_ONLINE_HOUSE_1,
+  "hypesquad_house_2": UserFlags.HYPESQUAD_ONLINE_HOUSE_2,
+  "hypesquad_house_3": UserFlags.HYPESQUAD_ONLINE_HOUSE_3,
+  "bug_hunter_level_1": UserFlags.BUG_HUNTER_LEVEL_1,
+  "bug_hunter_level_2": UserFlags.BUG_HUNTER_LEVEL_2,
+  "active_developer": UserFlags.ACTIVE_DEVELOPER,
+  "verified_developer": UserFlags.VERIFIED_DEVELOPER,
+  "early_supporter": UserFlags.PREMIUM_EARLY_SUPPORTER
 })
 
 function renderBadges(user){
   let badges = [];
-  for(const flag of Object.keys(BADGES)) if(user.hasFlag(parseInt(flag))) badges.push(BADGE_TYPES[BADGES[flag]].icon)
+  for(const flag of Object.keys(BADGES)) if(user.hasFlag(BADGES[flag])) badges.push(BADGE_TYPES[flag].icon)
   return badges;
 }
 

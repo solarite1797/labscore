@@ -108,7 +108,7 @@ module.exports = {
         pages,
         buttons: [{
           customId: "next",
-          emoji: "<:ico_button_thermometer:1262512806633144382>",
+          emoji: icon("button_thermometer"),
           label: `Toggle ${unitNames[units[0]]}/${unitNames[units[1]]}`,
           style: 2
         }]

@@ -12,12 +12,12 @@ const { Permissions } = require("detritus-client/lib/constants");
 function renderFooter(context, doodle){
   if(doodle.label) return {
     iconUrl: doodle.super_g,
-    text: `${doodle.label} • Google`
+    text: `${doodle.label} • Google Search`
   }
   
   return {
     iconUrl: STATICS.google,
-    text: `Google • ${context.application.name}`
+    text: `Google Search • ${context.application.name}`
   }
 }
 

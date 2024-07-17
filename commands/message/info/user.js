@@ -1,6 +1,7 @@
+const { paginator } = require("#client");
 const { BADGE_ICONS } = require("#constants");
 
-const { createEmbed } = require("#utils/embed");
+const { createEmbed, page } = require("#utils/embed");
 const { icon, highlight, timestamp, smallIconPill, smallPill } = require("#utils/markdown");
 const { editOrReply } = require("#utils/message");
 const { getUser, renderBadges } = require("#utils/users");
@@ -45,6 +46,8 @@ module.exports = {
       if(u.discriminator && u.discriminator !== "0") usernameDisplay += `#${u.discriminator}`
 
       usernameDisplay = `**@${usernameDisplay}**${botTag} ${highlight(`(${u.id})`)}`
+
+      if(u.globalName !== null) usernameDisplay += `\n${smallIconPill("user_card", "Display Name")} ${smallPill(u.globalName)}`
       if(m && m.nick !== null) usernameDisplay += `\n${smallIconPill("user_card", "Nickname")} ${smallPill(m.nick)}`
 
       let userCard = createEmbed("default", context, {
@@ -85,7 +88,33 @@ module.exports = {
           inline: true
         })
       }
-      return editOrReply(context, userCard)
+
+      
+      if(!u.member?.banner && u.member) u.member = await context.guild.fetchMember(u.user.id)
+        
+      // No special handling
+      if(m == undefined || m.avatar === null && m.banner === null) return editOrReply(context, userCard)
+
+      let pages = [];
+
+      let memberCard = structuredClone(userCard);
+      if(m?.avatar !== null) memberCard.thumbnail.url = m.avatarUrl + "?size=4096";
+      if(m?.banner !== null) memberCard.image.url = `https://cdn.discordapp.com/guilds/${context.guild.id}/users/${m.id}/banners/${m.banner}.png` + "?size=4096";
+
+      // Show the server-specific card first if available
+      pages.push(page(memberCard))
+      pages.push(page(userCard))
+      
+      await paginator.createPaginator({
+        context,
+        pages,
+        buttons: [{
+          customId: "next",
+          emoji: icon("button_user_profile_swap"),
+          label: "Toggle Server/Global Profile",
+          style: 2
+        }]
+      });
     }catch(e){
       console.log(e)
     }

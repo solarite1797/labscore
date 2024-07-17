@@ -9,16 +9,16 @@ const { getUser } = require("#utils/users");
 const { Permissions } = require("detritus-client/lib/constants");
 
 module.exports = {
-  name: 'avatar',
+  name: 'banner',
   label: 'user',
-  aliases: ['a','pfp'],
+  aliases: ['b'],
   metadata: {
-    description: 'Displays someones discord avatar. Accepts IDs, Mentions, or Usernames.',
+    description: 'Displays someones profile banner. Accepts IDs, Mentions, or Usernames.',
     description_short: 'Get discord user avatars',
     examples: ['avatar labsCore'],
     category: 'info',
     usage: 'avatar [<user>]',
-    slashCommmand: 'avatar'
+    slashCommmand: 'banner'
   },
   permissionsClient: [Permissions.EMBED_LINKS, Permissions.SEND_MESSAGES, Permissions.USE_EXTERNAL_EMOJIS, Permissions.READ_MESSAGE_HISTORY],
   run: async (context, args) => {
@@ -27,17 +27,22 @@ module.exports = {
     let u = await getUser(context, args.user)
     if(!u || !u.user) return editOrReply(context, createEmbed("warning", context, "No users found."))
 
-    if(u.member && u.member.avatar !== null) {
-      let pages = []
+    if(!u.user.banner && !u.member?.banner) return editOrReply(context, createEmbed("warning", context, "User has no banners."))
+    
+    let pages = []
+    
+    if(!u.member?.banner && u.member) u.member = await context.guild.fetchMember(u.user.id)
+
+    if(u.member?.banner) {
       pages.push(page(createEmbed("default", context, {
         image: {
-          url: u.member.avatarUrl + '?size=4096'
+          url: `https://cdn.discordapp.com/guilds/${context.guild.id}/users/${u.member.id}/banners/${u.member.banner}.png` + "?size=4096"
         }
       })))
 
       pages.push(page(createEmbed("default", context, {
         image: {
-          url: u.user.avatarUrl + '?size=4096'
+          url: u.user.bannerUrl + '?size=4096'
         }
       })))
 
@@ -47,14 +52,14 @@ module.exports = {
         buttons: [{
           customId: "next",
           emoji: icon("button_user_profile_swap"),
-          label: "Toggle Server/Global Avatar",
+          label: "Toggle Server/Global Banner",
           style: 2
         }]
       });
     } else {
       return editOrReply(context, createEmbed("default", context, {
         image: {
-          url: u.user.avatarUrl + '?size=4096'
+          url: u.user.bannerUrl + '?size=4096'
         }
       }))
     }

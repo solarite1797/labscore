@@ -99,7 +99,7 @@ function createSearchResultPage(context, entry){
 module.exports = {
   name: 'bing',
   label: 'query',
-  aliases: ['b', 'search2'],
+  aliases: ['search2'],
   metadata: {
     description: 'Returns search results from Microsoft Bing.',
     description_short: 'Search on Bing',

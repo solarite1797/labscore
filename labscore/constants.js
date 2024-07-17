@@ -58,7 +58,13 @@ module.exports.ICONS = Object.freeze({
   "brand": "<:ico_brand:1237843729880977459>",
   
   "flask_mini": "<:ico_flask_mini:1260342544600928286>",
-  "subtext_lightbulb": "<:ico_subt_lightbulb:1262470784224591934>",
+  "subtext_lightbulb": "<:ico_subt_lightbulb:1263199767140237342>",
+
+  "button_thermometer": "<:ico_button_thermometer:1262512806633144382>",
+  "button_user_profile_swap": "<:ico_button_user_profile_swap:1263198564528685188>",
+
+  "button_chevron_left": "<:button_chevron_left:1263214273640009749>",
+  "button_chevron_right": "<:button_chevron_right:1263214275829436507>",
 
   "home": "<:ico_home:1165257185488551976>",
   "image": "<:ico_image:1165257188235825274>",

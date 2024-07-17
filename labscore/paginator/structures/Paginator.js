@@ -1,3 +1,4 @@
+const { icon } = require("#utils/markdown");
 const InteractionPaginator = require("./InteractionPaginator");
 const assert = require("assert");
 
@@ -10,8 +11,8 @@ const allowedEvents = new Set([
 ]);
 
 const ButtonEmoji = Object.freeze({
-  NEXT: '<:right:977871577758707782>',
-  PREVIOUS: '<:left:977871577532211200>',
+  NEXT: icon("button_chevron_right"),
+  PREVIOUS: icon("button_chevron_left"),
   STOP: '<:ico_trash:929498022386221096>',
   SEARCH: '<:search:1063080546365866056>',
   UNKNOWN: '<:ico_question:949420315677691934>'
