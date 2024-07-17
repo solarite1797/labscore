@@ -90,7 +90,7 @@ module.exports = {
       }
 
       
-      if(!u.member?.banner && u.member) u.member = await context.guild.fetchMember(u.user.id)
+      if(!m?.banner && m) u.member = await context.guild.fetchMember(u.id)
         
       // No special handling
       if(m == undefined || m.avatar === null && m.banner === null) return editOrReply(context, userCard)
