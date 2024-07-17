@@ -123,7 +123,7 @@ module.exports = {
       data = data.response.body
 
       let units = ["°C", "°F"]
-      if(["f","fahrenheit","°f"].includes(args.units.toLowerCase())) units = ["°F", "°C"]
+      if(args.units) if(["f","fahrenheit","°f"].includes(args.units.toLowerCase())) units = ["°F", "°C"]
 
       let pages = []
       pages.push(page(renderWeatherCard(context, data, units[0])))
