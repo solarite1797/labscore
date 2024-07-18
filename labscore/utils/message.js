@@ -68,7 +68,7 @@ module.exports.editOrReply = function(context, message, disableReference = false
           }
         } else {
           // Uses new subtext formatting to look more "native"
-          message.content = `-# ${icon("flask_mini")} This response has been made incognito due to ${BLOCK_REASONS[errorData.code].message} ${link("https://support.discord.com/hc/en-us/articles/" + BLOCK_REASONS[errorData.code].support_article, "Learn More", "Support Article")}`
+          message.content = `-# ${icon("flask_mini")} This response has been made incognito due to ${BLOCK_REASONS[errorData.code].message}. ${link("https://support.discord.com/hc/en-us/articles/" + BLOCK_REASONS[errorData.code].support_article, "Learn More", "Support Article")}`
         }
 
         let replacementMessage = await context.createMessage(message);
