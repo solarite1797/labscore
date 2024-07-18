@@ -62,7 +62,7 @@ module.exports.editOrReply = function(context, message, disableReference = false
         if(message.content){
           if(message.embeds && message.embeds.length <= 4){
             message.embeds.unshift({
-              description: `<:incognito:1250198171859161199> ​  ​  This response has been made incognito due to ${BLOCK_REASONS[errorData.code].message}.`,
+              description: `${icon("flask_incognito")} ​  ​  This response has been made incognito due to ${BLOCK_REASONS[errorData.code].message}.`,
               color: COLORS.incognito
             })
           }
