@@ -1,4 +1,5 @@
 const { garfield } = require('#api');
+const { FUNNY_CAT_ICONS } = require('#constants');
 
 const { createEmbed } = require('#utils/embed');
 const { timestamp } = require('#utils/markdown');
@@ -6,12 +7,6 @@ const { editOrReply } = require('#utils/message')
 
 // TODO: Turn this into a general purpose permissions constant
 const { Permissions } = require("detritus-client/lib/constants");
-
-const FUNNY_CAT_EMOJI = [
-  "<:gm:878401411556196352>",
-  "<:gn:878401411392606258>",
-  "<:funnycat:899419360748261396>"
-]
 
 module.exports = {
   name: 'garfield',
@@ -29,7 +24,7 @@ module.exports = {
     const garf = (await garfield()).response.body
 
     return editOrReply(context, createEmbed("default", context, {
-      description: `${FUNNY_CAT_EMOJI[Math.floor(Math.random() * FUNNY_CAT_EMOJI.length)]} Garfield Comic Strip for ${timestamp(new Date(garf.date), "D")}`,
+      description: `${FUNNY_CAT_ICONS[Math.floor(Math.random() * FUNNY_CAT_ICONS.length)]} Garfield Comic Strip for ${timestamp(new Date(garf.date), "D")}`,
       image: {
         url: garf.comic
       }
